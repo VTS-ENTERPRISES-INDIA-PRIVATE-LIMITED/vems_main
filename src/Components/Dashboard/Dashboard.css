@@ -1,0 +1,95 @@
+/* Sidebar.css */
+
+.sidebar {
+  width: 150px;
+  height: 100vh;
+  background: linear-gradient(145deg, #34495e, #2c3e50);
+  /* padding: 20px; */
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #ecf0f1;
+  transition: width 0.3s ease;
+}
+
+/* 
+.sidebar:hover {
+  width: 280px;
+} */
+
+.logo {
+  margin-bottom: 50px;
+  transform: translateY(-10px);
+  transition: transform 0.3s ease;
+}
+
+.logo img {
+  width: 150px;
+  height: auto;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.menu li {
+  width: 100%;
+  padding: 15px 15px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  cursor: pointer;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.menu li:hover {
+  background-color: #1abc9c;
+  transform: translateX(5px);
+}
+
+.menu li:before {
+  content: "";
+  position: absolute;
+  left: -15px;
+  width: 10px;
+  height: 100%;
+  background-color: #e67e22;
+  border-radius: 0 5px 5px 0;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.3s ease;
+}
+
+.menu li:hover:before {
+  transform: scaleY(1);
+}
+
+.menu-icon {
+  margin-right: 15px;
+  font-size: 24px;
+  transition: transform 0.3s ease;
+}
+
+.menu li:hover .menu-icon {
+  transform: rotate(-10deg);
+}
+
+.menu span {
+  position: relative;
+  color: white;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.menu li:hover span {
+  color: #ffffff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}

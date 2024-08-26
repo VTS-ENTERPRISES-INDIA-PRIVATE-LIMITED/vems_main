@@ -1,16 +1,22 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Viewvehicle from './Components/ViewVehicle/ViewVehicle';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
 import VehicleDashboard from './Components/VehicleDashboard/VehicleDashboard';
-import TripManagement from './Components/TripManagement/TripSchedule';
-import Routess from  './Components/RouteManagement/Routess';
+import AddVehicle from './Components/AddVehicle/AddVehicle';
+import ViewVehicle from './Components/ViewVehicle/ViewVehicle';
+import Routess from './Components/RouteManagement/Routess';
 
-import Employeesdata from './Components/TripManagement/Employeesdata';
-function App() {
+const App = () => {
   return (
    
-       <div>
-     <Employeesdata/>
-     </div>
+      <div className="app-container">
+      
+          <VehicleDashboard/> 
+           
+        </div>
+      
+   
   );
 }
 

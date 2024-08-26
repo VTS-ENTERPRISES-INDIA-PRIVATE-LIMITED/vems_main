@@ -1,0 +1,24 @@
+.trip-management--section {
+  height: 100%;
+  display: flex;
+  gap: 2rem;
+}
+
+.sidebar {
+  width: 25rem;
+  background-color: tomato;
+}
+
+.trip-management--main {
+  flex-grow: 1;
+  height: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  column-gap: 2rem;
+}
+
+.map--component {
+  display: grid;
+}
