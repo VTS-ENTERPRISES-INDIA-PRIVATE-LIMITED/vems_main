@@ -1,6 +1,7 @@
 .trip-management--section {
   height: 100%;
   display: flex;
+  gap: 2rem;
 }
 
 .sidebar {
@@ -13,6 +14,11 @@
   height: 100%;
 
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-columns: 1fr 1fr;
   position: relative;
+  column-gap: 2rem;
+}
+
+.map--component {
+  display: grid;
 }
