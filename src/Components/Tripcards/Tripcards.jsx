@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Tripcards.css";
 import { FaSearch, FaFilter } from "react-icons/fa";
-import { FaMapMarkerAlt, FaTachometerAlt, FaRoute } from "react-icons/fa";
 
 function Tripcards() {
-  const trips = [
+  const [searchQuery, setSearchQuery] = useState("");
+  const [trips, setTrips] = useState([
     {
       tripId: "#CAB12345",
       vehicleNumber: "KA-01-AB-1234",
@@ -13,7 +13,7 @@ function Tripcards() {
       startTime: "08:00 AM",
       currentSpeed: "60 km/h",
       startLocation: "Electronic City, Bangalore",
-      driverImg: "driver1.jpg",
+      driverImg: "https://res.cloudinary.com/djbz2ydtp/image/upload/v1724731330/5283021_lsaool.png",
     },
     {
       tripId: "#CAB12346",
@@ -23,9 +23,20 @@ function Tripcards() {
       startTime: "08:30 AM",
       currentSpeed: "50 km/h",
       startLocation: "Whitefield, Bangalore",
-      driverImg: "driver2.jpg",
+      driverImg: "https://res.cloudinary.com/djbz2ydtp/image/upload/v1724731297/4344552_grk6w6.png",
     },
-  ];
+  ]);
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const filteredTrips = trips.filter(trip =>
+    trip.tripId.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    trip.vehicleNumber.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    trip.vehicleModel.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    trip.startLocation.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="trip--cards">
@@ -33,7 +44,12 @@ function Tripcards() {
         <div className="search-filter">
           <div className="search-bar">
             <FaSearch className="search-icon" />
-            <input type="text" placeholder="Search..." />
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchQuery}
+              onChange={handleSearchChange}
+            />
             <button className="filter-button">
               <FaFilter className="filter-icon" />
             </button>
@@ -41,7 +57,7 @@ function Tripcards() {
         </div>
 
         <div className="trips-list">
-          {trips.map((trip, index) => (
+          {filteredTrips.map((trip, index) => (
             <div className="trip-card" key={index}>
               <div className="trip-header">
                 <span className="trip-id">{trip.tripId}</span>

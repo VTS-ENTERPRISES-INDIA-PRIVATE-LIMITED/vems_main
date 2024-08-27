@@ -3,7 +3,6 @@ import { MapContainer, TileLayer, Polyline, Marker, Popup } from 'react-leaflet'
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import axios from 'axios';
-import './Routess.css';
 
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -28,7 +27,7 @@ const Route = () => {
       try {
         const segments = [];
         
-        
+        <h1>sdfg</h1>
         for (let i = 0; i < waypoints.length - 1; i++) {
           const start = waypoints[i];
           const end = waypoints[i + 1];
@@ -66,32 +65,37 @@ const Route = () => {
 
     fetchRoute();
   }, []);
-
   return (
-    <MapContainer center={[12.9833, 80.2518]} zoom={12} style={{ height: '500px', width: '100%' }}>
-      <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-      />
-
-      {route.length > 0 && (
-        <Polyline 
-          positions={route} 
-          color="red" 
-          weight={5} 
-          opacity={0.7}
+    <div>
+      <MapContainer center={[12.9833, 80.2518]} zoom={12} style={{ height: '700px', width: '100%', marginTop: '10px' }}>
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
-      )}
-
-      {waypoints.map((point, index) => (
-        <Marker key={index} position={[point.lat, point.lng]}>
-          <Popup>{point.name}</Popup>
-        </Marker>
-      ))}
-
-      {error && <div style={{ position: 'absolute', bottom: '10px', left: '10px', backgroundColor: 'white', padding: '5px', borderRadius: '5px' }}>{error}</div>}
-    </MapContainer>
+  
+        {route.length > 0 && (
+          <Polyline 
+            positions={route} 
+            color="red" 
+            weight={5} 
+            opacity={0.7}
+          />
+        )}
+  
+        {waypoints.map((point, index) => (
+          <Marker key={index} position={[point.lat, point.lng]}>
+            <Popup>{point.name}</Popup>
+          </Marker>
+        ))}
+  
+        {error && <div style={{ position: 'absolute', bottom: '10px', left: '10px', backgroundColor: 'white', padding: '5px', borderRadius: '5px' }}>{error}</div>}
+      </MapContainer>
+  
+      {/* Display other content here */}
+      <h1>Maps</h1>
+    </div>
   );
+  
 }
 
 export default Route;

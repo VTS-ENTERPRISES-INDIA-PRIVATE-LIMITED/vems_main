@@ -1,22 +1,30 @@
 import React from 'react';
-import './Dashboard.css';
+import { useLocation } from 'react-router-dom';
+import './Dashboard.css'; // Assuming you have styles for this component
 
 const VehicleDashboard = () => {
+  const location = useLocation();
+  const vehicle = location.state?.vehicle; // Use optional chaining to avoid errors if state is undefined
+
+  if (!vehicle) {
+    return <div>No vehicle data available.</div>;
+  }
+
   return (
     <div className="box-container">
       <div className="dashboard-main-container">
         <div className="header-container">
           <div className="header">
             <div className="header-image">
-              <img 
-                src="https://res.cloudinary.com/djbz2ydtp/image/upload/v1724230890/2024-EQB250-SUV-AVP-DR_mywna5.webp" 
-                alt="Car" 
-                className="car-image" 
+              <img
+                src="https://res.cloudinary.com/djbz2ydtp/image/upload/v1724230890/2024-EQB250-SUV-AVP-DR_mywna5.webp"
+                alt="Car"
+                className="car-image"
               />
             </div>
             <div className="header-info">
-              <h2>TN 01AB 1234</h2>
-              <p>Maruti Suzuki</p>
+              <h2>{vehicle.registrationNumber}</h2>
+              <p>{vehicle.vendorName}</p>
             </div>
           </div>
 
@@ -49,17 +57,17 @@ const VehicleDashboard = () => {
             <div className="vehicle-info">
               <h3>Vehicle Info</h3>
               <div className="vehicle-info-content">
-                <img 
-                  src="https://res.cloudinary.com/djbz2ydtp/image/upload/v1724230890/2024-EQB250-SUV-AVP-DR_mywna5.webp" 
-                  alt="Vehicle" 
-                  className="vehicle-image" 
+                <img
+                  src="https://res.cloudinary.com/djbz2ydtp/image/upload/v1724230890/2024-EQB250-SUV-AVP-DR_mywna5.webp"
+                  alt="Vehicle"
+                  className="vehicle-image"
                 />
                 <div className="vehicle-details">
                   <div className="vehicle-detail-item">
-                    <span className="label">Vehicle Name:</span> <span className="value">Maruti Suzuki</span>
+                    <span className="label">Vehicle Name:</span> <span className="value">{vehicle.vehicleName}</span>
                   </div>
                   <div className="vehicle-detail-item">
-                    <span className="label">Vendor Name:</span> <span className="value">Maruti</span>
+                    <span className="label">Vendor Name:</span> <span className="value">{vehicle.vendorName}</span>
                   </div>
                   <div className="vehicle-detail-item">
                     <span className="label">Vehicle Type:</span> <span className="value">SUV</span>
@@ -71,7 +79,7 @@ const VehicleDashboard = () => {
                     <span className="label">Year of Manufacture:</span> <span className="value">2003</span>
                   </div>
                   <div className="vehicle-detail-item">
-                    <span className="label">Registration Number:</span> <span className="value">TN 01AB 1234</span>
+                    <span className="label">Registration Number:</span> <span className="value">{vehicle.registrationNumber}</span>
                   </div>
                   <div className="vehicle-detail-item">
                     <span className="label">Engine Number:</span> <span className="value">1234</span>
@@ -92,35 +100,33 @@ const VehicleDashboard = () => {
               </div>
             </div>
 
-            <div className="driver-info-container">
-              <div className="driver-info">
+            <div className="driver-info-container1">
+              <div className="driver-info1">
                 <h3>Driver Information</h3>
-                <div className="driver-info-content">
-                  <img className="driver-image" src="https://res.cloudinary.com/djbz2ydtp/image/upload/v1724600306/car-driver-icon-isolated-on-white-background-vector_qh1cnx.jpg" alt="Driver Image" />
-                  <div className="driver-details">
-                    <div className="driver-detail-item">
-                      <span className="label">Name:</span> 
-                      <span className="value">John Doe</span>
+                <div className="driver-info-content1">
+                  <img
+                    className="driver-image1"
+                    src="https://res.cloudinary.com/djbz2ydtp/image/upload/v1724600306/car-driver-icon-isolated-on-white-background-vector_qh1cnx.jpg"
+                    alt="Driver Image"
+                  />
+                  <div className="driver-details1">
+                    <div className="driver-detail-item1">
+                      <span className="label1">Name:</span> <span className="value1">John Doe</span>
                     </div>
-                    <div className="driver-detail-item">
-                      <span className="label">Email:</span> 
-                      <span className="value">john.doe@example.com</span>
+                    <div className="driver-detail-item1">
+                      <span className="label1">Email:</span> <span className="value1">john.doe@example.com</span>
                     </div>
-                    <div className="driver-detail-item">
-                      <span className="label">Phone:</span> 
-                      <span className="value">123-456-7890</span>
+                    <div className="driver-detail-item1">
+                      <span className="label1">Phone:</span> <span className="value1">123-456-7890</span>
                     </div>
-                    <div className="driver-detail-item">
-                      <span className="label">Gender:</span> 
-                      <span className="value">Male</span>
+                    <div className="driver-detail-item1">
+                      <span className="label1">Gender:</span> <span className="value1">Male</span>
                     </div>
-                    <div className="driver-detail-item">
-                      <span className="label">Age:</span> 
-                      <span className="value">35</span>
+                    <div className="driver-detail-item1">
+                      <span className="label1">Age:</span> <span className="value1">35</span>
                     </div>
-                    <div className="driver-detail-item">
-                      <span className="label">Address:</span> 
-                      <span className="value">123 Main St, Anytown, USA</span>
+                    <div className="driver-detail-item1">
+                      <span className="label1">Address:</span> <span className="value1">123 Main St, Anytown, USA</span>
                     </div>
                   </div>
                 </div>

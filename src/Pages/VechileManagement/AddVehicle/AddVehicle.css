@@ -1,13 +1,13 @@
-/* AddVehicle.css */
-
+/* Form container to fit beside the sidebar */
 .form-container {
-  margin-left: 0px; /* Adjust based on the width of your sidebar */
+  margin-left: 35px; /* Adjust to fit content properly beside the sidebar */
+  margin-top: 20px; /* Adjust top margin to add space from the top */
   padding: 20px;
   background-color: #f8f9fa;
   border-radius: 8px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  width: 1080px; /* Increased width */
-  min-height: 550px; /* Increased height */
+  width: calc(100% - 150px); /* Subtract sidebar width and additional margin */
+  height:470px;
 }
 
 .form-row {
@@ -32,7 +32,7 @@
 }
 
 .form-group input {
-  width: 80%;
+  width: 80%; /* Ensure the input field fills its container */
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -41,7 +41,7 @@
 
 .form-actions {
   text-align: center;
-  margin-top: 50px;
+  margin-top: 30px; /* Adjust margin to fit the form nicely */
 }
 
 .form-actions button {
@@ -51,7 +51,6 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
- 
 }
 
 .form-actions button:hover {

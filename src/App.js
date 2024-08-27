@@ -1,22 +1,53 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import VehicleDashboard from './Components/VehicleDashboard/VehicleDashboard';
-import AddVehicle from './Components/AddVehicle/AddVehicle';
-import ViewVehicle from './Components/ViewVehicle/ViewVehicle';
-import Routess from './Components/RouteManagement/Routess';
 
-const App = () => {
+
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import TripManagement from "./Pages/TripManagement/TripManagement";
+import VehicleDashboard from "./Pages/VechileManagement/VehicleDashboard/VehicleDashboard";
+import AddVehicle from "./Pages/VechileManagement/AddVehicle/AddVehicle";
+import ViewVehicle from "./Pages/VechileManagement/ViewVehicle/ViewVehicle";
+import Dashboard from "./Components/Dashboard/Dashboard";
+import RouteManagement from "./Pages/RouteManagement/RouteManagement/RouteManagement";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <h1>Home</h1>,
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    children: [
+      {
+        path: "addvehicle",
+        element: <AddVehicle />,
+      },
+      {
+        path: "viewvehicle",
+        element: <ViewVehicle />,
+      },
+    ],
+  },
+  {
+    path: "/vehicledashboard", 
+    element: <VehicleDashboard />,
+  },
+  {
+    path: "/trips",
+    element: <TripManagement />,
+  },
+  {
+    path: "/routemanagement",
+    element: <RouteManagement />,
+  },
+]);
+
+
+function App() {
   return (
-   
-      <div className="app-container">
-      
-          <VehicleDashboard/> 
-           
-        </div>
-      
-   
+    <div className="app-root">
+      <RouterProvider router={router} />
+    </div>
   );
 }
 

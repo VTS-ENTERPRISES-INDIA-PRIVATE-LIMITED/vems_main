@@ -17,7 +17,7 @@ const vehicles = [
   { "sno": 10, "vehicleName": "Subaru Legacy", "registrationNumber": "BCD890", "vendorName": "Vendor J" },
 ];
 
-const Viewvehicle = ({ onEdit, onDelete }) => {
+const ViewVehicle = ({ onEdit, onDelete }) => {
   const navigate = useNavigate(); 
   const [searchText, setSearchText] = useState({
     vehicleName: '',
@@ -103,9 +103,9 @@ const Viewvehicle = ({ onEdit, onDelete }) => {
       title: 'View More',
       key: 'viewMore',
       render: (text, record) => (
-        <Button type="link" onClick={() => navigate(`/vehicledashboard`, { state: { vehicle: record } })}>
-          View More
-        </Button>
+        <Button type="link" onClick={() => navigate(`/VehicleDashboard`, { state: { vehicle: record } })}>
+  View More
+</Button>
       ),
     },
   ];
@@ -115,10 +115,10 @@ const Viewvehicle = ({ onEdit, onDelete }) => {
       dataSource={filteredVehicles}
       columns={columns}
       rowKey="sno"
-      pagination={{ pageSize: 7}}
+      pagination={{ pageSize: 7 }}
       bordered 
     />
   );
 };
 
-export default Viewvehicle;
+export default ViewVehicle;

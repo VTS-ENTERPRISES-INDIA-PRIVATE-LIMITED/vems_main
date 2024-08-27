@@ -6,8 +6,7 @@ import Tripcards from "../../Components/Tripcards/Tripcards";
 
 function TripManagement() {
   return (
-    <section className="trip-management--section">
-      <Sidebar />
+   
       <main className="trip-management--main">
         <Tripcards />
         <div className="map--component">
@@ -15,7 +14,7 @@ function TripManagement() {
           <SortFilteringTrips />
         </div>
       </main>
-    </section>
+   
   );
 }
 

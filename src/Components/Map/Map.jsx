@@ -16,7 +16,7 @@ const customIcon = new L.Icon({
 });
 
 const MapComponent = () => {
-  const position = [51.505, -0.09]; // Default position (latitude, longitude)
+  const position = [51.505, -0.09]; 
 
   return (
     <MapContainer
