@@ -25,6 +25,16 @@ function Tripcards() {
       startLocation: "Whitefield, Bangalore",
       driverImg: "https://res.cloudinary.com/djbz2ydtp/image/upload/v1724731297/4344552_grk6w6.png",
     },
+    {
+      tripId: "#CAB12346",
+      vehicleNumber: "KA-02-CD-5678",
+      vehicleModel: "Hyundai Creta",
+      employeeCount: 3,
+      startTime: "08:30 AM",
+      currentSpeed: "50 km/h",
+      startLocation: "Whitefield, Bangalore",
+      driverImg: "https://res.cloudinary.com/djbz2ydtp/image/upload/v1724731297/4344552_grk6w6.png",
+    },
   ]);
 
   const handleSearchChange = (e) => {
@@ -43,7 +53,7 @@ function Tripcards() {
       <div className="active-trips">
         <div className="search-filter">
           <div className="search-bar">
-            <FaSearch className="search-icon" />
+          
             <input
               type="text"
               placeholder="Search..."

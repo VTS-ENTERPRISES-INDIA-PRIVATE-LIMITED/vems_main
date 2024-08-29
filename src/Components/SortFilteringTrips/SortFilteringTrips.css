@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  /* gap: 4rem; */
+  
 
   grid-row: 1/2;
   grid-column: 1/2;
@@ -22,12 +22,7 @@
   left: 0;
   width: 100%;
   height: 15rem;
-  /* background: linear-gradient(
-    to bottom,
-    #ffffff 0%,
-    #ffffff80 80%,
-    #ffffff00 100%
-  ); */
+ 
 
   background: rgb(255, 255, 255);
   background: linear-gradient(
@@ -36,7 +31,7 @@
     rgba(255, 255, 255, 0.9136029411764706) 62%,
     rgba(255, 255, 255, 0.10968137254901966) 100%
   );
-  z-index: -1; /* Place behind the content of .headers */
+  z-index: -1; 
 }
 
 .search-filter {
@@ -69,8 +64,7 @@
   border: 2px solid #666;
 }
 
-.filter-button:hover {
-}
+
 
 .status-info {
   display: flex;

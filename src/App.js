@@ -8,6 +8,8 @@ import AddVehicle from "./Pages/VechileManagement/AddVehicle/AddVehicle";
 import ViewVehicle from "./Pages/VechileManagement/ViewVehicle/ViewVehicle";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import RouteManagement from "./Pages/RouteManagement/RouteManagement/RouteManagement";
+import LiveTracking from './Pages/LiveTracking/LiveTracking';
+import NewDashboard from './Pages/Dashboard/NewDashboard';
 
 const router = createBrowserRouter([
   {
@@ -26,11 +28,19 @@ const router = createBrowserRouter([
         path: "viewvehicle",
         element: <ViewVehicle />,
       },
+      {
+        path: "livetracking",
+        element: <LiveTracking />,
+      },
     ],
   },
   {
     path: "/vehicledashboard", 
     element: <VehicleDashboard />,
+  },
+  {
+    path: "/newdashboard", 
+    element: <NewDashboard />,
   },
   {
     path: "/trips",

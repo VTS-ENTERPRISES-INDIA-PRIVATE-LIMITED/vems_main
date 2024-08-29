@@ -3,8 +3,9 @@ import { MapContainer, TileLayer, Polyline, Marker, Popup } from 'react-leaflet'
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import axios from 'axios';
+import './Route.css';
 
-
+// Custom icon setup
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
@@ -12,7 +13,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 });
 
-const Route = () => {
+const RouteManagement = ({ customClass }) => {
   const [route, setRoute] = useState([]);
   const [error, setError] = useState(null);
 
@@ -27,7 +28,6 @@ const Route = () => {
       try {
         const segments = [];
         
-        <h1>sdfg</h1>
         for (let i = 0; i < waypoints.length - 1; i++) {
           const start = waypoints[i];
           const end = waypoints[i + 1];
@@ -53,21 +53,25 @@ const Route = () => {
           }
         }
     
-    
         const routeCoordinates = segments.flat();
-    
         setRoute(routeCoordinates);
       } catch (error) {
         console.error("Error fetching route:", error);
         setError('Error fetching route');
       }
     };
-
+  
     fetchRoute();
   }, []);
+  
   return (
     <div>
-      <MapContainer center={[12.9833, 80.2518]} zoom={12} style={{ height: '700px', width: '100%', marginTop: '10px' }}>
+      <MapContainer 
+        center={[12.9833, 80.2518]} 
+        zoom={12} 
+        className={customClass} // Apply custom class
+        style={{ height: '700px', width: '100%' }} // Default styles (can be overridden by the class)
+      >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -90,12 +94,8 @@ const Route = () => {
   
         {error && <div style={{ position: 'absolute', bottom: '10px', left: '10px', backgroundColor: 'white', padding: '5px', borderRadius: '5px' }}>{error}</div>}
       </MapContainer>
-  
-      {/* Display other content here */}
-      <h1>Maps</h1>
     </div>
   );
-  
-}
+};
 
-export default Route;
+export default RouteManagement;

@@ -1,10 +1,11 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import './Dashboard.css'; // Assuming you have styles for this component
+import { FaCar, FaUser, FaEnvelope, FaPhone, FaTransgender, FaRegCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa';
+import './Dashboard.css'; 
 
 const VehicleDashboard = () => {
   const location = useLocation();
-  const vehicle = location.state?.vehicle; // Use optional chaining to avoid errors if state is undefined
+  const vehicle = location.state?.vehicle; 
 
   if (!vehicle) {
     return <div>No vehicle data available.</div>;
@@ -64,37 +65,37 @@ const VehicleDashboard = () => {
                 />
                 <div className="vehicle-details">
                   <div className="vehicle-detail-item">
-                    <span className="label">Vehicle Name:</span> <span className="value">{vehicle.vehicleName}</span>
+                    <FaCar className="icon" /><span className="label">Vehicle Name:</span> <span className="value">{vehicle.vehicleName}</span>
                   </div>
                   <div className="vehicle-detail-item">
-                    <span className="label">Vendor Name:</span> <span className="value">{vehicle.vendorName}</span>
+                    <FaUser className="icon" /><span className="label">Vendor Name:</span> <span className="value">{vehicle.vendorName}</span>
                   </div>
                   <div className="vehicle-detail-item">
-                    <span className="label">Vehicle Type:</span> <span className="value">SUV</span>
+                    <FaCar className="icon" /><span className="label">Vehicle Type:</span> <span className="value">SUV</span>
                   </div>
                   <div className="vehicle-detail-item">
-                    <span className="label">Model:</span> <span className="value">2024</span>
+                    <FaRegCalendarAlt className="icon" /><span className="label">Model:</span> <span className="value">2024</span>
                   </div>
                   <div className="vehicle-detail-item">
-                    <span className="label">Year of Manufacture:</span> <span className="value">2003</span>
+                    <FaRegCalendarAlt className="icon" /><span className="label">Year of Manufacture:</span> <span className="value">2003</span>
                   </div>
                   <div className="vehicle-detail-item">
-                    <span className="label">Registration Number:</span> <span className="value">{vehicle.registrationNumber}</span>
+                    <FaCar className="icon" /><span className="label">Registration Number:</span> <span className="value">{vehicle.registrationNumber}</span>
                   </div>
                   <div className="vehicle-detail-item">
-                    <span className="label">Engine Number:</span> <span className="value">1234</span>
+                    <FaCar className="icon" /><span className="label">Engine Number:</span> <span className="value">1234</span>
                   </div>
                   <div className="vehicle-detail-item">
-                    <span className="label">Chassis Number:</span> <span className="value">5678</span>
+                    <FaCar className="icon" /><span className="label">Chassis Number:</span> <span className="value">5678</span>
                   </div>
                   <div className="vehicle-detail-item">
-                    <span className="label">Fuel Type:</span> <span className="value">Petrol</span>
+                    <FaCar className="icon" /><span className="label">Fuel Type:</span> <span className="value">Petrol</span>
                   </div>
                   <div className="vehicle-detail-item">
-                    <span className="label">Seat Capacity:</span> <span className="value">4</span>
+                    <FaCar className="icon" /><span className="label">Seat Capacity:</span> <span className="value">4</span>
                   </div>
                   <div className="vehicle-detail-item">
-                    <span className="label">Mileage:</span> <span className="value">15-20 km/l</span>
+                    <FaCar className="icon" /><span className="label">Mileage:</span> <span className="value">15-20 km/l</span>
                   </div>
                 </div>
               </div>
@@ -111,22 +112,22 @@ const VehicleDashboard = () => {
                   />
                   <div className="driver-details1">
                     <div className="driver-detail-item1">
-                      <span className="label1">Name:</span> <span className="value1">John Doe</span>
+                      <FaUser className="icon" /><span className="label1">Name:</span> <span className="value1">John Doe</span>
                     </div>
                     <div className="driver-detail-item1">
-                      <span className="label1">Email:</span> <span className="value1">john.doe@example.com</span>
+                      <FaEnvelope className="icon" /><span className="label1">Email:</span> <span className="value1">john.doe@example.com</span>
                     </div>
                     <div className="driver-detail-item1">
-                      <span className="label1">Phone:</span> <span className="value1">123-456-7890</span>
+                      <FaPhone className="icon" /><span className="label1">Phone:</span> <span className="value1">123-456-7890</span>
                     </div>
                     <div className="driver-detail-item1">
-                      <span className="label1">Gender:</span> <span className="value1">Male</span>
+                      <FaTransgender className="icon" /><span className="label1">Gender:</span> <span className="value1">Male</span>
                     </div>
                     <div className="driver-detail-item1">
-                      <span className="label1">Age:</span> <span className="value1">35</span>
+                      <FaRegCalendarAlt className="icon" /><span className="label1">Age:</span> <span className="value1">35</span>
                     </div>
                     <div className="driver-detail-item1">
-                      <span className="label1">Address:</span> <span className="value1">123 Main St, Anytown, USA</span>
+                      <FaMapMarkerAlt className="icon" /><span className="label1">Address:</span> <span className="value1">123 Main St, Anytown, USA</span>
                     </div>
                   </div>
                 </div>
