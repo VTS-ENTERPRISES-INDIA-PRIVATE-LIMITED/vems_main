@@ -1,24 +1,42 @@
-import React, { useState } from 'react';
 import { Table, Button, Input } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom'; 
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import './ViewVehicle.css'; 
 
-const vehicles = [
-  { "sno": 1, "vehicleName": "Toyota Corolla", "registrationNumber": "ABC123", "vendorName": "Vendor A" },
-  { "sno": 2, "vehicleName": "Honda Civic", "registrationNumber": "XYZ456", "vendorName": "Vendor A" },
-  { "sno": 3, "vehicleName": "Ford Focus", "registrationNumber": "LMN789", "vendorName": "Vendor C" },
-  { "sno": 4, "vehicleName": "Chevrolet Malibu", "registrationNumber": "JKL012", "vendorName": "Vendor D" },
-  { "sno": 5, "vehicleName": "Nissan Altima", "registrationNumber": "MNO345", "vendorName": "Vendor E" },
-  { "sno": 6, "vehicleName": "Hyundai Sonata", "registrationNumber": "PQR678", "vendorName": "Vendor F" },
-  { "sno": 7, "vehicleName": "Kia Optima", "registrationNumber": "STU901", "vendorName": "Vendor G" },
-  { "sno": 8, "vehicleName": "Mazda 3", "registrationNumber": "VWX234", "vendorName": "Vendor H" },
-  { "sno": 9, "vehicleName": "Volkswagen Jetta", "registrationNumber": "YZA567", "vendorName": "Vendor I" },
-  { "sno": 10, "vehicleName": "Subaru Legacy", "registrationNumber": "BCD890", "vendorName": "Vendor J" },
-];
+// const vehicles = [
+//   { "sno": 1, "vehicleName": "Toyota Corolla", "registrationNumber": "ABC123", "vendorName": "Vendor A" },
+//   { "sno": 2, "vehicleName": "Honda Civic", "registrationNumber": "XYZ456", "vendorName": "Vendor A" },
+//   { "sno": 3, "vehicleName": "Ford Focus", "registrationNumber": "LMN789", "vendorName": "Vendor C" },
+//   { "sno": 4, "vehicleName": "Chevrolet Malibu", "registrationNumber": "JKL012", "vendorName": "Vendor D" },
+//   { "sno": 5, "vehicleName": "Nissan Altima", "registrationNumber": "MNO345", "vendorName": "Vendor E" },
+//   { "sno": 6, "vehicleName": "Hyundai Sonata", "registrationNumber": "PQR678", "vendorName": "Vendor F" },
+//   { "sno": 7, "vehicleName": "Kia Optima", "registrationNumber": "STU901", "vendorName": "Vendor G" },
+//   { "sno": 8, "vehicleName": "Mazda 3", "registrationNumber": "VWX234", "vendorName": "Vendor H" },
+//   { "sno": 9, "vehicleName": "Volkswagen Jetta", "registrationNumber": "YZA567", "vendorName": "Vendor I" },
+//   { "sno": 10, "vehicleName": "Subaru Legacy", "registrationNumber": "BCD890", "vendorName": "Vendor J" },
+// ];
+
 
 const ViewVehicle = ({ onEdit, onDelete }) => {
   const navigate = useNavigate(); 
+
+  const [vehicles , setVehicle] = useState([])
+
+
+  useEffect(() => {
+    axios.get("https://silent-wave-76445.pktriot.net/vehicles")
+    .then((result) => {
+      setVehicle(result.data);
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  })
+
+
+
   const [searchText, setSearchText] = useState({
     vehicleName: '',
     registrationNumber: '',
@@ -103,7 +121,7 @@ const ViewVehicle = ({ onEdit, onDelete }) => {
       title: 'View More',
       key: 'viewMore',
       render: (text, record) => (
-        <Button type="link" onClick={() => navigate(`/NewDashboard`, { state: { vehicle: record } })}>
+        <Button type="link" onClick={() => navigate(`/dashboard`, { state: { vehicle: record } })}>
   View More
 </Button>
       ),
