@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
 import axios from 'axios';
 import './AddVehicle.css';
+import { useState,} from 'react';
 
 // Function to generate a random alphanumeric ID
 const generateRandomId = (length = 8) => {
@@ -26,9 +26,9 @@ const VehicleForm = () => {
     engineNumber: '',
     chassisNumber: '',
     fuelType: '',
-    seatCapacity: '',
-    mileage: '',
-    yearOfManufacture: '',
+    seatCapacity: 0,
+    mileage: 0,
+    yearOfManufacturing: '',
     vehicleImage: '', // Initialize as empty
   });
 
@@ -104,9 +104,9 @@ const VehicleForm = () => {
       errors.mileage = 'Mileage must be a number';
     }
 
-    if (vehicleDetails.yearOfManufacture && (isNaN(vehicleDetails.yearOfManufacture) || vehicleDetails.yearOfManufacture.length !== 4)) {
+    if (vehicleDetails.yearOfManufacturing && (isNaN(vehicleDetails.yearOfManufacturing) || vehicleDetails.yearOfManufacturing.length !== 4)) {
       formIsValid = false;
-      errors.yearOfManufacture = 'Year of Manufacture must be a 4-digit number';
+      errors.yearOfManufacturing = 'Year of Manufacture must be a 4-digit number';
     }
 
     setErrors(errors);
@@ -120,7 +120,22 @@ const VehicleForm = () => {
       console.log('Form is valid and ready to be submitted');
       try {
         // Send vehicleDetails to your backend
-        await axios.post('/your-backend-endpoint', vehicleDetails);
+
+        console.log(vehicleDetails.vehicleName)
+        console.log(vehicleDetails.vehicleId)
+        console.log(vehicleDetails.vendorName)
+        console.log(vehicleDetails.vendorId)
+        console.log(vehicleDetails.registrationNumber)
+        console.log(vehicleDetails.engineNumber)
+        console.log(vehicleDetails.chassisNumber)
+        console.log(vehicleDetails.fuelType)
+        console.log(vehicleDetails.seatCapacity)
+        console.log(vehicleDetails.mileage)
+        console.log(vehicleDetails.yearOfManufacturing)
+        console.log(vehicleDetails.vehicleImage)
+
+
+        await axios.post('https://silent-wave-76445.pktriot.net/add-vehicle', {vehicleDetails});
         console.log('Vehicle details saved successfully');
       } catch (error) {
         console.error('Error saving vehicle details:', error);
@@ -256,11 +271,11 @@ const VehicleForm = () => {
             <label className="required">Year of Manufacture:</label>
             <input 
               type="text" 
-              name="yearOfManufacture" 
-              value={vehicleDetails.yearOfManufacture} 
+              name="yearOfManufacturing" 
+              value={vehicleDetails.yearOfManufacturing} 
               onChange={handleChange} 
             />
-            {errors.yearOfManufacture && <span className="error-message">{errors.yearOfManufacture}</span>}
+            {errors.yearOfManufacturing && <span className="error-message">{errors.yearOfManufacturing}</span>}
           </div>
         </div>
       </div>
