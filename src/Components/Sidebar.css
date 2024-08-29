@@ -1,0 +1,157 @@
+
+
+.sidebar {
+    width: 15vw;
+    height: 100vh;
+    background-color: #f8f8f8;
+    padding: 0px 10px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top:0px;
+    left:0px;
+    overflow-y: scroll;
+    font-style:italic;
+}
+.sidebar::-webkit-scrollbar{
+    display:none;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+
+.logout-container {
+    width: 90%;
+    text-align: right;
+    padding: 0 20px;
+}
+
+.logout-icon {
+    font-size: 18px;
+    cursor: pointer;
+    color: #a9afb1;
+}
+.menu-container {
+    margin-top: 20px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+.icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    margin-right: 15px;
+}
+
+.menu-item .icon {
+    font-size: 16px;
+    color: #fff;
+}
+
+
+.icon-dashboard {
+    background-color: #607d8bc8;
+    border:  #607d8b;
+}
+
+.icon-live-tracking {
+    background-color: #00bbd4cd;
+    border: #00bcd4;
+}
+
+.icon-driver-management {
+    background-color: #8bc34ad4;
+    border: #8bc34a;
+}
+
+.icon-vehicle-management {
+    background-color: #ff5622cd;
+    border: #ff5722;
+}
+
+.icon-regular-rides {
+    background-color: #4caf4fd3;
+    border: #4caf50;
+}
+
+.icon-office-rides {
+    background-color: #ff9900d3;
+    border: #ff9800;
+}
+
+.icon-employees {
+    background-color: #ccdc39d6;
+    border: #cddc39;
+}
+
+.icon-clients {
+    background-color: #f44336d0;
+    border: #f44336;
+}
+
+.icon-trip-history {
+    background-color: #e91e62d7;
+    border: #e91e63;
+}
+
+.icon-payments {
+    background-color: #9b27b0d8;
+    border: #9c27b0;
+}
+
+.icon-reports {
+    background-color: #683ab7e0;
+    border: #673ab7;
+}
+
+.icon-fare-database {
+    background-color: #3f51b5d6;
+    border: #3f51b5;
+}
+
+.icon-support-tickets {
+    background-color: #2195f3d8;
+    border: #2196f3;
+}
+
+.icon-settings {
+    background-color: #9e9e9eec;
+    border:  #9e9e9e;
+}
+
+.menu-item span {
+    font-size: 14px;
+    color: #333;
+}
+
+.menu-item:hover {
+    background-color: #6199d583;
+    border-radius: 5px;
+    padding-left: 10px;
+    transition: all 0.3s ease;
+}
