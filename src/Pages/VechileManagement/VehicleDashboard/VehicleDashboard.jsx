@@ -1,11 +1,11 @@
-import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { FaCar, FaUser, FaEnvelope, FaPhone, FaTransgender, FaRegCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa';
 import './Dashboard.css'; 
 
 const VehicleDashboard = () => {
+
   const location = useLocation();
-  const vehicle = location.state?.vehicle; 
+  const vehicle = location.state?.vehicle;
 
   if (!vehicle) {
     return <div>No vehicle data available.</div>;
@@ -59,7 +59,7 @@ const VehicleDashboard = () => {
               <h3>Vehicle Info</h3>
               <div className="vehicle-info-content">
                 <img
-                  src="https://res.cloudinary.com/djbz2ydtp/image/upload/v1724230890/2024-EQB250-SUV-AVP-DR_mywna5.webp"
+                  src={vehicle.vehicleImage}
                   alt="Vehicle"
                   className="vehicle-image"
                 />
@@ -77,25 +77,25 @@ const VehicleDashboard = () => {
                     <FaRegCalendarAlt className="icon" /><span className="label">Model:</span> <span className="value">2024</span>
                   </div>
                   <div className="vehicle-detail-item">
-                    <FaRegCalendarAlt className="icon" /><span className="label">Year of Manufacture:</span> <span className="value">2003</span>
+                    <FaRegCalendarAlt className="icon" /><span className="label">Year of Manufacture:</span> <span className="value">{vehicle.yearOfManufacturing}</span>
                   </div>
                   <div className="vehicle-detail-item">
                     <FaCar className="icon" /><span className="label">Registration Number:</span> <span className="value">{vehicle.registrationNumber}</span>
                   </div>
                   <div className="vehicle-detail-item">
-                    <FaCar className="icon" /><span className="label">Engine Number:</span> <span className="value">1234</span>
+                    <FaCar className="icon" /><span className="label">Engine Number:</span> <span className="value">{vehicle.engineNumber}</span>
                   </div>
                   <div className="vehicle-detail-item">
-                    <FaCar className="icon" /><span className="label">Chassis Number:</span> <span className="value">5678</span>
+                    <FaCar className="icon" /><span className="label">Chassis Number:</span> <span className="value">{vehicle.chassisNumber}</span>
                   </div>
                   <div className="vehicle-detail-item">
-                    <FaCar className="icon" /><span className="label">Fuel Type:</span> <span className="value">Petrol</span>
+                    <FaCar className="icon" /><span className="label">Fuel Type:</span> <span className="value">{vehicle.fuelType}</span>
                   </div>
                   <div className="vehicle-detail-item">
-                    <FaCar className="icon" /><span className="label">Seat Capacity:</span> <span className="value">4</span>
+                    <FaCar className="icon" /><span className="label">Seat Capacity:</span> <span className="value">{vehicle.seatCapacity}</span>
                   </div>
                   <div className="vehicle-detail-item">
-                    <FaCar className="icon" /><span className="label">Mileage:</span> <span className="value">15-20 km/l</span>
+                    <FaCar className="icon" /><span className="label">Mileage:</span> <span className="value">{vehicle.mileage} km/l</span>
                   </div>
                 </div>
               </div>
