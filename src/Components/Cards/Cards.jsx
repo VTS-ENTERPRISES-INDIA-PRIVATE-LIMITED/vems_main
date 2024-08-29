@@ -135,7 +135,7 @@ const Cards = () => {
       vehicle.vehicleName.toLowerCase().includes(searchTerm.toLowerCase())
     );
   
-    const displayedVehicles = searchTerm ? filteredVehicles : filteredVehicles.slice(0, 9);
+    const displayedVehicles = searchTerm ? filteredVehicles : filteredVehicles.slice(0, 12);
   
     return (
       <div className="app-container">
@@ -160,7 +160,7 @@ const Cards = () => {
   
  
   const getRandomColor = () => {
-    const colors = ['aliceblue', 'antiquewhite', 'aqua', 'azure', 'lightcyan', 'lightgoldenrodyellow', 'bisque','beige',];
+    const colors = ['aliceblue', 'antiquewhite', 'azure', 'lightcyan', 'lightgoldenrodyellow', 'bisque','beige',];
     return colors[Math.floor(Math.random() * colors.length)];
   };
   

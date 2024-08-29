@@ -51,7 +51,7 @@
 }
 
 .image {
-  padding: 5px; /* Reduced padding */
+  padding: 5px;
   margin-bottom: 10px; /* Reduced margin-bottom */
   height: 100px; /* Reduced height */
   width: 100px; /* Optional: set width to maintain aspect ratio */
@@ -150,3 +150,44 @@
 .vehicle-details input[type="text"] {
   margin-bottom: 15px; /* Ensure spacing between input fields */
 }
+.vehicle-form label.required:before {
+  content: '*';
+  color: red;
+  margin-right: 5px;
+}
+
+
+.vehicle-form label {
+  display: flex;
+  align-items: center;
+}
+/* AddVehicle.css */
+
+label[for="imageUpload"] {
+  color: black; /* Default color for the label */
+  position: relative; /* Position relative to allow positioning of the pseudo-element */
+}
+
+label[for="imageUpload"]::before {
+  content: '*'; /* Content to display before the label text */
+  color: red; /* Color for the asterisk */
+  position: absolute; /* Position absolutely to align it properly */
+  left: px; /* Adjust the position of the asterisk as needed */
+}
+/* AddVehicle.css */
+
+/* Style for the label with required fields */
+label.required {
+  display: block;
+  margin-top:-10px; /* Space between label and input */
+  position: relative;
+}
+
+/* Style for error messages */
+.error-message {
+  color: red;
+  font-size: 0.875em; /* Smaller font size for error messages */
+  margin-left: 5px; /* Space between the label and error message */
+  display: block; /* Ensure error message appears on a new line */
+}
+

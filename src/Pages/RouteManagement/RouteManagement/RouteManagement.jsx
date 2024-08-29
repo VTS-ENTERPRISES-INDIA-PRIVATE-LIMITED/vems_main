@@ -70,7 +70,7 @@ const RouteManagement = ({ customClass }) => {
         center={[12.9833, 80.2518]} 
         zoom={12} 
         className={customClass} // Apply custom class
-        style={{ height: '700px', width: '100%' }} // Default styles (can be overridden by the class)
+        style={{ height: '700px', width: '100%' ,margintop:'-25px'}} // Default styles (can be overridden by the class)
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -92,7 +92,7 @@ const RouteManagement = ({ customClass }) => {
           </Marker>
         ))}
   
-        {error && <div style={{ position: 'absolute', bottom: '10px', left: '10px', backgroundColor: 'white', padding: '5px', borderRadius: '5px' }}>{error}</div>}
+        {error && <div style={{ position: 'absolute', bottom: '10px', left: '10px', backgroundColor: 'white', padding: '5px', borderRadius: '5px',margintop:'-25px' }}>{error}</div>}
       </MapContainer>
     </div>
   );
