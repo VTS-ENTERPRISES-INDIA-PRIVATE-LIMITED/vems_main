@@ -121,7 +121,7 @@ const ViewVehicle = ({ onEdit, onDelete }) => {
       title: 'View More',
       key: 'viewMore',
       render: (text, record) => (
-        <Button type="link" onClick={() => navigate(`/dashboard`, { state: { vehicle: record } })}>
+        <Button type="link" onClick={() => navigate(`/NewDashboard`, { state: { vehicle: record } })}>
   View More
 </Button>
       ),
@@ -139,4 +139,4 @@ const ViewVehicle = ({ onEdit, onDelete }) => {
   );
 };
 
-export default ViewVehicle;
+export default ViewVehicle; 

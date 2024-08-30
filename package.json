@@ -10,6 +10,8 @@
     "@types/leaflet": "^1.9.12",
     "antd": "^5.20.2",
     "axios": "^1.7.5",
+    "cloudinary": "^2.4.0",
+    "cloudinary-react": "^1.8.1",
     "leaflet": "^1.9.4",
     "leaflet-control-geocoder": "^2.4.0",
     "leaflet-routing-machine": "^3.2.12",

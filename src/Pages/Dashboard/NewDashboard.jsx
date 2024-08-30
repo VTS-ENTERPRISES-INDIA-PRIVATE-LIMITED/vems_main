@@ -24,9 +24,13 @@ import { useNavigate } from "react-router-dom";
 import { MdCalendarToday } from 'react-icons/md';
 import { FaRegIdCard, FaCar, FaCode, FaRegCalendarAlt, FaUser, FaGasPump, FaTachometerAlt } from 'react-icons/fa';
 import Dashboard from "../../Components/Dashboard/Dashboard";
+import { useLocation } from 'react-router-dom';
 
 
 function NewDashboard(){
+  const location = useLocation(); // Use useLocation to access state
+  
+  const vehicle = location.state?.vehicle || {}; 
     const d = Date();
     const [viewPersonalDetails,setViewPersonalDetails] = useState(true)
     const handleVd=()=>{
@@ -113,27 +117,27 @@ function NewDashboard(){
            },
            
     ]
-    const vehicleData = {
-        imageUrl: "https://res.cloudinary.com/dyxhiuuxa/image/upload/v1724421684/wrweuthrgturh6b7dqf1.png",
-        brandLogoUrl: "https://res.cloudinary.com/dyxhiuuxa/image/upload/v1724700248/Maruti-Suzuki-Logo-2011_oxddax.png",
-        vehicleNumber: "TN 01 AA 1234",
-        model: "Swift VXI",
-        assignedClient: "Client Name",
-        assignedLocation: "NPT-HCL",
-        brand: "Maruti Suzuki",
+    // const vehicleData = {
+    //     imageUrl: "https://res.cloudinary.com/dyxhiuuxa/image/upload/v1724421684/wrweuthrgturh6b7dqf1.png",
+    //     brandLogoUrl: "https://res.cloudinary.com/dyxhiuuxa/image/upload/v1724700248/Maruti-Suzuki-Logo-2011_oxddax.png",
+    //     vehicleNumber: "TN 01 AA 1234",
+    //     model: "Swift VXI",
+    //     assignedClient: "Client Name",
+    //     assignedLocation: "NPT-HCL",
+    //     brand: "Maruti Suzuki",
         
-        registrationNumber: "TN 01 AA 1234",
-        seatCapacity: "5",
-        fuelType: "Petrol",
-        mileage: "18 km/l",
-        manufactureYear: "2020"
-    };
+    //     registrationNumber: "TN 01 AA 1234",
+    //     seatCapacity: "5",
+    //     fuelType: "Petrol",
+    //     mileage: "18 km/l",
+    //     manufactureYear: "2020"
+    // };
  
  return(
     <div>
         <div className="admin-head">
             <div className="admin-dr-nav">
-            <p className="dr-mng">Vehicle ID:123 </p>
+            <p className="dr-mng">Vehicle ID:{vehicle.vehicleId} </p>
             <p>{d}</p>
             </div>
           
@@ -151,8 +155,8 @@ function NewDashboard(){
                 <button className="edit-btn"><MdOutlineEdit /></button>
                 <button className="delete-btn"><MdDelete /></button>
                 <img className="driver-image" src="https://res.cloudinary.com/djbz2ydtp/image/upload/v1724825006/pngtree-vector-car-icon-png-image_1834527_ejwljo.jpg" alt="l" />
-                <h4 className="driver-name-head">vehicle Name</h4>
-                <h5 className="driver-id">Vehicle Id</h5>
+                <h4 className="driver-name-head">{vehicle.vehicleName}</h4>
+                <h5 className="driver-id">{vehicle.vehicleId}</h5>
               
                 <h5 className="rating-dr">4.5<FaStar className="star" /></h5>
                 <button className="caller-btn"><IoCallOutline /></button>
@@ -181,46 +185,47 @@ function NewDashboard(){
         <h4 className="head" >Vehicle Details</h4>
 
             <div className="cur-det">
-                <img className="cur-car-img" src="https://res.cloudinary.com/dyxhiuuxa/image/upload/v1724421684/wrweuthrgturh6b7dqf1.png" alt="ff"/>
+            <img className="cur-car-img" src={vehicle.vehicleImage} alt="Vehicle" />
+
                 
                 {/* <h3 className="veh-num-cras">TN 01 AA 1234</h3>
                 <h5 className="veh-model">Swift VXI</h5> */}
               
-                <h5 className="assg-client">Assigned Client</h5>
-                <h3 className="assg-client-name">Vendor A</h3>
                
-                <h5 className="assg-loc">Assigned Location</h5>
-                <h3 className="assg-route">NPT-HCL</h3>
              
 
                 <div className="curr-dets">
   <div className="brand">
     <p style={{ fontWeight: 'bold' }}><FaRegIdCard /> Registration Number</p>
-    <p>TS2345678</p>
+    <p>{vehicle.registrationNumber}</p>
   </div>
   <div className="model">
     <p style={{ fontWeight: 'bold' ,}}><FaCar /> Engine Number</p>
-    <p>12345567</p>
+    <p>{vehicle.engineNumber}</p>
   </div>
   <div className="color">
     <p style={{ fontWeight: 'bold' }}><FaCode /> Chassis Number</p>
-    <p>1234</p>
+    <p>{vehicle.chassisNumber}</p>
   </div>
-  <div className="regno">
+  {/* <div className="regno">
     <p style={{ fontWeight: 'bold' }}><FaRegIdCard /> Registration Num</p>
-    <p>value</p>
-  </div>
+    <p>{vehicle.</p>
+  </div> */}
   <div className="seatcp">
     <p style={{ fontWeight: 'bold' }}><FaUser /> Seat Capacity</p>
-    <p>value</p>
+    <p>{vehicle.seatCapacity}</p>
   </div>
   <div className="fueltype">
     <p style={{ fontWeight: 'bold' }}><FaGasPump /> Fuel Type</p>
-    <p>petrol</p>
+    <p>{vehicle.fuelType}</p>
   </div>
   <div className="mil">
     <p style={{ fontWeight: 'bold' }}><FaTachometerAlt /> Mileage</p>
-    <p>20</p>
+    <p>{vehicle.mileage}</p>
+  </div>
+  <div className="mil">
+    <p style={{ fontWeight: 'bold' }}><FaTachometerAlt /> Vendor Name</p>
+    <p>{vehicle.vendorName}</p>
   </div>
 
 

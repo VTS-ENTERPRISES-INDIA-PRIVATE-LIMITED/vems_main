@@ -1,65 +1,46 @@
+/* LiveTracking.css */
 
-  
-  .cards-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap; 
-    
-  }
-  
-  .card {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 10px;
-    padding: 15px;
-    flex: 1;
-    max-width: 200px; 
-    margin-top:-10px;
-    margin-bottom: 5PX;
-  }
+.liveTrackingContainer {
+  display: flex;
+  flex-direction: column; /* Stack sidebar and map vertically */
+  padding: 20px;
+}
+
+.sidebar {
+  display: flex; /* Align cards in a row */
+  flex-wrap: nowrap; /* Prevent cards from wrapping to the next line */
+  overflow-x: auto; /* Allow horizontal scrolling if necessary (optional) */
+  gap: 20px; /* Space between cards */
+  margin-bottom: 20px; /* Space between cards and map */
+}
+
+.card {
+  flex: 1 1 16%; /* Adjust width to fit all cards in a row (16% for 6 cards) */
+  background-color: #f9f9f9; /* Light background color */
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  min-width: 150px; /* Ensure cards have a minimum width */
+  box-sizing: border-box;
+  /* Include padding in width calculation */
+}
+
+.cardContent h3 {
+  margin: 0 0 10px;
+  font-size: 1.2em;
  
-  
-  .card-content {
-    display: flex;
-    flex-direction: column; 
-    gap: 10px; 
-  }
-  
-  .tripIdCard {
-    background-color: #e3f2fd; 
-  }
-  
-  .speedCard {
-    background-color: #e8f5e9; 
-  }
-  
-  .fuelCard {
-    background-color: #fff3e0; 
-  }
-  
-  .employeesCard {
-    background-color: #fce4ec; 
-  }
-  .idletimecard{
-    background-color: #e8f5e9;
+}
 
-  }
-  .travelledcard{
-    background-color:aqua;
+.cardContent p {
+  margin: 0;
+  font-size: 1em;
+}
 
-  }
-  
-  .card-content h3 {
-    margin: 0; 
-  }
-  
-  .card-content p {
-    margin: 0; 
-  }
-  
-  .map-container {
-    width: 100%;
-    height: calc(100vh - 120px);
-  }
-  
+.liveTrackingMap {
+  width: 100%;
+  height: 500px; /* Adjust height as needed */
+  background-color: #e0e0e0; /* Placeholder background color */
+}
+.card employeesCard{
+  background-color:antiquewhite;
+}

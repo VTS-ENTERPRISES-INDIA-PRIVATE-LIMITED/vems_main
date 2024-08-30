@@ -1,8 +1,11 @@
 import axios from 'axios';
 import './AddVehicle.css';
-import { useState,} from 'react';
+import { useState } from 'react';
+import { FaUser, FaIdCard, FaTruck, FaListAlt, FaGasPump, FaCogs, FaUsers, FaTachometerAlt, FaCalendarAlt, FaImage } from 'react-icons/fa';
 
-// Function to generate a random alphanumeric ID
+const CLOUDINARY_UPLOAD_PRESET = 'q6fwknmo';
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/djbz2ydtp/image/upload';
+
 const generateRandomId = (length = 8) => {
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let result = '';
@@ -11,10 +14,6 @@ const generateRandomId = (length = 8) => {
   }
   return result;
 };
-
-// Cloudinary upload preset and URL
-const CLOUDINARY_UPLOAD_PRESET = 'q6fwknmo';
-const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/djbz2ydtp/image/upload';
 
 const VehicleForm = () => {
   const [vehicleDetails, setVehicleDetails] = useState({
@@ -26,13 +25,14 @@ const VehicleForm = () => {
     engineNumber: '',
     chassisNumber: '',
     fuelType: '',
-    seatCapacity: 0,
-    mileage: 0,
+    seatCapacity: '',
+    mileage: '',
     yearOfManufacturing: '',
-    vehicleImage: '', // Initialize as empty
+    vehicleImage: '',
   });
 
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
@@ -49,14 +49,10 @@ const VehicleForm = () => {
         });
 
         const imageUrl = response.data.secure_url;
-        setVehicleDetails({
-          ...vehicleDetails,
+        setVehicleDetails((prevDetails) => ({
+          ...prevDetails,
           vehicleImage: imageUrl,
-        });
-
-        // Optionally, send image URL to your backend for storing in the database
-        // await axios.post('/your-backend-endpoint', { imageUrl });
-
+        }));
       } catch (error) {
         console.error('Image upload failed:', error);
       }
@@ -65,29 +61,32 @@ const VehicleForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setVehicleDetails({
-      ...vehicleDetails,
+    setVehicleDetails((prevDetails) => ({
+      ...prevDetails,
       [name]: value,
-    });
+    }));
 
-    // Remove error message once user starts typing
-    setErrors({
-      ...errors,
+    setErrors((prevErrors) => ({
+      ...prevErrors,
       [name]: '',
-    });
+    }));
   };
 
   const validateForm = () => {
     let formIsValid = true;
     let errors = {};
 
-    // Check if all fields are non-empty
     Object.keys(vehicleDetails).forEach((key) => {
-      if (!vehicleDetails[key] && key !== 'vehicleImage') { // Exclude vehicleImage from required fields
+      if (!vehicleDetails[key] && key !== 'vehicleImage') { 
         formIsValid = false;
-        errors[key] = `${key} is required`;
+        errors[key] = '${key} is required';
       }
     });
+
+    if (!vehicleDetails.vehicleImage) {
+      formIsValid = false;
+      errors.vehicleImage = 'Vehicle image is required';
+    }
 
     if (vehicleDetails.registrationNumber && vehicleDetails.registrationNumber.length !== 10) {
       formIsValid = false;
@@ -117,28 +116,14 @@ const VehicleForm = () => {
     e.preventDefault();
 
     if (validateForm()) {
-      console.log('Form is valid and ready to be submitted');
+      setLoading(true);
       try {
-        // Send vehicleDetails to your backend
-
-        console.log(vehicleDetails.vehicleName)
-        console.log(vehicleDetails.vehicleId)
-        console.log(vehicleDetails.vendorName)
-        console.log(vehicleDetails.vendorId)
-        console.log(vehicleDetails.registrationNumber)
-        console.log(vehicleDetails.engineNumber)
-        console.log(vehicleDetails.chassisNumber)
-        console.log(vehicleDetails.fuelType)
-        console.log(vehicleDetails.seatCapacity)
-        console.log(vehicleDetails.mileage)
-        console.log(vehicleDetails.yearOfManufacturing)
-        console.log(vehicleDetails.vehicleImage)
-
-
-        await axios.post('https://silent-wave-76445.pktriot.net/add-vehicle', {vehicleDetails});
+        await axios.post('https://silent-wave-76445.pktriot.net/add-vehicle', { vehicleDetails });
         console.log('Vehicle details saved successfully');
       } catch (error) {
         console.error('Error saving vehicle details:', error);
+      } finally {
+        setLoading(false);
       }
     } else {
       console.log('Form has errors');
@@ -148,135 +133,142 @@ const VehicleForm = () => {
   return (
     <form className="vehicle-form" onSubmit={handleSubmit}>
       <div className="form-header">
-        <h2>Add Vehicle</h2>
-        <button type="submit" className="save-button">Save</button>
+        <h2 className='headddd'>Add Vehicle</h2>
+        <button type="submit" className="save-button" disabled={loading}>
+          {loading ? 'Saving...' : 'Save'}
+        </button>
       </div>
 
       <div className="form-content">
-        <div className="left-section">
-          <div className="image">
-            <input 
-              type="file" 
-              name="vehicleImage" 
-              onChange={handleImageUpload} 
-              style={{ display: 'none' }} 
-              id="upload-button"
-            />
-            <label htmlFor="upload-button">
-              <img src={vehicleDetails.vehicleImage || 'https://res.cloudinary.com/djbz2ydtp/image/upload/v1724774191/111_-Add_Car_Details-_transport_vehicle-512_ptci8m.png'} alt="Vehicle" className="vehicle-preview" />
-            </label>
-          </div>
-          <div className='vehicle'>
-            <label className="required">Vehicle Name:</label>
-            <input 
-              type="text" 
-              name="vehicleName" 
-              value={vehicleDetails.vehicleName} 
-              onChange={handleChange} 
-            />
-            {errors.vehicleName && <span className="error-message">{errors.vehicleName}</span>}
-
-            <label>Vehicle ID:</label>
-            <input 
-              type="text" 
-              name="vehicleId" 
-              value={vehicleDetails.vehicleId} 
-              readOnly // Making ID read-only as it is auto-generated
-            />
-
-            <label htmlFor="imageUpload" style={{ marginRight: '10px',  content: '*',
-   }}>*Upload Image:</label>
-            <input type="file" id="imageUpload" accept="image/*" onChange={handleImageUpload} />
-          </div>
-
-          <div className="vendor-details">
-            <h3>Vendor Details</h3>
-            <label className="required">Vendor Name:</label>
-            <input 
-              type="text" 
-              name="vendorName" 
-              value={vehicleDetails.vendorName} 
-              onChange={handleChange} 
-            />
-            {errors.vendorName && <span className="error-message">{errors.vendorName}</span>}
-
-            <label className="required">Vendor ID:</label>
-            <input 
-              type="text" 
-              name="vendorId" 
-              value={vehicleDetails.vendorId} 
-              onChange={handleChange} 
-            />
-            {errors.vendorId && <span className="error-message">{errors.vendorId}</span>}
-          </div>
+        <div className="form-field">
+          <label className="required"><FaUser className="icon11" />Vehicle Name:</label>
+          <input 
+            type="text" 
+            name="vehicleName" 
+            value={vehicleDetails.vehicleName} 
+            onChange={handleChange} 
+          />
+          {errors.vehicleName && <span className="error-message">{errors.vehicleName}</span>}
         </div>
 
-        <div className="right-section">
-          <div className="vehicle-details">
-            <h3>Vehicle Details</h3>
-            <label className="required">Registration Number:</label>
-            <input 
-              type="text" 
-              name="registrationNumber" 
-              value={vehicleDetails.registrationNumber} 
-              onChange={handleChange} 
-            />
-            {errors.registrationNumber && <span className="error-message">{errors.registrationNumber}</span>}
+        <div className="form-field">
+          <label><FaIdCard className="icon11" />Vehicle ID:</label>
+          <input 
+            type="text" 
+            name="vehicleId" 
+            value={vehicleDetails.vehicleId} 
+            readOnly
+          />
+        </div>
 
-            <label className="required">Engine Number:</label>
-            <input 
-              type="text" 
-              name="engineNumber" 
-              value={vehicleDetails.engineNumber} 
-              onChange={handleChange} 
-            />
-            {errors.engineNumber && <span className="error-message">{errors.engineNumber}</span>}
+        <div className="form-field">
+          <label className="required"><FaImage className="icon11" />Vehicle Image:</label>
+          <input 
+            type="file" 
+            name="vehicleImage" 
+            accept="image/*"
+            onChange={handleImageUpload} 
+          />
+          {errors.vehicleImage && <span className="error-message">{errors.vehicleImage}</span>}
+        </div>
 
-            <label className="required">Fuel Type:</label>
-            <input 
-              type="text" 
-              name="fuelType" 
-              value={vehicleDetails.fuelType} 
-              onChange={handleChange} 
-            />
-            {errors.fuelType && <span className="error-message">{errors.fuelType}</span>}
+        <div className="form-field">
+          <label className="required"><FaIdCard className="icon11" />Registration Number:</label>
+          <input 
+            type="text" 
+            name="registrationNumber" 
+            value={vehicleDetails.registrationNumber} 
+            onChange={handleChange} 
+          />
+          {errors.registrationNumber && <span className="error-message">{errors.registrationNumber}</span>}
+        </div>
 
-            <label className="required">Chassis Number:</label>
-            <input 
-              type="text" 
-              name="chassisNumber" 
-              value={vehicleDetails.chassisNumber} 
-              onChange={handleChange} 
-            />
-            {errors.chassisNumber && <span className="error-message">{errors.chassisNumber}</span>}
+        <div className="form-field">
+          <label className="required"><FaCogs className="icon11" />Engine Number:</label>
+          <input 
+            type="text" 
+            name="engineNumber" 
+            value={vehicleDetails.engineNumber} 
+            onChange={handleChange} 
+          />
+          {errors.engineNumber && <span className="error-message">{errors.engineNumber}</span>}
+        </div>
 
-            <label className="required">Seat Capacity:</label>
-            <input 
-              type="text" 
-              name="seatCapacity" 
-              value={vehicleDetails.seatCapacity} 
-              onChange={handleChange} 
-            />
-            {errors.seatCapacity && <span className="error-message">{errors.seatCapacity}</span>}
+        <div className="form-field">
+          <label className="required"><FaCogs className="icon11" />Chassis Number:</label>
+          <input 
+            type="text" 
+            name="chassisNumber" 
+            value={vehicleDetails.chassisNumber} 
+            onChange={handleChange} 
+          />
+          {errors.chassisNumber && <span className="error-message">{errors.chassisNumber}</span>}
+        </div>
 
-            <label className="required">Mileage:</label>
-            <input 
-              type="text" 
-              name="mileage" 
-              value={vehicleDetails.mileage} 
-              onChange={handleChange} 
-            />
-            {errors.mileage && <span className="error-message">{errors.mileage}</span>}
+        <div className="form-field">
+          <label className="required"><FaTachometerAlt className="icon11" />Mileage:</label>
+          <input 
+            type="number" 
+            name="mileage" 
+            value={vehicleDetails.mileage} 
+            onChange={handleChange} 
+          />
+          {errors.mileage && <span className="error-message">{errors.mileage}</span>}
+        </div>
 
-            <label className="required">Year of Manufacture:</label>
-            <input 
-              type="text" 
-              name="yearOfManufacturing" 
-              value={vehicleDetails.yearOfManufacturing} 
-              onChange={handleChange} 
-            />
-            {errors.yearOfManufacturing && <span className="error-message">{errors.yearOfManufacturing}</span>}
-          </div>
+        <div className="form-field">
+          <label className="required"><FaGasPump className="icon11" />Fuel Type:</label>
+          <input 
+            type="text" 
+            name="fuelType" 
+            value={vehicleDetails.fuelType} 
+            onChange={handleChange} 
+          />
+          {errors.fuelType && <span className="error-message">{errors.fuelType}</span>}
+        </div>
+
+        <div className="form-field">
+          <label className="required"><FaUsers className="icon11" />Seat Capacity:</label>
+          <input 
+            type="number" 
+            name="seatCapacity" 
+            value={vehicleDetails.seatCapacity} 
+            onChange={handleChange} 
+          />
+          {errors.seatCapacity && <span className="error-message">{errors.seatCapacity}</span>}
+        </div>
+
+        <div className="form-field">
+          <label className="required"><FaTruck className="icon11" />Vendor Name:</label>
+          <input 
+            type="text" 
+            name="vendorName" 
+            value={vehicleDetails.vendorName} 
+            onChange={handleChange} 
+          />
+          {errors.vendorName && <span className="error-message">{errors.vendorName}</span>}
+        </div>
+
+        <div className="form-field">
+          <label className="required"><FaListAlt className="icon11" />Vendor ID:</label>
+          <input 
+            type="text" 
+            name="vendorId" 
+            value={vehicleDetails.vendorId} 
+            onChange={handleChange} 
+          />
+          {errors.vendorId && <span className="error-message">{errors.vendorId}</span>}
+        </div>
+
+        <div className="form-field">
+          <label className="required"><FaCalendarAlt className="icon11" />Year of Manufacturing:</label>
+          <input 
+            type="text" 
+            name="yearOfManufacturing" 
+            value={vehicleDetails.yearOfManufacturing} 
+            onChange={handleChange} 
+          />
+          {errors.yearOfManufacturing && <span className="error-message">{errors.yearOfManufacturing}</span>}
         </div>
       </div>
     </form>

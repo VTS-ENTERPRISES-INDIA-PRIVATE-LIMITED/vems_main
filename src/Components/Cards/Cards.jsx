@@ -1,167 +1,57 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Cards.css';
+import vehicleData from '../vehicleData.json';
+import Allvehicles from '../../Pages/Trip/Allvehicles';
 
-const vehicleData = [
- 
-  {
-    "vehicleName": "Toyota Camry",
-    "employees": 5
-  },
-  {
-    "vehicleName": "Honda Accord",
-    "employees": 3
-  },
-  {
-    "vehicleName": "Ford Explorer",
-    "employees": 8
-  },
-  {
-    "vehicleName": "Toyota Camry",
-    "employees": 5
-  },
-  {
-    "vehicleName": "Honda Accord",
-    "employees": 3
-  },
-  {
-    "vehicleName": "Ford Explorer",
-    "employees": 8
-  },
-  {
-    "vehicleName": "Toyota Camry",
-    "employees": 5
-  },
-  {
-    "vehicleName": "Honda Accord",
-    "employees": 3
-  },
-  {
-    "vehicleName": "Ford Explorer",
-    "employees": 8
-  },
-  {
-    "vehicleName": "Toyota Camry",
-    "employees": 5
-  },
-  {
-    "vehicleName": "Honda Accord",
-    "employees": 3
-  },
-  {
-    "vehicleName": "Ford Explorer",
-    "employees": 8
-  },
-  {
-    "vehicleName": "Toyota Camry",
-    "employees": 5
-  },
-  {
-    "vehicleName": "Honda Accord",
-    "employees": 3
-  },
-  {
-    "vehicleName": "Ford Explorer",
-    "employees": 8
-  },
-  {
-    "vehicleName": "Toyota Camry",
-    "employees": 5
-  },
-  {
-    "vehicleName": "Honda Accord",
-    "employees": 3
-  },
-  {
-    "vehicleName": "Ford Explorer",
-    "employees": 8
-  },
-  {
-    "vehicleName": "Toyota Camry",
-    "employees": 5
-  },
-  {
-    "vehicleName": "Honda Accord",
-    "employees": 3
-  },
-  {
-    "vehicleName": "Ford Explorer",
-    "employees": 8
-  },
-  {
-    "vehicleName": "Toyota Camry",
-    "employees": 5
-  },
-  {
-    "vehicleName": "Honda Accord",
-    "employees": 3
-  },
-  {
-    "vehicleName": "Ford Explorer",
-    "employees": 8
-  },
-  {
-    "vehicleName": "Toyota Camry",
-    "employees": 5
-  },
-  {
-    "vehicleName": "Honda Accord",
-    "employees": 3
-  },
-  {
-    "vehicleName": "Ford Explorer",
-    "employees": 8
-  },
-  {
-    "vehicleName": "Toyota Camry",
-    "employees": 5
-  },
-  {
-    "vehicleName": "Honda Accord",
-    "employees": 3
-  },
-  {
-    "vehicleName": "ABC",
-    "employees": 8
-  },
-  
-
- 
-];
 const Cards = () => {
-    const [searchTerm, setSearchTerm] = useState('');
+  const [vehicles, setVehicles] = useState([]);
+  const [selectedVehicle, setSelectedVehicle] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
-    const filteredVehicles = vehicleData.filter(vehicle =>
-      vehicle.vehicleName.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  
-    const displayedVehicles = searchTerm ? filteredVehicles : filteredVehicles.slice(0, 12);
-  
-    return (
-      <div className="app-container">
-        <input
-          type="text"
-          placeholder="Search by vehicle name"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="search-bar"
-        />
-        <div className="cards-container">
-          {displayedVehicles.map((vehicle, index) => (
-            <div key={index} className="card" style={{ backgroundColor: getRandomColor() }}>
-              <h3>{vehicle.vehicleName}</h3>
-              <p>Number of Employees: {vehicle.employees}</p>
-            </div>
-          ))}
-        </div>
+  useEffect(() => {
+    const data = vehicleData;
+    const vehicleList = Object.keys(data).map(vehicleId => ({
+      id: vehicleId,
+      numEmployees: data[vehicleId].length,
+      employees: data[vehicleId]
+    }));
+    setVehicles(vehicleList);
+  }, []);
+
+  const handleSelectVehicle = (vehicle) => {
+    setSelectedVehicle(vehicle);
+  };
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredVehicles = vehicles.filter(vehicle =>
+    vehicle.id.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  return (
+    <div className="container1">
+      
+      
+      <div className="cards-container1">
+        {filteredVehicles.map(vehicle => (
+          <div 
+            key={vehicle.id} 
+            className="card1"
+            onClick={() => handleSelectVehicle(vehicle)}
+          >
+            <h3>Vehicle ID: {vehicle.id}</h3>
+            <p>Number of Employees: {vehicle.numEmployees}</p>
+          </div>
+        ))}
       </div>
-    );
-  };
-  
- 
-  const getRandomColor = () => {
-    const colors = ['aliceblue', 'antiquewhite', 'azure', 'lightcyan', 'lightgoldenrodyellow', 'bisque','beige',];
-    return colors[Math.floor(Math.random() * colors.length)];
-  };
-  
-export default Cards;  
+      <Allvehicles
+        customClass="map" 
+        selectedVehicle={selectedVehicle} 
+      />
+    </div>
+  );
+};
+
+export default Cards;
