@@ -32,20 +32,33 @@ const Cards = () => {
 
   return (
     <div className="container1">
-      
-      
       <div className="cards-container1">
-        {filteredVehicles.map(vehicle => (
-          <div 
-            key={vehicle.id} 
-            className="card1"
-            onClick={() => handleSelectVehicle(vehicle)}
-          >
-            <h3>Vehicle ID: {vehicle.id}</h3>
-            <p>Number of Employees: {vehicle.numEmployees}</p>
-          </div>
-        ))}
+   
+        <div className="search-bar-container">
+          <input 
+            type="text" 
+            placeholder="Search Vehicle ID..." 
+            value={searchTerm} 
+            onChange={handleSearchChange} 
+            className="search-bar"
+          />
+        </div>
+        <h1 className='heading'>Ongoing Trips</h1>
+
+        <div className='cards--cards'>
+          {filteredVehicles.map(vehicle => (
+            <div 
+              key={vehicle.id} 
+              className={`card1 ${selectedVehicle && selectedVehicle.id === vehicle.id ? 'active-card' : ''}`}
+              onClick={() => handleSelectVehicle(vehicle)}
+            >
+              <h3 className='heading3'>Vehicle ID: {vehicle.id}</h3>
+              <p>Number of Employees: {vehicle.numEmployees}</p>
+            </div>
+          ))}
+        </div>
       </div>
+
       <Allvehicles
         customClass="map" 
         selectedVehicle={selectedVehicle} 

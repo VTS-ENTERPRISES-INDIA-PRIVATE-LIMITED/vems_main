@@ -5,7 +5,6 @@ import SortFilteringTrips from "../../Components/SortFilteringTrips/SortFilterin
 import Tripcards from "../../Components/Tripcards/Tripcards";
 import RouteManagement from "../RouteManagement/RouteManagement/RouteManagement";
 import Cards  from "../../Components/Cards/Cards";
-import Allvehicles from '../Trip/Allvehicles';
 
 
 function TripManagement() {

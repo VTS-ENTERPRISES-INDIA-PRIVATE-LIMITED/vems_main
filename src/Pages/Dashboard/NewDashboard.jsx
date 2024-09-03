@@ -28,7 +28,7 @@ import { useLocation } from 'react-router-dom';
 
 
 function NewDashboard(){
-  const location = useLocation(); // Use useLocation to access state
+  const location = useLocation(); 
   
   const vehicle = location.state?.vehicle || {}; 
     const d = Date();
@@ -48,10 +48,13 @@ function NewDashboard(){
     const handleLt=()=>{
      setViewPersonalDetails(false)
      setLivetracking(true)
+     navigate("/livetracking");
     }
     const handleTh=()=>{
      setViewPersonalDetails(false);
-     setLivetracking(false)
+     setLivetracking(false);
+     navigate("/history");
+
     }
     const handlefd=()=>{
         setViewPersonalDetails(false);
@@ -84,35 +87,35 @@ function NewDashboard(){
    
      const fun=[
         {title:"Phone Number",
-         value:"xxxxxxxx",
+         value:vehicle.mobile,
          icon:<CiMobile1/>
         },
         {title:"Email",
-            value:"xxx@gmail.com",
+            value:vehicle.email,
             icon:<MdOutlineMail />
            },
            {title:"Gender",
-            value:"Male",
+            value:vehicle.gender,
             icon:<CiUser />
            },
            {title:"Age",
-            value:"46",
+            value:vehicle.age,
             icon:<CiUser />
            },
            {title:"Date Of Birth",
-            value:"01-07-2003",
+            value:vehicle.dob,
             icon:<CiCalendarDate />
            },
            {title:"Address",
-            value:"jtyduafigihonkbdyihadb",
+            value:vehicle.address,
             icon:<FaLocationDot />
            },
            {title:"Aadhar Number",
-            value:"dafsr",
+            value:vehicle.aadhar,
             icon:<FaAddressCard />
            },
            {title:"Pan Card Number",
-            value:"nljnnfers",
+            value:vehicle.pan,
             icon:<FaAddressCard />
            },
            
@@ -242,7 +245,7 @@ function NewDashboard(){
         <div className="information">
                  <div className="inf-pers">
                  <h4><u>Currently Asssigned Driver</u></h4>
-                 <h3><TiUser />&nbsp;&nbsp;Driver Name</h3>
+                 <h3><TiUser />&nbsp;&nbsp;{vehicle.name}</h3>
                  <div className="mob-infss">
                  {fun.map((item,key)=>(
                     <div className="mob-infs">

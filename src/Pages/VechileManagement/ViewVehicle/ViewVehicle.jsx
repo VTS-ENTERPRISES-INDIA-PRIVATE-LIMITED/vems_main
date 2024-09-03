@@ -5,43 +5,24 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './ViewVehicle.css'; 
 
-// const vehicles = [
-//   { "sno": 1, "vehicleName": "Toyota Corolla", "registrationNumber": "ABC123", "vendorName": "Vendor A" },
-//   { "sno": 2, "vehicleName": "Honda Civic", "registrationNumber": "XYZ456", "vendorName": "Vendor A" },
-//   { "sno": 3, "vehicleName": "Ford Focus", "registrationNumber": "LMN789", "vendorName": "Vendor C" },
-//   { "sno": 4, "vehicleName": "Chevrolet Malibu", "registrationNumber": "JKL012", "vendorName": "Vendor D" },
-//   { "sno": 5, "vehicleName": "Nissan Altima", "registrationNumber": "MNO345", "vendorName": "Vendor E" },
-//   { "sno": 6, "vehicleName": "Hyundai Sonata", "registrationNumber": "PQR678", "vendorName": "Vendor F" },
-//   { "sno": 7, "vehicleName": "Kia Optima", "registrationNumber": "STU901", "vendorName": "Vendor G" },
-//   { "sno": 8, "vehicleName": "Mazda 3", "registrationNumber": "VWX234", "vendorName": "Vendor H" },
-//   { "sno": 9, "vehicleName": "Volkswagen Jetta", "registrationNumber": "YZA567", "vendorName": "Vendor I" },
-//   { "sno": 10, "vehicleName": "Subaru Legacy", "registrationNumber": "BCD890", "vendorName": "Vendor J" },
-// ];
-
-
 const ViewVehicle = ({ onEdit, onDelete }) => {
   const navigate = useNavigate(); 
-
-  const [vehicles , setVehicle] = useState([])
-
-
-  useEffect(() => {
-    axios.get("https://silent-wave-76445.pktriot.net/vehicles")
-    .then((result) => {
-      setVehicle(result.data);
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-  })
-
-
-
+  const [vehicles, setVehicle] = useState([]);
   const [searchText, setSearchText] = useState({
     vehicleName: '',
     registrationNumber: '',
     vendorName: ''
   });
+
+  useEffect(() => {
+    axios.get("https://silent-wave-76445.pktriot.net/vehicles")
+      .then((result) => {
+        setVehicle(result.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   const handleSearch = (value, key) => {
     setSearchText({
@@ -50,11 +31,16 @@ const ViewVehicle = ({ onEdit, onDelete }) => {
     });
   };
 
-  const filteredVehicles = vehicles.filter(vehicle =>
-    vehicle.vehicleName.toLowerCase().includes(searchText.vehicleName) &&
-    vehicle.registrationNumber.toLowerCase().includes(searchText.registrationNumber) &&
-    vehicle.vendorName.toLowerCase().includes(searchText.vendorName)
-  );
+  const filteredVehicles = vehicles
+    .filter(vehicle =>
+      vehicle.vehicleName.toLowerCase().includes(searchText.vehicleName) &&
+      vehicle.registrationNumber.toLowerCase().includes(searchText.registrationNumber) &&
+      vehicle.vendorName.toLowerCase().includes(searchText.vendorName)
+    )
+    .map((vehicle, index) => ({
+      ...vehicle,
+      sno: index + 1 
+    }));
 
   const columns = [
     {
@@ -122,8 +108,8 @@ const ViewVehicle = ({ onEdit, onDelete }) => {
       key: 'viewMore',
       render: (text, record) => (
         <Button type="link" onClick={() => navigate(`/NewDashboard`, { state: { vehicle: record } })}>
-  View More
-</Button>
+          View More
+        </Button>
       ),
     },
   ];
@@ -139,4 +125,4 @@ const ViewVehicle = ({ onEdit, onDelete }) => {
   );
 };
 
-export default ViewVehicle; 
+export default ViewVehicle;

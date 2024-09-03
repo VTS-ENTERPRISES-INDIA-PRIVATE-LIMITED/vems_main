@@ -10,14 +10,14 @@
         {
             "emp_id": "VTS2025144",
             "gender": "male",
-            "priority_order": 2,
+            "priority_order":4,
             "latitude": 12.9365627,
             "longitude": 80.2010366
         },
         {
             "emp_id": "VTS2025127",
             "gender": "Female",
-            "priority_order": 4,
+            "priority_order": 2,
             "latitude": 12.896908,
             "longitude":80.2041685
         },

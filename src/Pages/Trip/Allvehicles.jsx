@@ -4,10 +4,10 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
 import 'leaflet-routing-machine';
+import 'leaflet-arrowheads';
 import axios from 'axios';
-import './Allvehicles.css'; // Import your CSS file for styling
+import './Allvehicles.css';
 
-// Icons for different types of markers
 const cabIcon = new L.Icon({
   iconUrl: 'https://res.cloudinary.com/djbz2ydtp/image/upload/v1724994766/024fc5c5b9125a2d29d31750e90c1700_o84pry.png',
   iconSize: [40, 40],
@@ -36,16 +36,9 @@ const startingPointIcon = new L.Icon({
   popupAnchor: [0, -50],
 });
 
-// Component to handle map bounds dynamically
 const MapBounds = ({ bounds }) => {
   const map = useMap();
-
-  useEffect(() => {
-    if (bounds && bounds.isValid()) {
-      map.fitBounds(bounds, { padding: [50, 50] });
-    }
-  }, [map, bounds]);
-
+  map.fitBounds(bounds);
   return null;
 };
 
@@ -54,13 +47,14 @@ const RouteManagement = ({ customClass, selectedVehicle }) => {
   const [cards, setCards] = useState([]);
   const [route, setRoute] = useState([]);
   const [error, setError] = useState(null);
+  const [vehicleSelected, setVehicleSelected] = useState(null);
   const mapRef = useRef(null);
+  const polylineRef = useRef(null);
 
   useEffect(() => {
-    // Fetch employee data from a JSON file or API
     const fetchData = async () => {
       try {
-        const response = await fetch('/path/to/employees.json'); // Replace with the actual path to your JSON file
+        const response = await fetch('/path/to/employees.json');
         const data = await response.json();
         setEmployees(data);
       } catch (error) {
@@ -79,74 +73,85 @@ const RouteManagement = ({ customClass, selectedVehicle }) => {
     { lat: 12.978581, lng: 80.2500201, name: 'Starting Point', type: 'startingPoint' }
   ];
 
-  const cabs = selectedVehicle
-    ? selectedVehicle.employees.map(emp => ({
-        lat: emp.latitude,
-        lng: emp.longitude,
-        name: emp.emp_id,
-        type: 'employee',
-        gender: emp.gender
-      }))
-    : [...employees.map(emp => ({
-        lat: emp.latitude,
-        lng: emp.longitude,
-        name: emp.emp_id,
-        type: 'employee',
-        gender: emp.gender
-      })), ...staticData.filter(data => data.type === 'cab')];
+  const cabs = staticData.filter(data => data.type === 'cab');
+  const startingPoint = staticData.find(data => data.type === 'startingPoint');
 
-  const allMarkers = [...cabs, staticData.find(data => data.type === 'startingPoint')].filter(Boolean);
+  const employeesData = selectedVehicle
+  ? selectedVehicle.employees.map(emp => ({
+      lat: emp.latitude,
+      lng: emp.longitude,
+      name: emp.emp_id,
+      type: 'employee',
+      gender: emp.gender,
+      priorityOrder: emp.priority_order // Updated field
+    }))
+  : employees.map(emp => ({
+      lat: emp.latitude,
+      lng: emp.longitude,
+      name: emp.emp_id,
+      type: 'employee',
+      gender: emp.gender,
+      priorityOrder: emp.priority_order // Updated field
+    }));
+
+// Sort based on priority_order instead of priority
+const sortedEmployees = employeesData.sort((a, b) => a.priorityOrder - b.priorityOrder);
+
+
+ 
+
+  const allMarkers = [
+    ...(selectedVehicle ? [] : cabs),
+    startingPoint,
+    ...sortedEmployees
+  ].filter(Boolean);
+
   const bounds = L.latLngBounds(allMarkers.map(marker => [marker.lat, marker.lng]));
 
-  // Define waypoints based on employee markers only
-  const waypoints = cabs.map(data => ({
-    lat: data.lat,
-    lng: data.lng
-  }));
-
   useEffect(() => {
-    const fetchRoute = async () => {
-      try {
-        const segments = [];
-        
-        for (let i = 0; i < waypoints.length - 1; i++) {
-          const start = waypoints[i];
-          const end = waypoints[i + 1];
-          
-          const response = await axios.get(
-            'https://api.openrouteservice.org/v2/directions/driving-car',
-            {
-              params: {
-                api_key: '5b3ce3597851110001cf6248fc4917b9ae9d4da4938a16ecba608beb', // Replace with your API key
-                start: `${start.lng},${start.lat}`,
-                end: `${end.lng},${end.lat}`,
-                format: 'geojson'
+    if (sortedEmployees.length > 0 && startingPoint) {
+      const fetchRoute = async () => {
+        try {
+          const routeCoordinates = [];
+          let currentLocation = startingPoint;
+  
+          // Iterate through sorted employees in the correct priority order
+          for (const employee of sortedEmployees) {
+            const start = currentLocation;
+            const end = employee;
+  
+            const response = await axios.get(
+              'https://api.openrouteservice.org/v2/directions/driving-car',
+              {
+                params: {
+                  api_key: '5b3ce3597851110001cf6248fc4917b9ae9d4da4938a16ecba608beb',
+                  start: `${start.lng},${start.lat}`,
+                  end: `${end.lng},${end.lat}`,
+                  format: 'geojson'
+                }
               }
+            );
+  
+            if (response.data && response.data.features && response.data.features.length > 0) {
+              const segmentCoordinates = response.data.features[0].geometry.coordinates.map(coord => [coord[1], coord[0]]);
+              routeCoordinates.push(...segmentCoordinates);
+              currentLocation = employee;
+            } else {
+              setError('No route data available or invalid response structure');
+              return;
             }
-          );
-  
-          // Log the response for debugging
-          console.log('API Response:', response.data);
-  
-          if (response.data && response.data.features && response.data.features.length > 0) {
-            const segmentCoordinates = response.data.features[0].geometry.coordinates.map(coord => [coord[1], coord[0]]);
-            segments.push(segmentCoordinates);
-          } else {
-            setError('No route data available or invalid response structure');
-            return;
           }
-        }
-    
-        const routeCoordinates = segments.flat();
-        setRoute(routeCoordinates);
-      } catch (error) {
-        //console.error("Error fetching route:", error);
-        setError(`Error fetching route: ${error.message || error}`);
-      }
-    };
   
-    fetchRoute();
-  }, [waypoints]);
+          setRoute(routeCoordinates);
+        } catch (error) {
+          console.error('Error fetching route:', error);
+        }
+      };
+  
+      fetchRoute();
+    }
+  }, [sortedEmployees, startingPoint]);
+  
 
   const getIcon = (type, gender) => {
     if (type === 'employee') {
@@ -161,6 +166,17 @@ const RouteManagement = ({ customClass, selectedVehicle }) => {
         return cabIcon;
     }
   };
+
+  useEffect(() => {
+    if (polylineRef.current && mapRef.current) {
+      polylineRef.current.arrowheads({
+        size: '15px',
+        frequency: 'endonly',
+        fill: true,
+        color: '#FF0000'
+      });
+    }
+  }, [route]);
 
   return (
     <div className="route-management-container">
@@ -177,16 +193,15 @@ const RouteManagement = ({ customClass, selectedVehicle }) => {
           bounds={bounds}
           boundsOptions={{ padding: [50, 50] }}
           className={customClass}
-          style={{ height: '600px', width: '40vw', marginLeft: '-200px' }}
-          whenCreated={map => mapRef.current = map}
+          style={{ height: '600px', width: '40vw', marginLeft: '10px' }}
+          center={[12.9716, 80.2445]}
+          zoom={13}
+          ref={mapRef}
         >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
-
-          <MapBounds bounds={bounds} />
-
           {allMarkers.map((marker, index) => (
             <Marker
               key={index}
@@ -196,18 +211,18 @@ const RouteManagement = ({ customClass, selectedVehicle }) => {
               <Popup>{marker.name}</Popup>
             </Marker>
           ))}
-
           {route.length > 0 && (
             <Polyline
               positions={route}
-              color="red"
+              color="blue"
               weight={5}
               opacity={0.7}
+              ref={polylineRef}
             />
           )}
+          <MapBounds bounds={bounds} />
         </MapContainer>
       </div>
-      {error && <div style={{ position: 'absolute', bottom: '10px', left: '10px', backgroundColor: 'white', padding: '5px', borderRadius: '5px' }}>{error}</div>}
     </div>
   );
 };

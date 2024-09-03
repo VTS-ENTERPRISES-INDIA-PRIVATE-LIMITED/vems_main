@@ -53,6 +53,12 @@ const VehicleForm = () => {
           ...prevDetails,
           vehicleImage: imageUrl,
         }));
+
+        // Clear the error for vehicleImage after successful upload
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          vehicleImage: '',
+        }));
       } catch (error) {
         console.error('Image upload failed:', error);
       }
@@ -76,18 +82,21 @@ const VehicleForm = () => {
     let formIsValid = true;
     let errors = {};
 
+    // Validate fields except vehicleImage
     Object.keys(vehicleDetails).forEach((key) => {
       if (!vehicleDetails[key] && key !== 'vehicleImage') { 
         formIsValid = false;
-        errors[key] = '${key} is required';
+        errors[key] = `${key} is required`; 
       }
     });
 
-    if (!vehicleDetails.vehicleImage) {
+    // Check if vehicleImage is set
+    if (!vehicleDetails.vehicleImage.trim()) {
       formIsValid = false;
       errors.vehicleImage = 'Vehicle image is required';
     }
 
+    // Additional specific field validations
     if (vehicleDetails.registrationNumber && vehicleDetails.registrationNumber.length !== 10) {
       formIsValid = false;
       errors.registrationNumber = 'Registration number must be 10 characters long';
@@ -115,10 +124,11 @@ const VehicleForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Validate form before submission
     if (validateForm()) {
       setLoading(true);
       try {
-        await axios.post('https://silent-wave-76445.pktriot.net/add-vehicle', { vehicleDetails });
+        await axios.post('https://silent-wave-76445.pktriot.net/add-vehicle', vehicleDetails);
         console.log('Vehicle details saved successfully');
       } catch (error) {
         console.error('Error saving vehicle details:', error);

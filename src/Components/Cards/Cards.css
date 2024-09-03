@@ -1,27 +1,48 @@
 .container1 {
-  display: flex; /* Display cards and map side by side */
+  display: flex; 
   width: 100%;
   box-sizing: border-box;
+
+}
+.heading{
+  font-size: 32px;
+  font-weight: bold;
+  margin-top:-30px;
+  margin-bottom:10px;
+  color:cadetblue
+  
+}
+.heading3{
+  display: block;
+    font-size: 1.17em;
 }
 
 
 
+.cards--cards{
+  display: flex;
+  flex-wrap: wrap; 
+  box-sizing: border-box;
+}
 
-
+.search-bar-container{
+  width: 60%;
+}
 
 .cards-container1 {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap; 
   gap: 16px;
   width: calc(100% - 400px); 
   box-sizing: border-box;
 }
 .card1:nth-child(odd) {
-  background: #e8f0fe; 
+  background: #e6e6e6; 
 }
 
 .card1:nth-child(even) {
-  background: #f0f4f8; 
+  background: antiquewhite; 
 }
 
 
@@ -29,11 +50,49 @@
   background: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 12px; /* Reduced padding for smaller cards */
+  padding: 12px; 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  width: calc(50% - 108px); /* Two cards per row with spacing */
+  width: calc(50% - 108px);
   box-sizing: border-box; 
   margin-left:10px;
-  margin-top:25px;/* Ensure padding and border are included in the width */
+  margin-top:25px;
 }
+
+.active-card-details{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap; 
+  gap: 16px;
+  width: calc(100% - 400px); 
+  box-sizing: border-box;
+}
+
+
+.card1 {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  padding: 10px;
+  border: 1px solid #ddd;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+.card1.active-card {
+  background-color: #e6e6e6;
+  border: 2px solid #00bcd4; 
+}
+
+
+
+.search-bar-container {
+  margin-bottom: 20px;
+}
+
+.search-bar {
+  padding: 8px;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+

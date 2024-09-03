@@ -10,6 +10,7 @@ import Dashboard from "./Components/Dashboard/Dashboard";
 import RouteManagement from "./Pages/RouteManagement/RouteManagement/RouteManagement";
 import LiveTracking from './Pages/LiveTracking/LiveTracking';
 import NewDashboard from './Pages/Dashboard/NewDashboard';
+import TripHistory from './Pages/TripHistory/TripHistory';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
         path: "livetracking",
         element: <LiveTracking />,
       },
+      {
+        path: "history",
+        element: <TripHistory />,
+      },
     ],
   },
   {
@@ -49,6 +54,14 @@ const router = createBrowserRouter([
   {
     path: "/routemanagement",
     element: <RouteManagement />,
+  },
+  {
+    path: "livetracking",
+    element: <LiveTracking />,
+  },
+  {
+    path: "history",
+    element: <TripHistory />,
   },
 ]);
 
