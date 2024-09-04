@@ -6,28 +6,22 @@ import { FaUser, FaIdCard, FaTruck, FaListAlt, FaGasPump, FaCogs, FaUsers, FaTac
 const CLOUDINARY_UPLOAD_PRESET = 'q6fwknmo';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/djbz2ydtp/image/upload';
 
-const generateRandomId = (length = 8) => {
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  let result = '';
-  for (let i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * characters.length));
-  }
-  return result;
-};
+
 
 const VehicleForm = () => {
   const [vehicleDetails, setVehicleDetails] = useState({
     vehicleName: '',
-    vehicleId: generateRandomId(),
+    vehicleType:'',
+    vehicleNumber: '',
     vendorName: '',
-    vendorId: '',
-    registrationNumber: '',
+    
+    insuranceNumber:'',
     engineNumber: '',
     chassisNumber: '',
+    
     fuelType: '',
     seatCapacity: '',
-    mileage: '',
-    yearOfManufacturing: '',
+   
     vehicleImage: '',
   });
 
@@ -44,7 +38,7 @@ const VehicleForm = () => {
       try {
         const response = await axios.post(CLOUDINARY_UPLOAD_URL, formData, {
           headers: {
-            'Content-Type': 'multipart/form-data',
+            'Content-Type':'multipart/form-data',
           },
         });
 
@@ -54,7 +48,7 @@ const VehicleForm = () => {
           vehicleImage: imageUrl,
         }));
 
-        // Clear the error for vehicleImage after successful upload
+       
         setErrors((prevErrors) => ({
           ...prevErrors,
           vehicleImage: '',
@@ -82,7 +76,7 @@ const VehicleForm = () => {
     let formIsValid = true;
     let errors = {};
 
-    // Validate fields except vehicleImage
+    
     Object.keys(vehicleDetails).forEach((key) => {
       if (!vehicleDetails[key] && key !== 'vehicleImage') { 
         formIsValid = false;
@@ -90,32 +84,32 @@ const VehicleForm = () => {
       }
     });
 
-    // Check if vehicleImage is set
+   
     if (!vehicleDetails.vehicleImage.trim()) {
       formIsValid = false;
       errors.vehicleImage = 'Vehicle image is required';
     }
 
-    // Additional specific field validations
-    if (vehicleDetails.registrationNumber && vehicleDetails.registrationNumber.length !== 10) {
-      formIsValid = false;
-      errors.registrationNumber = 'Registration number must be 10 characters long';
-    }
+
+    // if (vehicleDetails.registrationNumber && vehicleDetails.registrationNumber.length !== 10) {
+    //   formIsValid = false;
+    //   errors.registrationNumber = 'Registration number must be 10 characters long';
+    // }
 
     if (vehicleDetails.engineNumber && vehicleDetails.engineNumber.length !== 10) {
       formIsValid = false;
       errors.engineNumber = 'Engine number must be 10 characters long';
     }
 
-    if (vehicleDetails.mileage && isNaN(vehicleDetails.mileage)) {
-      formIsValid = false;
-      errors.mileage = 'Mileage must be a number';
-    }
+    // if (vehicleDetails.mileage && isNaN(vehicleDetails.mileage)) {
+    //   formIsValid = false;
+    //   errors.mileage = 'Mileage must be a number';
+    // }
 
-    if (vehicleDetails.yearOfManufacturing && (isNaN(vehicleDetails.yearOfManufacturing) || vehicleDetails.yearOfManufacturing.length !== 4)) {
-      formIsValid = false;
-      errors.yearOfManufacturing = 'Year of Manufacture must be a 4-digit number';
-    }
+    // if (vehicleDetails.yearOfManufacturing && (isNaN(vehicleDetails.yearOfManufacturing) || vehicleDetails.yearOfManufacturing.length !== 4)) {
+    //   formIsValid = false;
+    //   errors.yearOfManufacturing = 'Year of Manufacture must be a 4-digit number';
+    // }
 
     setErrors(errors);
     return formIsValid;
@@ -124,7 +118,7 @@ const VehicleForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate form before submission
+ 
     if (validateForm()) {
       setLoading(true);
       try {
@@ -151,17 +145,37 @@ const VehicleForm = () => {
 
       <div className="form-content">
         <div className="form-field">
-          <label className="required"><FaUser className="icon11" />Vehicle Name:</label>
+          <label className="required"><FaTruck className="icon11" />Vehicle Name:</label>
           <input 
             type="text" 
             name="vehicleName" 
             value={vehicleDetails.vehicleName} 
             onChange={handleChange} 
           />
-          {errors.vehicleName && <span className="error-message">{errors.vehicleName}</span>}
+          {errors.vehicleName && <span className="error-message">{errors.vehicleType}</span>}
+        </div>
+        <div className="form-field">
+          <label className="required"><FaTruck className="icon11" />Vehicle Type:</label>
+          <input 
+            type="text" 
+            name="vehicleType" 
+            value={vehicleDetails.vehicleType }
+            onChange={handleChange} 
+          />
+          {errors.vehicleType && <span className="error-message">{errors.vehicleType}</span>}
+        </div>
+        <div className="form-field">
+          <label className="required"><FaUser className="icon11" />Vehicle Number:</label>
+          <input 
+            type="text" 
+            name="vehicleNumber" 
+            value={vehicleDetails.vehicleNumber} 
+            onChange={handleChange} 
+          />
+          {errors.vehicleNumber && <span className="error-message">{errors.vehicleNumber}</span>}
         </div>
 
-        <div className="form-field">
+        {/* <div className="form-field">
           <label><FaIdCard className="icon11" />Vehicle ID:</label>
           <input 
             type="text" 
@@ -169,7 +183,7 @@ const VehicleForm = () => {
             value={vehicleDetails.vehicleId} 
             readOnly
           />
-        </div>
+        </div> */}
 
         <div className="form-field">
           <label className="required"><FaImage className="icon11" />Vehicle Image:</label>
@@ -182,7 +196,7 @@ const VehicleForm = () => {
           {errors.vehicleImage && <span className="error-message">{errors.vehicleImage}</span>}
         </div>
 
-        <div className="form-field">
+        {/* <div className="form-field">
           <label className="required"><FaIdCard className="icon11" />Registration Number:</label>
           <input 
             type="text" 
@@ -191,7 +205,7 @@ const VehicleForm = () => {
             onChange={handleChange} 
           />
           {errors.registrationNumber && <span className="error-message">{errors.registrationNumber}</span>}
-        </div>
+        </div> */}
 
         <div className="form-field">
           <label className="required"><FaCogs className="icon11" />Engine Number:</label>
@@ -202,6 +216,16 @@ const VehicleForm = () => {
             onChange={handleChange} 
           />
           {errors.engineNumber && <span className="error-message">{errors.engineNumber}</span>}
+        </div>
+        <div className="form-field">
+          <label className="required"><FaCogs className="icon11" />Insurance  Number:</label>
+          <input 
+            type="text" 
+            name="insuranceNumber" 
+            value={vehicleDetails.insuranceNumber} 
+            onChange={handleChange} 
+          />
+          {errors.insuranceNumber && <span className="error-message">{errors.insuranceNumber}</span>}
         </div>
 
         <div className="form-field">
@@ -215,7 +239,7 @@ const VehicleForm = () => {
           {errors.chassisNumber && <span className="error-message">{errors.chassisNumber}</span>}
         </div>
 
-        <div className="form-field">
+        {/* <div className="form-field">
           <label className="required"><FaTachometerAlt className="icon11" />Mileage:</label>
           <input 
             type="number" 
@@ -224,9 +248,9 @@ const VehicleForm = () => {
             onChange={handleChange} 
           />
           {errors.mileage && <span className="error-message">{errors.mileage}</span>}
-        </div>
+        </div> */}
 
-        <div className="form-field">
+         <div className="form-field">
           <label className="required"><FaGasPump className="icon11" />Fuel Type:</label>
           <input 
             type="text" 
@@ -235,7 +259,7 @@ const VehicleForm = () => {
             onChange={handleChange} 
           />
           {errors.fuelType && <span className="error-message">{errors.fuelType}</span>}
-        </div>
+        </div> 
 
         <div className="form-field">
           <label className="required"><FaUsers className="icon11" />Seat Capacity:</label>
@@ -249,7 +273,7 @@ const VehicleForm = () => {
         </div>
 
         <div className="form-field">
-          <label className="required"><FaTruck className="icon11" />Vendor Name:</label>
+          <label className="required"><FaUser className="icon11" />Vendor Name:</label>
           <input 
             type="text" 
             name="vendorName" 
@@ -259,7 +283,7 @@ const VehicleForm = () => {
           {errors.vendorName && <span className="error-message">{errors.vendorName}</span>}
         </div>
 
-        <div className="form-field">
+        {/* <div className="form-field">
           <label className="required"><FaListAlt className="icon11" />Vendor ID:</label>
           <input 
             type="text" 
@@ -268,9 +292,9 @@ const VehicleForm = () => {
             onChange={handleChange} 
           />
           {errors.vendorId && <span className="error-message">{errors.vendorId}</span>}
-        </div>
+        </div> */}
 
-        <div className="form-field">
+        {/* <div className="form-field">
           <label className="required"><FaCalendarAlt className="icon11" />Year of Manufacturing:</label>
           <input 
             type="text" 
@@ -279,7 +303,7 @@ const VehicleForm = () => {
             onChange={handleChange} 
           />
           {errors.yearOfManufacturing && <span className="error-message">{errors.yearOfManufacturing}</span>}
-        </div>
+        </div> */}
       </div>
     </form>
   );

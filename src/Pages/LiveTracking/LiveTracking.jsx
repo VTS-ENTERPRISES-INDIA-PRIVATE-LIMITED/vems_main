@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './LiveTracking.css'; 
-import Allvehicles from '../../Pages/Trip/Allvehicles';
+
+import RouteManagement from '../RouteManagement/RouteManagement/RouteManagement';
 
 
 const LiveTracking = () => {
@@ -82,7 +83,7 @@ const LiveTracking = () => {
           </div>
         </div>
       </div>
-      <Allvehicles customClass="liveTrackingMap" />
+      <RouteManagement customClass="liveTrackingMap" />
     </div>
   );
 };

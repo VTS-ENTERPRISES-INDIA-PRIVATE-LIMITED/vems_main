@@ -52,7 +52,7 @@ const Dashboard = () => {
         </ul>
       </div>
       <div className="heroContent">
-        {activeTab === 'dashboard' && 'Dashboard Component'} {/* Add this line */}
+        {activeTab === 'dashboard' && 'Dashboard Component'}
         {activeTab === 'liveTracking' && <LiveTracking />}
         {activeTab === 'addVehicle' && <AddVehicle/>}
         {activeTab === 'viewVehicle' && <ViewVehicle/>}

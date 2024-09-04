@@ -3,14 +3,15 @@
     padding: 20px;
   }
   
-  .search-bar {
+  .search-bar12 {
     margin-bottom: 20px;
   }
   
-  .search-bar input {
-    width: 100%;
+  .search-bar12 input {
+    width: 30%;
     padding: 10px;
     font-size: 16px;
+    
   }
   
   table {
@@ -29,7 +30,8 @@
   }
   
   th {
-    background-color: #f4f4f4;
+    background-color:rgb(239, 234, 227);
+
   }
   
   tr:nth-child(even) {
