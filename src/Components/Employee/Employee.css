@@ -1,0 +1,219 @@
+.empContainer {
+	width: 80vw;
+	/* margin-left: 16.5vw; */
+	padding: 20px;
+}
+
+.empHeader {
+	display: flex;
+	gap: 20px;
+	margin: 20px 0;
+}
+
+.empInfoCard {
+	box-sizing: border-box;
+	width: 150px;
+	height: 80px;
+	background-color: #e0f7fa;
+	border: 1px solid #187c89;
+	border-radius: 8px;
+	cursor: pointer;
+}
+
+.empInfoCard.active,
+.empInfoCard:hover {
+	border: 2px solid #187c89;
+}
+
+/* Employee Details */
+.navbar {
+	display: flex;
+	position: relative;
+	background-color: #f3f5f8;
+	width: fit-content;
+	padding: 10px;
+	border-radius: 10px;
+}
+
+.nav-link {
+	/* flex: 1; */
+	text-align: center;
+	padding: 10px 20px;
+	margin: 0 10px;
+	cursor: pointer;
+	font-size: 16px;
+	color: #333;
+	position: relative;
+	transition: color 0.3s ease;
+}
+
+.nav-slider {
+	position: absolute;
+	box-sizing: border-box;
+	bottom: 10px;
+	left: 0;
+	height: 40px;
+	/* width: calc(100% / 7); */
+	border: 2px solid #187c89;
+	background-color: #2bc2c43c;
+	border-radius: 5px;
+	transform: translateX(50%);
+	transition: left 0.3s ease, transform 0.3s ease;
+	/* margin-left: 5px; */
+	margin-right: 5px;
+}
+
+.nav-link.active~.nav-slider {
+	transform: translateX(0);
+}
+.table-container {
+	margin-top: 20px;
+	animation: fadeIn 0.5s ease-in-out;
+ }
+ 
+ @keyframes fadeIn {
+	from {
+	  opacity: 0;
+	  transform: translateY(20px);
+	}
+	to {
+	  opacity: 1;
+	  transform: translateY(0);
+	}
+ }
+ 
+ table {
+	width: 100%;
+	border-collapse: collapse;
+	background-color: #ffffff;
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	animation: slideIn 0.5s ease-in-out;
+ }
+ 
+ @keyframes slideIn {
+	from {
+	  opacity: 0;
+	  transform: translateX(-20px);
+	}
+	to {
+	  opacity: 1;
+	  transform: translateX(0);
+	}
+ }
+ 
+ th, td {
+	padding: 12px 15px;
+	text-align: left;
+ }
+ 
+ th {
+	background-color: #2bc2c43c;
+	color: #333;
+	font-weight: bold;
+ }
+ 
+ td {
+	border-bottom: 1px solid #ddd;
+	transition: background-color 0.3s ease;
+ }
+ 
+ td:hover {
+	background-color: #2bc2c40d;
+ }
+ 
+ tr:last-child td {
+	border-bottom: none;
+ }
+ 
+ tr:nth-child(even) {
+	background-color: #f9f9f9;
+ }
+ 
+ tr:hover {
+	background-color: #2bc2c40d;
+	cursor: pointer;
+ }
+ 
+ h2 {
+	color: #2bc1c4;
+	text-align: center;
+	margin-bottom: 20px;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+ }
+ .employeeContainer {
+	padding: 20px;
+	font-family: Arial, sans-serif;
+}
+
+.headerContainer {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
+}
+
+.headerLeft {
+	display: flex;
+	gap: 10px;
+}
+
+.headerRight {
+	display: flex;
+	gap: 10px;
+}
+
+.searchInput {
+	padding: 8px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.filterSelect {
+	padding: 8px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.headerButton {
+	padding: 8px 12px;
+	font-size: 14px;
+	background-color: #007bff;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.headerButton:hover {
+	background-color: #0056b3;
+}
+
+.employeeTable {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 20px;
+}
+
+.employeeTable th, .employeeTable td {
+	border: 1px solid #ccc;
+	padding: 8px;
+	text-align: left;
+}
+
+.employeeTable th {
+	background-color: #f2f2f2;
+}
+
+.employeeTable tr:nth-child(even) {
+	background-color: #f9f9f9;
+}
+
+.employeeTable tr:hover {
+	background-color: #f1f1f1;
+}

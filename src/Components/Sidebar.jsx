@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaTachometerAlt, FaMapMarkerAlt, FaUserTie, FaCar, FaRegCalendarAlt, FaBuilding, FaUsers, FaUserFriends, FaHistory, FaMoneyCheckAlt, FaFileAlt, FaDatabase, FaTicketAlt, FaCog,FaSignOutAlt } from 'react-icons/fa';
+import { FaTachometerAlt, FaMapMarkerAlt, FaUserTie, FaCar, FaRegCalendarAlt, FaBuilding, FaUsers, FaUserFriends, FaHistory, FaMoneyCheckAlt, FaFileAlt, FaDatabase, FaCog,FaSignOutAlt } from 'react-icons/fa';
 import './Sidebar.css';
 
 function Sidebar() {
