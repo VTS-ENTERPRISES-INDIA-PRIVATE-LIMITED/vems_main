@@ -11,15 +11,25 @@
 }
 
 .empInfoCard {
+	position: relative;
 	box-sizing: border-box;
-	width: 150px;
-	height: 80px;
 	background-color: #e0f7fa;
 	border: 1px solid #187c89;
 	border-radius: 8px;
 	cursor: pointer;
+	padding: 20px 20px 0;
+	min-width: 180px;
 }
-
+.empInfoLogo {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.empInfoCard p {
+	font-size: 20px;
+	font-weight: bold;
+	color: #187c89;
+}
 .empInfoCard.active,
 .empInfoCard:hover {
 	border: 2px solid #187c89;
@@ -180,7 +190,10 @@
 }
 
 .headerButton {
-	padding: 8px 12px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 10px 12px;
 	font-size: 14px;
 	background-color: #007bff;
 	color: white;
@@ -189,7 +202,9 @@
 	cursor: pointer;
 	transition: background-color 0.3s;
 }
-
+.headerButton svg {
+	font-size: 18px;
+}
 .headerButton:hover {
 	background-color: #0056b3;
 }

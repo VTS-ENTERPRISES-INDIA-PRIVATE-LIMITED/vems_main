@@ -31,31 +31,51 @@ const Employee = () => {
 					className={`empInfoCard ${activeTab === 'Employee details' ? 'active' : ''}`}
 					onClick={() => setActiveTab('Employee details')}
 				>
-					Employee Count <FaUserTie />
+					<div className="empInfoLogo">
+						<FaUserTie />
+					</div>
+					Employee Count 
+					<p>Count</p>
 				</div>
 				<div
 					className={`empInfoCard ${activeTab === 'Booking' ? 'active' : ''}`}
 					onClick={() => setActiveTab('Booking')}
 				>
-					Booking <PiCarProfile />
+					<div className="empInfoLogo">
+						<PiCarProfile />
+					</div>
+					Booking 
+					<p>Count</p>
 				</div>
 				<div
 					className={`empInfoCard ${activeTab === 'ML1' ? 'active' : ''}`}
 					onClick={() => setActiveTab('ML1')}
 				>
-					ML1 <TbMapSearch />
+					<div className="empInfoLogo">
+						<TbMapSearch />
+					</div>
+					ML1 
+					<p>Count</p>
 				</div>
 				<div
 					className={`empInfoCard ${activeTab === 'ML2' ? 'active' : ''}`}
 					onClick={() => setActiveTab('ML2')}
 				>
-					ML2 <GrLocation />
+					<div className="empInfoLogo">
+						<GrLocation />
+					</div>
+					ML2 
+					<p>Count</p>
 				</div>
 				<div
 					className={`empInfoCard ${activeTab === 'ML3' ? 'active' : ''}`}
 					onClick={() => setActiveTab('ML3')}
 				>
+					<div className="empInfoLogo">
+
+					</div>
 					ML3
+					<p>Count</p>
 				</div>
 			</div>
 			<div className="empBody">
