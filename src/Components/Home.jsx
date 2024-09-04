@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
 import { FaSignOutAlt, FaTachometerAlt, FaMapMarkerAlt, FaUserTie, FaCar, FaRegCalendarAlt, FaBuilding, FaUsers, FaUserFriends, FaHistory, FaMoneyCheckAlt, FaFileAlt, FaDatabase, FaCog } from 'react-icons/fa';
+import { LiaHomeSolid } from "react-icons/lia";
 import './Sidebar.css';
 import Dasboard from './Dasboard';
 import Employee from './Employee/Employee';
 
-const LiveTracking = () => <div>Live Tracking Content</div>;
-const DriverManagement = () => <div>Driver Management Content</div>;
-const VehicleManagement = () => <div>Vehicle Management Content</div>;
-const RegularRides = () => <div>Regular Rides Content</div>;
-const OfficeRides = () => <div>Office Rides Content</div>;
-const Clients = () => <div>Clients Content</div>;
-const TripHistory = () => <div>Trip History Content</div>;
-const Payments = () => <div>Payments Content</div>;
-const Reports = () => <div>Reports Content</div>;
-const FareDatabase = () => <div>Fare Database Content</div>;
-const Settings = () => <div>Settings Content</div>;
+const LiveTracking = () => <div></div>;
+const DriverManagement = () => <div></div>;
+const VehicleManagement = () => <div></div>;
+const RegularRides = () => <div></div>;
+const OfficeRides = () => <div></div>;
+const Clients = () => <div></div>;
+const TripHistory = () => <div></div>;
+const Payments = () => <div></div>;
+const Reports = () => <div></div>;
+const FareDatabase = () => <div></div>;
+const Settings = () => <div></div>;
 
 const Home = () => {
 	const [activeMenu, setActiveMenu] = useState('Dashboard');
@@ -110,6 +111,22 @@ const Home = () => {
 					</div>
 				</div>
 			</div>
+			<div className='sideContent'>
+				<header className="dashboard-header">
+						<div className="header-info">
+							<span className="header-date">Dec 01 2022 | 10:00 AM</span>
+						</div>
+						<div className="user-info">
+							<div className="user-text">
+									<span className="user-name">koundinya</span>
+									<span className="user-role">Admin</span>
+							</div>
+							<div className="avatar-container">
+									<img src="https://res.cloudinary.com/dlo7urgnj/image/upload/v1718121215/samples/man-portrait.jpg" alt="User Avatar" className="user-avatar" />
+							</div>
+						</div>
+				</header>
+				<div className="navPath"><LiaHomeSolid/>/<span>{activeMenu}</span></div>
 				{activeMenu === 'Dashboard' && <Dasboard/>}
 				{activeMenu === 'Live Tracking' && <LiveTracking />}
 				{activeMenu === 'Driver Management' && <DriverManagement />}
@@ -123,6 +140,7 @@ const Home = () => {
 				{activeMenu === 'Reports' && <Reports />}
 				{activeMenu === 'Fare Database' && <FareDatabase />}
 				{activeMenu === 'Settings' && <Settings />}
+			</div>
 		</div>
 	);
 };

@@ -1,62 +1,11 @@
 .dasboard-container {
-    width: 80vw; 
+    /* width: 80vw;  */
     /* margin-left: 16.5vw; */
     padding: 20px;
     background-color: #ffffff;
 }
 
-.dasboard-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
 
-}
-
-.header-info .header-date {
-    font-size: 14px;
-    color: #a3a0a0;
-    
-}
-
-.user-info {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin-top: -30px;
-    margin-bottom: 20px;
-}
-
-.user-text {
-    display: flex;
-    flex-direction: column; 
-}
-
-.user-name {
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 2px; 
-}
-
-.user-role {
-    font-size: 12px;
-    color: #888;
-}
-
-.avatar-container {
-    display: flex;
-    align-items:right;
-    justify-content: right;
-    margin-left: 10px; 
-    width: 40px; 
-    height: 40px; 
-}
-
-.user-avatar {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-}
 
 
 

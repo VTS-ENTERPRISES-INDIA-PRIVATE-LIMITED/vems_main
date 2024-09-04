@@ -21,22 +21,6 @@ function Dasboard() {
 
     return (
         <div className="dasboard-container">
-            <header className="dashboard-header">
-                <div className="header-info">
-                    <span className="header-date">Dec 01 2022 | 10:00 AM</span>
-                </div>
-                <div className="user-info">
-                    <div className="user-text">
-                        <span className="user-name">koundinya</span>
-                        <span className="user-role">Admin</span>
-                    </div>
-                    <div className="avatar-container">
-                        <img src="https://res.cloudinary.com/dlo7urgnj/image/upload/v1718121215/samples/man-portrait.jpg" alt="User Avatar" className="user-avatar" />
-                    </div>
-                </div>
-            </header>
-
-
             <div className="time-slots">
                 {timeSlots.map((time, index) => (
                     <div

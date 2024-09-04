@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { FaUserTie } from "react-icons/fa";
-import { PiCarProfile } from "react-icons/pi";
+import { FaRegUser } from "react-icons/fa";
+import { BiTaxi } from "react-icons/bi";
 import { TbMapSearch } from "react-icons/tb";
 import { GrLocation } from "react-icons/gr";
+import { RiPinDistanceLine } from "react-icons/ri";
 import EmpDetails from './EmpDetails'
 import './Employee.css'
 import Booking from './Booking';
@@ -32,20 +33,20 @@ const Employee = () => {
 					onClick={() => setActiveTab('Employee details')}
 				>
 					<div className="empInfoLogo">
-						<FaUserTie />
+						<FaRegUser />
 					</div>
+					<p>324</p>
 					Employee Count 
-					<p>Count</p>
 				</div>
 				<div
 					className={`empInfoCard ${activeTab === 'Booking' ? 'active' : ''}`}
 					onClick={() => setActiveTab('Booking')}
 				>
 					<div className="empInfoLogo">
-						<PiCarProfile />
+						<BiTaxi />
 					</div>
+					<p>283</p>
 					Booking 
-					<p>Count</p>
 				</div>
 				<div
 					className={`empInfoCard ${activeTab === 'ML1' ? 'active' : ''}`}
@@ -54,8 +55,8 @@ const Employee = () => {
 					<div className="empInfoLogo">
 						<TbMapSearch />
 					</div>
+					<p>0</p>
 					ML1 
-					<p>Count</p>
 				</div>
 				<div
 					className={`empInfoCard ${activeTab === 'ML2' ? 'active' : ''}`}
@@ -64,18 +65,18 @@ const Employee = () => {
 					<div className="empInfoLogo">
 						<GrLocation />
 					</div>
+					<p>0</p>
 					ML2 
-					<p>Count</p>
 				</div>
 				<div
 					className={`empInfoCard ${activeTab === 'ML3' ? 'active' : ''}`}
 					onClick={() => setActiveTab('ML3')}
 				>
 					<div className="empInfoLogo">
-
+						<RiPinDistanceLine/>
 					</div>
+					<p>0</p>
 					ML3
-					<p>Count</p>
 				</div>
 			</div>
 			<div className="empBody">
