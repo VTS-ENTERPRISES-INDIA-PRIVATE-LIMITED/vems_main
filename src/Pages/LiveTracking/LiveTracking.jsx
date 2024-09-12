@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './LiveTracking.css'; 
-
 import RouteManagement from '../RouteManagement/RouteManagement/RouteManagement';
 
 
@@ -12,12 +11,12 @@ const LiveTracking = () => {
     const fetchData = async () => {
       try {
         const staticVehicleData = {
-          vehicleId: 'XBgouaiX',
-          driverName: 'John Doe',
-          startTime: '10:00 AM',
-          employees: 3,
-          travelled: '1.4 km',
-          idletime: '60 s',
+          vehicleId:'XBgouaiX',
+          driverName:'John Doe',
+          startTime:'10:00 AM',
+          employees:3,
+          travelled:'1.4 km',
+          idletime:'60 s',
         };
         setVehicleData(staticVehicleData);
         setCurrentVehicle(staticVehicleData);

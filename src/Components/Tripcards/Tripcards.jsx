@@ -37,7 +37,7 @@ function Tripcards() {
     },
   ]);
 
-  const handleSearchChange = (e) => {
+  const handleSearchChange = (e) => {  
     setSearchQuery(e.target.value);
   };
 

@@ -1,6 +1,4 @@
 import React from 'react';
-
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import TripManagement from "./Pages/TripManagement/TripManagement";
 import VehicleDashboard from "./Pages/VechileManagement/VehicleDashboard/VehicleDashboard";
@@ -14,29 +12,30 @@ import TripHistory from './Pages/TripHistory/TripHistory';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path:"/",
     element: <h1>Home</h1>,
   },
   {
-    path: "/dashboard",
+    path:"/dashboard",
     element: <Dashboard />,
     children: [
       {
-        path: "addvehicle",
+        path:"addvehicle",
         element: <AddVehicle />,
       },
       {
-        path: "viewvehicle",
+        path:"viewvehicle",
         element: <ViewVehicle />,
       },
       {
-        path: "livetracking",
+        path:"livetracking",
         element: <LiveTracking />,
       },
       {
-        path: "history",
+        path:"history",
         element: <TripHistory />,
       },
+     
     ],
   },
   {
@@ -63,6 +62,7 @@ const router = createBrowserRouter([
     path: "history",
     element: <TripHistory />,
   },
+ 
 ]);
 
 

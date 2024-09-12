@@ -1,65 +1,42 @@
 import React, { useState } from 'react';
 import './TripHistory.css';
 
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  return isNaN(date.getTime()) ? '-' : date.toLocaleString();
+};
+
 const TripHistory = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
-  
   const trips = [
     {
-      tripId: "T001",
-      vehicleId: "V001",
+      tripId: "T003",
+      vehicleId: "6",
       driverName: "John Doe",
       numberOfEmployees: 4,
-      startTime: "2024-09-01T08:00:00Z",
-      endTime: "2024-09-01T10:00:00Z",
-      status: "Completed"
+      startTime: "2024-09-11T08:00:00Z",
+      endTime: "-", 
+      status: "Ongoing"
     },
     {
       tripId: "T002",
-      vehicleId: "V002",
-      driverName: "Jane Smith",
-      numberOfEmployees: 3,
-      startTime: "2024-09-01T09:00:00Z",
-      endTime: "2024-09-01T11:00:00Z",
-      status: "Ongoing"
-    },
-    {
-      tripId: "T003",
-      vehicleId: "V003",
-      driverName: "ABCDEFGH",
-      numberOfEmployees: 3,
-      startTime: "2024-09-01T08:00:00Z",
-      endTime: "2024-09-01T10:00:00Z",
-      status: "Ongoing"
-    },
-    {
-      tripId: "T004",
-      vehicleId: "V004",
-      driverName: "XYZ",
+      vehicleId: "6",
+      driverName: "John Doe",
       numberOfEmployees: 4,
-      startTime: "2024-09-01T09:00:00Z",
-      endTime: "2024-09-01T11:00:00Z",
-      status: "Ongoing"
-    },
-    {
-      tripId: "T005",
-      vehicleId: "V005",
-      driverName: "VSFRUNDM",
-      numberOfEmployees: 4,
-      startTime: "2024-09-01T08:00:00Z",
-      endTime: "2024-09-01T10:00:00Z",
+      startTime: "2024-09-10T08:00:00Z",
+      endTime: "2024-09-10T10:00:00Z",
       status: "Completed"
     },
     {
-      tripId: "T006",
-      vehicleId: "V006",
-      driverName: "ABGDYSXCZ",
-      numberOfEmployees: 3,
-      startTime: "2024-09-01T09:00:00Z",
-      endTime: "2024-09-01T11:00:00Z",
-      status: "Ongoing"
-    }
+      tripId: "T001",
+      vehicleId: "6",
+      driverName: "John Doe",
+      numberOfEmployees: 4,
+      startTime: "2024-09-09T08:00:00Z",
+      endTime: "2024-09-09T10:00:00Z",
+      status: "Completed"
+    },
   ];
 
   const handleSearch = (e) => {
@@ -95,7 +72,7 @@ const TripHistory = () => {
             <th>Trip ID</th>
             <th>Vehicle ID</th>
             <th>Driver Name</th>
-            <th>No.of Employees Travelled</th>
+            <th>No. of Employees Travelled</th>
             <th>Start Time</th>
             <th>End Time</th>
             <th>Status</th>
@@ -108,8 +85,10 @@ const TripHistory = () => {
               <td>{trip.vehicleId}</td>
               <td>{trip.driverName}</td>
               <td>{trip.numberOfEmployees}</td>
-              <td>{new Date(trip.startTime).toLocaleString()}</td>
-              <td>{new Date(trip.endTime).toLocaleString()}</td>
+              <td>{formatDate(trip.startTime)}</td>
+              <td>
+                {trip.status === 'Ongoing' ? '-' : formatDate(trip.endTime)}
+              </td>
               <td>{trip.status}</td>
             </tr>
           ))}

@@ -16,8 +16,8 @@ const VehicleForm = () => {
     vendorName: '',
     
     insuranceNumber:'',
-    engineNumber: '',
-    chassisNumber: '',
+    mileage:'',
+    yearOfManufacturing:'',
     
     fuelType: '',
     seatCapacity: '',
@@ -95,21 +95,21 @@ const VehicleForm = () => {
     //   formIsValid = false;
     //   errors.registrationNumber = 'Registration number must be 10 characters long';
     // }
+    
+    // if (vehicleDetails.engineNumber && vehicleDetails.engineNumber.length !== 10) {
+    //   formIsValid = false;
+    //   errors.engineNumber = 'Engine number must be 10 characters long';
+    // }
 
-    if (vehicleDetails.engineNumber && vehicleDetails.engineNumber.length !== 10) {
+    if (vehicleDetails.mileage && isNaN(vehicleDetails.mileage)) {
       formIsValid = false;
-      errors.engineNumber = 'Engine number must be 10 characters long';
+      errors.mileage = 'Mileage must be a number';
     }
 
-    // if (vehicleDetails.mileage && isNaN(vehicleDetails.mileage)) {
-    //   formIsValid = false;
-    //   errors.mileage = 'Mileage must be a number';
-    // }
-
-    // if (vehicleDetails.yearOfManufacturing && (isNaN(vehicleDetails.yearOfManufacturing) || vehicleDetails.yearOfManufacturing.length !== 4)) {
-    //   formIsValid = false;
-    //   errors.yearOfManufacturing = 'Year of Manufacture must be a 4-digit number';
-    // }
+    if (vehicleDetails.yearOfManufacturing && (isNaN(vehicleDetails.yearOfManufacturing) || vehicleDetails.yearOfManufacturing.length !== 4)) {
+      formIsValid = false;
+      errors.yearOfManufacturing = 'Year of Manufacture must be a 4-digit number';
+    }
 
     setErrors(errors);
     return formIsValid;
@@ -123,8 +123,10 @@ const VehicleForm = () => {
       setLoading(true);
       try {
         await axios.post('https://silent-wave-76445.pktriot.net/add-vehicle', vehicleDetails);
+        window.alert("form submitted succesfully")
         console.log('Vehicle details saved successfully');
       } catch (error) {
+        window.alert("error saving the vehicle data")
         console.error('Error saving vehicle details:', error);
       } finally {
         setLoading(false);
@@ -206,7 +208,7 @@ const VehicleForm = () => {
           />
           {errors.registrationNumber && <span className="error-message">{errors.registrationNumber}</span>}
         </div> */}
-
+{/* 
         <div className="form-field">
           <label className="required"><FaCogs className="icon11" />Engine Number:</label>
           <input 
@@ -216,7 +218,7 @@ const VehicleForm = () => {
             onChange={handleChange} 
           />
           {errors.engineNumber && <span className="error-message">{errors.engineNumber}</span>}
-        </div>
+        </div> */}
         <div className="form-field">
           <label className="required"><FaCogs className="icon11" />Insurance  Number:</label>
           <input 
@@ -228,7 +230,7 @@ const VehicleForm = () => {
           {errors.insuranceNumber && <span className="error-message">{errors.insuranceNumber}</span>}
         </div>
 
-        <div className="form-field">
+        {/* <div className="form-field">
           <label className="required"><FaCogs className="icon11" />Chassis Number:</label>
           <input 
             type="text" 
@@ -237,9 +239,9 @@ const VehicleForm = () => {
             onChange={handleChange} 
           />
           {errors.chassisNumber && <span className="error-message">{errors.chassisNumber}</span>}
-        </div>
+        </div> */}
 
-        {/* <div className="form-field">
+        <div className="form-field">
           <label className="required"><FaTachometerAlt className="icon11" />Mileage:</label>
           <input 
             type="number" 
@@ -248,7 +250,7 @@ const VehicleForm = () => {
             onChange={handleChange} 
           />
           {errors.mileage && <span className="error-message">{errors.mileage}</span>}
-        </div> */}
+        </div>
 
          <div className="form-field">
           <label className="required"><FaGasPump className="icon11" />Fuel Type:</label>
@@ -294,7 +296,7 @@ const VehicleForm = () => {
           {errors.vendorId && <span className="error-message">{errors.vendorId}</span>}
         </div> */}
 
-        {/* <div className="form-field">
+        <div className="form-field">
           <label className="required"><FaCalendarAlt className="icon11" />Year of Manufacturing:</label>
           <input 
             type="text" 
@@ -303,7 +305,7 @@ const VehicleForm = () => {
             onChange={handleChange} 
           />
           {errors.yearOfManufacturing && <span className="error-message">{errors.yearOfManufacturing}</span>}
-        </div> */}
+        </div>
       </div>
     </form>
   );

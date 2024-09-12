@@ -1,32 +1,38 @@
 .container1 {
-  display: flex; 
+  display: flex;
   width: 100%;
   box-sizing: border-box;
-
+  justify-content: space-between; 
 }
-.heading{
+
+.heading {
   font-size: 32px;
-  font-weight: bold;
-  margin-top:-30px;
-  margin-bottom:10px;
-  color:cadetblue
-  
+  margin-top: -20px;
+  margin-bottom: 10px;
+  color: cadetblue;
+  margin-left:10px;
 }
-.heading3{
+
+.heading3 {
   display: block;
-    font-size: 1.17em;
+  font-size: 1.17em;
+  margin-bottom: 4px; 
 }
 
+.card1 p {
+  margin: 0; 
+}
 
-
-.cards--cards{
+.cards--cards {
   display: flex;
   flex-wrap: wrap; 
   box-sizing: border-box;
+ 
 }
 
-.search-bar-container{
-  width: 60%;
+.search-bar-container {
+  width: 150%;
+  margin-left:10px;
 }
 
 .cards-container1 {
@@ -34,9 +40,12 @@
   flex-direction: column;
   flex-wrap: wrap; 
   gap: 16px;
-  width: calc(100% - 400px); 
+  width: 50%; 
   box-sizing: border-box;
+  margin-left:-20px;
 }
+
+
 .card1:nth-child(odd) {
   background: #e6e6e6; 
 }
@@ -50,32 +59,13 @@
   background: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 12px; 
+  padding: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  width: calc(50% - 108px);
-  box-sizing: border-box; 
-  margin-left:10px;
-  margin-top:25px;
-}
-
-.active-card-details{
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap; 
-  gap: 16px;
-  width: calc(100% - 400px); 
+  width: 60%; 
   box-sizing: border-box;
-}
-
-
-.card1 {
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  padding: 10px;
-  border: 1px solid #ddd;
   margin: 10px;
-  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
 .card1.active-card {
@@ -83,7 +73,14 @@
   border: 2px solid #00bcd4; 
 }
 
-
+.active-card-details {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap; 
+  gap: 16px;
+  width: 30%; 
+  box-sizing: border-box;
+}
 
 .search-bar-container {
   margin-bottom: 20px;
@@ -91,8 +88,7 @@
 
 .search-bar {
   padding: 8px;
-  width: 100%;
+  width: 50%;
   border-radius: 4px;
   border: 1px solid #ddd;
 }
-

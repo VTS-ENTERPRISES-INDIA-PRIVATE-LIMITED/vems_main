@@ -9,12 +9,18 @@ const Cards = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    const data = vehicleData;
-    const vehicleList = Object.keys(data).map(vehicleId => ({
-      id: vehicleId,
-      numEmployees: data[vehicleId].length,
-      employees: data[vehicleId]
-    }));
+    const groupedVehicles = vehicleData.reduce((acc, vehicle) => {
+      if (!acc[vehicle.cab_id]) {
+        acc[vehicle.cab_id] = {
+          cab_id: vehicle.cab_id,
+          numEmployees: 0,
+        };
+      }
+      acc[vehicle.cab_id].numEmployees += 1;
+      return acc;
+    }, {});
+
+    const vehicleList = Object.values(groupedVehicles);
     setVehicles(vehicleList);
   }, []);
 
@@ -27,13 +33,12 @@ const Cards = () => {
   };
 
   const filteredVehicles = vehicles.filter(vehicle =>
-    vehicle.id.toLowerCase().includes(searchTerm.toLowerCase())
+    vehicle.cab_id.toString().includes(searchTerm)
   );
 
   return (
     <div className="container1">
       <div className="cards-container1">
-   
         <div className="search-bar-container">
           <input 
             type="text" 
@@ -48,12 +53,12 @@ const Cards = () => {
         <div className='cards--cards'>
           {filteredVehicles.map(vehicle => (
             <div 
-              key={vehicle.id} 
-              className={`card1 ${selectedVehicle && selectedVehicle.id === vehicle.id ? 'active-card' : ''}`}
+              key={vehicle.cab_id} 
+              className={`card1 ${selectedVehicle && selectedVehicle.cab_id === vehicle.cab_id ? 'active-card' : ''}`}
               onClick={() => handleSelectVehicle(vehicle)}
             >
-              <h3 className='heading3'>Vehicle ID: {vehicle.id}</h3>
-              <p>Number of Employees: {vehicle.numEmployees}</p>
+              <h3 className='heading3'>Vehicle ID: {vehicle.cab_id}</h3>
+              <p>Employees: {vehicle.numEmployees}</p>
             </div>
           ))}
         </div>

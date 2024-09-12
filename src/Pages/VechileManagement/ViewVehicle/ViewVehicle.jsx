@@ -41,7 +41,7 @@ const ViewVehicle = () => {
   const handleSave = () => {
     axios.put(`https://silent-wave-76445.pktriot.net/vehicles/${editingVehicle.vehicleId}`, editingVehicle)
       .then((response) => {
-        setVehicles(vehicles.map(v => v.id === editingVehicle.id ? editingVehicle : v));
+        setVehicles(vehicles.map(v => v.vehicleId === editingVehicle.vehicleId ? editingVehicle : v));
         setIsModalVisible(false);
       })
       .catch((error) => {
@@ -52,7 +52,7 @@ const ViewVehicle = () => {
   const handleDelete = (vehicle) => {
     axios.delete(`https://silent-wave-76445.pktriot.net/vehicles/${vehicle.vehicleId}`)
       .then((response) => {
-        setVehicles(vehicles.filter(v => v.id !== vehicle.id));
+        setVehicles(vehicles.filter(v => v.vehicleId!== vehicle.vehicleId));
       })
       .catch((error) => {
         console.log(error);
@@ -69,20 +69,25 @@ const ViewVehicle = () => {
           'Content-Type': 'multipart/form-data',
         },
       });
-      const imageUrl = response.data.url; // Adjust based on your backend response
-      setEditingVehicle({ ...editingVehicle, imageUrl });
+      const imageUrl = response.data.url; 
+      
+     
+      setEditingVehicle(prev => ({
+        ...prev,
+        vehicleImage: imageUrl
+      }));
     } catch (error) {
       console.error('Error uploading image:', error);
     }
     
-    return false; // Prevent automatic upload
+    return false; 
   };
 
   const filteredVehicles = vehicles
     .filter(vehicle =>
-      (vehicle.vehicleName || '').toLowerCase().includes(searchText.vehicleName) &&
-      (vehicle.vehicleNumber || '').toLowerCase().includes(searchText.vehicleNumber) &&
-      (vehicle.vendorName || '').toLowerCase().includes(searchText.vendorName)
+      (vehicle.vehicleName ||'').toLowerCase().includes(searchText.vehicleName) &&
+      (vehicle.vehicleNumber ||'').toLowerCase().includes(searchText.vehicleNumber) &&
+      (vehicle.vendorName ||'').toLowerCase().includes(searchText.vendorName)
     )
     .map((vehicle, index) => ({
       ...vehicle,
@@ -171,7 +176,7 @@ const ViewVehicle = () => {
         bordered 
       />
       
-      {/* Modal for editing vehicle */}
+     
       <Modal
         title="Edit Vehicle"
         visible={isModalVisible}
@@ -233,21 +238,21 @@ const ViewVehicle = () => {
               onChange={e => setEditingVehicle({ ...editingVehicle, seatCapacity: e.target.value })}
             />
           </Form.Item>
-          <Form.Item label="Vehicle Image">
-            {editingVehicle?.imageUrl && (
-              <img
-                src={editingVehicle.imageUrl}
-                alt="Vehicle"
-                style={{ width: '100%', height: 'auto', marginBottom: 8 }}
-              />
-            )}
+          {/* <Form.Item label="Vehicle Image">
             <Upload
               beforeUpload={handleImageUpload}
               showUploadList={false}
             >
-              <Button icon={<UploadOutlined />}>Select Image</Button>
+              <Button icon={<UploadOutlined />}>Select Other Image</Button>
             </Upload>
-          </Form.Item>
+            {editingVehicle?.vehicleImage && (
+              <img
+                src={`${editingVehicle.vehicleImage}?${new Date().getTime()}`} 
+                alt="Vehicle"
+                style={{ width: '30%', height: '20vh', marginTop: 8 }}
+              />
+            )}
+          </Form.Item> */}
         </Form>
       </Modal>
     </>

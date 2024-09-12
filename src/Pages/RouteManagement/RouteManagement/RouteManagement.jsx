@@ -5,7 +5,7 @@ import 'leaflet/dist/leaflet.css';
 import axios from 'axios';
 import './Route.css';
 
-// Custom icon setup
+
 delete L.Icon.Default.prototype._getIconUrl;
 const startingPointIcon = new L.Icon({
   iconUrl: 'https://res.cloudinary.com/djbz2ydtp/image/upload/v1725006668/SRP-Startford_127669_20180717_001_riahxp.jpg',
@@ -25,7 +25,7 @@ const otherPointIcon = new L.Icon({
   shadowSize: [32, 32]
 });
 
-// Vehicle icon setup
+
 const vehicleIcon = new L.Icon({
   iconUrl: 'https://res.cloudinary.com/djbz2ydtp/image/upload/v1724994766/024fc5c5b9125a2d29d31750e90c1700_o84pry.png', // Replace with the URL of your vehicle icon
   iconSize: [40, 40],
@@ -121,8 +121,7 @@ const RouteManagement = ({ customClass }) => {
         {/* Add a vehicle marker on the route */}
         {route.length > 0 && (
           <Marker
-            position={route[Math.floor(route.length / 2)]} // Positioning the vehicle icon in the middle of the route
-            icon={vehicleIcon}
+            position={route[Math.floor(route.length / 2)]} 
           >
             <Popup>Vehicle</Popup>
           </Marker>

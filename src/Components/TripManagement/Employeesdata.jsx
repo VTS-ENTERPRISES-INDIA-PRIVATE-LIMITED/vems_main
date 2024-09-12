@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Table, Input, Row, Col } from 'antd';
-import './Employeesdata.css'; // Import your CSS file
+import './Employeesdata.css'; 
 
-// Sample data
+
 const employees = [
   { sno: 1, id: 'E001', name: 'John Doe', mobile: '123-456-7890', email: 'john.doe@example.com', address: 'SRP Tools, Sholinganur, Chennai' },
   { sno: 2, id: 'E002', name: 'Jane Smith', mobile: '987-654-3210', email: 'jane.smith@example.com', address: 'SRP Tools, Sholinganur, Chennai' },
@@ -19,7 +19,7 @@ const employees = [
 const routeCodes = {
   'SRP Tools, Sholinganur, Chennai': 'ROUTE1',
   'Central Tidel Park, Chennai': 'ROUTE2',
-  // Add more routes and codes as needed
+ 
 };
 
 const calculateCode = (address) => {

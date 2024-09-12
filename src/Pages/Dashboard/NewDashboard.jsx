@@ -177,7 +177,7 @@ function NewDashboard(){
                 </div>
         </div>
         <div className="dr-btns">
-            <button className="dr-pd" onClick={handlePd}>Personal Details</button>
+            <button className="dr-pd" onClick={handlePd}>Vehicle Details</button>
             <button className="dr-lt" onClick={handleLt}>Live Tracking</button>
             <button className="dr-th" onClick={handleTh}>Trip History</button>
             <button className="dr-vd" onClick={handleVd}>Service History</button>
@@ -198,18 +198,22 @@ function NewDashboard(){
              
 
                 <div className="curr-dets">
-  <div className="brand">
-    <p style={{ fontWeight: 'bold' }}><FaRegIdCard /> Registration Number</p>
-    <p>{vehicle.registrationNumber}</p>
+                <div className="brand">
+    <p style={{ fontWeight: 'bold' }}><FaRegIdCard /> Vehicle Number</p>
+    <p>{vehicle.vehicleNumber}</p>
   </div>
-  <div className="model">
+  <div className="brand">
+    <p style={{ fontWeight: 'bold' }}><FaRegIdCard /> Vehicle Type</p>
+    <p>{vehicle.vehicleType}</p>
+  </div>
+  {/* <div className="model">
     <p style={{ fontWeight: 'bold' ,}}><FaCar /> Engine Number</p>
     <p>{vehicle.engineNumber}</p>
   </div>
   <div className="color">
     <p style={{ fontWeight: 'bold' }}><FaCode /> Chassis Number</p>
     <p>{vehicle.chassisNumber}</p>
-  </div>
+  </div> */}
   {/* <div className="regno">
     <p style={{ fontWeight: 'bold' }}><FaRegIdCard /> Registration Num</p>
     <p>{vehicle.</p>
@@ -223,22 +227,22 @@ function NewDashboard(){
     <p>{vehicle.fuelType}</p>
   </div>
   <div className="mil">
-    <p style={{ fontWeight: 'bold' }}><FaTachometerAlt /> Mileage</p>
-    <p>{vehicle.mileage}</p>
+    <p style={{ fontWeight: 'bold' }}><FaTachometerAlt /> Insurance Number</p>
+    <p>{vehicle.insuranceNumber}</p>
   </div>
   <div className="mil">
     <p style={{ fontWeight: 'bold' }}><FaTachometerAlt /> Vendor Name</p>
     <p>{vehicle.vendorName}</p>
   </div>
-
-
-  <div className="man-year">
-      <p style={{ fontWeight: 'bold' }}>
-        <MdCalendarToday style={{ marginRight: '8px' }} /> Manufacture Year
-      </p>
-      <p>2003</p>
-    </div>
-                </div>
+  <div className="mil">
+    <p style={{ fontWeight: 'bold' }}><FaTachometerAlt /> Year Of Manufacturing</p>
+    <p>{vehicle. yearOfManufacturing}</p>
+  </div>
+  <div className="mil">
+    <p style={{ fontWeight: 'bold' }}><FaTachometerAlt /> mileage</p>
+    <p>{vehicle.mileage}</p>
+  </div>
+</div>
             </div>
         </div>
             {viewPersonalDetails&&(
