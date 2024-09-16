@@ -80,7 +80,7 @@ const VehicleForm = () => {
     Object.keys(vehicleDetails).forEach((key) => {
       if (!vehicleDetails[key] && key !== 'vehicleImage') { 
         formIsValid = false;
-        errors[key] = `${key} is required`; 
+        errors[key] = '${key} is required'; 
       }
     });
 
@@ -122,7 +122,7 @@ const VehicleForm = () => {
     if (validateForm()) {
       setLoading(true);
       try {
-        await axios.post('https://silent-wave-76445.pktriot.net/add-vehicle', vehicleDetails);
+        await axios.post('http://localhost:8083/add-vehicle', vehicleDetails);
         window.alert("form submitted succesfully")
         console.log('Vehicle details saved successfully');
       } catch (error) {

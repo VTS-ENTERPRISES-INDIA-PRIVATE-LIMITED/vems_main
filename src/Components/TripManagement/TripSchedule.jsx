@@ -24,7 +24,7 @@ const VehicleForm = () => {
 
   const handleSubmit = () => {
    
-    console.log({ source, employees, destination, vehicle, driver, date, time });
+    console.log({source, employees, destination, vehicle, driver, date, time });
   };
 
   return (
@@ -68,7 +68,7 @@ const VehicleForm = () => {
           placeholder="Select Vehicle"
           value={vehicle}
           onChange={(value) => setVehicle(value)}
-          style={{ width: '100%' }}
+          style={{width:'100%' }}
         >
           <Option value="vehicle1">Vehicle 1</Option>
           <Option value="vehicle2">Vehicle 2</Option>

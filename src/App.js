@@ -9,6 +9,7 @@ import RouteManagement from "./Pages/RouteManagement/RouteManagement/RouteManage
 import LiveTracking from './Pages/LiveTracking/LiveTracking';
 import NewDashboard from './Pages/Dashboard/NewDashboard';
 import TripHistory from './Pages/TripHistory/TripHistory';
+import Excel from './Components/Excel/Excel';
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,11 @@ const router = createBrowserRouter([
     path: "history",
     element: <TripHistory />,
   },
+  {
+    path: "excel",
+    element: <Excel />,
+  },
+ 
  
 ]);
 

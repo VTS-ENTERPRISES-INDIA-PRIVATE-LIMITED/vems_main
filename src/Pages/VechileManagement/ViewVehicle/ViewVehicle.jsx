@@ -17,10 +17,10 @@ const ViewVehicle = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   useEffect(() => {
-    axios.get("https://silent-wave-76445.pktriot.net/vehicles")
+    axios.get("http://localhost:8083/vehicles")
       .then((result) => {
         setVehicles(result.data);
-      })
+      }) 
       .catch((error) => {
         console.log(error);
       });
@@ -41,7 +41,7 @@ const ViewVehicle = () => {
   const handleSave = () => {
     axios.put(`https://silent-wave-76445.pktriot.net/vehicles/${editingVehicle.vehicleId}`, editingVehicle)
       .then((response) => {
-        setVehicles(vehicles.map(v => v.vehicleId === editingVehicle.vehicleId ? editingVehicle : v));
+        setVehicles(vehicles.map(v =>v.vehicleId===editingVehicle.vehicleId ?editingVehicle : v));
         setIsModalVisible(false);
       })
       .catch((error) => {
