@@ -1,0 +1,904 @@
+.admin-prof-btn{
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    margin: 10px;
+}
+.admin-prof{
+    display: flex;
+    padding-left: 50px;
+}
+.admin-head{
+    display: flex;
+    margin: 10px;
+    box-shadow: 2px 2px 2px 2px rgb(239, 237, 237);
+    border-radius: 10px;
+}
+.admin-dr-nav{
+    display: flex;
+    gap: 40rem;
+}
+.dr-mng{
+    margin: 10px;
+}
+.head{
+    margin-top:10px;
+}
+.doc-up-date{
+    box-shadow: 2px 0px 2px 0px rgb(232, 228, 228);
+    height: 5vh;
+    width: 15vw;
+    border-radius: 20px;
+    padding-left: 10px;
+    padding-top: 5px;
+    background-color: rgb(13, 200, 13);
+    }
+    .update-det{
+        display: flex;
+        margin-left: 70vw;
+    }
+    .l-arr-btn1{
+        height: 30px;
+        width: 30px;
+        border-radius: 20px;
+        margin: 10px;
+        position: absolute;
+        margin-left: 2vw;
+        
+    }
+    .sel-act{
+        height: 4vh;
+        margin: 5px;
+        margin-top:30px;
+        border-color: green;
+        background-color: rgb(231, 244, 231);
+        color: green;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .edit-btn{
+        height: 30px;
+        width: 30px;
+        margin: 10px;
+        margin-top:1.5vh;
+        border-radius: 5px;
+        border-style: solid;
+        position: absolute;
+        margin-left: 88vw;
+        color: orange;
+        background-color: rgb(239, 235, 229);
+        border-color: orange;
+        cursor: pointer;
+    }
+    .delete-btn{
+        height: 30px;
+        width: 30px;
+        margin: 10px;
+        margin-top:1.5vh;
+        border-radius: 5px;
+        border-color: red;
+        background-color: rgb(244, 239, 239);
+        border-color: red;
+        color: red;
+        margin-left: 91vw;
+        position: absolute;
+    }
+    .dr-prof-btn{
+        height: 70px;
+        width: 70px;
+        border-radius: 35px;
+        margin: 10px;
+    }
+    .dr-prof-det{
+        display: flex;
+        margin-left: 3vw;
+        }
+    .dr-details{
+        margin-left: 20px;
+        line-height: 0.5;
+    }
+    li{
+        list-style-type: none;
+    }
+    .driver-image{
+        position:absolute;
+        height: 10vh;
+        margin-top: 6vh;
+        
+    }
+    .lt-head{
+        position: absolute;
+        margin-top: 2vh;
+    }
+    .driver-image-lt{
+        position:absolute;
+        height: 12vh;
+        margin-top: 5vh;
+    }
+    .star{
+        color: rgb(237, 174, 13);
+    }
+    .last-update-h{
+        position: absolute;
+        font-size: small;
+        margin-top: 8.5vh;
+        margin-left: 12vw;
+    }
+    .driver-id{
+        position: absolute;
+        margin-top: 12vh;
+        margin-left: 5vw;
+    }
+    .driver-name-head{
+        position: absolute;
+        margin-top: 8vh;
+        margin-left: 70px;
+    }
+
+    .det-card{
+        box-shadow: 2px 2px 2px 2px rgb(239, 238, 238);
+        height: 15vh;
+        width: 10vw;
+        border-radius: 10px;
+        background-color: rgb(228, 240, 250);
+        margin: 10px;
+        cursor: pointer;
+        transition: transform 0.5s;
+        border: none;
+        color: rgb(46, 181, 234);
+    }
+    .det-card:hover{
+        transform: scale(1.1);
+    }
+    .det-cards{
+        display: flex;  
+        margin-left: 4vw;
+    }
+    .card-det{
+        margin-left: 2vw;
+    }
+    .dr-only{
+        position: absolute;
+        border-style: solid;
+        border-color: #988ac0;
+        background-color: #f2ecff;
+        color: #816fb0;
+        height: 4vh;
+        width: 8vw;
+        text-align: center;
+        border-radius: 4px;
+        border-width: 2px;
+        margin-top: 20vh;
+        margin-left: 15vw;
+   
+
+    }
+    .dr-Fleet{
+        position: absolute;
+        border-style: solid;
+        border-color: rgb(82, 241, 8);
+        background-color: rgb(236, 228, 236);
+        color: rgb(125, 246, 5);
+        height: 4vh;
+        width: 8vw;
+        text-align: center;
+        border-radius: 10px;
+        margin-top: 20vh;
+        margin-left: 25vw;
+        border-radius: 4px;
+        border-width: 2px;
+    }
+    .dr-of-rides{
+        position: absolute;
+        border-style: solid;
+        border-color: rgb(45, 82, 1);
+        background-color: rgb(248, 251, 247);
+        color: rgb(15, 97, 2);
+        height: 4vh;
+        width: 8vw;
+        text-align: center;
+        border-radius: 10px;
+        margin-top: 20vh;
+        margin-left: 35vw;
+        border-radius: 4px;
+        border-width: 2px;
+    }
+    .dr-traveles{
+        position: absolute;
+        border-style: solid;
+        border-color: rgb(205, 6, 132);
+        background-color: rgb(251, 245, 248);
+        color: rgb(231, 11, 132);
+        height: 4vh;
+        width: 8vw;
+        text-align: center;
+        border-radius: 10px;
+        margin-top: 20vh;
+        margin-left: 45vw;
+        border-radius: 4px;
+        border-width: 2px;
+    }
+    .dr-org{
+        position: absolute;
+        border-style: solid;
+        border-color: rgb(232, 137, 5);
+        background-color: rgb(246, 244, 241);
+        color: rgb(232, 137, 5);
+        height: 4vh;
+        width: 8vw;
+        text-align: center;
+        border-radius: 10px;
+        margin-top: 20vh;
+        margin-left: 55vw;
+        border-radius: 4px;
+        border-width: 2px;
+    }
+    .dr-based-pay{
+        position: absolute;
+        border-style: solid;
+        border-color: rgb(4, 29, 248);
+        background-color: rgb(247, 248, 251);
+        color: rgb(4, 29, 248);
+        height: 4vh;
+        width: 12vw;
+        text-align: center;
+        border-radius: 10px;
+        margin-top: 20vh;
+        margin-left: 65vw;
+        border-radius: 4px;
+        border-width: 2px;
+    }
+
+    .tot-card{
+       box-shadow: 2px 2px 2px 2px rgb(234, 228, 228);
+       height: 45vh;
+       border-radius: 10px;
+       margin: 10px;
+       position : relative;
+    }
+    .cms-btn{
+        height: 35px;
+        width: 35px;
+        border-radius: 20px;
+        margin: 5px;
+    }
+    .cms{
+        margin-left: 3vw;
+        display: flex;
+        gap: 18rem;
+    }
+    .dr-detail-cards{
+        position: absolute;
+        display: flex;
+        margin-top: 25vh;
+    }
+    .dr-details-card{
+        box-shadow: 2px 2px 2px 2px white;
+        background-color: #e0f7fa;
+        width: 17vw;
+        height: fit-content;
+        margin: 10px;
+        border-radius: 10px;
+        text-align: center;
+        color: rgb(99,184,193);
+    }
+    .dr-details-card h5 {
+        color: black; /* Set text color for h6 */
+        font-size: 12px;
+         /* Set font size for h6 */
+        
+    }
+    
+    .dr-details-card h6 {
+        color: darkblue; /* Set text color for h5 */
+        font-size: 14px; /* Set font size for h5 (larger than h6) */
+        font-weight: bold; 
+        margin-bottom: 5px;/* Make the font bold */
+      
+    }
+   
+    .caller-btn{
+        height: 30px;
+        width: 30px;
+        border-radius: 20px;
+        border-style: solid;
+        background-color: rgb(231, 240, 243);
+        color: rgb(12, 163, 222) ;
+        border-color: rgb(27, 170, 226);
+        position: absolute;
+        margin-top: 20vh;
+        margin-left: 1vw;
+    }
+    .telegram-btn{
+        height: 30px;
+        width: 30px;
+        border-radius: 20px;
+        border-style: solid;
+        background-color: rgb(231, 240, 243);
+        color: rgb(12, 163, 222) ;
+        border-color: rgb(27, 170, 226);
+        position: absolute;
+        margin-top: 20vh;
+        margin-left: 6vw;
+    }
+    
+    .notification-btn{
+        height: 30px;
+        width: 30px;
+        border-radius: 20px;
+        border-style: solid;
+        background-color: rgb(231, 240, 243);
+        color: rgb(12, 163, 222) ;
+        border-color: rgb(27, 170, 226);
+        position: absolute;
+        margin-top: 20vh;
+        margin-left: 8.5vw;
+    }
+    .message-btn{
+        height: 30px;
+        width: 30px;
+        border-radius: 20px;
+        border-style: solid;
+        background-color: rgb(231, 240, 243);
+        color: rgb(12, 163, 222) ;
+        border-color: rgb(27, 170, 226);
+        position: absolute;
+        margin-top: 20vh;
+        margin-left: 3.5vw;
+    }
+    .card-dr1{
+        box-shadow: 2px 2px 2px 2px rgb(250, 249, 249);
+        border-radius: 5px;
+        width: 10vw;
+        height: 5vh;
+        text-align: center;
+        background-color: rgb(247, 242, 243);
+        margin: 10px;
+        border-style: solid;
+        border-color: rgb(241, 166, 179);
+        color: rgb(238, 166, 178);
+    }
+    .card-dr2{
+        box-shadow: 2px 2px 2px 2px rgb(236, 230, 230);
+        border-radius: 5px;
+        width: 10vw;
+        height: 5vh;
+        text-align: center;
+        background-color: rgb(200, 241, 170);
+        margin: 10px;
+    }
+    .card-dr3{
+        box-shadow: 2px 2px 2px 2px rgb(236, 230, 230);
+        border-radius: 5px;
+        width: 10vw;
+        height: 5vh;
+        text-align: center;
+        background-color: rgb(161, 164, 236);
+        margin: 10px;
+    }
+    .card-dr4{
+        box-shadow: 2px 2px 2px 2px rgb(236, 230, 230);
+        border-radius: 5px;
+        width: 10vw;
+        height: 5vh;
+        text-align: center;
+        background-color: rgb(161, 164, 236);
+        margin: 10px;
+    }
+    .card-dr5{
+        box-shadow: 2px 2px 2px 2px rgb(236, 230, 230);
+        border-radius: 5px;
+        width: 10vw;
+        height: 5vh;
+        text-align: center;
+        background-color: rgb(161, 164, 236);
+        margin: 10px;
+    }
+    .card-dr6{
+        box-shadow: 2px 2px 2px 2px rgb(236, 230, 230);
+        border-radius: 5px;
+        width: 10vw;
+        height: 5vh;
+        text-align: center;
+        background-color: rgb(161, 164, 236);
+        margin: 10px;
+    }
+    .rating-dr{
+        position: absolute;
+        box-shadow: 2px 0px 2px 0px white;
+        background-color: rgb(224, 189, 189);
+        border-radius: 5px;
+        margin-top: 15vh;
+        margin-left: 1.8vw;
+    }
+    .cms-det{
+        display: flex;
+    }
+    .driver-form-details{
+        box-shadow: 0px 0px 0px 0px black;
+        border-style: solid;
+        border-color: black;
+        border-width: 1px;
+        height: 95vh;
+        margin: 10px;
+        width: 30vw;
+        border-radius: 20px;
+        margin-left: 35vw;
+    }
+    .l-name{
+        padding-left: 10px;
+    }
+    .l-age{
+        padding-left: 10px;
+    }
+    .l-email{
+        padding-left: 10px;
+    }
+    .l-mob{
+        padding-left: 10px;
+    }
+    .l-gen{
+        padding-left: 10px;
+    }
+    .l-dob{
+        padding-left: 10px;
+    }
+    .l-address{
+        padding-left: 10px;
+    }
+    .l-lic{
+        padding-left: 10px;
+    }
+    .l-pan{
+        padding-left: 10px;
+    }
+    .l-exp{
+        padding-left: 10px;
+    }
+    .l-img{
+        padding-left: 10px;
+    }
+    .dr-name{
+        height: 4vh;
+        width: 15vw;
+        margin: 10px;
+        border-radius: 10px;
+        margin-left: 5vw;
+    }
+    .dr-email{
+        height: 4vh;
+        width: 15vw;
+        margin: 10px;
+        border-radius: 10px;
+        margin-left: 5vw;
+    }
+    .dr-mob{
+        height: 4vh;
+        width: 15vw;
+        margin: 10px;
+        border-radius: 10px;
+        /* margin-left: 5vw; */
+    }
+    .dr-gen{
+        height: 4vh;
+        width: 15vw;
+        margin: 10px;
+        border-radius: 10px;
+        margin-left: 5vw;
+    }
+    .dr-dob{
+        height: 4vh;
+        width: 15vw;
+        margin: 10px;
+        border-radius: 10px;
+        margin-left: 6vw;
+    }
+    .dr-age{
+        height: 4vh;
+        width: 15vw;
+        margin: 10px;
+        border-radius: 10px;
+        margin-left: 6vw;
+    }
+    .dr-address{
+        height: 4vh;
+        width: 15vw;
+        margin: 10px;
+        border-radius: 10px;
+        margin-left: 4vw;
+    }
+    .dr-lic{
+        height: 4vh;
+        width: 15vw;
+        margin: 10px;
+        border-radius: 10px;
+        margin-left: 5vw;
+    }
+    .dr-aadhar{
+        height: 4vh;
+        width: 15vw;
+        margin: 10px;
+        border-radius: 10px;
+        margin-left: 3vw;
+    }
+    .l-aadhar{
+        margin: 10px;
+    }
+    .dr-pan{
+        height: 4vh;
+        width: 15vw;
+        margin: 10px;
+        border-radius: 10px;
+        margin-left: 2vw;
+    }
+    .dr-exp{
+        height: 4vh;
+        width: 15vw;
+        margin: 10px;
+        margin-left: 3vw;
+        border-radius: 10px;
+    }
+    /* .dr-img{
+        height: 4vh;
+        width: 15vw;
+        margin: 10px;
+        border-radius: 10px;
+    } */
+    .dr-submit{
+        height: 4vh;
+        width: 15vw;
+        margin: 10px;
+        border-radius: 10px;
+        margin-left: 7vw;
+        margin-top: 4vh;
+        background-color: rgb(95, 184, 232);
+        cursor: pointer;
+    }
+    .dr-pd{
+        height: 4vh;
+        border: none;
+        border-radius: 10px;
+        /* background-color: rgb(246, 173, 39); */
+        margin: 10px;
+        cursor: pointer;
+        margin-left: 40px;
+    margin-right: 40px;
+    }
+    .dr-lt{
+        height: 4vh;
+        border: none;
+        border-radius: 10px;
+        /* background-color: rgb(246, 173, 39); */
+        margin: 10px;
+        cursor: pointer;
+        margin-left: 40px;
+    margin-right: 40px;
+    }
+    .dr-lt:hover{
+        background-color: rgb(132, 206, 244);
+    }
+    .dr-fd{
+        height: 4vh;
+        border: none;
+        border-radius: 10px;
+        /* background-color: rgb(246, 173, 39); */
+        margin: 10px;
+        cursor: pointer;
+        margin-left: 40px;
+    margin-right: 40px;
+    }
+    .dr-fd:hover{
+        background-color: rgb(132, 206, 244);
+    }
+    .dr-th{
+        height: 4vh;
+        border: none;
+        border-radius: 10px;
+        /* background-color: rgb(246, 173, 39); */
+        margin: 10px;
+        cursor: pointer;
+        margin-left: 40px;
+    margin-right: 40px;
+    }
+    .dr-th:hover{
+        background-color: rgb(132, 206, 244);
+    }
+    .dr-vd{
+        height: 4vh;
+        border: none;
+        border-radius: 10px;
+        /* background-color: rgb(246, 173, 39); */
+        margin: 10px;
+        cursor: pointer;
+        margin-left: 40px;
+    margin-right: 40px;
+    }
+    .dr-vd:hover{
+        background-color: rgb(132, 206, 244);
+    }
+    .dr-cf{
+        height: 4vh;
+        border: none;
+        border-radius: 10px;
+        /* background-color: rgb(246, 173, 39); */
+        margin: 10px;
+        cursor: pointer;
+        margin-left: 40px;
+    margin-right: 40px;
+    }
+    .dr-cf:hover{
+        background-color: rgb(132, 206, 244);
+      
+    }
+    .dr-pd:hover{
+        background-color: rgb(132, 206, 244);
+       
+    }
+    .dr-btns{
+        margin-left: 5vw;
+        box-shadow: 2px 2px 2px 2px white;
+        background-color: rgb(240, 244, 246);
+        color: rgb(10, 174, 239);
+        border-radius: 20px;
+        width: 96vw;
+        margin-left:10px;
+    }
+    .information{
+        box-shadow: 2px 2px 2px 2px rgb(240, 237, 237);
+        border-radius: 10px;
+        margin: 20px;
+        height: 35vh;
+        /* width: fit-content; */
+        position: relative;
+        
+    }
+    .inf-pers{
+        /* display: flex;
+        flex-wrap: wrap; */
+        /* gap: 2rem;  */
+        margin: 10px;
+    }
+    .cur-car-img{
+        height: 30vh;
+        width: 15vw;
+    }
+    .curr-ass-veh{
+        height: 40vh;
+        border-radius: 10px;
+        box-shadow: 2px 2px 2px 2px rgb(233, 231, 228);
+        margin: 10px;
+        position: relative;
+    }
+    .curr-ass-veh h4{
+        
+        margin-top:30px;
+    }
+    .view-veh-detail{
+        position: absolute;
+        font-size: small;
+        color: rgb(5, 175, 243);
+        margin-top: 8.5vh;
+        margin-left: 15vw;
+    }
+    .lt-veh-num{
+        position: absolute;
+        margin-top: 8vh;
+        margin-left: 6vw;
+    }
+    .lt-veh-id{
+        position: absolute;
+        margin-left: 6vw;
+        margin-top: 11vh;
+    }
+    .cur-det{
+        display: flex;
+        flex-wrap: wrap;
+        gap:10px;
+    }
+    .curr-dets div {
+        flex: 1 1 200px; /* Adjust the minimum width if needed */
+        display: flex;
+        flex-direction: column;
+      }
+      .curr-dets p {
+        display: flex;
+        align-items: center;
+        
+      }
+      .curr-dets p + p {
+        margin-top: -10px;
+        margin-bottom: 30px;; /* Space above the value */
+      }
+      
+
+.curr-dets p svg {
+    margin-right: 8px; /* Space between icon and text */
+  }
+    .veh-num-cras{
+        position: absolute;
+        margin-left: 20vw ;
+        margin-top: 7vh;
+    }
+    .vehicle-brande-img{
+        position: absolute;
+        height: 12vh;
+        margin-left: 20vw;
+    }
+    .veh-model{
+        position: absolute;
+        margin-top: 11vh;
+        margin-left: 20vw;
+    }
+    .view-veh-detail-cras{
+        position: absolute;
+        margin-top: 7vh;
+        margin-left: 30vw;
+        font-size: small;
+        color: rgb(11, 167, 228);
+        
+    }
+    .right-det{
+        position: absolute;
+        margin-left: 1vh;
+        margin-top: 0.5vh;
+    }
+    .view-veh-det{
+        
+    }
+    .curr-dets{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        position: absolute;
+        margin-top: 14vh;
+        margin-left: 18vw;
+       
+    }
+    .assg-client{
+        position: absolute;
+        margin-left: 40vw;
+        margin-top:-20px;
+        font-size: 14px;
+    }
+    .assg-client-name{
+        position: absolute;
+        margin-left: 40vw;
+        margin-top: 1vh;
+        margin-right: 20px;
+    }
+    .assg-loc{
+        position: absolute;
+        margin-left: 50vw;
+        margin-top:-20px;
+        font-size: 14px;
+    }
+    .assg-route{
+        position: absolute;
+        margin-top: 1vh;
+        margin-left: 50vw;
+    }
+    .assg-loc-chng{
+        position: absolute;
+        margin-top: 10vh;
+        margin-left: 50vw;
+        font-size: small;
+        color: rgb(7, 177, 245);
+    }
+    .assg-client-chng{
+        position: absolute;
+        margin-left: 40vw;
+        margin-top: 10vh;
+        font-size: small;
+        color: rgb(8, 184, 254);
+    }
+    .brand{
+        margin: 20px;
+        margin-top:-50px;
+    }
+    .model{
+        margin: 20px;
+        margin-top:-50px;
+    }
+    .regno{
+        margin: 20px;
+        margin-top:-50px;
+    }
+    .color{
+        margin: 20px;
+        margin-top:-50px;
+    }
+    .seatcp{
+        margin: 20px;
+        margin-top:-50px;
+    }
+    .fueltype{
+        margin: 20px;
+        margin-top:-50px;
+    }
+    .mil{
+        margin: 20px;
+        margin-top:-50px;
+    }
+    .man-year{
+        margin: 20px;
+        margin-top:-50px;
+    }
+    .inf-card-left{
+        position: absolute;
+        height: 30px;
+        width: 30px;
+        border-radius: 20px;
+        margin-left: 1vw;
+        margin-top: 1vh;
+        margin-bottom: 1vh;
+        cursor: pointer;
+    }
+    .tick{
+        border-style: solid;
+        border-radius: 20px;
+        margin-top: 1vh;
+        margin-left: 1vw;
+        /* position: absolute; 
+        margin-top: 1vh;
+         margin-left: 58vw; */
+    }
+    .doc-up{
+        margin-top: 1vh;
+    }
+    .tick-inf-doc-upd{
+        height: 5vh;
+        box-shadow: 2px 2px 2px 2px rgb(238, 237, 237);
+        width: 20vw;
+        border-radius: 20px;
+        margin-left: 60vw;
+        margin-top: 1vh;
+        position: absolute;
+        display: flex;
+        gap: 1rem;
+        color: white;
+        background-color: rgb(80, 124, 80);
+        text-align: center;
+    }
+    .act-inact{
+        position: absolute;
+        border-style: solid;
+        border-color: green;
+        background-color: rgb(229, 240, 229);
+        color: green;
+        height: 4vh;
+        width: 6vw;
+        border-radius: 10px;
+        margin-left: 81vw;
+        margin-top: 1.5vh;
+    }
+    .mob-sym-btn{
+        font-size: small;
+        box-shadow: 2px 0px 2px 0px rgb(237, 232, 232);
+        height: 30px;
+        width: 30px;
+        border-radius:20px ;
+        border: none;
+    }
+    .mob-infs, .mob-infs{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+
+    /* .mob-inf-det{
+        
+    } */
+    .mob-infss{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+    .phone-num-h{
+        line-height: 0.2;
+    }
+    .phone-num{
+        line-height: 0.2;
+    }

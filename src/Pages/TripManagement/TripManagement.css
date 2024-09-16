@@ -1,18 +1,23 @@
-.trip-management--section {
-  height: 100%;
+.trip-management {
   display: flex;
+  height: 100vh; /* Full viewport height */
 }
 
-.sidebar {
-  width: 25rem;
-  background-color: tomato;
+.trip-management-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
 }
 
-.trip-management--main {
-  flex-grow: 1;
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-right: 20px; /* Space between cards and map */
+}
+
+.map-component {
+  flex: 2; /* Adjust flex to fit the layout you want */
   height: 100%;
-
-  display: grid;
-  grid-template-rows: auto 1fr;
-  position: relative;
+  width: 100%;
 }

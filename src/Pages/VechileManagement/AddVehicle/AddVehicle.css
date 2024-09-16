@@ -1,59 +1,80 @@
-/* AddVehicle.css */
-
-.form-container {
-  margin-left: 0px; /* Adjust based on the width of your sidebar */
+.vehicle-form {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: #f0f8ff;
   padding: 20px;
-  background-color: #f8f9fa;
   border-radius: 8px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  width: 1080px; /* Increased width */
-  min-height: 550px; /* Increased height */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top:5px;
 }
 
-.form-row {
+.form-header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 15px;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-.form-group {
-  flex: 1;
-  margin-right: 20px;
-}
-
-.form-group:last-child {
-  margin-right: 0;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: 600;
-}
-
-.form-group input {
-  width: 80%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
-}
-
-.form-actions {
-  text-align: center;
-  margin-top: 50px;
-}
-
-.form-actions button {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
+.save-button {
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
- 
 }
 
-.form-actions button:hover {
-  background-color: #0056b3;
+.form-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.form-field {
+  width: 48%;
+  margin-bottom: 20px;
+}
+
+.form-field label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  font-weight: bold;
+  position: relative;
+  color:black;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.form-field input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fdfdfd;
+}
+
+.required:before {
+  content: "*";
+  color: red;
+  margin-right: 5px;
+}
+.headddd{
+  color: rgb(93, 14, 203);
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: -8px;
+  margin-bottom: 10px;
+}
+
+.icon11 {
+  margin-right: 10px;
+  font-size: 18px;
+  color: black;
 }

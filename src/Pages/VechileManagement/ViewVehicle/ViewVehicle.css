@@ -96,4 +96,53 @@
   .table-header .ant-input-group-addon {
     margin-left: 8px;
   }
+  /* Modal styles */
+.ant-modal {
+  max-width: 800px; /* Set a max-width for the modal */
+}
+
+.ant-modal-header {
+  background-color: #f5f5f5; /* Light background for the header */
+  border-bottom: 1px solid #e8e8e8; /* Light border at the bottom of the header */
+}
+
+.ant-modal-title {
+  font-size: 1.5rem; /* Adjust font size of the title */
+  color: #333; /* Dark color for the title text */
+}
+
+.ant-modal-body {
+  padding: 24px; /* Padding inside the modal body */
+}
+
+.ant-form-item-label {
+  font-weight: bold; /* Bold labels for form items */
+  color: #333; /* Dark color for form item labels */
+}
+
+.ant-form-item {
+  margin-bottom: 16px; /* Space between form items */
+}
+
+.ant-input {
+  border-radius: 4px; /* Rounded corners for inputs */
+  border: 1px solid #d9d9d9; /* Light border for inputs */
+}
+
+.ant-upload {
+  margin-top: 16px; /* Space above the upload button */
+}
+
+.ant-upload-button {
+  border-radius: 4px; /* Rounded corners for the upload button */
+}
+
+.ant-btn {
+  border-radius: 4px; /* Rounded corners for buttons */
+}
+.image11 {
+  display: block; /* Ensure images are block elements */
+  margin: 0 auto; /* Center the image horizontally */
+}
+
   

@@ -1,11 +1,11 @@
-// MapComponent.js
+
 import "./Map.css";
 import React from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
-// Custom icon (optional)
+
 const customIcon = new L.Icon({
   iconUrl: require("leaflet/dist/images/marker-icon.png"),
   iconSize: [25, 41],
@@ -16,7 +16,7 @@ const customIcon = new L.Icon({
 });
 
 const MapComponent = () => {
-  const position = [51.505, -0.09]; // Default position (latitude, longitude)
+  const position = [51.505, -0.09]; 
 
   return (
     <MapContainer

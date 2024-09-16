@@ -1,41 +1,80 @@
-import "./App.css";
-
-// importing route Pages
+import React from 'react';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import TripManagement from "./Pages/TripManagement/TripManagement";
-
 import VehicleDashboard from "./Pages/VechileManagement/VehicleDashboard/VehicleDashboard";
 import AddVehicle from "./Pages/VechileManagement/AddVehicle/AddVehicle";
 import ViewVehicle from "./Pages/VechileManagement/ViewVehicle/ViewVehicle";
-// import Route from "./Components/RouteManagement/Route";
-
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Route,
-  Link,
-} from "react-router-dom";
+import Dashboard from "./Components/Dashboard/Dashboard";
+import RouteManagement from "./Pages/RouteManagement/RouteManagement/RouteManagement";
+import LiveTracking from './Pages/LiveTracking/LiveTracking';
+import NewDashboard from './Pages/Dashboard/NewDashboard';
+import TripHistory from './Pages/TripHistory/TripHistory';
+import Excel from './Components/Excel/Excel';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path:"/",
     element: <h1>Home</h1>,
   },
-
+  {
+    path:"/dashboard",
+    element: <Dashboard />,
+    children: [
+      {
+        path:"addvehicle",
+        element: <AddVehicle />,
+      },
+      {
+        path:"viewvehicle",
+        element: <ViewVehicle />,
+      },
+      {
+        path:"livetracking",
+        element: <LiveTracking />,
+      },
+      {
+        path:"history",
+        element: <TripHistory />,
+      },
+     
+    ],
+  },
+  {
+    path: "/vehicledashboard", 
+    element: <VehicleDashboard />,
+  },
+  {
+    path: "/newdashboard", 
+    element: <NewDashboard />,
+  },
   {
     path: "/trips",
     element: <TripManagement />,
   },
-
-  // route management
   {
-    path: "route",
-    element: <Route />,
+    path: "/routemanagement",
+    element: <RouteManagement />,
   },
+  {
+    path: "livetracking",
+    element: <LiveTracking />,
+  },
+  {
+    path: "history",
+    element: <TripHistory />,
+  },
+  {
+    path: "excel",
+    element: <Excel />,
+  },
+ 
+ 
 ]);
+
 
 function App() {
   return (
-    <div className="vems--root">
+    <div className="app-root">
       <RouterProvider router={router} />
     </div>
   );

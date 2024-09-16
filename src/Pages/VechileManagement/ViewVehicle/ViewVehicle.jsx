@@ -1,42 +1,98 @@
-import React, { useState } from 'react';
-import { Table, Button, Input } from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
+import { Table, Button, Input, Modal, Form, Upload } from 'antd';
+import { SearchOutlined, UploadOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom'; 
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import './ViewVehicle.css'; 
 
-const vehicles = [
-  { "sno": 1, "vehicleName": "Toyota Corolla", "registrationNumber": "ABC123", "vendorName": "Vendor A" },
-  { "sno": 2, "vehicleName": "Honda Civic", "registrationNumber": "XYZ456", "vendorName": "Vendor A" },
-  { "sno": 3, "vehicleName": "Ford Focus", "registrationNumber": "LMN789", "vendorName": "Vendor C" },
-  { "sno": 4, "vehicleName": "Chevrolet Malibu", "registrationNumber": "JKL012", "vendorName": "Vendor D" },
-  { "sno": 5, "vehicleName": "Nissan Altima", "registrationNumber": "MNO345", "vendorName": "Vendor E" },
-  { "sno": 6, "vehicleName": "Hyundai Sonata", "registrationNumber": "PQR678", "vendorName": "Vendor F" },
-  { "sno": 7, "vehicleName": "Kia Optima", "registrationNumber": "STU901", "vendorName": "Vendor G" },
-  { "sno": 8, "vehicleName": "Mazda 3", "registrationNumber": "VWX234", "vendorName": "Vendor H" },
-  { "sno": 9, "vehicleName": "Volkswagen Jetta", "registrationNumber": "YZA567", "vendorName": "Vendor I" },
-  { "sno": 10, "vehicleName": "Subaru Legacy", "registrationNumber": "BCD890", "vendorName": "Vendor J" },
-];
-
-const Viewvehicle = ({ onEdit, onDelete }) => {
+const ViewVehicle = () => {
   const navigate = useNavigate(); 
+  const [vehicles, setVehicles] = useState([]);
   const [searchText, setSearchText] = useState({
     vehicleName: '',
-    registrationNumber: '',
+    vehicleNumber: '',
     vendorName: ''
   });
+  const [editingVehicle, setEditingVehicle] = useState(null);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  useEffect(() => {
+    axios.get("http://localhost:8083/vehicles")
+      .then((result) => {
+        setVehicles(result.data);
+      }) 
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   const handleSearch = (value, key) => {
     setSearchText({
       ...searchText,
-      [key]: value.toLowerCase()
+      [key]: value ? value.toLowerCase() : ''
     });
   };
 
-  const filteredVehicles = vehicles.filter(vehicle =>
-    vehicle.vehicleName.toLowerCase().includes(searchText.vehicleName) &&
-    vehicle.registrationNumber.toLowerCase().includes(searchText.registrationNumber) &&
-    vehicle.vendorName.toLowerCase().includes(searchText.vendorName)
-  );
+  const handleEdit = (vehicle) => {
+    setEditingVehicle(vehicle);
+    setIsModalVisible(true);
+  };
+
+  const handleSave = () => {
+    axios.put(`https://silent-wave-76445.pktriot.net/vehicles/${editingVehicle.vehicleId}`, editingVehicle)
+      .then((response) => {
+        setVehicles(vehicles.map(v =>v.vehicleId===editingVehicle.vehicleId ?editingVehicle : v));
+        setIsModalVisible(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleDelete = (vehicle) => {
+    axios.delete(`https://silent-wave-76445.pktriot.net/vehicles/${vehicle.vehicleId}`)
+      .then((response) => {
+        setVehicles(vehicles.filter(v => v.vehicleId!== vehicle.vehicleId));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleImageUpload = async (file) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    
+    try {
+      const response = await axios.post('https://silent-wave-76445.pktriot.net/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      const imageUrl = response.data.url; 
+      
+     
+      setEditingVehicle(prev => ({
+        ...prev,
+        vehicleImage: imageUrl
+      }));
+    } catch (error) {
+      console.error('Error uploading image:', error);
+    }
+    
+    return false; 
+  };
+
+  const filteredVehicles = vehicles
+    .filter(vehicle =>
+      (vehicle.vehicleName ||'').toLowerCase().includes(searchText.vehicleName) &&
+      (vehicle.vehicleNumber ||'').toLowerCase().includes(searchText.vehicleNumber) &&
+      (vehicle.vendorName ||'').toLowerCase().includes(searchText.vendorName)
+    )
+    .map((vehicle, index) => ({
+      ...vehicle,
+      sno: index + 1 
+    }));
 
   const columns = [
     {
@@ -66,13 +122,13 @@ const Viewvehicle = ({ onEdit, onDelete }) => {
           <Input
             placeholder="Search"
             prefix={<SearchOutlined />}
-            onChange={e => handleSearch(e.target.value, 'registrationNumber')}
+            onChange={e => handleSearch(e.target.value, 'vehicleNumber')}
             style={{ width: 100, marginLeft: 8 }}
           />
         </span>
       ),
-      dataIndex: 'registrationNumber',
-      key: 'registrationNumber',
+      dataIndex: 'vehicleNumber',
+      key: 'vehicleNumber',
     },
     {
       title: (
@@ -94,8 +150,8 @@ const Viewvehicle = ({ onEdit, onDelete }) => {
       key: 'actions',
       render: (text, record) => (
         <span>
-          <Button type="link" onClick={() => onEdit(record)}>Edit</Button>
-          <Button type="link" danger onClick={() => onDelete(record)}>Delete</Button>
+          <Button type="link" onClick={() => handleEdit(record)}>Edit</Button>
+          <Button type="link" danger onClick={() => handleDelete(record)}>Delete</Button>
         </span>
       ),
     },
@@ -103,7 +159,7 @@ const Viewvehicle = ({ onEdit, onDelete }) => {
       title: 'View More',
       key: 'viewMore',
       render: (text, record) => (
-        <Button type="link" onClick={() => navigate(`/vehicledashboard`, { state: { vehicle: record } })}>
+        <Button type="link" onClick={() => navigate(`/NewDashboard`, { state: { vehicle: record } })}>
           View More
         </Button>
       ),
@@ -111,14 +167,96 @@ const Viewvehicle = ({ onEdit, onDelete }) => {
   ];
 
   return (
-    <Table
-      dataSource={filteredVehicles}
-      columns={columns}
-      rowKey="sno"
-      pagination={{ pageSize: 7}}
-      bordered 
-    />
+    <>
+      <Table
+        dataSource={filteredVehicles}
+        columns={columns}
+        rowKey="sno"
+        pagination={{ pageSize: 7 }}
+        bordered 
+      />
+      
+     
+      <Modal
+        title="Edit Vehicle"
+        visible={isModalVisible}
+        onOk={handleSave}
+        onCancel={() => setIsModalVisible(false)}
+      >
+        <Form layout="vertical">
+          <Form.Item label="Vehicle Name">
+            <Input
+              value={editingVehicle?.vehicleName}
+              onChange={e => setEditingVehicle({ ...editingVehicle, vehicleName: e.target.value })}
+            />
+          </Form.Item>
+          <Form.Item label="Vehicle No">
+            <Input
+              value={editingVehicle?.vehicleNumber}
+              onChange={e => setEditingVehicle({ ...editingVehicle, vehicleNumber: e.target.value })}
+            />
+          </Form.Item>
+          <Form.Item label="Vendor Name">
+            <Input
+              value={editingVehicle?.vendorName}
+              onChange={e => setEditingVehicle({ ...editingVehicle, vendorName: e.target.value })}
+            />
+          </Form.Item>
+          <Form.Item label="Vehicle Type">
+            <Input
+              value={editingVehicle?.vehicleType}
+              onChange={e => setEditingVehicle({ ...editingVehicle, vehicleType: e.target.value })}
+            />
+          </Form.Item>
+          <Form.Item label="Engine Number">
+            <Input
+              value={editingVehicle?.engineNumber}
+              onChange={e => setEditingVehicle({ ...editingVehicle, engineNumber: e.target.value })}
+            />
+          </Form.Item>
+          <Form.Item label="Chassis Number">
+            <Input
+              value={editingVehicle?.chassisNumber}
+              onChange={e => setEditingVehicle({ ...editingVehicle, chassisNumber: e.target.value })}
+            />
+          </Form.Item>
+          <Form.Item label="Insurance Number">
+            <Input
+              value={editingVehicle?.insuranceNumber}
+              onChange={e => setEditingVehicle({ ...editingVehicle, insuranceNumber: e.target.value })}
+            />
+          </Form.Item>
+          <Form.Item label="Fuel Type">
+            <Input
+              value={editingVehicle?.fuelType}
+              onChange={e => setEditingVehicle({ ...editingVehicle, fuelType: e.target.value })}
+            />
+          </Form.Item>
+          <Form.Item label="Seat Capacity">
+            <Input
+              value={editingVehicle?.seatCapacity}
+              onChange={e => setEditingVehicle({ ...editingVehicle, seatCapacity: e.target.value })}
+            />
+          </Form.Item>
+          {/* <Form.Item label="Vehicle Image">
+            <Upload
+              beforeUpload={handleImageUpload}
+              showUploadList={false}
+            >
+              <Button icon={<UploadOutlined />}>Select Other Image</Button>
+            </Upload>
+            {editingVehicle?.vehicleImage && (
+              <img
+                src={`${editingVehicle.vehicleImage}?${new Date().getTime()}`} 
+                alt="Vehicle"
+                style={{ width: '30%', height: '20vh', marginTop: 8 }}
+              />
+            )}
+          </Form.Item> */}
+        </Form>
+      </Modal>
+    </>
   );
 };
 
-export default Viewvehicle;
+export default ViewVehicle;
