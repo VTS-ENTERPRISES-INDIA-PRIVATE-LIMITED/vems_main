@@ -138,57 +138,57 @@ function NewDashboard(){
  
  return(
     <div>
-        <div className="admin-head">
-            <div className="admin-dr-nav">
-            <p className="dr-mng">Vehicle ID:{vehicle.vehicleId} </p>
+        <div className="admin-head1">
+            <div className="admin-dr-nav1">
+            <p className="dr-mng1">Vehicle ID:{vehicle.vehicleId} </p>
             <p>{d}</p>
             </div>
           
         </div>
-        <div className="tot-card">
-            <button onClick={handlebackdrpro} className="inf-card-left"><FaAngleLeft /></button>
-            <div className="tick-inf-doc-upd">
-            <TiTick className="tick"  />
-            <h4 className="doc-up" >All Documents are upto date</h4>
+        <div className="tot-card1">
+            <button onClick={handlebackdrpro} className="inf-card-left1"><FaAngleLeft /></button>
+            <div className="tick-inf-doc-upd1">
+            <TiTick className="tick1"  />
+            <h4 className="doc-up1" >All Documents are upto date</h4>
             </div>
-            <select className="act-inact">
+            <select className="act-inact1">
                 <option>Active</option>
                 <option>InActive</option>
                 </select>
-                <button className="edit-btn"><MdOutlineEdit /></button>
-                <button className="delete-btn"><MdDelete /></button>
-                <img className="driver-image" src="https://res.cloudinary.com/djbz2ydtp/image/upload/v1724825006/pngtree-vector-car-icon-png-image_1834527_ejwljo.jpg" alt="l" />
-                <h4 className="driver-name-head">{vehicle.vehicleName}</h4>
-                <h5 className="driver-id">{vehicle.vehicleId}</h5>
+                <button className="edit-btn1"><MdOutlineEdit /></button>
+                <button className="delete-btn1"><MdDelete /></button>
+                <img className="driver-image1" src="https://res.cloudinary.com/djbz2ydtp/image/upload/v1724825006/pngtree-vector-car-icon-png-image_1834527_ejwljo.jpg" alt="l" />
+                <h4 className="driver-name-head1">{vehicle.vehicleName}</h4>
+                <h5 className="driver-id1">{vehicle.vehicleId}</h5>
               
-                <h5 className="rating-dr">4.5<FaStar className="star" /></h5>
-                <button className="caller-btn"><IoCallOutline /></button>
-                <button className="message-btn"><MdOutlineMessage /></button>
-                <button className="telegram-btn"><FaTelegramPlane /></button>
-                <button className="notification-btn"><IoIosNotifications /></button>
+                <h5 className="rating-dr1">4.5<FaStar className="star" /></h5>
+                <button className="caller-btn1"><IoCallOutline /></button>
+                <button className="message-btn1"><MdOutlineMessage /></button>
+                <button className="telegram-btn1"><FaTelegramPlane /></button>
+                <button className="notification-btn1"><IoIosNotifications /></button>
               
-                <div className="dr-detail-cards">
+                <div className="dr-detail-cards1">
                     {vedetails.map((item,key)=>(
-                        <li className="dr-details-card" key={key}>
+                        <li className="dr-details-card1" key={key}>
                             <h6>{item.val}</h6>
                           <h5>{item.title}</h5>
                         </li>
                     ))}
                 </div>
         </div>
-        <div className="dr-btns">
-            <button className="dr-pd" onClick={handlePd}>Vehicle Details</button>
-            <button className="dr-lt" onClick={handleLt}>Live Tracking</button>
-            <button className="dr-th" onClick={handleTh}>Trip History</button>
-            <button className="dr-vd" onClick={handleVd}>Service History</button>
-            <button className="dr-cf" onClick={handleCf}>Drivers used</button>
-            <button className="dr-fd" onClick={handlefd}>Feedback</button>
+        <div className="dr-btns1">
+            <button className="dr-pd1" onClick={handlePd}>Vehicle Details</button>
+            <button className="dr-lt1" onClick={handleLt}>Live Tracking</button>
+            <button className="dr-th1" onClick={handleTh}>Trip History</button>
+            <button className="dr-vd1" onClick={handleVd}>Service History</button>
+            <button className="dr-cf1" onClick={handleCf}>Drivers used</button>
+            <button className="dr-fd1" onClick={handlefd}>Feedback</button>
         </div>
-        <div className="curr-ass-veh">
+        <div className="curr-ass-veh1">
         <h4 className="head" >Vehicle Details</h4>
 
-            <div className="cur-det">
-            <img className="cur-car-img" src={vehicle.vehicleImage} alt="Vehicle" />
+            <div className="cur-det1">
+            <img className="cur-car-img1" src={vehicle.vehicleImage} alt="Vehicle" />
 
                 
                 {/* <h3 className="veh-num-cras">TN 01 AA 1234</h3>
@@ -197,12 +197,12 @@ function NewDashboard(){
                
              
 
-                <div className="curr-dets">
-                <div className="brand">
+                <div className="curr-dets1">
+                <div className="brand1">
     <p style={{ fontWeight: 'bold' }}><FaRegIdCard /> Vehicle Number</p>
     <p>{vehicle.vehicleNumber}</p>
   </div>
-  <div className="brand">
+  <div className="brand1">
     <p style={{ fontWeight: 'bold' }}><FaRegIdCard /> Vehicle Type</p>
     <p>{vehicle.vehicleType}</p>
   </div>
@@ -218,27 +218,27 @@ function NewDashboard(){
     <p style={{ fontWeight: 'bold' }}><FaRegIdCard /> Registration Num</p>
     <p>{vehicle.</p>
   </div> */}
-  <div className="seatcp">
+  <div className="seatcp1">
     <p style={{ fontWeight: 'bold' }}><FaUser /> Seat Capacity</p>
     <p>{vehicle.seatCapacity}</p>
   </div>
-  <div className="fueltype">
+  <div className="fueltype1">
     <p style={{ fontWeight: 'bold' }}><FaGasPump /> Fuel Type</p>
     <p>{vehicle.fuelType}</p>
   </div>
-  <div className="mil">
+  <div className="mil1">
     <p style={{ fontWeight: 'bold' }}><FaTachometerAlt /> Insurance Number</p>
     <p>{vehicle.insuranceNumber}</p>
   </div>
-  <div className="mil">
+  <div className="mil1">
     <p style={{ fontWeight: 'bold' }}><FaTachometerAlt /> Vendor Name</p>
     <p>{vehicle.vendorName}</p>
   </div>
-  <div className="mil">
+  <div className="mil1">
     <p style={{ fontWeight: 'bold' }}><FaTachometerAlt /> Year Of Manufacturing</p>
     <p>{vehicle. yearOfManufacturing}</p>
   </div>
-  <div className="mil">
+  <div className="mil1">
     <p style={{ fontWeight: 'bold' }}><FaTachometerAlt /> mileage</p>
     <p>{vehicle.mileage}</p>
   </div>
@@ -246,20 +246,20 @@ function NewDashboard(){
             </div>
         </div>
             {viewPersonalDetails&&(
-        <div className="information">
-                 <div className="inf-pers">
+        <div className="information1">
+                 <div className="inf-pers1">
                  <h4><u>Currently Asssigned Driver</u></h4>
                  <h3><TiUser />&nbsp;&nbsp;{vehicle.name}</h3>
-                 <div className="mob-infss">
+                 <div className="mob-infss1">
                  {fun.map((item,key)=>(
-                    <div className="mob-infs">
+                    <div className="mob-infs1">
                         
-                        <div className="mob-symm">
-                          <button className="mob-sym-btn"><icon />{item.icon}</button>
+                        <div className="mob-symm1">
+                          <button className="mob-sym-btn1"><icon />{item.icon}</button>
                         </div>
-                        <div className="mob-inf-det">
-                           <h4 className="phone-num-h">{item.title}</h4>
-                           <h5 className="phone-num">{item.value}</h5>
+                        <div className="mob-inf-det1">
+                           <h4 className="phone-num-h1">{item.title}</h4>
+                           <h5 className="phone-num1">{item.value}</h5>
                         </div>
                     </div>
                  ))}
@@ -270,13 +270,13 @@ function NewDashboard(){
                  </div>
             )}
             {livetracking&&(
-        <div className="information">
+        <div className="information1">
                 <div>
-                    <h4 className="lt-head"><u>Live Tracking</u></h4>
-                <img className="driver-image-lt" src="https://res.cloudinary.com/dyxhiuuxa/image/upload/v1724665401/profiledriver_m3kcmd.png" alt="l" />
-                     <h4 className="lt-veh-num">Vehicle Number</h4>
-                     <h5 className="lt-veh-id">Vehicle Id</h5>
-                     <p className="view-veh-detail">View Vehicle details <FaAngleRight className="right-det" /> </p>
+                    <h4 className="lt-head1"><u>Live Tracking</u></h4>
+                <img className="driver-image-lt1" src="https://res.cloudinary.com/dyxhiuuxa/image/upload/v1724665401/profiledriver_m3kcmd.png" alt="l" />
+                     <h4 className="lt-veh-num1">Vehicle Number</h4>
+                     <h5 className="lt-veh-id1">Vehicle Id</h5>
+                     <p className="view-veh-detail1">View Vehicle details <FaAngleRight className="right-det1" /> </p>
                     </div>
                     </div>
                )}     

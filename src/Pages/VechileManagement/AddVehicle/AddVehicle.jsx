@@ -122,7 +122,7 @@ const VehicleForm = () => {
     if (validateForm()) {
       setLoading(true);
       try {
-        await axios.post('http://localhost:8083/add-vehicle', vehicleDetails);
+        await axios.post('http://localhost:8081/add-vehicle', vehicleDetails);
         window.alert("form submitted succesfully")
         console.log('Vehicle details saved successfully');
       } catch (error) {

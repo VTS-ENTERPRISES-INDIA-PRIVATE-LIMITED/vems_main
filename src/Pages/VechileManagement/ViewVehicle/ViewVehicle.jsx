@@ -17,7 +17,7 @@ const ViewVehicle = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   useEffect(() => {
-    axios.get("http://localhost:8083/vehicles")
+    axios.get("http://localhost:8081/vehicles")
       .then((result) => {
         setVehicles(result.data);
       }) 

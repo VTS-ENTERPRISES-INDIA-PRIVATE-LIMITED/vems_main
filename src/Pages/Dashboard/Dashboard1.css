@@ -4,27 +4,27 @@
     border-radius: 20px;
     margin: 10px;
 }
-.admin-prof{
+.admin-prof1{
     display: flex;
     padding-left: 50px;
 }
-.admin-head{
+.admin-head1{
     display: flex;
     margin: 10px;
     box-shadow: 2px 2px 2px 2px rgb(239, 237, 237);
     border-radius: 10px;
 }
-.admin-dr-nav{
+.admin-dr-nav1{
     display: flex;
     gap: 40rem;
 }
-.dr-mng{
+.dr-mng1{
     margin: 10px;
 }
 .head{
     margin-top:10px;
 }
-.doc-up-date{
+.doc-up-date1{
     box-shadow: 2px 0px 2px 0px rgb(232, 228, 228);
     height: 5vh;
     width: 15vw;
@@ -33,7 +33,7 @@
     padding-top: 5px;
     background-color: rgb(13, 200, 13);
     }
-    .update-det{
+    .update-det1{
         display: flex;
         margin-left: 70vw;
     }
@@ -46,7 +46,7 @@
         margin-left: 2vw;
         
     }
-    .sel-act{
+    .sel-act1{
         height: 4vh;
         margin: 5px;
         margin-top:30px;
@@ -56,7 +56,7 @@
         border-radius: 5px;
         cursor: pointer;
     }
-    .edit-btn{
+    .edit-btn1{
         height: 30px;
         width: 30px;
         margin: 10px;
@@ -70,7 +70,7 @@
         border-color: orange;
         cursor: pointer;
     }
-    .delete-btn{
+    .delete-btn1{
         height: 30px;
         width: 30px;
         margin: 10px;
@@ -83,59 +83,59 @@
         margin-left: 91vw;
         position: absolute;
     }
-    .dr-prof-btn{
+    .dr-prof-btn1{
         height: 70px;
         width: 70px;
         border-radius: 35px;
         margin: 10px;
     }
-    .dr-prof-det{
+    .dr-prof-det1{
         display: flex;
         margin-left: 3vw;
         }
-    .dr-details{
+    .dr-details1{
         margin-left: 20px;
         line-height: 0.5;
     }
     li{
         list-style-type: none;
     }
-    .driver-image{
+    .driver-image1{
         position:absolute;
         height: 10vh;
         margin-top: 6vh;
         
     }
-    .lt-head{
+    .lt-head1{
         position: absolute;
         margin-top: 2vh;
     }
-    .driver-image-lt{
+    .driver-image-lt1{
         position:absolute;
         height: 12vh;
         margin-top: 5vh;
     }
-    .star{
+    .star1{
         color: rgb(237, 174, 13);
     }
-    .last-update-h{
+    .last-update-h1{
         position: absolute;
         font-size: small;
         margin-top: 8.5vh;
         margin-left: 12vw;
     }
-    .driver-id{
+    .driver-id1{
         position: absolute;
         margin-top: 12vh;
         margin-left: 5vw;
     }
-    .driver-name-head{
+    .driver-name-head1{
         position: absolute;
         margin-top: 8vh;
         margin-left: 70px;
     }
 
-    .det-card{
+    .det-card1{
         box-shadow: 2px 2px 2px 2px rgb(239, 238, 238);
         height: 15vh;
         width: 10vw;
@@ -147,17 +147,17 @@
         border: none;
         color: rgb(46, 181, 234);
     }
-    .det-card:hover{
+    .det-card1:hover{
         transform: scale(1.1);
     }
-    .det-cards{
+    .det-cards1{
         display: flex;  
         margin-left: 4vw;
     }
-    .card-det{
+    .card-det1{
         margin-left: 2vw;
     }
-    .dr-only{
+    .dr-only1{
         position: absolute;
         border-style: solid;
         border-color: #988ac0;
@@ -173,7 +173,7 @@
    
 
     }
-    .dr-Fleet{
+    .dr-Fleet1{
         position: absolute;
         border-style: solid;
         border-color: rgb(82, 241, 8);
@@ -188,7 +188,7 @@
         border-radius: 4px;
         border-width: 2px;
     }
-    .dr-of-rides{
+    .dr-of-rides1{
         position: absolute;
         border-style: solid;
         border-color: rgb(45, 82, 1);
@@ -203,7 +203,7 @@
         border-radius: 4px;
         border-width: 2px;
     }
-    .dr-traveles{
+    .dr-traveles1{
         position: absolute;
         border-style: solid;
         border-color: rgb(205, 6, 132);
@@ -218,7 +218,7 @@
         border-radius: 4px;
         border-width: 2px;
     }
-    .dr-org{
+    .dr-org1{
         position: absolute;
         border-style: solid;
         border-color: rgb(232, 137, 5);
@@ -233,7 +233,7 @@
         border-radius: 4px;
         border-width: 2px;
     }
-    .dr-based-pay{
+    .dr-based-pay1{
         position: absolute;
         border-style: solid;
         border-color: rgb(4, 29, 248);
@@ -249,30 +249,30 @@
         border-width: 2px;
     }
 
-    .tot-card{
+    .tot-card1{
        box-shadow: 2px 2px 2px 2px rgb(234, 228, 228);
        height: 45vh;
        border-radius: 10px;
        margin: 10px;
        position : relative;
     }
-    .cms-btn{
+    .cms-btn1{
         height: 35px;
         width: 35px;
         border-radius: 20px;
         margin: 5px;
     }
-    .cms{
+    .cms1{
         margin-left: 3vw;
         display: flex;
         gap: 18rem;
     }
-    .dr-detail-cards{
+    .dr-detail-cards1{
         position: absolute;
         display: flex;
         margin-top: 25vh;
     }
-    .dr-details-card{
+    .dr-details-card1{
         box-shadow: 2px 2px 2px 2px white;
         background-color: #e0f7fa;
         width: 17vw;
@@ -282,14 +282,14 @@
         text-align: center;
         color: rgb(99,184,193);
     }
-    .dr-details-card h5 {
+    .dr-details-card1 h5 {
         color: black; /* Set text color for h6 */
         font-size: 12px;
          /* Set font size for h6 */
         
     }
     
-    .dr-details-card h6 {
+    .dr-details-card1 h6 {
         color: darkblue; /* Set text color for h5 */
         font-size: 14px; /* Set font size for h5 (larger than h6) */
         font-weight: bold; 
@@ -297,7 +297,7 @@
       
     }
    
-    .caller-btn{
+    .caller-btn1{
         height: 30px;
         width: 30px;
         border-radius: 20px;
@@ -309,7 +309,7 @@
         margin-top: 20vh;
         margin-left: 1vw;
     }
-    .telegram-btn{
+    .telegram-btn1{
         height: 30px;
         width: 30px;
         border-radius: 20px;
@@ -322,7 +322,7 @@
         margin-left: 6vw;
     }
     
-    .notification-btn{
+    .notification-btn1{
         height: 30px;
         width: 30px;
         border-radius: 20px;
@@ -334,7 +334,7 @@
         margin-top: 20vh;
         margin-left: 8.5vw;
     }
-    .message-btn{
+    .message-btn1{
         height: 30px;
         width: 30px;
         border-radius: 20px;
@@ -403,7 +403,7 @@
         background-color: rgb(161, 164, 236);
         margin: 10px;
     }
-    .rating-dr{
+    .rating-dr1{
         position: absolute;
         box-shadow: 2px 0px 2px 0px white;
         background-color: rgb(224, 189, 189);
@@ -411,10 +411,10 @@
         margin-top: 15vh;
         margin-left: 1.8vw;
     }
-    .cms-det{
+    .cms-det1{
         display: flex;
     }
-    .driver-form-details{
+    .driver-form-details1{
         box-shadow: 0px 0px 0px 0px black;
         border-style: solid;
         border-color: black;
@@ -425,113 +425,113 @@
         border-radius: 20px;
         margin-left: 35vw;
     }
-    .l-name{
+    .l-name1{
         padding-left: 10px;
     }
-    .l-age{
+    .l-age1{
         padding-left: 10px;
     }
-    .l-email{
+    .l-email1{
         padding-left: 10px;
     }
-    .l-mob{
+    .l-mob1{
         padding-left: 10px;
     }
-    .l-gen{
+    .l-gen1{
         padding-left: 10px;
     }
-    .l-dob{
+    .l-dob1{
         padding-left: 10px;
     }
-    .l-address{
+    .l-address1{
         padding-left: 10px;
     }
-    .l-lic{
+    .l-lic1{
         padding-left: 10px;
     }
-    .l-pan{
+    .l-pan1{
         padding-left: 10px;
     }
-    .l-exp{
+    .l-exp1{
         padding-left: 10px;
     }
-    .l-img{
+    .l-img1{
         padding-left: 10px;
     }
-    .dr-name{
+    .dr-name1{
         height: 4vh;
         width: 15vw;
         margin: 10px;
         border-radius: 10px;
         margin-left: 5vw;
     }
-    .dr-email{
+    .dr-email1{
         height: 4vh;
         width: 15vw;
         margin: 10px;
         border-radius: 10px;
         margin-left: 5vw;
     }
-    .dr-mob{
+    .dr-mob1{
         height: 4vh;
         width: 15vw;
         margin: 10px;
         border-radius: 10px;
         /* margin-left: 5vw; */
     }
-    .dr-gen{
+    .dr-gen1{
         height: 4vh;
         width: 15vw;
         margin: 10px;
         border-radius: 10px;
         margin-left: 5vw;
     }
-    .dr-dob{
+    .dr-dob1{
         height: 4vh;
         width: 15vw;
         margin: 10px;
         border-radius: 10px;
         margin-left: 6vw;
     }
-    .dr-age{
+    .dr-age1{
         height: 4vh;
         width: 15vw;
         margin: 10px;
         border-radius: 10px;
         margin-left: 6vw;
     }
-    .dr-address{
+    .dr-address1{
         height: 4vh;
         width: 15vw;
         margin: 10px;
         border-radius: 10px;
         margin-left: 4vw;
     }
-    .dr-lic{
+    .dr-lic1{
         height: 4vh;
         width: 15vw;
         margin: 10px;
         border-radius: 10px;
         margin-left: 5vw;
     }
-    .dr-aadhar{
+    .dr-aadhar1{
         height: 4vh;
         width: 15vw;
         margin: 10px;
         border-radius: 10px;
         margin-left: 3vw;
     }
-    .l-aadhar{
+    .l-aadhar1{
         margin: 10px;
     }
-    .dr-pan{
+    .dr-pan1{
         height: 4vh;
         width: 15vw;
         margin: 10px;
         border-radius: 10px;
         margin-left: 2vw;
     }
-    .dr-exp{
+    .dr-exp1{
         height: 4vh;
         width: 15vw;
         margin: 10px;
@@ -544,7 +544,7 @@
         margin: 10px;
         border-radius: 10px;
     } */
-    .dr-submit{
+    .dr-submit1{
         height: 4vh;
         width: 15vw;
         margin: 10px;
@@ -554,7 +554,7 @@
         background-color: rgb(95, 184, 232);
         cursor: pointer;
     }
-    .dr-pd{
+    .dr-pd1{
         height: 4vh;
         border: none;
         border-radius: 10px;
@@ -564,7 +564,7 @@
         margin-left: 40px;
     margin-right: 40px;
     }
-    .dr-lt{
+    .dr-lt1{
         height: 4vh;
         border: none;
         border-radius: 10px;
@@ -574,10 +574,10 @@
         margin-left: 40px;
     margin-right: 40px;
     }
-    .dr-lt:hover{
+    .dr-lt1:hover{
         background-color: rgb(132, 206, 244);
     }
-    .dr-fd{
+    .dr-fd1{
         height: 4vh;
         border: none;
         border-radius: 10px;
@@ -587,10 +587,10 @@
         margin-left: 40px;
     margin-right: 40px;
     }
-    .dr-fd:hover{
+    .dr-fd1:hover{
         background-color: rgb(132, 206, 244);
     }
-    .dr-th{
+    .dr-th1{
         height: 4vh;
         border: none;
         border-radius: 10px;
@@ -600,10 +600,10 @@
         margin-left: 40px;
     margin-right: 40px;
     }
-    .dr-th:hover{
+    .dr-th1:hover{
         background-color: rgb(132, 206, 244);
     }
-    .dr-vd{
+    .dr-vd1{
         height: 4vh;
         border: none;
         border-radius: 10px;
@@ -613,10 +613,10 @@
         margin-left: 40px;
     margin-right: 40px;
     }
-    .dr-vd:hover{
+    .dr-vd1:hover{
         background-color: rgb(132, 206, 244);
     }
-    .dr-cf{
+    .dr-cf1{
         height: 4vh;
         border: none;
         border-radius: 10px;
@@ -626,15 +626,15 @@
         margin-left: 40px;
     margin-right: 40px;
     }
-    .dr-cf:hover{
+    .dr-cf1:hover{
         background-color: rgb(132, 206, 244);
       
     }
-    .dr-pd:hover{
+    .dr-pd1:hover{
         background-color: rgb(132, 206, 244);
        
     }
-    .dr-btns{
+    .dr-btns1{
         margin-left: 5vw;
         box-shadow: 2px 2px 2px 2px white;
         background-color: rgb(240, 244, 246);
@@ -643,7 +643,7 @@
         width: 96vw;
         margin-left:10px;
     }
-    .information{
+    .information1{
         box-shadow: 2px 2px 2px 2px rgb(240, 237, 237);
         border-radius: 10px;
         margin: 20px;
@@ -652,84 +652,84 @@
         position: relative;
         
     }
-    .inf-pers{
+    .inf-pers1{
         /* display: flex;
         flex-wrap: wrap; */
         /* gap: 2rem;  */
         margin: 10px;
     }
-    .cur-car-img{
+    .cur-car-img1{
         height: 30vh;
         width: 15vw;
     }
-    .curr-ass-veh{
+    .curr-ass-veh1{
         height: 40vh;
         border-radius: 10px;
         box-shadow: 2px 2px 2px 2px rgb(233, 231, 228);
         margin: 10px;
         position: relative;
     }
-    .curr-ass-veh h4{
+    .curr-ass-veh1 h4{
         
         margin-top:30px;
     }
-    .view-veh-detail{
+    .view-veh-detail1{
         position: absolute;
         font-size: small;
         color: rgb(5, 175, 243);
         margin-top: 8.5vh;
         margin-left: 15vw;
     }
-    .lt-veh-num{
+    .lt-veh-num1{
         position: absolute;
         margin-top: 8vh;
         margin-left: 6vw;
     }
-    .lt-veh-id{
+    .lt-veh-id1{
         position: absolute;
         margin-left: 6vw;
         margin-top: 11vh;
     }
-    .cur-det{
+    .cur-det1{
         display: flex;
         flex-wrap: wrap;
         gap:10px;
     }
-    .curr-dets div {
+    .curr-dets1 div {
         flex: 1 1 200px; /* Adjust the minimum width if needed */
         display: flex;
         flex-direction: column;
       }
-      .curr-dets p {
+      .curr-dets1 p {
         display: flex;
         align-items: center;
         
       }
-      .curr-dets p + p {
+      .curr-dets1 p + p {
         margin-top: -10px;
         margin-bottom: 30px;; /* Space above the value */
       }
       
 
-.curr-dets p svg {
+.curr-dets1 p svg {
     margin-right: 8px; /* Space between icon and text */
   }
-    .veh-num-cras{
+    .veh-num-cras1{
         position: absolute;
         margin-left: 20vw ;
         margin-top: 7vh;
     }
-    .vehicle-brande-img{
+    .vehicle-brande-img1{
         position: absolute;
         height: 12vh;
         margin-left: 20vw;
     }
-    .veh-model{
+    .veh-model1{
         position: absolute;
         margin-top: 11vh;
         margin-left: 20vw;
     }
-    .view-veh-detail-cras{
+    .view-veh-detail-cras1{
         position: absolute;
         margin-top: 7vh;
         margin-left: 30vw;
@@ -737,15 +737,15 @@
         color: rgb(11, 167, 228);
         
     }
-    .right-det{
+    .right-det1{
         position: absolute;
         margin-left: 1vh;
         margin-top: 0.5vh;
     }
-    .view-veh-det{
+    .view-veh-det1{
         
     }
-    .curr-dets{
+    .curr-dets1{
         display: flex;
         flex-wrap: wrap;
         justify-content: space-evenly;
@@ -754,76 +754,76 @@
         margin-left: 18vw;
        
     }
-    .assg-client{
+    .assg-client1{
         position: absolute;
         margin-left: 40vw;
         margin-top:-20px;
         font-size: 14px;
     }
-    .assg-client-name{
+    .assg-client-name1{
         position: absolute;
         margin-left: 40vw;
         margin-top: 1vh;
         margin-right: 20px;
     }
-    .assg-loc{
+    .assg-loc1{
         position: absolute;
         margin-left: 50vw;
         margin-top:-20px;
         font-size: 14px;
     }
-    .assg-route{
+    .assg-route1{
         position: absolute;
         margin-top: 1vh;
         margin-left: 50vw;
     }
-    .assg-loc-chng{
+    .assg-loc-chng1{
         position: absolute;
         margin-top: 10vh;
         margin-left: 50vw;
         font-size: small;
         color: rgb(7, 177, 245);
     }
-    .assg-client-chng{
+    .assg-client-chng1{
         position: absolute;
         margin-left: 40vw;
         margin-top: 10vh;
         font-size: small;
         color: rgb(8, 184, 254);
     }
-    .brand{
+    .brand1{
         margin: 20px;
         margin-top:-50px;
     }
-    .model{
+    .model1{
         margin: 20px;
         margin-top:-50px;
     }
-    .regno{
+    .regno1{
         margin: 20px;
         margin-top:-50px;
     }
-    .color{
+    .color1{
         margin: 20px;
         margin-top:-50px;
     }
-    .seatcp{
+    .seatcp1{
         margin: 20px;
         margin-top:-50px;
     }
-    .fueltype{
+    .fueltype1{
         margin: 20px;
         margin-top:-50px;
     }
-    .mil{
+    .mil1{
         margin: 20px;
         margin-top:-50px;
     }
-    .man-year{
+    .man-year1{
         margin: 20px;
         margin-top:-50px;
     }
-    .inf-card-left{
+    .inf-card-left1{
         position: absolute;
         height: 30px;
         width: 30px;
@@ -833,7 +833,7 @@
         margin-bottom: 1vh;
         cursor: pointer;
     }
-    .tick{
+    .tick1{
         border-style: solid;
         border-radius: 20px;
         margin-top: 1vh;
@@ -842,10 +842,10 @@
         margin-top: 1vh;
          margin-left: 58vw; */
     }
-    .doc-up{
+    .doc-up1{
         margin-top: 1vh;
     }
-    .tick-inf-doc-upd{
+    .tick-inf-doc-upd1{
         height: 5vh;
         box-shadow: 2px 2px 2px 2px rgb(238, 237, 237);
         width: 20vw;
@@ -859,7 +859,7 @@
         background-color: rgb(80, 124, 80);
         text-align: center;
     }
-    .act-inact{
+    .act-inact1{
         position: absolute;
         border-style: solid;
         border-color: green;
@@ -871,7 +871,7 @@
         margin-left: 81vw;
         margin-top: 1.5vh;
     }
-    .mob-sym-btn{
+    .mob-sym-btn1{
         font-size: small;
         box-shadow: 2px 0px 2px 0px rgb(237, 232, 232);
         height: 30px;
@@ -879,7 +879,7 @@
         border-radius:20px ;
         border: none;
     }
-    .mob-infs, .mob-infs{
+    .mob-infs1, .mob-infs1{
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
@@ -891,14 +891,14 @@
     /* .mob-inf-det{
         
     } */
-    .mob-infss{
+    .mob-infss1{
         display: flex;
         flex-wrap: wrap;
         justify-content: space-evenly;
     }
-    .phone-num-h{
+    .phone-num-h1{
         line-height: 0.2;
     }
-    .phone-num{
+    .phone-num1{
         line-height: 0.2;
     }

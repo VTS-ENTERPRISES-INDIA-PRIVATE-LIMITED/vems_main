@@ -60,16 +60,16 @@ const Allvehicles = ({ customClass, selectedVehicle }) => {
   const mapRef = useRef(null);
   const polylineRef = useRef(null);
 
-  useEffect(() => {
-    if (polylineRef.current && mapRef.current) {
-      polylineRef.current.arrowheads({
-        size: '15px',
-        frequency: 'endonly',
-        fill: true,
-        color: '#FF0000',
-      });
-    }
-  }, [route]);
+  // useEffect(() => {
+  //   if (polylineRef.current && mapRef.current) {
+  //     polylineRef.current.arrowheads({
+  //       size: '15px',
+  //       frequency: 'endonly',
+  //       fill: true,
+  //       color: '#FF0000',
+  //     });
+  //   }
+  // }, [route]);
 
   const staticData = [
     { lat: 12.9833, lng: 80.2518, name: 'Cab 1', type: 'cab', id: 1 },
