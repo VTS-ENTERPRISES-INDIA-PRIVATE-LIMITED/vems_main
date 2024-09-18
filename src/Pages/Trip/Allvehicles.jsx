@@ -4,7 +4,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
 import 'leaflet-routing-machine';
-import 'leaflet-arrowheads';
+
 import './Allvehicles.css';
 import axios from 'axios';
 import vehicleData from '../../Components/vehicleData.json';
