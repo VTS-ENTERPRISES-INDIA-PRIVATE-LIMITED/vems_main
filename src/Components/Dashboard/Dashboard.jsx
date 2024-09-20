@@ -6,6 +6,7 @@ import AddVehicle from "../../Pages/VechileManagement/AddVehicle/AddVehicle";
 import ViewVehicle from "../../Pages/VechileManagement/ViewVehicle/ViewVehicle";
 import NewDashboard from "../../Pages//Dashboard/NewDashboard";
 import './Dashboard.css';
+import EscortRegister from '../../Pages/Escort/EscortRegister.jsx';
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -49,6 +50,9 @@ const Dashboard = () => {
           <li className={`slideBarLink ${activeTab === 'routeMgmt' ? 'active' : ''}`} onClick={() => handleNavClick('routeMgmt')}>
             Route Management
           </li>
+          <li className={`slideBarLink ${activeTab === 'escortMgmt' ? 'active' : ''}`} onClick={() => handleNavClick('escortMgmt')}>
+            Escort Management
+          </li>
         </ul>
       </div>
       <div className="heroContent">
@@ -58,6 +62,7 @@ const Dashboard = () => {
         {activeTab === 'viewVehicle' && <ViewVehicle/>}
         {activeTab === 'tripMgmt' && <TripManagement/>}
         {activeTab === 'routeMgmt' && <RouteManagement/>}
+        {activeTab === 'escortMgmt' && <EscortRegister/>}
       </div>
     </div>
   );

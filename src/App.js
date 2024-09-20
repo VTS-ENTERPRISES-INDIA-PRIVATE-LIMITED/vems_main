@@ -10,6 +10,7 @@ import LiveTracking from './Pages/LiveTracking/LiveTracking';
 import NewDashboard from './Pages/Dashboard/NewDashboard';
 import TripHistory from './Pages/TripHistory/TripHistory';
 import Excel from './Components/Excel/Excel';
+import EscortRegister  from './Pages/Escort/EscortRegister';
 
 const router = createBrowserRouter([
   {
@@ -65,8 +66,13 @@ const router = createBrowserRouter([
   },
   {
     path: "excel",
-    element: <Excel />,
+    element: <Excel/>,
   },
+  {
+    path:"escort",
+    element:<EscortRegister/>
+  }
+  
  
  
 ]);

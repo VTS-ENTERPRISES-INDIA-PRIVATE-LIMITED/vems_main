@@ -80,14 +80,14 @@ const VehicleForm = () => {
     Object.keys(vehicleDetails).forEach((key) => {
       if (!vehicleDetails[key] && key !== 'vehicleImage') { 
         formIsValid = false;
-        errors[key] = '${key} is required'; 
+        errors[key] =  `${key} is required1 `; 
       }
     });
 
    
     if (!vehicleDetails.vehicleImage.trim()) {
       formIsValid = false;
-      errors.vehicleImage = 'Vehicle image is required';
+      errors.vehicleImage = 'Vehicle image is required1';
     }
 
 
@@ -138,16 +138,16 @@ const VehicleForm = () => {
 
   return (
     <form className="vehicle-form" onSubmit={handleSubmit}>
-      <div className="form-header">
-        <h2 className='headddd'>Add Vehicle</h2>
-        <button type="submit" className="save-button" disabled={loading}>
+      <div className="form-header1">
+        <h2 className='headddd1'>Add Vehicle</h2>
+        <button type="submit" className="save-button1" disabled={loading}>
           {loading ? 'Saving...' : 'Save'}
         </button>
       </div>
 
-      <div className="form-content">
-        <div className="form-field">
-          <label className="required"><FaTruck className="icon11" />Vehicle Name:</label>
+      <div className="form-content1">
+        <div className="form-field1">
+          <label className="required1"><FaTruck className="icon11" />Vehicle Name:</label>
           <input 
             type="text" 
             name="vehicleName" 
@@ -156,8 +156,8 @@ const VehicleForm = () => {
           />
           {errors.vehicleName && <span className="error-message">{errors.vehicleType}</span>}
         </div>
-        <div className="form-field">
-          <label className="required"><FaTruck className="icon11" />Vehicle Type:</label>
+        <div className="form-field1">
+          <label className="required1"><FaTruck className="icon11" />Vehicle Type:</label>
           <input 
             type="text" 
             name="vehicleType" 
@@ -166,8 +166,8 @@ const VehicleForm = () => {
           />
           {errors.vehicleType && <span className="error-message">{errors.vehicleType}</span>}
         </div>
-        <div className="form-field">
-          <label className="required"><FaUser className="icon11" />Vehicle Number:</label>
+        <div className="form-field1">
+          <label className="required1"><FaUser className="icon11" />Vehicle Number:</label>
           <input 
             type="text" 
             name="vehicleNumber" 
@@ -177,7 +177,7 @@ const VehicleForm = () => {
           {errors.vehicleNumber && <span className="error-message">{errors.vehicleNumber}</span>}
         </div>
 
-        {/* <div className="form-field">
+        {/* <div className="form-field1">
           <label><FaIdCard className="icon11" />Vehicle ID:</label>
           <input 
             type="text" 
@@ -187,8 +187,8 @@ const VehicleForm = () => {
           />
         </div> */}
 
-        <div className="form-field">
-          <label className="required"><FaImage className="icon11" />Vehicle Image:</label>
+        <div className="form-field1">
+          <label className="required1"><FaImage className="icon11" />Vehicle Image:</label>
           <input 
             type="file" 
             name="vehicleImage" 
@@ -198,8 +198,8 @@ const VehicleForm = () => {
           {errors.vehicleImage && <span className="error-message">{errors.vehicleImage}</span>}
         </div>
 
-        {/* <div className="form-field">
-          <label className="required"><FaIdCard className="icon11" />Registration Number:</label>
+        {/* <div className="form-field1">
+          <label className="required1"><FaIdCard className="icon11" />Registration Number:</label>
           <input 
             type="text" 
             name="registrationNumber" 
@@ -209,8 +209,8 @@ const VehicleForm = () => {
           {errors.registrationNumber && <span className="error-message">{errors.registrationNumber}</span>}
         </div> */}
 {/* 
-        <div className="form-field">
-          <label className="required"><FaCogs className="icon11" />Engine Number:</label>
+        <div className="form-field1">
+          <label className="required1"><FaCogs className="icon11" />Engine Number:</label>
           <input 
             type="text" 
             name="engineNumber" 
@@ -219,8 +219,8 @@ const VehicleForm = () => {
           />
           {errors.engineNumber && <span className="error-message">{errors.engineNumber}</span>}
         </div> */}
-        <div className="form-field">
-          <label className="required"><FaCogs className="icon11" />Insurance  Number:</label>
+        <div className="form-field1">
+          <label className="required1"><FaCogs className="icon11" />Insurance  Number:</label>
           <input 
             type="text" 
             name="insuranceNumber" 
@@ -230,8 +230,8 @@ const VehicleForm = () => {
           {errors.insuranceNumber && <span className="error-message">{errors.insuranceNumber}</span>}
         </div>
 
-        {/* <div className="form-field">
-          <label className="required"><FaCogs className="icon11" />Chassis Number:</label>
+        {/* <div className="form-field1">
+          <label className="required1"><FaCogs className="icon11" />Chassis Number:</label>
           <input 
             type="text" 
             name="chassisNumber" 
@@ -241,8 +241,8 @@ const VehicleForm = () => {
           {errors.chassisNumber && <span className="error-message">{errors.chassisNumber}</span>}
         </div> */}
 
-        <div className="form-field">
-          <label className="required"><FaTachometerAlt className="icon11" />Mileage:</label>
+        <div className="form-field1">
+          <label className="required1"><FaTachometerAlt className="icon11" />Mileage:</label>
           <input 
             type="number" 
             name="mileage" 
@@ -252,8 +252,8 @@ const VehicleForm = () => {
           {errors.mileage && <span className="error-message">{errors.mileage}</span>}
         </div>
 
-         <div className="form-field">
-          <label className="required"><FaGasPump className="icon11" />Fuel Type:</label>
+         <div className="form-field1">
+          <label className="required1"><FaGasPump className="icon11" />Fuel Type:</label>
           <input 
             type="text" 
             name="fuelType" 
@@ -263,8 +263,8 @@ const VehicleForm = () => {
           {errors.fuelType && <span className="error-message">{errors.fuelType}</span>}
         </div> 
 
-        <div className="form-field">
-          <label className="required"><FaUsers className="icon11" />Seat Capacity:</label>
+        <div className="form-field1">
+          <label className="required1"><FaUsers className="icon11" />Seat Capacity:</label>
           <input 
             type="number" 
             name="seatCapacity" 
@@ -274,8 +274,8 @@ const VehicleForm = () => {
           {errors.seatCapacity && <span className="error-message">{errors.seatCapacity}</span>}
         </div>
 
-        <div className="form-field">
-          <label className="required"><FaUser className="icon11" />Vendor Name:</label>
+        <div className="form-field1">
+          <label className="required1"><FaUser className="icon11" />Vendor Name:</label>
           <input 
             type="text" 
             name="vendorName" 
@@ -285,8 +285,8 @@ const VehicleForm = () => {
           {errors.vendorName && <span className="error-message">{errors.vendorName}</span>}
         </div>
 
-        {/* <div className="form-field">
-          <label className="required"><FaListAlt className="icon11" />Vendor ID:</label>
+        {/* <div className="form-field1">
+          <label className="required1"><FaListAlt className="icon11" />Vendor ID:</label>
           <input 
             type="text" 
             name="vendorId" 
@@ -296,8 +296,8 @@ const VehicleForm = () => {
           {errors.vendorId && <span className="error-message">{errors.vendorId}</span>}
         </div> */}
 
-        <div className="form-field">
-          <label className="required"><FaCalendarAlt className="icon11" />Year of Manufacturing:</label>
+        <div className="form-field1">
+          <label className="required1"><FaCalendarAlt className="icon11" />Year of Manufacturing:</label>
           <input 
             type="text" 
             name="yearOfManufacturing" 

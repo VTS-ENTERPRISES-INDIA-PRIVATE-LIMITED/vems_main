@@ -1,195 +1,50 @@
 
-.table-container {
-  padding: 12px;
-  background-color: #f8f8f8;
-  border-radius: 8px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.table-header {
+.two-column-form {
   display: flex;
-  align-items: center;
-  margin-bottom: 16px;
-  padding: 8px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  flex-wrap: wrap;
+  gap: 10px 40px; /* Adjust the gap between form items */
 }
 
-.table-header .ant-input {
-  margin-left: 8px;
-  width: 200px;
-  border-radius: 4px;
-}
-
-.table-header .ant-input-group {
-  display: flex;
-  align-items: center;
-}
-
-.table-header .ant-input-group-addon {
-  margin-left: 8px;
-}
-
-.ant-table {
-  background-color: #fff;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.ant-table-thead > tr > th {
-  background-color: #f0f0f0;
-  color: #333;
-  font-weight: 600;
-  padding: 8px 12px; 
-}
-
-.ant-table-tbody > tr > td {
-  padding: 8px 12px; 
-}
-
-.ant-table-tbody > tr:nth-child(odd) {
-  background-color: #fafafa;
-}
-
-.ant-table-tbody > tr:hover {
-  background-color: #f5f5f5;
-}
-
-.ant-table-pagination {
-  margin: 16px 0;
-  text-align: right;
-}
-
-.ant-btn-link {
-  color: #1890ff;
-}
-
-.ant-btn-link:hover {
-  color: #40a9ff;
-}
-
-.ant-btn-danger {
-  color: #ff4d4f;
-}
-
-.ant-btn-danger:hover {
-  color: #ff7875;
-}
-
-
-.ant-modal {
-  max-width: 800px; 
-}
-
-.ant-modal-header {
-  background-color: #f5f5f5; 
-  border-bottom: 1px solid #e8e8e8; 
-}
-
-.ant-modal-title {
-  font-size: 1.2rem; 
-  color: #333; 
-}
-
-.ant-modal-body {
-  padding: 24px; 
-}
-
-.ant-form-item-label {
-  font-weight: bold; 
-  color: #333; 
-}
-
-.ant-form-item {
-  margin-bottom: 16px; 
-}
-
-.ant-input {
-  border-radius: 4px; 
-  border: 1px solid #d9d9d9; 
-}
-
-.ant-upload {
-  margin-top: 16px; 
-}
-
-.ant-upload-button {
-  border-radius: 4px; 
-}
-
-.ant-btn {
-  border-radius: 4px; 
-}
-
-.image11 {
-  display: block; 
-  margin: 0 auto; 
-}
-
-
-@media (max-width: 1200px) {
-  .table-container {
-    padding: 10px;
-  }
-
-  .table-header .ant-input {
-    width: 150px;
-  }
-}
-
-@media (max-width: 992px) {
-  .table-header .ant-input {
-    width: 120px;
-  }
-
-  .ant-table-tbody > tr > td {
-    padding: 8px 10px; 
-  }
-
-  .ant-table-thead > tr > th {
-    padding: 6px 10px; 
-    font-size: 0.875rem; 
-  }
+.two-column-form .ant-form-item {
+  margin-bottom: 10px; /* Adjust this value for less space between fields */
+  margin-top: 5px;    /* Add margin-top to control space above fields */
 }
 
 @media (max-width: 768px) {
-  .table-container {
-    padding: 8px;
-  }
-
-  .table-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .table-header .ant-input {
-    width: 100%;
-  }
-
-  .ant-table {
-    font-size: 0.875rem; 
-  }
-
-  .ant-table-pagination {
-    font-size: 0.75rem; 
+  .two-column-form .ant-form-item {
+    flex: 1 1 100%; /* For smaller screens, make the form items full width */
   }
 }
 
-@media (max-width: 576px) {
-  .table-container {
-    padding: 6px;
-  }
 
-  .ant-modal {
-    width: 90%; 
+.edit-button {
+  background-color: #04AA6D; /* Green */
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
   }
-
-  .ant-form-item-label {
-    font-size: 0.875rem; 
+  .edit-button:hover{
+    background-color: green;
+    transform: scale(1.05); 
   }
-
-  .image11 {
-    width: 100%; 
-  }
+.delete-button {
+  background-color: rgb(255, 0, 0) !important; /* Green */
+  border: none;
+  color: white !important;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-left:10px;
+ 
 }
+.delete-button:hover {
+  background-color: rgb(200, 0, 0) !important; /* Darker red on hover */
+  transform: scale(1.05); /* Slightly scale up the button */
+}
+

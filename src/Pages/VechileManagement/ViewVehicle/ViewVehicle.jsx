@@ -1,20 +1,18 @@
 import { Table, Button, Input, Modal, Form, Upload } from 'antd';
-import { SearchOutlined, UploadOutlined } from '@ant-design/icons';
+import { SearchOutlined, EyeOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom'; 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './ViewVehicle.css'; 
+import AddVehicle from '../AddVehicle/AddVehicle';
 
 const ViewVehicle = () => {
   const navigate = useNavigate(); 
   const [vehicles, setVehicles] = useState([]);
-  const [searchText, setSearchText] = useState({
-    vehicleName: '',
-    vehicleNumber: '',
-    vendorName: ''
-  });
+  const [searchText, setSearchText] = useState('');
   const [editingVehicle, setEditingVehicle] = useState(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isAddVehicleModalVisible, setIsAddVehicleModalVisible] = useState(false); 
 
   useEffect(() => {
     axios.get("http://localhost:8081/vehicles")
@@ -26,11 +24,8 @@ const ViewVehicle = () => {
       });
   }, []);
 
-  const handleSearch = (value, key) => {
-    setSearchText({
-      ...searchText,
-      [key]: value ? value.toLowerCase() : ''
-    });
+  const handleSearch = (value) => {
+    setSearchText(value ? value.toLowerCase() : '');
   };
 
   const handleEdit = (vehicle) => {
@@ -41,7 +36,7 @@ const ViewVehicle = () => {
   const handleSave = () => {
     axios.put(`http://localhost:8081/vehicles/${editingVehicle.vehicleId}`, editingVehicle)
       .then((response) => {
-        setVehicles(vehicles.map(v =>v.vehicleId===editingVehicle.vehicleId ?editingVehicle : v));
+        setVehicles(vehicles.map(v => v.vehicleId === editingVehicle.vehicleId ? editingVehicle : v));
         setIsModalVisible(false);
       })
       .catch((error) => {
@@ -71,35 +66,15 @@ const ViewVehicle = () => {
     });
   };
 
-  const handleImageUpload = async (file) => {
-    const formData = new FormData();
-    formData.append('file', file);
-    
-    try {
-      const response = await axios.post('http://localhost:8081/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      const imageUrl = response.data.url; 
-      
-     
-      setEditingVehicle(prev => ({
-        ...prev,
-        vehicleImage: imageUrl
-      }));
-    } catch (error) {
-      console.error('Error uploading image:', error);
-    }
-    
-    return false; 
+  const handleAddVehicle = () => {
+    setIsAddVehicleModalVisible(true);
   };
 
   const filteredVehicles = vehicles
     .filter(vehicle =>
-      (vehicle.vehicleName ||'').toLowerCase().includes(searchText.vehicleName) &&
-      (vehicle.vehicleNumber ||'').toLowerCase().includes(searchText.vehicleNumber) &&
-      (vehicle.vendorName ||'').toLowerCase().includes(searchText.vendorName)
+      (vehicle.vehicleName || '').toLowerCase().includes(searchText) ||
+      (vehicle.vehicleNumber || '').toLowerCase().includes(searchText) ||
+      (vehicle.vendorName || '').toLowerCase().includes(searchText)
     )
     .map((vehicle, index) => ({
       ...vehicle,
@@ -113,47 +88,17 @@ const ViewVehicle = () => {
       key: 'sno',
     },
     {
-      title: (
-        <span>
-          Vehicle Name
-          <Input
-            placeholder="Search"
-            prefix={<SearchOutlined />}
-            onChange={e => handleSearch(e.target.value, 'vehicleName')}
-            style={{ width: 100, marginLeft: 8 }}
-          />
-        </span>
-      ),
+      title: 'Vehicle Name',
       dataIndex: 'vehicleName',
       key: 'vehicleName',
     },
     {
-      title: (
-        <span>
-          Reg. No
-          <Input
-            placeholder="Search"
-            prefix={<SearchOutlined />}
-            onChange={e => handleSearch(e.target.value, 'vehicleNumber')}
-            style={{ width: 100, marginLeft: 8 }}
-          />
-        </span>
-      ),
+      title: 'Reg. No',
       dataIndex: 'vehicleNumber',
       key: 'vehicleNumber',
     },
     {
-      title: (
-        <span>
-          Vendor Name
-          <Input
-            placeholder="Search"
-            prefix={<SearchOutlined />}
-            onChange={e => handleSearch(e.target.value, 'vendorName')}
-            style={{ width: 100, marginLeft: 8 }}
-          />
-        </span>
-      ),
+      title: 'Vendor Name',
       dataIndex: 'vendorName',
       key: 'vendorName',
     },
@@ -162,8 +107,8 @@ const ViewVehicle = () => {
       key: 'actions',
       render: (text, record) => (
         <span>
-          <Button type="link" onClick={() => handleEdit(record)}>Edit</Button>
-          <Button type="link" danger onClick={() => handleDelete(record)}>Delete</Button>
+          <Button type="link" className="edit-button" onClick={() => handleEdit(record)}>Edit</Button>
+          <Button type="link" danger className="delete-button" onClick={() => handleDelete(record)}>Delete</Button>
         </span>
       ),
     },
@@ -171,101 +116,106 @@ const ViewVehicle = () => {
       title: 'View More',
       key: 'viewMore',
       render: (text, record) => (
-        <Button type="link" onClick={() => navigate(`/NewDashboard`, { state: { vehicle: record } })}>
-          View More
-        </Button>
+        <Button type="link" icon={<EyeOutlined />} onClick={() => navigate(`/NewDashboard`, { state: { vehicle: record } })} />
       ),
     },
   ];
 
   return (
     <>
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 16 }}>
+        <Button type="primary" onClick={handleAddVehicle}>
+          Add Vehicle +
+        </Button>
+        <Input
+          placeholder="Search Vehicles"
+          prefix={<SearchOutlined />}
+          onChange={e => handleSearch(e.target.value)}
+          style={{ width: 200 }}
+        />
+      </div>
       <Table
         dataSource={filteredVehicles}
         columns={columns}
         rowKey="sno"
         pagination={{ pageSize: 7 }}
-        bordered 
+        
       />
       
-     
       <Modal
-        title="Edit Vehicle"
-        visible={isModalVisible}
-        onOk={handleSave}
-        onCancel={() => setIsModalVisible(false)}
+  title="Edit Vehicle"
+  visible={isModalVisible}
+  onOk={handleSave}
+  onCancel={() => setIsModalVisible(false)}
+  width={800}
+  style={{ marginRight: '200px' }}
+>
+  <Form layout="vertical" className="two-column-form">
+    <Form.Item label="Vehicle Name">
+      <Input
+        value={editingVehicle?.vehicleName}
+        onChange={e => setEditingVehicle({ ...editingVehicle, vehicleName: e.target.value })}
+      />
+    </Form.Item>
+    <Form.Item label="Vehicle No">
+      <Input
+        value={editingVehicle?.vehicleNumber}
+        onChange={e => setEditingVehicle({ ...editingVehicle, vehicleNumber: e.target.value })}
+      />
+    </Form.Item>
+    <Form.Item label="Vendor Name">
+      <Input
+        value={editingVehicle?.vendorName}
+        onChange={e => setEditingVehicle({ ...editingVehicle, vendorName: e.target.value })}
+      />
+    </Form.Item>
+    <Form.Item label="Vehicle Type">
+      <Input
+        value={editingVehicle?.vehicleType}
+        onChange={e => setEditingVehicle({ ...editingVehicle, vehicleType: e.target.value })}
+      />
+    </Form.Item>
+    <Form.Item label="Year of Manufacturing">
+      <Input
+        value={editingVehicle?.yearOfManufacturing}
+        onChange={e => setEditingVehicle({ ...editingVehicle, yearOfManufacturing: e.target.value })}
+      />
+    </Form.Item>
+    <Form.Item label="Mileage">
+      <Input
+        value={editingVehicle?.mileage}
+        onChange={e => setEditingVehicle({ ...editingVehicle, mileage: e.target.value })}
+      />
+    </Form.Item>
+    <Form.Item label="Insurance Number">
+      <Input
+        value={editingVehicle?.insuranceNumber}
+        onChange={e => setEditingVehicle({ ...editingVehicle, insuranceNumber: e.target.value })}
+      />
+    </Form.Item>
+    <Form.Item label="Fuel Type">
+      <Input
+        value={editingVehicle?.fuelType}
+        onChange={e => setEditingVehicle({ ...editingVehicle, fuelType: e.target.value })}
+      />
+    </Form.Item>
+    <Form.Item label="Seat Capacity">
+      <Input
+        value={editingVehicle?.seatCapacity}
+        onChange={e => setEditingVehicle({ ...editingVehicle, seatCapacity: e.target.value })}
+      />
+    </Form.Item>
+  </Form>
+</Modal>
+
+      <Modal
+        visible={isAddVehicleModalVisible}
+        onCancel={() => setIsAddVehicleModalVisible(false)}
+        footer={null}
+        width={800}
+        style={{ marginRight: '200px' }}
       >
-        <Form layout="vertical">
-          <Form.Item label="Vehicle Name">
-            <Input
-              value={editingVehicle?.vehicleName}
-              onChange={e => setEditingVehicle({ ...editingVehicle, vehicleName: e.target.value })}
-            />
-          </Form.Item>
-          <Form.Item label="Vehicle No">
-            <Input
-              value={editingVehicle?.vehicleNumber}
-              onChange={e => setEditingVehicle({ ...editingVehicle, vehicleNumber: e.target.value })}
-            />
-          </Form.Item>
-          <Form.Item label="Vendor Name">
-            <Input
-              value={editingVehicle?.vendorName}
-              onChange={e => setEditingVehicle({ ...editingVehicle, vendorName: e.target.value })}
-            />
-          </Form.Item>
-          <Form.Item label="Vehicle Type">
-            <Input
-              value={editingVehicle?.vehicleType}
-              onChange={e => setEditingVehicle({ ...editingVehicle, vehicleType: e.target.value })}
-            />
-          </Form.Item>
-          <Form.Item label="Year of Manufacturing">
-            <Input
-              value={editingVehicle?.yearOfManufacturing}
-              onChange={e => setEditingVehicle({ ...editingVehicle,yearOfManufacturing : e.target.value })}
-            />
-          </Form.Item>
-          <Form.Item label="Mileage">
-            <Input
-              value={editingVehicle?.mileage}
-              onChange={e => setEditingVehicle({ ...editingVehicle, mileage: e.target.value })}
-            />
-          </Form.Item>
-          <Form.Item label="Insurance Number">
-            <Input
-              value={editingVehicle?.insuranceNumber}
-              onChange={e => setEditingVehicle({ ...editingVehicle, insuranceNumber: e.target.value })}
-            />
-          </Form.Item>
-          <Form.Item label="Fuel Type">
-            <Input
-              value={editingVehicle?.fuelType}
-              onChange={e => setEditingVehicle({ ...editingVehicle, fuelType: e.target.value })}
-            />
-          </Form.Item>
-          <Form.Item label="Seat Capacity">
-            <Input
-              value={editingVehicle?.seatCapacity}
-              onChange={e => setEditingVehicle({ ...editingVehicle, seatCapacity: e.target.value })}
-            />
-          </Form.Item>
-          {/* <Form.Item label="Vehicle Image">
-            <Upload
-              beforeUpload={handleImageUpload}
-              showUploadList={false}
-            >
-              <Button icon={<UploadOutlined />}>Select Other Image</Button>
-            </Upload>
-            {editingVehicle?.vehicleImage && (
-              <img
-                src={`${editingVehicle.vehicleImage}?${new Date().getTime()}`} 
-                alt="Vehicle"
-                style={{ width: '30%', height: '20vh', marginTop: 8 }}
-              />
-            )}
-          </Form.Item> */}
-        </Form>
+        <AddVehicle onClose={() => setIsAddVehicleModalVisible(false)} />
       </Modal>
     </>
   );
