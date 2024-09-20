@@ -82,7 +82,7 @@ function NewDashboard(){
     ]
     const navigate = useNavigate();
     const handlebackdrpro=()=>{
-       navigate("/")
+       navigate("/dashboard")
     }
    
      const fun=[

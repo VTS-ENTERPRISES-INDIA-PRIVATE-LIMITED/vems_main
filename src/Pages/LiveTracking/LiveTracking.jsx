@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './LiveTracking.css'; 
 import RouteManagement from '../RouteManagement/RouteManagement/RouteManagement';
+import Allvehicles from '../Trip/Allvehicles';
 
 
 const LiveTracking = () => {
@@ -48,7 +49,7 @@ const LiveTracking = () => {
         <div className="card vehicleIdCard" style={{ backgroundColor: cardColors.vehicleIdCard }}>
           <div className="cardContent">
             <h3>Vehicle ID</h3>
-            <p>{currentVehicle.vehicleId}</p>
+            <p>{currentVehicle.vehicleId}</p> 
           </div>
         </div>
         <div className="card driverNameCard" style={{ backgroundColor: cardColors.driverNameCard }}>
@@ -59,7 +60,7 @@ const LiveTracking = () => {
         </div>
         <div className="card startTimeCard" style={{ backgroundColor: cardColors.startTimeCard }}>
           <div className="cardContent">
-            <h3>Start Time</h3>
+            <h3>Start Time</h3>  
             <p>{currentVehicle.startTime}</p>
           </div>
         </div>
@@ -82,7 +83,7 @@ const LiveTracking = () => {
           </div>
         </div>
       </div>
-      <RouteManagement customClass="liveTrackingMap" />
+      <Allvehicles customClass="liveTrackingMap" />
     </div>
   );
 };

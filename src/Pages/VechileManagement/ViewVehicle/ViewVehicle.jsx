@@ -39,7 +39,7 @@ const ViewVehicle = () => {
   };
 
   const handleSave = () => {
-    axios.put(`https://silent-wave-76445.pktriot.net/vehicles/${editingVehicle.vehicleId}`, editingVehicle)
+    axios.put(`http://localhost:8081/vehicles/${editingVehicle.vehicleId}`, editingVehicle)
       .then((response) => {
         setVehicles(vehicles.map(v =>v.vehicleId===editingVehicle.vehicleId ?editingVehicle : v));
         setIsModalVisible(false);
@@ -50,13 +50,25 @@ const ViewVehicle = () => {
   };
 
   const handleDelete = (vehicle) => {
-    axios.delete(`https://silent-wave-76445.pktriot.net/vehicles/${vehicle.vehicleId}`)
-      .then((response) => {
-        setVehicles(vehicles.filter(v => v.vehicleId!== vehicle.vehicleId));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    Modal.confirm({
+      title: 'Are you sure you want to delete this vehicle?',
+      content: 'This action cannot be undone.',
+      okText: 'Yes',
+      okType: 'danger',
+      cancelText: 'No',
+      onOk: () => {
+        axios.delete(`http://localhost:8081/vehicles/${vehicle.vehicleId}`)
+          .then((response) => {
+            setVehicles(vehicles.filter(v => v.vehicleId !== vehicle.vehicleId));
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      },
+      onCancel: () => {
+        console.log('Cancel delete action');
+      }
+    });
   };
 
   const handleImageUpload = async (file) => {
@@ -64,7 +76,7 @@ const ViewVehicle = () => {
     formData.append('file', file);
     
     try {
-      const response = await axios.post('https://silent-wave-76445.pktriot.net/upload', formData, {
+      const response = await axios.post('http://localhost:8081/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -208,16 +220,16 @@ const ViewVehicle = () => {
               onChange={e => setEditingVehicle({ ...editingVehicle, vehicleType: e.target.value })}
             />
           </Form.Item>
-          <Form.Item label="Engine Number">
+          <Form.Item label="Year of Manufacturing">
             <Input
-              value={editingVehicle?.engineNumber}
-              onChange={e => setEditingVehicle({ ...editingVehicle, engineNumber: e.target.value })}
+              value={editingVehicle?.yearOfManufacturing}
+              onChange={e => setEditingVehicle({ ...editingVehicle,yearOfManufacturing : e.target.value })}
             />
           </Form.Item>
-          <Form.Item label="Chassis Number">
+          <Form.Item label="Mileage">
             <Input
-              value={editingVehicle?.chassisNumber}
-              onChange={e => setEditingVehicle({ ...editingVehicle, chassisNumber: e.target.value })}
+              value={editingVehicle?.mileage}
+              onChange={e => setEditingVehicle({ ...editingVehicle, mileage: e.target.value })}
             />
           </Form.Item>
           <Form.Item label="Insurance Number">
