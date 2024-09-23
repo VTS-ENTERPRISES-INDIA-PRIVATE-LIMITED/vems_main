@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
+import { jsPDF } from 'jspdf';
+import 'jspdf-autotable';
 import './TripHistory.css';
+import { DownloadOutlined } from '@ant-design/icons';
+import { Box, Button, InputAdornment, TextField } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -16,7 +21,7 @@ const TripHistory = () => {
       driverName: "John Doe",
       numberOfEmployees: 4,
       startTime: "2024-09-11T08:00:00Z",
-      endTime: "-", 
+      endTime: "-",
       status: "Ongoing"
     },
     {
@@ -55,15 +60,60 @@ const TripHistory = () => {
       return 0;
     });
 
+  const downloadPDF = () => {
+    const doc = new jsPDF();
+    doc.text('Trip History', 14, 16);
+    
+    const headers = ['Trip ID', 'Vehicle ID', 'Driver Name', 'No. of Employees Travelled', 'Start Time', 'End Time', 'Status'];
+    const data = filteredTrips.map(trip => [
+      trip.tripId,
+      trip.vehicleId,
+      trip.driverName,
+      trip.numberOfEmployees,
+      formatDate(trip.startTime),
+      trip.status === 'Ongoing' ? '-' : formatDate(trip.endTime),
+      trip.status
+    ]);
+
+    doc.autoTable({
+      head: [headers],
+      body: data,
+      startY: 20,
+    });
+
+    doc.save('TripHistory.pdf');
+  };
+
   return (
     <div className="trip-history">
       <div className="search-bar12">
-        <input
-          type="text"
-          placeholder="Search by Trip ID, Vehicle ID, or Driver Name..."
-          onChange={handleSearch}
-          value={searchTerm}
+        <TextField
+          size="small"
+          placeholder="Search"
+          variant="outlined"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon />
+              </InputAdornment>
+            ),
+            sx: { width: 150, borderRadius: '20px' },
+          }}
+          onChange={handleSearch} // Call search on input change
         />
+        <Button
+          variant="outlined"
+          startIcon={<DownloadOutlined />}
+          style={{
+            borderColor: 'green',
+            color: 'green',
+            marginLeft: 100,
+            borderRadius: '20px',
+          }}
+          onClick={downloadPDF} // Call downloadPDF when clicked
+        >
+          Download As PDF
+        </Button>
       </div>
 
       <table>
@@ -86,9 +136,7 @@ const TripHistory = () => {
               <td>{trip.driverName}</td>
               <td>{trip.numberOfEmployees}</td>
               <td>{formatDate(trip.startTime)}</td>
-              <td>
-                {trip.status === 'Ongoing' ? '-' : formatDate(trip.endTime)}
-              </td>
+              <td>{trip.status === 'Ongoing' ? '-' : formatDate(trip.endTime)}</td>
               <td>{trip.status}</td>
             </tr>
           ))}

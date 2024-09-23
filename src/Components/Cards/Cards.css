@@ -1,94 +1,33 @@
-.container1 {
+.cards-container {
   display: flex;
-  width: 100%;
-  box-sizing: border-box;
-  justify-content: space-between; 
+  flex-direction: column; /* Arrange elements in a column */
+  width: 50%; /* Set width to 50% */
+  padding: 10px; /* Optional padding */
 }
 
-.heading {
-  font-size: 32px;
-  margin-top: -20px;
-  margin-bottom: 10px;
-  color: cadetblue;
-  margin-left:10px;
-}
-
-.heading3 {
-  display: block;
-  font-size: 1.17em;
-  margin-bottom: 4px; 
-}
-
-.card1 p {
-  margin: 0; 
+.search-bar-container {
+  margin-bottom: 20px; /* Space below the search bar */
 }
 
 .cards--cards {
   display: flex;
-  flex-wrap: wrap; 
-  box-sizing: border-box;
- 
+  flex-wrap: wrap; /* Allow wrapping */
+  justify-content: space-between; /* Space between cards */
 }
 
-.search-bar-container {
-  width: 150%;
-  margin-left:10px;
-}
-
-.cards-container1 {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap; 
-  gap: 16px;
-  width: 50%; 
-  box-sizing: border-box;
-  margin-left:-20px;
-}
-
-
-.card1:nth-child(odd) {
-  background: #e6e6e6; 
-}
-
-.card1:nth-child(even) {
-  background: antiquewhite; 
-}
-
-
-.card1 {
+.card {
+  width: calc(50% - 10px); /* Two cards per row, adjusting for margin */
+  box-sizing: border-box; /* Include padding and border in width */
+  margin-bottom: 20px; /* Space below each card */
   background: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  width: 60%; 
-  box-sizing: border-box;
-  margin: 10px;
   transition: background-color 0.3s ease;
 }
 
-.card1.active-card {
+.card.active-card {
   background-color: #e6e6e6;
   border: 2px solid #00bcd4; 
-}
-
-.active-card-details {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap; 
-  gap: 16px;
-  width: 30%; 
-  box-sizing: border-box;
-}
-
-.search-bar-container {
-  margin-bottom: 20px;
-}
-
-.search-bar {
-  padding: 8px;
-  width: 50%;
-  border-radius: 4px;
-  border: 1px solid #ddd;
 }

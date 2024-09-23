@@ -34,9 +34,9 @@ const ViewVehicle = () => {
   };
 
   const handleSave = () => {
-    axios.put(`http://localhost:8081/vehicles/${editingVehicle.vehicleId}`, editingVehicle)
+    axios.put(`http://localhost:8081/vehicles/${editingVehicle.VehicleId}`, editingVehicle)
       .then((response) => {
-        setVehicles(vehicles.map(v => v.vehicleId === editingVehicle.vehicleId ? editingVehicle : v));
+        setVehicles(vehicles.map(v => v.VehicleId === editingVehicle.VehicleId ? editingVehicle : v));
         setIsModalVisible(false);
       })
       .catch((error) => {
@@ -52,9 +52,9 @@ const ViewVehicle = () => {
       okType: 'danger',
       cancelText: 'No',
       onOk: () => {
-        axios.delete(`http://localhost:8081/vehicles/${vehicle.vehicleId}`)
+        axios.delete(`http://localhost:8081/vehicles/${vehicle.VehicleId}`)
           .then((response) => {
-            setVehicles(vehicles.filter(v => v.vehicleId !== vehicle.vehicleId));
+            setVehicles(vehicles.filter(v => v.VehicleId !== vehicle.VehicleId));
           })
           .catch((error) => {
             console.log(error);
@@ -72,9 +72,9 @@ const ViewVehicle = () => {
 
   const filteredVehicles = vehicles
     .filter(vehicle =>
-      (vehicle.vehicleName || '').toLowerCase().includes(searchText) ||
-      (vehicle.vehicleNumber || '').toLowerCase().includes(searchText) ||
-      (vehicle.vendorName || '').toLowerCase().includes(searchText)
+      (vehicle.VehicleName || '').toLowerCase().includes(searchText) ||
+      (vehicle.VehicleNumber || '').toLowerCase().includes(searchText) ||
+      (vehicle.VendorName || '').toLowerCase().includes(searchText)
     )
     .map((vehicle, index) => ({
       ...vehicle,
@@ -89,18 +89,18 @@ const ViewVehicle = () => {
     },
     {
       title: 'Vehicle Name',
-      dataIndex: 'vehicleName',
-      key: 'vehicleName',
+      dataIndex: 'VehicleName',
+      key: 'VehicleName',
     },
     {
       title: 'Reg. No',
-      dataIndex: 'vehicleNumber',
-      key: 'vehicleNumber',
+      dataIndex: 'VehicleNumber',
+      key: 'VehicleNumber',
     },
     {
       title: 'Vendor Name',
-      dataIndex: 'vendorName',
-      key: 'vendorName',
+      dataIndex: 'VendorName',
+      key: 'VendorName',
     },
     {
       title: 'Actions',
@@ -153,56 +153,56 @@ const ViewVehicle = () => {
   <Form layout="vertical" className="two-column-form">
     <Form.Item label="Vehicle Name">
       <Input
-        value={editingVehicle?.vehicleName}
-        onChange={e => setEditingVehicle({ ...editingVehicle, vehicleName: e.target.value })}
+        value={editingVehicle?.VehicleName}
+        onChange={e => setEditingVehicle({ ...editingVehicle, VehicleName: e.target.value })}
       />
     </Form.Item>
     <Form.Item label="Vehicle No">
       <Input
-        value={editingVehicle?.vehicleNumber}
-        onChange={e => setEditingVehicle({ ...editingVehicle, vehicleNumber: e.target.value })}
+        value={editingVehicle?.VehicleNumber}
+        onChange={e => setEditingVehicle({ ...editingVehicle, VehicleNumber: e.target.value })}
       />
     </Form.Item>
     <Form.Item label="Vendor Name">
       <Input
-        value={editingVehicle?.vendorName}
-        onChange={e => setEditingVehicle({ ...editingVehicle, vendorName: e.target.value })}
+        value={editingVehicle?.VendorName}
+        onChange={e => setEditingVehicle({ ...editingVehicle, VendorName: e.target.value })}
       />
     </Form.Item>
     <Form.Item label="Vehicle Type">
       <Input
-        value={editingVehicle?.vehicleType}
-        onChange={e => setEditingVehicle({ ...editingVehicle, vehicleType: e.target.value })}
+        value={editingVehicle?.VehicleType}
+        onChange={e => setEditingVehicle({ ...editingVehicle, VehicleType: e.target.value })}
       />
     </Form.Item>
     <Form.Item label="Year of Manufacturing">
       <Input
-        value={editingVehicle?.yearOfManufacturing}
-        onChange={e => setEditingVehicle({ ...editingVehicle, yearOfManufacturing: e.target.value })}
+        value={editingVehicle?.YearOfManufacturing}
+        onChange={e => setEditingVehicle({ ...editingVehicle, YearOfManufacturing: e.target.value })}
       />
     </Form.Item>
     <Form.Item label="Mileage">
       <Input
-        value={editingVehicle?.mileage}
-        onChange={e => setEditingVehicle({ ...editingVehicle, mileage: e.target.value })}
+        value={editingVehicle?.Mileage}
+        onChange={e => setEditingVehicle({ ...editingVehicle, Mileage: e.target.value })}
       />
     </Form.Item>
     <Form.Item label="Insurance Number">
       <Input
-        value={editingVehicle?.insuranceNumber}
-        onChange={e => setEditingVehicle({ ...editingVehicle, insuranceNumber: e.target.value })}
+        value={editingVehicle?.InsuranceNumber}
+        onChange={e => setEditingVehicle({ ...editingVehicle, InsuranceNumber: e.target.value })}
       />
     </Form.Item>
     <Form.Item label="Fuel Type">
       <Input
-        value={editingVehicle?.fuelType}
-        onChange={e => setEditingVehicle({ ...editingVehicle, fuelType: e.target.value })}
+        value={editingVehicle?.FuelType}
+        onChange={e => setEditingVehicle({ ...editingVehicle, FuelType: e.target.value })}
       />
     </Form.Item>
     <Form.Item label="Seat Capacity">
       <Input
-        value={editingVehicle?.seatCapacity}
-        onChange={e => setEditingVehicle({ ...editingVehicle, seatCapacity: e.target.value })}
+        value={editingVehicle?.SeatCapacity}
+        onChange={e => setEditingVehicle({ ...editingVehicle, SeatCapacity: e.target.value })}
       />
     </Form.Item>
   </Form>

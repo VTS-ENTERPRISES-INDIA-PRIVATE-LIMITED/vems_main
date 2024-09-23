@@ -140,7 +140,7 @@ function NewDashboard(){
     <div>
         <div className="admin-head1">
             <div className="admin-dr-nav1">
-            <p className="dr-mng1">Vehicle ID:{vehicle.vehicleId} </p>
+            <p className="dr-mng1">Vehicle ID:{vehicle.VehicleId} </p>
             <p>{d}</p>
             </div>
           
@@ -158,8 +158,8 @@ function NewDashboard(){
                 <button className="edit-btn1"><MdOutlineEdit /></button>
                 <button className="delete-btn1"><MdDelete /></button>
                 <img className="driver-image1" src="https://res.cloudinary.com/djbz2ydtp/image/upload/v1724825006/pngtree-vector-car-icon-png-image_1834527_ejwljo.jpg" alt="l" />
-                <h4 className="driver-name-head1">{vehicle.vehicleName}</h4>
-                <h5 className="driver-id1">{vehicle.vehicleId}</h5>
+                <h4 className="driver-name-head1">{vehicle.VehicleName}</h4>
+                <h5 className="driver-id1">{vehicle.VehicleId}</h5>
               
                 <h5 className="rating-dr1">4.5<FaStar className="star" /></h5>
                 <button className="caller-btn1"><IoCallOutline /></button>
@@ -188,7 +188,7 @@ function NewDashboard(){
         <h4 className="head" >Vehicle Details</h4>
 
             <div className="cur-det1">
-            <img className="cur-car-img1" src={vehicle.vehicleImage} alt="Vehicle" />
+            <img className="cur-car-img1" src={vehicle.VehicleImage} alt="Vehicle" />
 
                 
                 {/* <h3 className="veh-num-cras">TN 01 AA 1234</h3>
@@ -200,11 +200,11 @@ function NewDashboard(){
                 <div className="curr-dets1">
                 <div className="brand1">
     <p style={{ fontWeight: 'bold' }}><FaRegIdCard /> Vehicle Number</p>
-    <p>{vehicle.vehicleNumber}</p>
+    <p>{vehicle.VehicleNumber}</p>
   </div>
   <div className="brand1">
     <p style={{ fontWeight: 'bold' }}><FaRegIdCard /> Vehicle Type</p>
-    <p>{vehicle.vehicleType}</p>
+    <p>{vehicle.VehicleType}</p>
   </div>
   {/* <div className="model">
     <p style={{ fontWeight: 'bold' ,}}><FaCar /> Engine Number</p>
@@ -220,27 +220,27 @@ function NewDashboard(){
   </div> */}
   <div className="seatcp1">
     <p style={{ fontWeight: 'bold' }}><FaUser /> Seat Capacity</p>
-    <p>{vehicle.seatCapacity}</p>
+    <p>{vehicle.SeatCapacity}</p>
   </div>
   <div className="fueltype1">
     <p style={{ fontWeight: 'bold' }}><FaGasPump /> Fuel Type</p>
-    <p>{vehicle.fuelType}</p>
+    <p>{vehicle.FuelType}</p>
   </div>
   <div className="mil1">
     <p style={{ fontWeight: 'bold' }}><FaTachometerAlt /> Insurance Number</p>
-    <p>{vehicle.insuranceNumber}</p>
+    <p>{vehicle.InsuranceNumber}</p>
   </div>
   <div className="mil1">
     <p style={{ fontWeight: 'bold' }}><FaTachometerAlt /> Vendor Name</p>
-    <p>{vehicle.vendorName}</p>
+    <p>{vehicle.VendorName}</p>
   </div>
   <div className="mil1">
     <p style={{ fontWeight: 'bold' }}><FaTachometerAlt /> Year Of Manufacturing</p>
-    <p>{vehicle. yearOfManufacturing}</p>
+    <p>{vehicle. YearOfManufacturing}</p>
   </div>
   <div className="mil1">
     <p style={{ fontWeight: 'bold' }}><FaTachometerAlt /> mileage</p>
-    <p>{vehicle.mileage}</p>
+    <p>{vehicle.Mileage}</p>
   </div>
 </div>
             </div>

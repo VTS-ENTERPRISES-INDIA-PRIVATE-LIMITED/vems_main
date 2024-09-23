@@ -20,6 +20,8 @@
     "cloudinary-react": "^1.8.1",
     "emailjs-com": "^3.2.0",
     "https-browserify": "^1.0.0",
+    "jspdf": "^2.5.2",
+    "jspdf-autotable": "^3.8.3",
     "leaflet": "^1.9.4",
     "leaflet-arrowheads": "^1.4.0",
     "leaflet-control-geocoder": "^2.4.0",

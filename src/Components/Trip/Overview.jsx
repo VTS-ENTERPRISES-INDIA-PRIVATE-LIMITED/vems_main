@@ -33,7 +33,7 @@ const OverView = () => {
       <Box sx={{borderLeft:'3px dotted lightgray',marginLeft:'12.5px'}}>
       <Box sx={{ display: 'flex',marginLeft:'22px', alignItems: 'center', gap: '8px',fontSize:'15px' }}>
       <Typography variant="body3" >
-          3495 Oberbrunner, Locks New Lauraport, Saint Barthelemy 68350-4253
+          Hive
         </Typography>
       </Box>
       {/* Date and Time */}

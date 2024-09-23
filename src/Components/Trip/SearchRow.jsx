@@ -2,12 +2,16 @@ import { DownloadOutlined } from '@ant-design/icons';
 import { Box, Button, InputAdornment, TextField } from '@mui/material';
 import { DatePicker } from 'antd';
 import React, { useState } from 'react';
-  import SearchIcon from '@mui/icons-material/Search';
-const SearchRow = () => {
+import SearchIcon from '@mui/icons-material/Search';
+
+const SearchRow = ({ onFilterChange }) => {
   const [activeButton, setActiveButton] = useState('Today');
 
   const handleButtonClick = (button) => {
     setActiveButton(button);
+
+    // Call the parent function with the selected view for filtering
+    onFilterChange(button);
   };
 
   return (
@@ -29,7 +33,7 @@ const SearchRow = () => {
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
-              <SearchIcon/>
+              <SearchIcon />
             </InputAdornment>
           ),
           sx: { width: 150, borderRadius: '20px' }, // Rounded corners
@@ -38,7 +42,7 @@ const SearchRow = () => {
 
       {/* Buttons instead of Toggle */}
       <Box ml={2} display="flex" gap={1}>
-        {['All', 'Today',  '1 Week', '1 Month'].map((label) => (
+        {['All', 'Today', 'Yesterday', '1 Week', '1 Month'].map((label) => (
           <Button
             key={label}
             variant={activeButton === label ? 'contained' : 'outlined'}
