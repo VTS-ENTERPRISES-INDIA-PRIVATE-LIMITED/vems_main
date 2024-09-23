@@ -42,7 +42,7 @@ const TodayComponent = () => {
       </Box>
 
       {/* Switch and Detailed View */}
-      <Box
+      {/* <Box
         display="flex"
         alignItems="center"
         sx={{ backgroundColor: '#f5eaff', borderRadius: '20px', padding: '8px 12px' }}
@@ -55,10 +55,10 @@ const TodayComponent = () => {
           onChange={toggleView}
           sx={{ '& .MuiSwitch-thumb': { backgroundColor: 'gray' } }}
         />
-      </Box>
+      </Box> */}
 
       {/* Approved Button */}
-      <Button
+      {/* <Button
         variant="contained"
         startIcon={<CheckCircleOutlined />}
         sx={{
@@ -69,10 +69,10 @@ const TodayComponent = () => {
         }}
       >
         Approved
-      </Button>
+      </Button> */}
 
       {/* Download Button */}
-      <Button
+      {/* <Button
         variant="contained"
         startIcon={<DownloadOutlined />}
         sx={{
@@ -83,7 +83,7 @@ const TodayComponent = () => {
         }}
       >
         Download PDF
-      </Button>
+      </Button> */}
     </Box>
   );
 };

@@ -38,7 +38,7 @@ const SearchRow = () => {
 
       {/* Buttons instead of Toggle */}
       <Box ml={2} display="flex" gap={1}>
-        {['All', 'Today', 'Yesterday', '1 Week', '1 Month'].map((label) => (
+        {['All', 'Today',  '1 Week', '1 Month'].map((label) => (
           <Button
             key={label}
             variant={activeButton === label ? 'contained' : 'outlined'}

@@ -1,0 +1,43 @@
+body {
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f6f5f5dc;
+      }
+  :root {
+    --primary: #110031;
+  }
+  .search{
+    margin-left: 14px;
+    margin-bottom: 0px;
+    margin-right: 14px;
+  }
+  .Cont{
+    border-radius: 10px;
+    padding: 0px;
+    height: 90vh;
+    width:55vw;
+    background-color: #F6FBFF;
+  
+  }
+  .map{
+    margin:24px;
+    flex-grow: 1;
+    height: 75vh;
+    border-radius: 10px;
+  
+  }
+  .TotalCont{
+    border:1px solid lightgray;
+    border-radius: 10px;
+    padding: 0px;
+    margin-right:14px ;
+    margin-left: 14px;
+    margin-top: 0;
+    background-color: #F6FBFF;
+    display: flex;
+    flex-direction: row;
+  }

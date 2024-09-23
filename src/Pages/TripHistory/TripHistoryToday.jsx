@@ -4,7 +4,8 @@ import SearchRow from '../../Components/Trip/SearchRow';
 import TodayComponent from '../../Components/Trip/TodayComponent';
 import TripCard from '../../Components/Trip/TripCard';
 import Overview from '../../Components/Trip/Overview';
-import RouteManagement from '../../Components/Trip/RouteManagement';
+import Route  from '../../Components/Trip/Route';
+import './TripHistoryToday.css';
 const TripHistory = () => {
   return (
         <div>
@@ -18,7 +19,7 @@ const TripHistory = () => {
             <Overview/>
           </div>
           <div className='map'>
-          <RouteManagement/>
+          <Route/>
           </div>
           </div>
           

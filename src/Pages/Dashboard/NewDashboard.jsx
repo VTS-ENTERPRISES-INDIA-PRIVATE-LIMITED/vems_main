@@ -53,7 +53,7 @@ function NewDashboard(){
     const handleTh=()=>{
      setViewPersonalDetails(false);
      setLivetracking(false);
-     navigate("/history");
+     navigate("/todayhistory");
 
     }
     const handlefd=()=>{
