@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "lockfileVersion": 3,
   "requires": true,
+  
   "packages": {
     "": {
       "name": "vems",
@@ -44,6 +45,13 @@
         "react-app-rewired": "^2.2.1"
       }
     },
+    "scripts": {
+  "start": "react-scripts start",
+  "build": "react-scripts build",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject"
+},
+
    
 
     "node_modules/@adobe/css-tools": {
@@ -64,6 +72,12 @@
         "url": "https://github.com/sponsors/sindresorhus"
       }
     },
+    "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
     "node_modules/@ampproject/remapping": {
       "version": "2.3.0",
       "resolved": "https://registry.npmjs.org/@ampproject/remapping/-/remapping-2.3.0.tgz",
