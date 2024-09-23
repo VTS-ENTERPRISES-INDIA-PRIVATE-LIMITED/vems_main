@@ -11,6 +11,7 @@ import NewDashboard from './Pages/Dashboard/NewDashboard';
 import TripHistory from './Pages/TripHistory/TripHistory';
 import Excel from './Components/Excel/Excel';
 import EscortRegister  from './Pages/Escort/EscortRegister';
+import TripHistoryToday from './Pages/TripHistory/TripHistoryToday';
 
 const router = createBrowserRouter([
   {
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
   {
     path: "history",
     element: <TripHistory />,
+  },
+  {
+    path: "todayhistory",
+    element: <TripHistoryToday />,
   },
   {
     path: "excel",

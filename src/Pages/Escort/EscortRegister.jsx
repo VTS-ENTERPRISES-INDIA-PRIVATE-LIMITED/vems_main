@@ -1,11 +1,11 @@
-// import axios from 'axios';
+ // import axios from 'axios';
 // import { useState } from 'react';
 // import {
 //   FaUser, FaIdCard, FaPhone, FaCalendarAlt, FaAddressCard, FaCertificate, FaUserCircle, FaUserTie, FaCreditCard,
 //   FaUniversity, FaBuilding, FaBarcode, FaClock
 // } from 'react-icons/fa';
 // import './EscortRegister.css';
-
+// import axios  from 'axios';
 // const CLOUDINARY_UPLOAD_PRESET = 'q6fwknmo';
 // const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/djbz2ydtp/imAge/upload';
 
@@ -26,7 +26,6 @@
 //     Shift: '',
 //   });
 
-//   const [errors, setErrors] = useState({});
 //   const [loading, setLoading] = useState(false);
 
 //   const handleImAgeUpload = async (e, imAgeType) => {
@@ -48,13 +47,8 @@
 //           ...prevDetails,
 //           [imAgeType]: imAgeUrl,
 //         }));
-
-//         setErrors((prevErrors) => ({
-//           ...prevErrors,
-//           [imAgeType]: '',
-//         }));
 //       } catch (error) {
-//         console.error('ImAge upload failed:', error);
+//         console.error('Image upload failed:', error);
 //       }
 //     }
 //   };
@@ -65,47 +59,19 @@
 //       ...prevDetails,
 //       [name]: value,
 //     }));
-
-//     setErrors((prevErrors) => ({
-//       ...prevErrors,
-//       [name]: '',
-//     }));
-//   };
-
-//   const validateForm = () => {
-//     let formIsValid = true;
-//     let newErrors = {};
-
-//     Object.keys(escortDetails).forEach((key) => {
-//       if (!escortDetails[key]) {
-//         formIsValid = false;
-//         newErrors[key] = `${key} is required`;
-//       }
-//     });
-
-//     if (escortDetails.ContactNumber && (isNaN(escortDetails.ContactNumber) || escortDetails.ContactNumber.length !== 10)) {
-//       formIsValid = false;
-//       newErrors.ContactNumber = 'Contact number must be a 10-digit number';
-//     }
-
-//     setErrors(newErrors);
-//     return formIsValid;
 //   };
 
 //   const handleSubmit = async (e) => {
 //     e.preventDefault();
-
-//     if (validateForm()) {
-//       setLoading(true);
-//       try {
-//         await axios.post('http://localhost:8081/add-escort', escortDetails);
-//         window.alert('Form submitted successfully');
-//       } catch (error) {
-//         window.alert('Error saving escort details');
-//         console.error('Error saving escort details:', error);
-//       } finally {
-//         setLoading(false);
-//       }
+//     setLoading(true);
+//     try {
+//       await axios.post('http://localhost:8081/add-escort', escortDetails);
+//       window.alert('Form submitted successfully');
+//     } catch (error) {
+//       window.alert('Error saving escort details');
+//       console.error('Error saving escort details:', error);
+//     } finally {
+//       setLoading(false);
 //     }
 //   };
 
@@ -121,93 +87,80 @@
 //       <div className="form-content">
 //         {/* Escort Name */}
 //         <div className="form-field">
-//           <label className="required"><FaUser className="icon11" /> Escort Name:</label>
-//           <input type="text" name="escortName" value={escortDetails.escortName} onChange={handleChange} />
-//           {errors.escortName && <span className="error-messAge">{errors.escortName}</span>}
+//           <label><FaUser className="icon11" /> Escort Name:</label>
+//           <input type="text" name="EscortName" value={escortDetails.EscortName} onChange={handleChange} />
 //         </div>
 
 //         {/* Contact Number */}
 //         <div className="form-field">
-//           <label className="required"><FaPhone className="icon11" /> Contact Number:</label>
+//           <label><FaPhone className="icon11" /> Contact Number:</label>
 //           <input type="text" name="ContactNumber" value={escortDetails.ContactNumber} onChange={handleChange} />
-//           {errors.ContactNumber && <span className="error-messAge">{errors.ContactNumber}</span>}
 //         </div>
 
 //         {/* Age */}
 //         <div className="form-field">
-//           <label className="required"><FaCalendarAlt className="icon11" /> Age:</label>
+//           <label><FaCalendarAlt className="icon11" /> Age:</label>
 //           <input type="number" name="Age" value={escortDetails.Age} onChange={handleChange} />
-//           {errors.Age && <span className="error-messAge">{errors.Age}</span>}
 //         </div>
 
 //         {/* Address */}
 //         <div className="form-field">
-//           <label className="required"><FaAddressCard className="icon11" /> Address:</label>
-//           <input type="text" value={escortDetails.Address} onChange={handleChange} />
-//           {errors.Address && <span className="error-messAge">{errors.Address}</span>}
+//           <label><FaAddressCard className="icon11" /> Address:</label>
+//           <input type="text" name="Address" value={escortDetails.Address} onChange={handleChange} />
 //         </div>
 
 //         {/* Aadhar Card Upload */}
 //         <div className="form-field">
-//           <label className="required"><FaIdCard className="icon11" /> Aadhar Card Upload:</label>
-//           <input type="file" name="aadharCard" accept="imAge/*" onChange={(e) => handleImAgeUpload(e, 'aadharCard')} />
-//           {errors.aadharCard && <span className="error-messAge">{errors.aadharCard}</span>}
+//           <label><FaIdCard className="icon11" /> Aadhar Card Upload:</label>
+//           <input type="file" name="AadharCard" accept="image/*" +={(e) => handleImAgeUpload(e, 'AadharCard')} />
 //         </div>
 
 //         {/* Certification Upload */}
 //         <div className="form-field">
-//           <label className="required"><FaCertificate className="icon11" /> Certification Upload:</label>
-//           <input type="file" name="Certification" accept="imAge/*" onChange={(e) => handleImAgeUpload(e, 'Certification')} />
-//           {errors.Certification && <span className="error-messAge">{errors.Certification}</span>}
+//           <label><FaCertificate className="icon11" /> Certification Upload:</label>
+//           <input type="file" name="Certification" accept="image/*" onChange={(e) => handleImAgeUpload(e, 'Certification')} />
 //         </div>
 
 //         {/* Escort Profile Pic Upload */}
 //         <div className="form-field">
-//           <label className="required"><FaUserCircle className="icon11" /> Escort Profile Pic Upload:</label>
-//           <input type="file" name="escortProfilePic" accept="imAge/*" onChange={(e) => handleImAgeUpload(e, 'escortProfilePic')} />
-//           {errors.escortProfilePic && <span className="error-messAge">{errors.escortProfilePic}</span>}
+//           <label><FaUserCircle className="icon11" /> Escort Profile Pic Upload:</label>
+//           <input type="file" name="EscortProfilePic" accept="image/*" onChange={(e) => handleImAgeUpload(e, 'EscortProfilePic')} />
 //         </div>
 
 //         {/* Account Handler Name */}
 //         <div className="form-field">
-//           <label className="required"><FaUserTie className="icon11" /> Account Handler Name:</label>
+//           <label><FaUserTie className="icon11" /> Account Handler Name:</label>
 //           <input type="text" name="AccountHandlerName" value={escortDetails.AccountHandlerName} onChange={handleChange} />
-//           {errors.AccountHandlerName && <span className="error-messAge">{errors.AccountHandlerName}</span>}
 //         </div>
 
 //         {/* Account Number */}
 //         <div className="form-field">
-//           <label className="required"><FaCreditCard className="icon11" /> Account Number:</label>
+//           <label><FaCreditCard className="icon11" /> Account Number:</label>
 //           <input type="text" name="AccountNumber" value={escortDetails.AccountNumber} onChange={handleChange} />
-//           {errors.AccountNumber && <span className="error-messAge">{errors.AccountNumber}</span>}
 //         </div>
 
 //         {/* Bank Name */}
 //         <div className="form-field">
-//           <label className="required"><FaUniversity className="icon11" /> Bank Name:</label>
+//           <label><FaUniversity className="icon11" /> Bank Name:</label>
 //           <input type="text" name="BankName" value={escortDetails.BankName} onChange={handleChange} />
-//           {errors.BankName && <span className="error-messAge">{errors.BankName}</span>}
 //         </div>
 
 //         {/* Branch Name */}
 //         <div className="form-field">
-//           <label className="required"><FaBuilding className="icon11" /> Branch Name:</label>
+//           <label><FaBuilding className="icon11" /> Branch Name:</label>
 //           <input type="text" name="BranchName" value={escortDetails.BranchName} onChange={handleChange} />
-//           {errors.BranchName && <span className="error-messAge">{errors.BranchName}</span>}
 //         </div>
 
 //         {/* IFSC Code */}
 //         <div className="form-field">
-//           <label className="required"><FaBarcode className="icon11" /> IFSC Code:</label>
+//           <label><FaBarcode className="icon11" /> IFSC Code:</label>
 //           <input type="text" name="IfscCode" value={escortDetails.IfscCode} onChange={handleChange} />
-//           {errors.IfscCode && <span className="error-messAge">{errors.IfscCode}</span>}
 //         </div>
 
 //         {/* Shift */}
 //         <div className="form-field">
-//           <label className="required"><FaClock className="icon11" /> Shift:</label>
+//           <label><FaClock className="icon11" /> Shift:</label>
 //           <input type="text" name="Shift" value={escortDetails.Shift} onChange={handleChange} />
-//           {errors.Shift && <span className="error-messAge">{errors.Shift}</span>}
 //         </div>
 //       </div>
 //     </form>
@@ -215,174 +168,224 @@
 // };
 
 // export default EscortRegister;
+import React, { useState } from 'react';
 import axios from 'axios';
-import { useState } from 'react';
-import {
-  FaUser, FaIdCard, FaPhone, FaCalendarAlt, FaAddressCard, FaCertificate, FaUserCircle, FaUserTie, FaCreditCard,
-  FaUniversity, FaBuilding, FaBarcode, FaClock
-} from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+
 import './EscortRegister.css';
 
-const CLOUDINARY_UPLOAD_PRESET = 'q6fwknmo';
-const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/djbz2ydtp/imAge/upload';
 
-const EscortRegister = () => {
-  const [escortDetails, setEscortDetails] = useState({
-    EscortName: '',
-    ContactNumber: '',
-    Age: '',
-    Address: '',
-    AadharCard: '',
-    Certification: '',
-    EscortProfilePic: '',
-    AccountHandlerName: '',
-    AccountNumber: '',
-    BankName: '',
-    BranchName: '',
-    IfscCode: '',
-    Shift: '',
-  });
+const Registers = () => {
+  
+  const [EscortName, setEscortName] = useState('');
+  const [ContactNumber, setContactNumber] = useState('');
+  const [Age, setAge] = useState('');
+  const [Address, setAddress] = useState('');
+  
+  const [AadharCardUpload, setAadharCardUpload] = useState(null);
+ 
+  const [CertificationUpload, setCertificationUpload] = useState(null);
+  const [EscortProfilePicUpload, setEscortProfilePicUpload] = useState(null);
+  const [AccountHandlerName, setAccountHandlerName] = useState('');
+  const [AccountNumber, setAccountNumber] = useState('');
+  const [BankName, setBankName] = useState('');
+  const [BranchName, setBranchName] = useState('');
+  const [IFSCCode, setIFSCCode] = useState('');
+  const [Shift, setShift] = useState('');
 
-  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const handleImAgeUpload = async (e, imAgeType) => {
-    const file = e.target.files[0];
-    if (file) {
-      const formData = new FormData();
-      formData.append('file', file);
-      formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
-
-      try {
-        const response = await axios.post(CLOUDINARY_UPLOAD_URL, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        });
-
-        const imAgeUrl = response.data.secure_url;
-        setEscortDetails((prevDetails) => ({
-          ...prevDetails,
-          [imAgeType]: imAgeUrl,
-        }));
-      } catch (error) {
-        console.error('Image upload failed:', error);
-      }
-    }
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setEscortDetails((prevDetails) => ({
-      ...prevDetails,
-      [name]: value,
-    }));
+  const handleFileChange = (setter) => (e) => {
+    setter(e.target.files[0]);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+
+    const formData = new FormData();
+    
+    formData.append('EscortName', EscortName);
+    formData.append('ContactNumber', ContactNumber);
+    formData.append('Age', Age);
+    
+    formData.append('Address', Address);
+    
+    formData.append('AadharCardUpload', AadharCardUpload);
+    
+    formData.append('CertificationUpload', CertificationUpload);
+    formData.append('EscortProfilePicUpload', EscortProfilePicUpload);
+    formData.append('AccountHandlerName', AccountHandlerName);
+    formData.append('AccountNumber', AccountNumber);
+    formData.append('BankName', BankName);
+    formData.append('BranchName', BranchName);
+    formData.append('IFSCCode', IFSCCode);
+    formData.append('Shift', Shift);
+
     try {
-      await axios.post('http://localhost:8081/add-escort', escortDetails);
-      window.alert('Form submitted successfully');
+      const response = await axios.post('http://localhost:8001/register', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+
+      if (response && response.data) {
+        alert('Registration Successfull');
+        navigate('/'); 
+      } else {
+        alert('Unexpected response format');
+      }
     } catch (error) {
-      window.alert('Error saving escort details');
-      console.error('Error saving escort details:', error);
-    } finally {
-      setLoading(false);
-    }
+        console.error('Error during registration:', error);
+        if (error.response) {
+          const message = error.response.data?.message || 'Registration failed';
+          alert(`Registration failed: ${message}`);
+        } else {
+          alert('An unexpected error occurred.');
+        }
+      }
   };
 
   return (
-    <form className="escort-form" onSubmit={handleSubmit}>
-      <div className="form-header">
-        <h2 className="headddd">Add Escort</h2>
-        <button type="submit" className="save-button" disabled={loading}>
-          {loading ? 'Saving...' : 'Save'}
-        </button>
-      </div>
-
-      <div className="form-content">
-        {/* Escort Name */}
-        <div className="form-field">
-          <label><FaUser className="icon11" /> Escort Name:</label>
-          <input type="text" name="EscortName" value={escortDetails.EscortName} onChange={handleChange} />
+    <div className="escort-form">
+      <h2>Escort Registration</h2>
+      <form onSubmit={handleSubmit} className="escort-registration-form">
+        
+        <div className='form-content'>
+            <div className='form-field'>
+          <label htmlFor="EscortName">Escort Name</label>
+          <input
+            type="text"
+            id="EscortName"
+            value={EscortName}
+            onChange={(e) => setEscortName(e.target.value)}
+            required
+          />
         </div>
-
-        {/* Contact Number */}
-        <div className="form-field">
-          <label><FaPhone className="icon11" /> Contact Number:</label>
-          <input type="text" name="ContactNumber" value={escortDetails.ContactNumber} onChange={handleChange} />
+        <div className='form-field'>
+          <label htmlFor="ContactNumber">Contact Number</label>
+          <input
+            type="text"
+            id="ContactNumber"
+            value={ContactNumber}
+            onChange={(e) => setContactNumber(e.target.value)}
+            required
+          />
         </div>
-
-        {/* Age */}
-        <div className="form-field">
-          <label><FaCalendarAlt className="icon11" /> Age:</label>
-          <input type="number" name="Age" value={escortDetails.Age} onChange={handleChange} />
+        <div className='form-field'>
+          <label htmlFor="Age">Age</label>
+          <input
+            type="text"
+            id="Age"
+            value={Age}
+            onChange={(e) => setAge(e.target.value)}
+            required
+          />
         </div>
-
-        {/* Address */}
-        <div className="form-field">
-          <label><FaUser className="icon11" /> Address:</label>
-          <input type="text" name="EscortName" value={escortDetails.EscortName} onChange={handleChange} />
+        <div className='form-field'>
+          <label htmlFor="Address">Address</label>
+          <input
+            type="text"
+            id="Address"
+            value={Address}
+            onChange={(e) => setAddress(e.target.value)}
+            required
+          />
         </div>
-
-
-        {/* Aadhar Card Upload */}
-        <div className="form-field">
-          <label><FaIdCard className="icon11" /> Aadhar Card Upload:</label>
-          <input type="file" name="AadharCard" accept="image/*" onChange={(e) => handleImAgeUpload(e, 'AadharCard')} />
+        
+        <div className='form-field'>
+          <label htmlFor="AadharCardUpload">Aadhar Card Upload</label>
+          <input
+            type="file"
+            id="AadharCardUpload"
+            onChange={handleFileChange(setAadharCardUpload)}
+            required
+          />
         </div>
-
-        {/* Certification Upload */}
-        <div className="form-field">
-          <label><FaCertificate className="icon11" /> Certification Upload:</label>
-          <input type="file" name="Certification" accept="image/*" onChange={(e) => handleImAgeUpload(e, 'Certification')} />
+       
+        <div className='form-field'>
+          <label htmlFor="CertificationUpload">Certification Upload</label>
+          <input
+            type="file"
+            id="CertificationUpload"
+            onChange={handleFileChange(setCertificationUpload)}
+            required
+          />
         </div>
-
-        {/* Escort Profile Pic Upload */}
-        <div className="form-field">
-          <label><FaUserCircle className="icon11" /> Escort Profile Pic Upload:</label>
-          <input type="file" name="EscortProfilePic" accept="image/*" onChange={(e) => handleImAgeUpload(e, 'EscortProfilePic')} />
+        <div className='form-field'>
+          <label htmlFor="EscortProfilePicUpload">Escort Profile Pic Upload</label>
+          <input
+            type="file"
+            id="EscortProfilePicUpload"
+            onChange={handleFileChange(setEscortProfilePicUpload)}
+            required
+          />
         </div>
-
-        {/* Account Handler Name */}
-        <div className="form-field">
-          <label><FaUserTie className="icon11" /> Account Handler Name:</label>
-          <input type="text" name="AccountHandlerName" value={escortDetails.AccountHandlerName} onChange={handleChange} />
+        <div className='form-field'>
+          <label htmlFor="AccountHandlerName">Account Handler Name</label>
+          <input
+            type="text"
+            id="AccountHandlerName"
+            value={AccountHandlerName}
+            onChange={(e) => setAccountHandlerName(e.target.value)}
+            required
+          />
         </div>
-
-        {/* Account Number */}
-        <div className="form-field">
-          <label><FaCreditCard className="icon11" /> Account Number:</label>
-          <input type="text" name="AccountNumber" value={escortDetails.AccountNumber} onChange={handleChange} />
+        <div className='form-field'>
+          <label htmlFor="AccountNumber">Account Number</label>
+          <input
+            type="text"
+            id="AccountNumber"
+            value={AccountNumber}
+            onChange={(e) => setAccountNumber(e.target.value)}
+            required
+          />
         </div>
-
-        {/* Bank Name */}
-        <div className="form-field">
-          <label><FaUniversity className="icon11" /> Bank Name:</label>
-          <input type="text" name="BankName" value={escortDetails.BankName} onChange={handleChange} />
+        <div className='form-field'>
+          <label htmlFor="BankName">Bank Name</label>
+          <input
+            type="text"
+            id="BankName"
+            value={BankName}
+            onChange={(e) => setBankName(e.target.value)}
+            required
+          />
         </div>
-
-        {/* Branch Name */}
-        <div className="form-field">
-          <label><FaBuilding className="icon11" /> Branch Name:</label>
-          <input type="text" name="BranchName" value={escortDetails.BranchName} onChange={handleChange} />
+        <div className='form-field'>
+          <label htmlFor="BranchName">Branch Name</label>
+          <input
+            type="text"
+            id="BranchName"
+            value={BranchName}
+            onChange={(e) => setBranchName(e.target.value)}
+            required
+          />
         </div>
-
-        {/* IFSC Code */}
-        <div className="form-field">
-          <label><FaBarcode className="icon11" /> IFSC Code:</label>
-          <input type="text" name="IfscCode" value={escortDetails.IfscCode} onChange={handleChange} />
+        <div className='form-field'>
+          <label htmlFor="IFSCCode">IFSC Code</label>
+          <input
+            type="text"
+            id="IFSCCode"
+            value={IFSCCode}
+            onChange={(e) => setIFSCCode(e.target.value)}
+            required
+          />
         </div>
-
-        {/* Shift */}
-        <div className="form-field">
-          <label><FaClock className="icon11" /> Shift:</label>
-          <input type="text" name="Shift" value={escortDetails.Shift} onChange={handleChange} />
+        <div className='form-field'>
+          <label htmlFor="Shift">Shift</label>
+          <input
+            type="text"
+            id="Shift"
+            value={Shift}
+            onChange={(e) => setShift(e.target.value)}
+            required
+          />
         </div>
-      </div>
-    </form>
+        </div>
+        <button type="submit">Register Escort</button>
+      </form>
+    </div>
+    
   );
 };
 
-export default EscortRegister;
+export default Registers;
