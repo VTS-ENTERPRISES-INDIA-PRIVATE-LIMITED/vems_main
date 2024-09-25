@@ -5,7 +5,7 @@ import 'leaflet/dist/leaflet.css';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
 import 'leaflet-routing-machine';
 
-import './Allvehicles.css';
+import './AllvehiclesRoute.css';
 import axios from 'axios';
 import vehicleData from '../../Components/vehicleData.json';
 
@@ -199,10 +199,11 @@ const Allvehicles = ({ customClass, selectedVehicle }) => {
           bounds={bounds}
           boundsOptions={{ padding: [50, 50] }}
           className={customClass}
-          style={{ height: '1000px', width: '60vw', marginLeft: '-10px', marginRight: '-10px', marginTop: '-20px' }}
+          style={{height:'1000px',width:'54vw',marginLeft: '-200px', marginRight: '-10px', marginTop: '-20px' }}
           center={[12.9716, 80.2445]}
           zoom={13}
           ref={mapRef}
+          
         >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

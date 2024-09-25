@@ -26,7 +26,7 @@ const SearchRow = ({ onFilterChange }) => {
       margin
     >
       {/* Search Input with Icon */}
-      <TextField
+      {/* <TextField
         size="small"
         placeholder="Search"
         variant="outlined"
@@ -38,7 +38,7 @@ const SearchRow = ({ onFilterChange }) => {
           ),
           sx: { width: 150, borderRadius: '20px' }, // Rounded corners
         }}
-      />
+      /> */}
 
       {/* Buttons instead of Toggle */}
       <Box ml={2} display="flex" gap={1}>
@@ -59,10 +59,10 @@ const SearchRow = ({ onFilterChange }) => {
       </Box>
 
       {/* Date Range Picker (Ant Design) */}
-      <DatePicker.RangePicker style={{ marginLeft: 10, borderRadius: '20px' }} />
+      <DatePicker.RangePicker style={{ marginLeft: '-30px', borderRadius: '20px' }} />
 
       {/* Download Button */}
-      <Button
+      {/* <Button
         variant="outlined"
         startIcon={<DownloadOutlined />}
         style={{
@@ -73,7 +73,7 @@ const SearchRow = ({ onFilterChange }) => {
         }}
       >
         Download All PDF
-      </Button>
+      </Button> */}
     </Box>
   );
 };

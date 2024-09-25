@@ -1,18 +1,19 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import TripManagement from "./Pages/TripManagement/TripManagement";
-import VehicleDashboard from "./Pages/VechileManagement/VehicleDashboard/VehicleDashboard";
+import VehicleDashboard from "./Pages/VechileManagement/VehicleDashboard/VehicleDashboard.jsx";
 import AddVehicle from "./Pages/VechileManagement/AddVehicle/AddVehicle";
 import ViewVehicle from "./Pages/VechileManagement/ViewVehicle/ViewVehicle";
-import Dashboard from "./Components/Dashboard/Dashboard";
+import Sidebar from "./Components/Sidebar/Sidebar";
 import RouteManagement from "./Pages/RouteManagement/RouteManagement/RouteManagement";
 import LiveTracking from './Pages/LiveTracking/LiveTracking';
-import NewDashboard from './Pages/Dashboard/NewDashboard';
+// import NewDashboard from './Pages/VehicleDashboard/VehicleDashboard';
 import TripHistory from './Pages/TripHistory/TripHistory';
-import Excel from './Components/Excel/Excel';
+// import Excel from './Components/Excel/Excel';
 import EscortRegister  from './Pages/Escort/EscortRegister';
 import TripHistoryToday from './Pages/TripHistory/TripHistoryToday';
 //import Allvehicles from './Pages/Trip/Allvehicles';
+import ViewEscort from './Pages/Escort/ViewEscort.jsx';
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
   },
   {
     path:"/dashboard",
-    element: <Dashboard />,
+    element: <Sidebar />,
     children: [
       {
         path:"addvehicle",
@@ -46,10 +47,10 @@ const router = createBrowserRouter([
     path: "/vehicledashboard", 
     element: <VehicleDashboard />,
   },
-  {
-    path: "/newdashboard", 
-    element: <NewDashboard />,
-  },
+  // {
+  //   path: "/newdashboard", 
+  //   element: <NewDashboard />,
+  // },
   {
     path: "/trips",
     element: <TripManagement />,
@@ -70,13 +71,13 @@ const router = createBrowserRouter([
     path: "todayhistory",
     element: <TripHistoryToday />,
   },
-  {
-    path: "excel",
-    element: <Excel/>,
-  },
+  // {
+  //   path: "excel",
+  //   element: <Excel/>,
+  // },
   {
     path:"escort",
-    element:<EscortRegister/>
+    element:<ViewEscort/>
   }
   
  

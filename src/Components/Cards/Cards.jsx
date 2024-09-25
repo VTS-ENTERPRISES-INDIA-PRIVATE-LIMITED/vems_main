@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './Cards.css';
 import vehicleData from '../vehicleData.json';
-import Allvehicles from '../../Pages/Trip/Allvehicles';
+import AllvehiclesRoute from '../../Pages/Trip/AllvehiclesRoute';
+import { Box, Button, InputAdornment, TextField } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 
 const Cards = () => {
   const [vehicles, setVehicles] = useState([]);
@@ -39,16 +41,22 @@ const Cards = () => {
   return (
     <div className="cards-container">
       <div className="search-bar-container">
-        <input 
-          type="text" 
-          placeholder="Search Vehicle ID..." 
-          value={searchTerm} 
-          onChange={handleSearchChange} 
-          className="search-bar"
-        />
+      <TextField
+        size="small"
+        placeholder="Search"
+        variant="outlined"
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <SearchIcon />
+            </InputAdornment>
+          ),
+          sx: { width: 250, borderRadius: '20px' ,marginBottom:'10px'}, // Rounded corners
+        }}
+      />
       </div>
-      <h1 className='heading'>Ongoing Trips</h1>
-
+      {/* <h1 className='heading'>Ongoing Trips</h1> */}
+<div className='cards-and-routemap'>
       <div className='cards--cards'>
         {filteredVehicles.map(vehicle => (
           <div 
@@ -61,11 +69,11 @@ const Cards = () => {
           </div>
         ))}
       </div>
-
-      <Allvehicles
+      <AllvehiclesRoute
         customClass="map" 
         selectedVehicle={selectedVehicle} 
       />
+</div>
     </div>
   );
 };

@@ -3,7 +3,8 @@ import SearchRow from '../../Components/Trip/SearchRow';
 import TodayComponent from '../../Components/Trip/TodayComponent';
 import TripCard from '../../Components/Trip/TripCard';
 import Overview from '../../Components/Trip/Overview';
-import RouteManagement from '../../Components/Trip/RouteManagement';
+// import RouteManagement from '../../Components/Trip/RouteManagement';
+import AllvehiclesRoute from  '../Trip/AllvehiclesRoute'
 import TripHistory from '../TripHistory/TripHistory';
 import './TripHistoryToday.css';
 
@@ -87,7 +88,7 @@ const TripHistoryToday = () => {
         </div>
         {selectedView === 'Today' && (
           <div className='map'>
-            <RouteManagement /> {/* Show the map only for today's view */}
+            <AllvehiclesRoute customClass="map-cards" /> {/* Show the map only for today's view */}
           </div>
         )}
       </div>

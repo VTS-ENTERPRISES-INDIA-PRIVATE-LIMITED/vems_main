@@ -50,7 +50,7 @@ const TripCard = () => {
       </Box>
 
       {/* Total Fare */}
-      <Box
+      {/* <Box
         display="flex"
         flexDirection="column"
         alignItems="center"
@@ -59,7 +59,7 @@ const TripCard = () => {
       >
         <Typography variant="h7" style={{ color: '#00C16E' }}>₹800</Typography>
         <Typography variant="h8" style={{ fontSize: '12px', color: 'gray' }}>Total Fare</Typography>
-      </Box>
+      </Box> */}
 
       {/* Average Speed */}
       <Box
@@ -95,13 +95,13 @@ const TripCard = () => {
       border={0}
       borderRadius={2}
       borderColor="lightgray"
-      style={{ padding:"10px 20px",borderRadius: '20px', backgroundColor: '#F6FBFF' ,width:'71vw'}}
+      style={{padding:'5px 20px' ,borderRadius: '20px', backgroundColor: '#F6FBFF' }}
     >
       {/* Vehicle Section */}
       
 
       {/* Max Speed */}
-      <Box
+      {/* <Box
         display="flex"
         flexDirection="column"
         alignItems="center"
@@ -110,13 +110,13 @@ const TripCard = () => {
       >
         <Typography variant="h7">120km/h <span style={{ fontSize: '12px', color: 'gray' }}>(x12)</span></Typography>
         <Typography variant="h8" style={{ fontSize: '12px', color: 'gray' }}>Max Speed</Typography>
-      </Box>
+      </Box> */}
       <Box
         display="flex"
         flexDirection="column"
         alignItems="center"
         justifyContent="center"
-        sx={{ backgroundColor: '#F6F7F8', borderRadius: '15px', padding: '5px' }}
+        sx={{ backgroundColor: '#F6F7F8', borderRadius: '15px', padding: '10px' }}
       >
         <Typography variant="h7">1h10m<span style={{ fontSize: '12px', color: 'gray' }}>(x12)</span></Typography>
         <Typography variant="h8" style={{ fontSize: '12px', color: 'gray' }}>Run Time</Typography>
@@ -138,10 +138,10 @@ const TripCard = () => {
         justifyContent="center"
         sx={{ backgroundColor: '#F6F7F8', borderRadius: '15px', padding: '5px' }}
       >
-        <Typography variant="h7">32.2Km <span style={{ fontSize: '12px', color: 'gray' }}>(x12)</span></Typography>
+        <Typography variant="h7">32.2Km <span style={{ fontSize: '12px', color: 'gray' }}></span></Typography>
         <Typography variant="h8" style={{ fontSize: '12px', color: 'gray' }}>Travelled</Typography>
       </Box>
-      <Box
+      {/* <Box
         display="flex"
         flexDirection="column"
         alignItems="center"
@@ -150,8 +150,8 @@ const TripCard = () => {
       >
         <Typography variant="h7">2<span style={{ fontSize: '12px', color: 'gray' }}>(x12)</span></Typography>
         <Typography variant="h8" style={{ fontSize: '12px', color: 'gray' }}>No.of Pickup</Typography>
-      </Box>
-      <Box
+      </Box> */}
+      {/* <Box
         display="flex"
         flexDirection="column"
         alignItems="center"
@@ -160,6 +160,16 @@ const TripCard = () => {
       >
         <Typography variant="h7">3 <span style={{ fontSize: '12px', color: 'gray' }}>(x12)</span></Typography>
         <Typography variant="h8" style={{ fontSize: '12px', color: 'gray' }}>No.of Drops</Typography>
+      </Box> */}
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        sx={{ backgroundColor: '#F6F7F8', borderRadius: '15px', padding: '5px' }}
+      >
+        <Typography variant="h7">4 <span style={{ fontSize: '12px', color: 'gray' }}></span></Typography>
+        <Typography variant="h8" style={{ fontSize: '12px', color: 'gray' }}>Employees</Typography>
       </Box>
       <Box
         display="flex"
@@ -168,17 +178,7 @@ const TripCard = () => {
         justifyContent="center"
         sx={{ backgroundColor: '#F6F7F8', borderRadius: '15px', padding: '5px' }}
       >
-        <Typography variant="h7">2 <span style={{ fontSize: '12px', color: 'gray' }}>(x12)</span></Typography>
-        <Typography variant="h8" style={{ fontSize: '12px', color: 'gray' }}>Waypoints</Typography>
-      </Box>
-      <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
-        sx={{ backgroundColor: '#F6F7F8', borderRadius: '15px', padding: '5px' }}
-      >
-        <Typography variant="h7">6:30am<span style={{ fontSize: '12px', color: 'gray' }}>(x12)</span></Typography>
+        <Typography variant="h7">6:30am<span style={{ fontSize: '12px', color: 'gray' }}></span></Typography>
         <Typography variant="h8" style={{ fontSize: '12px', color: 'gray' }}>Start Time</Typography>
       </Box>
       <Box
@@ -189,11 +189,11 @@ const TripCard = () => {
         justifyContent="center"
         sx={{ backgroundColor: '#F6F7F8', borderRadius: '15px', padding: '5px' }}
       >
-        <Typography variant="h7">10:30am<span style={{ fontSize: '12px', color: 'gray' }}>(x12)</span></Typography>
+        <Typography variant="h7">10:30am<span style={{ fontSize: '12px', color: 'gray' }}></span></Typography>
         <Typography variant="h8" style={{ fontSize: '12px', color: 'gray' }}>End Time</Typography>
       </Box>
     </Box>
-    <Box
+    {/* <Box
      display="flex"
      //   justifyContent="space-around"
        alignItems="center"
@@ -202,16 +202,16 @@ const TripCard = () => {
        border={0}
        borderRadius={2}
        borderColor="lightgray"
-       style={{padding:'10px 20px', borderRadius: '20px', backgroundColor: '#F6FBFF' }}>
-    <Box display="flex" alignItems="center" sx={{ backgroundColor: '#f5eaff', borderRadius: '5px', padding: '5px' }}>
+       style={{padding:'10px 20px', borderRadius: '20px', backgroundColor: '#F6FBFF' }}> */}
+    {/* <Box display="flex" alignItems="center" sx={{ backgroundColor: '#f5eaff', borderRadius: '5px', padding: '5px' }}>
         <Box ml={1}>
           <Typography variant="h7">New Pandian Travels</Typography>
           <Typography style={{fontSize:'12px'}}>Assigned Client</Typography>
         </Box>
-      </Box>
+      </Box> */}
 
       {/* Trip ID */}
-      <Box
+      {/* <Box
         display="flex"
         flexDirection="column"
         alignItems="center"
@@ -220,10 +220,10 @@ const TripCard = () => {
       >
         <Typography variant="h7" style={{ color: 'orange' }}>NPT-HCL</Typography>
         <Typography style={{fontSize:'12px'}}>Assigned Location</Typography>
-      </Box>
+      </Box> */}
 
       {/* Ride Type */}
-      <Box
+      {/* <Box
         display="flex"
         flexDirection="column"
         alignItems="center"
@@ -233,7 +233,7 @@ const TripCard = () => {
         <Typography variant="h7" style={{ color: 'black' }}>Office</Typography>
         <Typography style={{fontSize:'12px'}}>Ride Type</Typography>
       </Box>
-    </Box>
+    </Box> */}
 
     
     </>

@@ -116,7 +116,7 @@ const ViewVehicle = () => {
       title: 'View More',
       key: 'viewMore',
       render: (text, record) => (
-        <Button type="link" icon={<EyeOutlined />} onClick={() => navigate(`/NewDashboard`, { state: { vehicle: record } })} />
+        <Button type="link" icon={<EyeOutlined />} onClick={() => navigate(`/VehicleDashboard`, { state: { vehicle: record } })} />
       ),
     },
   ];

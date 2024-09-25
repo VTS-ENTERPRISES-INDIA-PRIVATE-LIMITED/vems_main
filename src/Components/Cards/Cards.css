@@ -1,28 +1,28 @@
 .cards-container {
   display: flex;
-  flex-direction: column; /* Arrange elements in a column */
-  width: 50%; /* Set width to 50% */
-  padding: 10px; /* Optional padding */
+  flex-direction: column;
+  padding: 10px;
 }
 
-.search-bar-container {
-  margin-bottom: 20px; /* Space below the search bar */
-}
+/* .search-bar-container {
+  margin-bottom: 20px; 
+} */
 
 .cards--cards {
-  display: flex;
-  flex-wrap: wrap; /* Allow wrapping */
-  justify-content: space-between; /* Space between cards */
+  width: 50%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  height:10px;
 }
 
 .card {
-  width: calc(50% - 10px); /* Two cards per row, adjusting for margin */
-  box-sizing: border-box; /* Include padding and border in width */
-  margin-bottom: 20px; /* Space below each card */
+  box-sizing: border-box;
+  margin-bottom: 5px;
   background: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 10px;
+  padding: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -30,4 +30,14 @@
 .card.active-card {
   background-color: #e6e6e6;
   border: 2px solid #00bcd4; 
+}
+
+.cards-and-routemap{
+  display: flex;
+  gap: 2rem;
+}
+
+.leaflet-container,
+.leaflet-touch {
+  width: 38rem;
 }

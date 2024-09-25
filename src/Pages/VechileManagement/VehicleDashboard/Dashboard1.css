@@ -21,8 +21,8 @@
 .dr-mng1{
     margin: 10px;
 }
-.head{
-    margin-top:10px;
+.head4{
+    margin-top:30px;
 }
 .doc-up-date1{
     box-shadow: 2px 0px 2px 0px rgb(232, 228, 228);
@@ -555,76 +555,82 @@
         cursor: pointer;
     }
     .dr-pd1{
-        height: 4vh;
+        height: 6vh;
         border: none;
-        border-radius: 10px;
-        /* background-color: rgb(246, 173, 39); */
+        border-radius: 8px;
+        background-color: rgba(61, 184, 246, 0.27);
         margin: 10px;
         cursor: pointer;
         margin-left: 40px;
-    margin-right: 40px;
+        margin-right: 40px;
+        width: 10%;
     }
     .dr-lt1{
-        height: 4vh;
+        height: 6vh;
         border: none;
-        border-radius: 10px;
-        /* background-color: rgb(246, 173, 39); */
+        border-radius: 8px;
+        background-color:rgba(61, 184, 246, 0.27);
         margin: 10px;
         cursor: pointer;
         margin-left: 40px;
     margin-right: 40px;
+    width:10%;
     }
     .dr-lt1:hover{
         background-color: rgb(132, 206, 244);
     }
     .dr-fd1{
-        height: 4vh;
+        height: 6vh;
         border: none;
-        border-radius: 10px;
-        /* background-color: rgb(246, 173, 39); */
+        border-radius: 8px;
+        background-color: rgba(61, 184, 246, 0.27);
         margin: 10px;
         cursor: pointer;
         margin-left: 40px;
-    margin-right: 40px;
+        margin-right: 40px;
+        width: 10%;
     }
     .dr-fd1:hover{
         background-color: rgb(132, 206, 244);
     }
     .dr-th1{
-        height: 4vh;
+        height: 6vh;
         border: none;
-        border-radius: 10px;
-        /* background-color: rgb(246, 173, 39); */
+        border-radius: 8px;
+        background-color: rgba(61, 184, 246, 0.27);
         margin: 10px;
         cursor: pointer;
         margin-left: 40px;
-    margin-right: 40px;
+        margin-right: 40px;
+        width: 10%;
     }
     .dr-th1:hover{
         background-color: rgb(132, 206, 244);
     }
     .dr-vd1{
-        height: 4vh;
+        height: 6vh;
         border: none;
-        border-radius: 10px;
-        /* background-color: rgb(246, 173, 39); */
+        border-radius: 8px;
+        background-color: rgba(61, 184, 246, 0.27);
         margin: 10px;
         cursor: pointer;
         margin-left: 40px;
-    margin-right: 40px;
+        margin-right: 40px;
+        width: 10%;
     }
     .dr-vd1:hover{
         background-color: rgb(132, 206, 244);
     }
     .dr-cf1{
-        height: 4vh;
+        height: 6vh;
         border: none;
-        border-radius: 10px;
-        /* background-color: rgb(246, 173, 39); */
+        border-radius: 8px;
+        background-color: rgba(61, 184, 246, 0.27);
         margin: 10px;
         cursor: pointer;
         margin-left: 40px;
-    margin-right: 40px;
+        margin-right: 40px;
+        width: 10%;
     }
     .dr-cf1:hover{
         background-color: rgb(132, 206, 244);
@@ -636,10 +642,10 @@
     }
     .dr-btns1{
         margin-left: 5vw;
-        box-shadow: 2px 2px 2px 2px white;
-        background-color: rgb(240, 244, 246);
+        box-shadow: 2px 2px 2px 2px rgb(220, 217, 217);
+        background-color: rgba(185, 198, 205, 0.08);
         color: rgb(10, 174, 239);
-        border-radius: 20px;
+        border-radius: 8px;
         width: 96vw;
         margin-left:10px;
     }
@@ -668,6 +674,7 @@
         box-shadow: 2px 2px 2px 2px rgb(233, 231, 228);
         margin: 10px;
         position: relative;
+        margin-top:-10px;
     }
     .curr-ass-veh1 h4{
         

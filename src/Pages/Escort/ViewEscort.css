@@ -1,0 +1,51 @@
+
+.two-column-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 40px; /* Adjust the gap between form items */
+  }
+  
+  .two-column-form .ant-form-item {
+    margin-bottom: 10px; /* Adjust this value for less space between fields */
+    margin-top: 5px;    /* Add margin-top to control space above fields */
+  }
+  
+  @media (max-width: 768px) {
+    .two-column-form .ant-form-item {
+      flex: 1 1 100%; /* For smaller screens, make the form items full width */
+    }
+  }
+  
+  
+  .edit-button {
+    background-color: #04AA6D; /* Green */
+    border: none;
+    color: white !important;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    }
+    .edit-button:hover{
+      background-color: green;
+      transform: scale(1.05); 
+    }
+  .delete-button {
+    background-color: rgb(255, 0, 0) !important; /* Green */
+    border: none;
+    color: white !important;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left:10px;
+   
+  }
+  .delete-button:hover {
+    background-color: rgb(200, 0, 0) !important; /* Darker red on hover */
+    transform: scale(1.05); /* Slightly scale up the button */
+  }
+  
+  

@@ -1,23 +1,29 @@
-.trip-management {
-  display: flex;
-  height: 100vh; /* Full viewport height */
-}
-
-.trip-management-content {
-  display: flex;
-  flex: 1;
-  overflow: hidden;
-}
-
-.cards-container {
+.trip-management--main {
   display: flex;
   flex-direction: column;
-  flex: 1;
-  margin-right: 20px; /* Space between cards and map */
+  padding: 20px;
+  position: relative;
 }
 
-.map-component {
-  flex: 2; /* Adjust flex to fit the layout you want */
-  height: 100%;
-  width: 100%;
+.trip-content-container {
+  margin-top: 10px; /* Adds space between SearchRow and the content */
+  padding: 10px;
+  background-color: #dbfff52b; /* Optional background color */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+  min-height: 400px; /* Ensures the container has a minimum height */
+  margin-right: -10px;
+  margin-left:-20px;
+}
+
+.trip-management--main .search-row {
+  position: sticky; /* Makes the search row fixed at the top */
+  top: 0;
+  z-index: 10; /* Ensures it's on top of other content */
+  background-color: white;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.Searchrow{
+  margin-top:-30px;
 }

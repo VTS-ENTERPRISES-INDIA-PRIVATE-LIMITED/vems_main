@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import LiveTracking from '../../Pages/LiveTracking/LiveTracking.jsx';
 import TripManagement from '../../Pages/TripManagement/TripManagement.jsx';
 import RouteManagement from '../../Pages/RouteManagement/RouteManagement/RouteManagement.jsx';
-import AddVehicle from "../../Pages/VechileManagement/AddVehicle/AddVehicle";
-import ViewVehicle from "../../Pages/VechileManagement/ViewVehicle/ViewVehicle";
-import NewDashboard from "../../Pages//Dashboard/NewDashboard";
-import './Dashboard.css';
+import AddVehicle from "../../Pages/VechileManagement/AddVehicle/AddVehicle.jsx";
+import ViewVehicle from "../../Pages/VechileManagement/ViewVehicle/ViewVehicle.jsx";
+import VehicleDashboard from "../../Pages/VechileManagement/VehicleDashboard/VehicleDashboard.jsx";
+import './Sidebar.css';
 import EscortRegister from '../../Pages/Escort/EscortRegister.jsx';
+import ViewEscort from '../../Pages/Escort/ViewEscort.jsx';
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -35,7 +36,10 @@ const Dashboard = () => {
           <li className={`slideBarLink ${activeTab === 'liveTracking' ? 'active' : ''}`} onClick={() => handleNavClick('liveTracking')}>
             Live Tracking
           </li>
-          <li className={`slideBarLink ${activeTab === 'vehicleMgmt' ? 'active' : ''}`} onMouseEnter={() => handleSubMenu('vehicleMgmt')} onClick={() => handleNavClick('vehicleMgmt')}>
+          <li className={`slideBarLink ${activeTab === 'vehiclemgmt' ? 'active' : ''}`} onClick={() => handleNavClick('viewVehicle')}>
+            Vehicle Management
+          </li>
+          {/* <li className={`slideBarLink ${activeTab === 'vehicleMgmt' ? 'active' : ''}`} onMouseEnter={() => handleSubMenu('vehicleMgmt')} onClick={() => handleNavClick('vehicleMgmt')}>
             Vehicle Management
           </li>
           {subMenu === 'vehicleMgmt' && (
@@ -43,13 +47,13 @@ const Dashboard = () => {
               <li onClick={() => handleNavClick('addVehicle')}>Add Vehicle</li>
               <li onClick={() => handleNavClick('viewVehicle')}>View Vehicle</li>
             </ul>
-          )}
+          )} */}
           <li className={`slideBarLink ${activeTab === 'tripMgmt' ? 'active' : ''}`} onClick={() => handleNavClick('tripMgmt')}>
             Trip Management
           </li>
-          <li className={`slideBarLink ${activeTab === 'routeMgmt' ? 'active' : ''}`} onClick={() => handleNavClick('routeMgmt')}>
+          {/* <li className={`slideBarLink ${activeTab === 'routeMgmt' ? 'active' : ''}`} onClick={() => handleNavClick('routeMgmt')}>
             Route Management
-          </li>
+          </li> */}
           <li className={`slideBarLink ${activeTab === 'escortMgmt' ? 'active' : ''}`} onClick={() => handleNavClick('escortMgmt')}>
             Escort Management
           </li>
@@ -62,7 +66,8 @@ const Dashboard = () => {
         {activeTab === 'viewVehicle' && <ViewVehicle/>}
         {activeTab === 'tripMgmt' && <TripManagement/>}
         {activeTab === 'routeMgmt' && <RouteManagement/>}
-        {activeTab === 'escortMgmt' && <EscortRegister/>}
+        {activeTab === 'escortMgmt1' && <EscortRegister/>}
+        {activeTab === 'escortMgmt' && <ViewEscort/>}
       </div>
     </div>
   );
