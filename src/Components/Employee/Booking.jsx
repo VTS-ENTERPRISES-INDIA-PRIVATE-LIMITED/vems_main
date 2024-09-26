@@ -45,20 +45,20 @@ const Booking = () => {
 
 	return (
 		<>
-			<div className="navbar">
+			<div className="shiftBar">
 				{links.map((link, index) => (
 					<div
 						key={link}
-						className={`nav-link ${activeLink === link ? "active" : ""}`}
+						className={`shiftLink ${activeLink === link ? "active" : ""}`}
 						onClick={() => handleNavClick(link, index)}
 						ref={(el) => (navRefs.current[index] = el)}
 					>
 						{link}
 					</div>
 				))}
-				<div className="nav-slider" style={sliderStyle} />
+				<div className="shiftSlider" style={sliderStyle} />
 			</div>
-			<div className="table-container">
+			<div className="shiftContainer">
 				{/* <h2>{activeLink}</h2> */}
 				
 				<table>

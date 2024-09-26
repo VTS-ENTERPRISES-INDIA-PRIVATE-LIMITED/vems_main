@@ -2,19 +2,14 @@
     font-family: arial, sans-serif;
     border-collapse: collapse;
     border-radius: 10px;
-    margin-top: 2vh;
-    /* padding: 10px 5px; */
     text-align: center;
     box-shadow: 0px  4px 8px rgba(0, 0, 0, 0.249);
-    width: 82vw;
-    /* border-radius: 20px; */
-  
+    width: 100%;  
   }
   .driver-image{
     height: 70px;
     width: 70px;
     border-radius: 45px;
-    /* padding-left: 2vw; */
   }
   .driver-table{
     border-radius: 10px;

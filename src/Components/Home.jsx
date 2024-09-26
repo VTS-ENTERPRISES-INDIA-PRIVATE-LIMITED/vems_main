@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { FaSignOutAlt, FaTachometerAlt, FaMapMarkerAlt, FaUserTie, FaCar, FaUsers, FaUserFriends, FaHistory, FaMoneyCheckAlt, FaFileAlt } from 'react-icons/fa';
 import { GiSteeringWheel } from "react-icons/gi";
+import { LiaHomeSolid } from "react-icons/lia";
 import './Sidebar.css';
-import Dasboard from './Dasboard';
+// import Dasboard from './Dasboard';
 // import Employee from './Employee/Employee';
 import Employee from '../Pages/Employee/Employee';
 import LiveTracking from '../Pages/LiveTracking/LiveTracking';
@@ -15,6 +16,7 @@ import User from './vendor/User';
 
 const Clients = () => <div>Clients Content</div>;
 const Reports = () => <div>Reports Content</div>;
+const Dasboard = () => <div>Dasboard Content</div>;
 
 const Home = () => {
 	const [activeMenu, setActiveMenu] = useState('Dashboard');
@@ -92,16 +94,33 @@ const Home = () => {
 					</div>
 				</div>
 			</div>
-			{activeMenu === 'Dashboard' && <Dasboard />}
-			{activeMenu === 'Live Tracking' && <LiveTracking />}
-			{activeMenu === 'Vender Management' && <User />}
-			{activeMenu === 'Driver Management' && <Driverslist />}
-			{activeMenu === 'Vehicle Management' && <ViewVehicle />}
-			{activeMenu === 'Employees' && <Employee />}
-			{activeMenu === 'Clients' && <Clients />}
-			{activeMenu === 'Trip Management' && <TripManagement />}
-			{activeMenu === 'Escort' && <ViewEscort />}
-			{activeMenu === 'Reports' && <Reports />}
+			<div className='sideContent'>
+				<header className="dashboard-header">
+					<div className="header-info">
+						<span className="header-date">Dec 01 2022 | 10:00 AM</span>
+					</div>
+					<div className="user-info">
+						<div className="user-text">
+							<span className="user-name">koundinya</span>
+							<span className="user-role">Admin</span>
+						</div>
+						<div className="avatar-container">
+							<img src="https://res.cloudinary.com/dlo7urgnj/image/upload/v1718121215/samples/man-portrait.jpg" alt="User Avatar" className="user-avatar" />
+						</div>
+					</div>
+				</header>
+				<div className="navPath"><LiaHomeSolid />/<span>{activeMenu}</span></div>
+				{activeMenu === 'Dashboard' && <Dasboard />}
+				{activeMenu === 'Live Tracking' && <LiveTracking />}
+				{activeMenu === 'Vender Management' && <User />}
+				{activeMenu === 'Driver Management' && <Driverslist />}
+				{activeMenu === 'Vehicle Management' && <ViewVehicle />}
+				{activeMenu === 'Employees' && <Employee />}
+				{activeMenu === 'Clients' && <Clients />}
+				{activeMenu === 'Trip Management' && <TripManagement />}
+				{activeMenu === 'Escort' && <ViewEscort />}
+				{activeMenu === 'Reports' && <Reports />}
+			</div>
 		</div>
 	);
 };

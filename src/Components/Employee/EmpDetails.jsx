@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import './Employee.css';
+import { LuDownload } from "react-icons/lu";
+import { MdOutlineAddCircleOutline } from "react-icons/md";
+import { GrDocumentWindows } from "react-icons/gr";
 
 const EmpDetails = () => {
 	const [employeeData, setEmployeeData] = useState([
@@ -107,9 +110,9 @@ const EmpDetails = () => {
 					</select>
 				</div>
 				<div className="headerRight">
-					<button onClick={handleAddEmployee} className="headerButton">Add Employee</button>
-					<button onClick={handleUploadExcel} className="headerButton">Upload Excel</button>
-					<button onClick={handleDownload} className="headerButton">Download</button>
+					<button onClick={handleAddEmployee} className="headerButton"><MdOutlineAddCircleOutline/>Add Employee</button>
+					<button onClick={handleUploadExcel} className="headerButton"><GrDocumentWindows/>Upload Excel</button>
+					<button onClick={handleDownload} className="headerButton" style={{fontSize: "18px"}}><LuDownload/></button>
 				</div>
 			</div>
 			<table className="employeeTable">

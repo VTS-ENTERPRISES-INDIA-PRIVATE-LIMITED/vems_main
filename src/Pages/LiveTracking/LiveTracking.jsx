@@ -57,7 +57,7 @@ const LiveTracking = () => {
   }, []);
 
   return (
-    <MapContainer center={[13.0700, 80.2500]} zoom={13} style={{ height: '600px', flexGrow: 1}}>
+    <MapContainer center={[13.0700, 80.2500]} zoom={13} style={{ height: '600px', width: '100%' }}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; OpenStreetMap contributors'

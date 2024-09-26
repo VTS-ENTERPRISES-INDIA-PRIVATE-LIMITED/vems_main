@@ -1,9 +1,3 @@
-.empContainer {
-	width: 80vw;
-	/* margin-left: 16.5vw; */
-	padding: 20px;
-}
-
 .empHeader {
 	display: flex;
 	gap: 20px;
@@ -11,22 +5,148 @@
 }
 
 .empInfoCard {
+	position: relative;
 	box-sizing: border-box;
-	width: 150px;
-	height: 80px;
 	background-color: #e0f7fa;
-	border: 1px solid #187c89;
 	border-radius: 8px;
 	cursor: pointer;
+	padding: 0px 20px 20px;
+	min-width: 180px;
+	border: 2px solid #ddd;
+	transition: all 0.1s;
 }
-
-.empInfoCard.active,
+.empInfoLogo {
+	position: absolute;
+	top: -20px;
+	right: 20px;
+	background-color: #74d1d2;
+	color: white;
+	border-radius: 5px;
+}
+.empInfoLogo svg {
+	padding: 10px;
+	font-size: 24px;
+}
+.empInfoCard p {
+	font-size: 20px;
+	margin: 10px 0;
+	font-weight: bold;
+	color: #187c89;
+}
+.empInfoCard.active ,
 .empInfoCard:hover {
 	border: 2px solid #187c89;
 }
 
-/* Employee Details */
-.navbar {
+ /* Employee Details */
+ .employeeContainer {
+	padding: 20px;
+	font-family: Arial, sans-serif;
+}
+.headerContainer {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
+}
+.headerLeft {
+	display: flex;
+	gap: 10px;
+}
+.headerLeft input, 
+.headerLeft select {
+	outline: none;
+}
+.headerRight {
+	display: flex;
+	gap: 10px;
+}
+.searchInput {
+	width: 120px;
+	padding: 8px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+.filterSelect {
+	padding: 8px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+.headerButton {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 10px 12px;
+	font-size: 14px;
+	background-color: #007bff;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+.headerButton svg {
+	font-size: 18px;
+}
+.headerButton:hover {
+	background-color: #0056b3;
+}
+.employeeTable {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 20px 0;
+	font-size: 14px;
+	font-family: 'Arial', sans-serif;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+	animation: fadeIn 1s ease-in-out;
+	overflow: hidden;
+	border-radius: 10px;
+ }
+ 
+ .employeeTable th,
+ .employeeTable td {
+	padding: 12px 15px;
+	text-align: left;
+ }
+ 
+ .employeeTable thead {
+	background-color: #1f9fb0;
+	color: #fff;
+	animation: slideInDown 0.8s ease-in-out;
+ }
+ 
+ .employeeTable tbody tr {
+	border-bottom: 1px solid #dddddd;
+	transition: background-color 0.3s ease;
+ }
+ .employeeTable tbody tr:hover {
+	background-color: #f1f1f1;
+	transform: scale(1.02);
+	transition: transform 0.2s ease-in-out;
+ }
+
+ @keyframes fadeIn {
+	from {
+	  opacity: 0;
+	}
+	to {
+	  opacity: 1;
+	}
+ }
+ 
+ @keyframes slideInDown {
+	from {
+	  transform: translateY(-20px);
+	}
+	to {
+	  transform: translateY(0);
+	}
+ }
+ 
+
+/* Booking Details */
+.shiftBar {
 	display: flex;
 	position: relative;
 	background-color: #f3f5f8;
@@ -35,7 +155,7 @@
 	border-radius: 10px;
 }
 
-.nav-link {
+.shiftLink {
 	/* flex: 1; */
 	text-align: center;
 	padding: 10px 20px;
@@ -47,7 +167,7 @@
 	transition: color 0.3s ease;
 }
 
-.nav-slider {
+.shiftSlider {
 	position: absolute;
 	box-sizing: border-box;
 	bottom: 10px;
@@ -63,10 +183,10 @@
 	margin-right: 5px;
 }
 
-.nav-link.active~.nav-slider {
+.shiftLink.active~.shiftSlider {
 	transform: translateX(0);
 }
-.table-container {
+.shiftContainer {
 	margin-top: 20px;
 	animation: fadeIn 0.5s ease-in-out;
  }
@@ -82,7 +202,7 @@
 	}
  }
  
- table {
+ .shiftContainer table {
 	width: 100%;
 	border-collapse: collapse;
 	background-color: #ffffff;
@@ -103,117 +223,35 @@
 	}
  }
  
- th, td {
+.shiftContainer th, td {
 	padding: 12px 15px;
 	text-align: left;
  }
  
- th {
+.shiftContainer th {
 	background-color: #2bc2c43c;
 	color: #333;
 	font-weight: bold;
  }
  
- td {
+.shiftContainer td {
 	border-bottom: 1px solid #ddd;
 	transition: background-color 0.3s ease;
  }
  
- td:hover {
+.shiftContainer td:hover {
 	background-color: #2bc2c40d;
  }
  
- tr:last-child td {
+.shiftContainer tr:last-child td {
 	border-bottom: none;
  }
  
- tr:nth-child(even) {
+.shiftContainer tr:nth-child(even) {
 	background-color: #f9f9f9;
  }
  
- tr:hover {
+.shiftContainer tr:hover {
 	background-color: #2bc2c40d;
 	cursor: pointer;
  }
- 
- h2 {
-	color: #2bc1c4;
-	text-align: center;
-	margin-bottom: 20px;
-	font-weight: bold;
-	text-transform: uppercase;
-	letter-spacing: 1px;
- }
- .employeeContainer {
-	padding: 20px;
-	font-family: Arial, sans-serif;
-}
-
-.headerContainer {
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: 20px;
-}
-
-.headerLeft {
-	display: flex;
-	gap: 10px;
-}
-
-.headerRight {
-	display: flex;
-	gap: 10px;
-}
-
-.searchInput {
-	padding: 8px;
-	font-size: 14px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-}
-
-.filterSelect {
-	padding: 8px;
-	font-size: 14px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-}
-
-.headerButton {
-	padding: 8px 12px;
-	font-size: 14px;
-	background-color: #007bff;
-	color: white;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-	transition: background-color 0.3s;
-}
-
-.headerButton:hover {
-	background-color: #0056b3;
-}
-
-.employeeTable {
-	width: 100%;
-	border-collapse: collapse;
-	margin-top: 20px;
-}
-
-.employeeTable th, .employeeTable td {
-	border: 1px solid #ccc;
-	padding: 8px;
-	text-align: left;
-}
-
-.employeeTable th {
-	background-color: #f2f2f2;
-}
-
-.employeeTable tr:nth-child(even) {
-	background-color: #f9f9f9;
-}
-
-.employeeTable tr:hover {
-	background-color: #f1f1f1;
-}
