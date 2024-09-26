@@ -15,7 +15,10 @@ import TripHistoryToday from './Pages/TripHistory/TripHistoryToday';
 //import Allvehicles from './Pages/Trip/Allvehicles';
 import ViewEscort from './Pages/Escort/ViewEscort.jsx';
 import EscortDashboard from './Pages/Escort/EscortDashboard.jsx';
-
+import UserReg from "./Components/vendor/User.js"
+import Vendordetails from "./Components/vendor/Vendordetails.js"
+import VendorLogin from "./Components/vendor/Login.js"
+import Employee from "./Pages/Employee/Employee.jsx"
 const router = createBrowserRouter([
   {
     path:"/",
@@ -83,11 +86,30 @@ const router = createBrowserRouter([
   {
     path:"escort",
     element:<ViewEscort/>
+  },
+  {
+    path:"/UserReg",
+    element:<UserReg/>,
+  },
+  {
+    path:"/vendordetails/:VendorName",
+    element:<Vendordetails/>,
   }
+  ,
+  {
+    path:"/vendorLogin",
+    element:<VendorLogin />,
+  },
+  {
+    path:"/Employee",
+    element:<Employee/>,
+  }
+  
   
  
  
 ]);
+
 
 
 function App() {

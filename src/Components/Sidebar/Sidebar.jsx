@@ -8,6 +8,9 @@ import VehicleDashboard from "../../Pages/VechileManagement/VehicleDashboard/Veh
 import './Sidebar.css';
 import EscortRegister from '../../Pages/Escort/EscortRegister.jsx';
 import ViewEscort from '../../Pages/Escort/ViewEscort.jsx';
+import Employee from '../../Pages/Employee/Employee.jsx';
+import UserReg from "../vendor/User.js";
+
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -39,6 +42,12 @@ const Dashboard = () => {
           <li className={`slideBarLink ${activeTab === 'vehiclemgmt' ? 'active' : ''}`} onClick={() => handleNavClick('viewVehicle')}>
             Vehicle Management
           </li>
+          <li className={`slideBarLink ${activeTab === 'UserReg' ? 'active' : ''}`} onClick={() => handleNavClick('UserReg')}>
+          Vendor
+          </li>
+          <li className={`slideBarLink ${activeTab === 'Employee' ? 'active' : ''}`} onClick={() => handleNavClick('Employee')}>
+          Employee
+          </li>
           {/* <li className={`slideBarLink ${activeTab === 'vehicleMgmt' ? 'active' : ''}`} onMouseEnter={() => handleSubMenu('vehicleMgmt')} onClick={() => handleNavClick('vehicleMgmt')}>
             Vehicle Management
           </li>
@@ -68,6 +77,8 @@ const Dashboard = () => {
         {activeTab === 'routeMgmt' && <RouteManagement/>}
         {activeTab === 'escortMgmt1' && <EscortRegister/>}
         {activeTab === 'escortMgmt' && <ViewEscort/>}
+        {activeTab === 'Employee' && <Employee/>}
+        {activeTab === 'UserReg' && <UserReg/>}
       </div>
     </div>
   );

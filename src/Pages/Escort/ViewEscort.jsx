@@ -426,155 +426,79 @@ const ViewEscort = () => {
         />
       )}
 
-      <Modal
-        title="Edit Escort"
-        visible={isModalVisible}
-        onOk={handleSave}
-        onCancel={() => setIsModalVisible(false)}
-        width={800}
-      >
-        <Form layout="vertical" className="escort-form">
-          <div className="form-grid">
-            <Form.Item label="Escort Name">
-              <Input
-                value={editingEscort?.EscortName}
-                onChange={e => setEditingEscort({ ...editingEscort, EscortName: e.target.value })}
-              />
-            </Form.Item>
-            <Form.Item label="Contact Number">
-              <Input
-                value={editingEscort?.ContactNumber}
-                onChange={e => setEditingEscort({ ...editingEscort, ContactNumber: e.target.value })}
-              />
-            </Form.Item>
-            <Form.Item label="Age">
-              <Input
-                value={editingEscort?.Age}
-                onChange={e => setEditingEscort({ ...editingEscort, Age: e.target.value })}
-              />
-            </Form.Item>
-            <Form.Item label="Address">
-              <Input
-                value={editingEscort?.Address}
-                onChange={e => setEditingEscort({ ...editingEscort, Address: e.target.value })}
-              />
-            </Form.Item>
-            <Form.Item label="Account Handler Name">
-              <Input
-                value={editingEscort?.AccountHandlerName}
-                onChange={e => setEditingEscort({ ...editingEscort, AccountHandlerName: e.target.value })}
-              />
-            </Form.Item>
-            <Form.Item label="Account Number">
-              <Input
-                value={editingEscort?.AccountNumber}
-                onChange={e => setEditingEscort({ ...editingEscort, AccountNumber: e.target.value })}
-              />
-            </Form.Item>
-            <Form.Item label="Bank Name">
-              <Input
-                value={editingEscort?.BankName}
-                onChange={e => setEditingEscort({ ...editingEscort, BankName: e.target.value })}
-              />
-            </Form.Item>
-            <Form.Item label="Branch Name">
-              <Input
-                value={editingEscort?.BranchName}
-                onChange={e => setEditingEscort({ ...editingEscort, BranchName: e.target.value })}
-              />
-            </Form.Item>
-            <Form.Item label="IFSC Code">
-              <Input
-                value={editingEscort?.IFSCCode}
-                onChange={e => setEditingEscort({ ...editingEscort, IFSCCode: e.target.value })}
-              />
-            </Form.Item>
-            <Form.Item label="Shift">
-              <Input
-                value={editingEscort?.Shift}
-                onChange={e => setEditingEscort({ ...editingEscort, Shift: e.target.value })}
-              />
-            </Form.Item>
-          </div>
-        </Form>
-      </Modal>
-
-      <Modal
-        visible={isAddEscortModalVisible}
-        onCancel={() => setIsAddEscortModalVisible(false)}
-        footer={null}
-        width={800}
-        style={{ 
-          marginTop:'-30px',
-          marginRight:'200px' 
-        }}
-      >
-        <EscortRegister onClose={() => setIsAddEscortModalVisible(false)} />
-      </Modal>
-
-    
 <Modal
-  title="Escort Details"
-  visible={isEscortDashboardModalVisible}
-  onCancel={() => setIsEscortDashboardModalVisible(false)}
-  footer={null}
+  title="Edit Escort"
+  visible={isModalVisible}
+  onOk={handleSave}
+  onCancel={() => setIsModalVisible(false)}
   width={800}
-  style={{ marginRight: '200px' }}
+  style={{marginRight:'150px'}}
 >
-  {selectedEscort && (
-    <div className="escort-details-dashboard">
-      <div className="escort-detail-item">
-        <strong>Escort Name:</strong> {selectedEscort.EscortName}
-      </div>
-      <div className="escort-detail-item">
-        <strong>Contact Number:</strong> {selectedEscort.ContactNumber}
-      </div>
-      <div className="escort-detail-item">
-        <strong>Age:</strong> {selectedEscort.Age}
-      </div>
-      <div className="escort-detail-item">
-        <strong>Address:</strong> {selectedEscort.Address}
-      </div>
-      <div className="escort-detail-item">
-        <strong>Shift:</strong> {selectedEscort.Shift}
-      </div>
-      <div className="escort-detail-item">
-        <strong>Bank Details:</strong>
-        <div>
-          <p>Account Handler Name: {selectedEscort.AccountHandlerName}</p>
-          <p>Account Number: {selectedEscort.AccountNumber}</p>
-          <p>Bank Name: {selectedEscort.BankName}</p>
-          <p>Branch Name: {selectedEscort.BranchName}</p>
-          <p>IFSC Code: {selectedEscort.IFSCCode}</p>
-        </div>
-      </div>
-
-      <div className="escort-detail-item">
-        <div className="escort-images">
-          {selectedEscort.EscortProfilePicUpload && (
-            <div>
-              <strong>Escort Profile Picture:</strong>
-              <img src={selectedEscort.EscortProfilePicUpload} alt="Escort Profile" style={{ width: '100px', marginRight: '10px' }} />
-            </div>
-          )}
-          {selectedEscort.AadharCardUpload && (
-            <div>
-              <strong>Aadhar Card:</strong>
-              <img src={selectedEscort.AadharCardUpload} alt="Aadhar Card" style={{ width: '100px', marginRight: '10px' }} />
-            </div>
-          )}
-          {selectedEscort.CertificationUpload && (
-            <div>
-              <strong>Certification:</strong>
-              <img src={selectedEscort.CertificationUpload} alt="Certification" style={{ width: '100px', marginRight: '10px' }} />
-            </div>
-          )}
-        </div>
-      </div>
+  <Form layout="vertical" className="escort-form">
+    <div className="form-grid">
+      <Form.Item label="Escort Name">
+        <Input
+          value={editingEscort?.EscortName}
+          onChange={e => setEditingEscort({ ...editingEscort, EscortName: e.target.value })}
+        />
+      </Form.Item>
+      <Form.Item label="Contact Number">
+        <Input
+          value={editingEscort?.ContactNumber}
+          onChange={e => setEditingEscort({ ...editingEscort, ContactNumber: e.target.value })}
+        />
+      </Form.Item>
+      <Form.Item label="Age">
+        <Input
+          value={editingEscort?.Age}
+          onChange={e => setEditingEscort({ ...editingEscort, Age: e.target.value })}
+        />
+      </Form.Item>
+      <Form.Item label="Address">
+        <Input
+          value={editingEscort?.Address}
+          onChange={e => setEditingEscort({ ...editingEscort, Address: e.target.value })}
+        />
+      </Form.Item>
+      <Form.Item label="Account Handler Name">
+        <Input
+          value={editingEscort?.AccountHandlerName}
+          onChange={e => setEditingEscort({ ...editingEscort, AccountHandlerName: e.target.value })}
+        />
+      </Form.Item>
+      <Form.Item label="Account Number">
+        <Input
+          value={editingEscort?.AccountNumber}
+          onChange={e => setEditingEscort({ ...editingEscort, AccountNumber: e.target.value })}
+        />
+      </Form.Item>
+      <Form.Item label="Bank Name">
+        <Input
+          value={editingEscort?.BankName}
+          onChange={e => setEditingEscort({ ...editingEscort, BankName: e.target.value })}
+        />
+      </Form.Item>
+      <Form.Item label="Branch Name">
+        <Input
+          value={editingEscort?.BranchName}
+          onChange={e => setEditingEscort({ ...editingEscort, BranchName: e.target.value })}
+        />
+      </Form.Item>
+      <Form.Item label="IFSC Code">
+        <Input
+          value={editingEscort?.IFSCCode}
+          onChange={e => setEditingEscort({ ...editingEscort, IFSCCode: e.target.value })}
+        />
+      </Form.Item>
+      <Form.Item label="Shift">
+        <Input
+          value={editingEscort?.Shift}
+          onChange={e => setEditingEscort({ ...editingEscort, Shift: e.target.value })}
+        />
+      </Form.Item>
     </div>
-  )}
+  </Form>
 </Modal>
-
 
 
     </>
