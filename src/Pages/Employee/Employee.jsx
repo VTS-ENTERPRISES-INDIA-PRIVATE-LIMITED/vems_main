@@ -16,6 +16,7 @@ function ExcelUpload() {
     const [tripsData, setTripsData] = useState([]);
     const [isAddingEmployee, setIsAddingEmployee] = useState(false); 
     const [employeeImage, setEmployeeImage] = useState(null); 
+   
     const [newEmployee, setNewEmployee] = useState({
         EmployeeImage: '', // New field for image URL
         EmployeeId: '',
@@ -32,6 +33,8 @@ function ExcelUpload() {
     const [editedEmployee, setEditedEmployee] = useState({}); 
     const [error, setError] = useState('');
     const [location, setLocation] = useState({ lat: '', lng: '' });
+    const[EditingEmployeeID, setEditingEmployeeID]=useState(null);
+    
 
     const handleFileUpload = (e) => {
         const selectedFile = e.target.files[0];
@@ -48,7 +51,7 @@ function ExcelUpload() {
         formData.append('file', file);
 
         try {
-            await axios.post('http://localhost:8081/emp/upload', formData, {
+            await axios.post('http://localhost:8081/upload', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -152,7 +155,7 @@ function ExcelUpload() {
         formData.append('EmployeeEmergencyContact', newEmployee.EmployeeEmergencyContact);
         // console.log(newEmployee)
         try {
-            await axios.post('http://localhost:8081/emp/add-employee', formData, {
+            await axios.post('http://localhost:8081/add-employee', formData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -180,13 +183,13 @@ function ExcelUpload() {
         }
     };
 
-    // Handle employee edit button click
+  
     const handleEditEmployee = (employee) => {
-        setEditingEmployeeID(employee.EmployeeId); // Set the ID of the employee being edited
-        setEditedEmployee(employee); // Populate editedEmployee with current data
+        setEditingEmployeeID(employee.EmployeeId); 
+        setEditedEmployee(employee); 
     };
 
-    // Handle input changes in the edit form
+   
     const handleEditInputChange = async (e) => {
         const { name, value } = e.target;
         setEditedEmployee((prev) => ({
@@ -239,14 +242,14 @@ function ExcelUpload() {
         }
     };
 
-    // Handle saving the edited employee data
+  
     const handleSaveEditedEmployee = async () => {
         const formData = new FormData();
         Object.keys(editedEmployee).forEach(key => formData.append(key, editedEmployee[key]));
         console.log("editedEmployee",editedEmployee)
         
         try {
-            await axios.post('http://localhost:8081/emp/updateemployee/${editingEmployeeID}', formData, {
+            await axios.post('http://localhost:8081/updateemployee/${EditingEmployeeID}', formData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -264,7 +267,7 @@ function ExcelUpload() {
 
     const handleDeleteEmployee = async (EmployeeId) => {
         try {
-            await axios.post('http://localhost:8081/emp/deleteemployee/${EmployeeId}');
+            await axios.post('http://localhost:8081/deleteemployee/${EmployeeId}');
             alert('Employee deleted successfully');
             fetchEmployeeData();
         } catch (error) {
@@ -275,7 +278,7 @@ function ExcelUpload() {
 
     const fetchEmployeeData = async () => {
         try {
-            const response = await axios.get('http://localhost:8081/emp/showemployee');
+            const response = await axios.get('http://localhost:8081/showemployee');
             setData(response.data);
         } catch (error) {
             console.error('Error fetching employee data:', error);
@@ -551,7 +554,7 @@ function ExcelUpload() {
                             <tr key={employee.EmployeeId}>
                                 <td><img className='employee-image' src={employee.EmployeeImage} alt="Profile" width="50" height="50" /></td>
                                 <td>{employee.EmployeeId}</td>
-                                {editingEmployeeID === employee.EmployeeId ? (
+                                {EditingEmployeeID === employee.EmployeeId ? (
                                     <>
                                         {/* Render input fields when in edit mode */}
                                         <td><input type="text" name="EmployeeName" value={editedEmployee.EmployeeName} onChange={handleEditInputChange} /></td>

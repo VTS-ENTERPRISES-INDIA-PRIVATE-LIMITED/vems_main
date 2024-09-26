@@ -19,6 +19,7 @@ import UserReg from "./Components/vendor/User.js"
 import Vendordetails from "./Components/vendor/Vendordetails.js"
 import VendorLogin from "./Components/vendor/Login.js"
 import Employee from "./Pages/Employee/Employee.jsx"
+
 const router = createBrowserRouter([
   {
     path:"/",
@@ -103,7 +104,8 @@ const router = createBrowserRouter([
   {
     path:"/Employee",
     element:<Employee/>,
-  }
+  },
+ 
   
   
  
