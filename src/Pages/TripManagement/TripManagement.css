@@ -6,20 +6,20 @@
 }
 
 .trip-content-container {
-  margin-top: 10px; /* Adds space between SearchRow and the content */
+  margin-top: 10px; 
   padding: 10px;
-  background-color: #dbfff52b; /* Optional background color */
+  background-color: #dbfff52b; 
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
-  min-height: 400px; /* Ensures the container has a minimum height */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  min-height: 400px; 
   margin-right: -10px;
   margin-left:-20px;
 }
 
 .trip-management--main .search-row {
-  position: sticky; /* Makes the search row fixed at the top */
+  position: sticky; 
   top: 0;
-  z-index: 10; /* Ensures it's on top of other content */
+  z-index: 10; 
   background-color: white;
   padding: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

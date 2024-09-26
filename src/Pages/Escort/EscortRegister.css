@@ -1,14 +1,12 @@
 /* .escort-form {
-    width: 80%;
-    margin: auto;
+    width: 80%; 
+    margin: 0;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    background-color:transparent;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   
     margin-top: 5px;
-    margin-left : 10px;
+    margin-left: 200px;
 } */
 
 .form-header {
@@ -18,14 +16,22 @@
     margin-bottom: 20px;
 }
 
-.save-button {
+.headddd {
+    color: black;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin: 0; 
+}
+
+.save-button1 {
     padding: 8px 16px;
     background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    margin-left: 10px; 
 }
+
 
 .form-content {
     display: flex;
@@ -34,20 +40,20 @@
 }
 
 .form-field {
-    width: 30%; /* Adjusted to have three fields per row */
+    width: 30%;
     margin-bottom: 20px;
-    margin-right: 2%; /* Space between fields */
+    margin-right: 2%; 
 }
 
 .form-field:nth-child(3n) {
-    margin-right: 0; /* Remove right margin for every third field */
+    margin-right: 0;
 }
 
 .form-field label {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
-    /* font-weight: bold; */
+ 
     position: relative;
     font-size: 14px;
     color:black;
@@ -55,7 +61,7 @@
 }
 
 .form-field input {
-    width: 80%; /* Full width of the field */
+    width: 80%; 
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;

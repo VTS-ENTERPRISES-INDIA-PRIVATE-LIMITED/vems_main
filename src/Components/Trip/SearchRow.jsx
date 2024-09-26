@@ -10,7 +10,7 @@ const SearchRow = ({ onFilterChange }) => {
   const handleButtonClick = (button) => {
     setActiveButton(button);
 
-    // Call the parent function with the selected view for filtering
+    
     onFilterChange(button);
   };
 
@@ -48,8 +48,8 @@ const SearchRow = ({ onFilterChange }) => {
             variant={activeButton === label ? 'contained' : 'outlined'}
             onClick={() => handleButtonClick(label)}
             sx={{
-              borderRadius: '20px', // Rounded corners
-              textTransform: 'none', // Keep text case normal
+              borderRadius: '20px',
+              textTransform: 'none', 
               backgroundColor: activeButton === label ? 'lightblue' : 'transparent',
             }}
           >
@@ -58,10 +58,10 @@ const SearchRow = ({ onFilterChange }) => {
         ))}
       </Box>
 
-      {/* Date Range Picker (Ant Design) */}
+     
       <DatePicker.RangePicker style={{ marginLeft: '-30px', borderRadius: '20px' }} />
 
-      {/* Download Button */}
+     
       {/* <Button
         variant="outlined"
         startIcon={<DownloadOutlined />}

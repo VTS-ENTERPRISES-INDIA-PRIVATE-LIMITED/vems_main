@@ -99,7 +99,7 @@ const TripHistory = () => {
             ),
             sx: { width: 150, borderRadius: '20px' },
           }}
-          onChange={handleSearch} // Call search on input change
+          onChange={handleSearch} 
         />
         <Button
           variant="outlined"
@@ -110,7 +110,7 @@ const TripHistory = () => {
             marginLeft: 100,
             borderRadius: '20px',
           }}
-          onClick={downloadPDF} // Call downloadPDF when clicked
+          onClick={downloadPDF} 
         >
           Download As PDF
         </Button>

@@ -28,7 +28,7 @@ const TodayComponent = () => {
       borderColor="lightgray"
       style={{ borderRadius: '20px' ,width:'800px'}}
     >
-      {/* Date and Current Day */}
+    
       <Box display="flex" flexDirection="column">
         <Typography variant="subtitle2">Today</Typography>
         <Typography variant="h6">
@@ -41,7 +41,7 @@ const TodayComponent = () => {
         </Typography>
       </Box>
 
-      {/* Switch and Detailed View */}
+     
       {/* <Box
         display="flex"
         alignItems="center"
@@ -57,7 +57,7 @@ const TodayComponent = () => {
         />
       </Box> */}
 
-      {/* Approved Button */}
+     
       {/* <Button
         variant="contained"
         startIcon={<CheckCircleOutlined />}
@@ -71,7 +71,7 @@ const TodayComponent = () => {
         Approved
       </Button> */}
 
-      {/* Download Button */}
+     
       {/* <Button
         variant="contained"
         startIcon={<DownloadOutlined />}

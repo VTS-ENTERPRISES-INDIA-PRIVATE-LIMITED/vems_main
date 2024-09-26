@@ -283,17 +283,17 @@
         color: rgb(99,184,193);
     }
     .dr-details-card1 h5 {
-        color: black; /* Set text color for h6 */
+        color: black; 
         font-size: 12px;
-         /* Set font size for h6 */
+        
         
     }
     
     .dr-details-card1 h6 {
-        color: darkblue; /* Set text color for h5 */
-        font-size: 14px; /* Set font size for h5 (larger than h6) */
+        color: darkblue; 
+        font-size: 14px; 
         font-weight: bold; 
-        margin-bottom: 5px;/* Make the font bold */
+        margin-bottom: 5px;
       
     }
    
@@ -654,14 +654,12 @@
         border-radius: 10px;
         margin: 20px;
         height: 35vh;
-        /* width: fit-content; */
+       
         position: relative;
         
     }
     .inf-pers1{
-        /* display: flex;
-        flex-wrap: wrap; */
-        /* gap: 2rem;  */
+       
         margin: 10px;
     }
     .cur-car-img1{
@@ -703,7 +701,7 @@
         gap:10px;
     }
     .curr-dets1 div {
-        flex: 1 1 200px; /* Adjust the minimum width if needed */
+        flex: 1 1 200px;
         display: flex;
         flex-direction: column;
       }
@@ -714,12 +712,12 @@
       }
       .curr-dets1 p + p {
         margin-top: -10px;
-        margin-bottom: 30px;; /* Space above the value */
+        margin-bottom: 30px;
       }
       
 
 .curr-dets1 p svg {
-    margin-right: 8px; /* Space between icon and text */
+    margin-right: 8px; 
   }
     .veh-num-cras1{
         position: absolute;

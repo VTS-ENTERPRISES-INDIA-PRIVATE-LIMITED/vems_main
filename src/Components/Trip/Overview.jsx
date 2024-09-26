@@ -14,17 +14,16 @@ const OverView = () => {
 
   return (
     <Box 
-    // display="flex"
-    //   justifyContent="space-around"
+  
       alignItems="center"
-    //   p={2}
+   
       gap={1}
       border={0}
       borderRadius={2}
       width={250}
       borderColor="lightgray"
       style={{padding:'20px 20px', borderRadius: '20px', backgroundColor: '#F6FBFF' }}>
-      {/* Start Location */}
+    
       <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
         <LocationOn sx={{ color: 'blue' }} />
         <Typography  sx={{color:'grey'}} variant='body3'>Start Location</Typography>
@@ -36,12 +35,12 @@ const OverView = () => {
           Hive
         </Typography>
       </Box>
-      {/* Date and Time */}
+      
       <Typography  color="grey" sx={{ marginTop: '8px',marginLeft:'22px' ,fontSize:'12px'}}>
         01/01/2022. 6:30 a.m.
       </Typography>
       <Box/>
-      {/* Avatars */}
+     
       <Box sx={{ display: 'flex', alignItems: 'center', marginTop: '8px', marginLeft:'20px' }}>
         {users.map((user, index) => (
           <Avatar key={index} src={user.src} icon={<UserOutlined />} size="large" style={{ marginRight: '-10px' }} />
@@ -52,7 +51,7 @@ const OverView = () => {
 
       <Divider style={{ margin: '8px 0' }} />
 
-      {/* End Location */}
+     
       <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
         <Flag sx={{ color: 'red' }} />
         <Typography sx={{color:'grey'}} variant="body3">End Location</Typography>

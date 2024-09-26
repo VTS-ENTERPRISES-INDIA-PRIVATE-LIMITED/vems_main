@@ -55,7 +55,7 @@ const Cards = () => {
         }}
       />
       </div>
-      {/* <h1 className='heading'>Ongoing Trips</h1> */}
+     
 <div className='cards-and-routemap'>
       <div className='cards--cards'>
         {filteredVehicles.map(vehicle => (

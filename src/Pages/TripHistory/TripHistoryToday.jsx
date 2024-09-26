@@ -9,14 +9,13 @@ import TripHistory from '../TripHistory/TripHistory';
 import './TripHistoryToday.css';
 
 const TripHistoryToday = () => {
-  const [selectedView, setSelectedView] = useState('Today'); // Track the current view
-  const [tripData, setTripData] = useState([]); // Store trip data (default could be today's data)
-
+  const [selectedView, setSelectedView] = useState('Today');
+  const [tripData, setTripData] = useState([]); 
   const trips = [
-    // Your trip data array here. Each object should have a start date and status
+   
   ];
 
-  // Helper function to get the date for filtering
+ 
   const getFilteredData = (view) => {
     const today = new Date();
     let filteredTrips = [];
@@ -49,23 +48,22 @@ const TripHistoryToday = () => {
         );
         break;
       default:
-        filteredTrips = trips; // All data for the 'All' button
+        filteredTrips = trips; 
     }
 
     return filteredTrips;
   };
 
-  // Effect to set initial trip data to today's trips
   useEffect(() => {
     const initialData = getFilteredData('Today');
-    setTripData(initialData); // Set initial trip data
+    setTripData(initialData);
   }, []);
 
-  // Function to handle data update based on button click in SearchRow
+  
   const handleFilterChange = (view) => {
     const filteredData = getFilteredData(view);
-    setTripData(filteredData); // Update trip data with filtered data
-    setSelectedView(view); // Update the selected view
+    setTripData(filteredData); 
+    setSelectedView(view); 
   };
 
   return (
@@ -83,12 +81,12 @@ const TripHistoryToday = () => {
               <Overview />
             </>
           ) : (
-            <TripHistory data={tripData} /> // Display filtered trip data in TripHistory
+            <TripHistory data={tripData} /> 
           )}
         </div>
         {selectedView === 'Today' && (
           <div className='map'>
-            <AllvehiclesRoute customClass="map-cards" /> {/* Show the map only for today's view */}
+            <AllvehiclesRoute customClass="map-cards" /> 
           </div>
         )}
       </div>

@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Polyline, Marker, Popup } from 'react-leaflet'
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import axios from 'axios';
-//import './Route.css';
+
 
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -118,7 +118,6 @@ const RouteManagement = ({ customClass }) => {
           </Marker>
         ))}
 
-        {/* Add a vehicle marker on the route */}
         {route.length > 0 && (
           <Marker
             position={route[Math.floor(route.length / 2)]} 

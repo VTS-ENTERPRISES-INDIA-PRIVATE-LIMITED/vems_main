@@ -14,6 +14,7 @@ import EscortRegister  from './Pages/Escort/EscortRegister';
 import TripHistoryToday from './Pages/TripHistory/TripHistoryToday';
 //import Allvehicles from './Pages/Trip/Allvehicles';
 import ViewEscort from './Pages/Escort/ViewEscort.jsx';
+import EscortDashboard from './Pages/Escort/EscortDashboard.jsx';
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
   {
     path: "/vehicledashboard", 
     element: <VehicleDashboard />,
+  },
+  {
+    path: "/escortdashboard", 
+    element: <EscortDashboard />,
   },
   // {
   //   path: "/newdashboard", 

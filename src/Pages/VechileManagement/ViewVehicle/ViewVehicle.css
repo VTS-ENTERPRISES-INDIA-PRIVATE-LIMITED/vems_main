@@ -2,23 +2,23 @@
 .two-column-form {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px 40px; /* Adjust the gap between form items */
+  gap: 10px 40px; 
 }
 
 .two-column-form .ant-form-item {
-  margin-bottom: 10px; /* Adjust this value for less space between fields */
-  margin-top: 5px;    /* Add margin-top to control space above fields */
+  margin-bottom: 10px; 
+  margin-top: 5px;    
 }
 
 @media (max-width: 768px) {
   .two-column-form .ant-form-item {
-    flex: 1 1 100%; /* For smaller screens, make the form items full width */
+    flex: 1 1 100%; 
   }
 }
 
 
 .edit-button {
-  background-color: #04AA6D; /* Green */
+  background-color: #04AA6D; 
   border: none;
   color: white !important;
   padding: 5px 10px;
@@ -32,7 +32,7 @@
     transform: scale(1.05); 
   }
 .delete-button {
-  background-color: rgb(255, 0, 0) !important; /* Green */
+  background-color: rgb(255, 0, 0) !important; 
   border: none;
   color: white !important;
   padding: 5px 10px;
@@ -44,7 +44,7 @@
  
 }
 .delete-button:hover {
-  background-color: rgb(200, 0, 0) !important; /* Darker red on hover */
-  transform: scale(1.05); /* Slightly scale up the button */
+  background-color: rgb(200, 0, 0) !important; 
+  transform: scale(1.05); 
 }
 

@@ -6,16 +6,16 @@ const TripCard = () => {
     <>
     <Box
       display="flex"
-    //   justifyContent="space-around"
+   
       alignItems="center"
-    //   p={0}
+  
       gap={1}
       border={0}
       borderRadius={2}
       borderColor="lightgray"
       style={{padding:'5px 20px' ,borderRadius: '20px', backgroundColor: '#F6FBFF' }}
     >
-      {/* Vehicle Section */}
+     
       <Box display="flex"  justifyContent="center" alignItems="center" sx={{ backgroundColor: '#DFF5FA', borderRadius: '15px', padding: '5px' }}>
         <Avatar alt="Car" src="https://static.vecteezy.com/system/resources/previews/047/242/709/non_2x/modern-luxury-car-isolated-on-transparent-background-free-png.png" sx={{ width: 60, height: 60 }} />
         <Box ml={0} display="flex" flexDirection="column" alignItems="center"
@@ -25,7 +25,7 @@ const TripCard = () => {
         </Box>
       </Box>
 
-      {/* Trip ID */}
+   
       <Box
         display="flex"
         flexDirection="column"
@@ -37,7 +37,7 @@ const TripCard = () => {
         <Typography variant="h7" style={{ fontSize: '14px', color: 'gray' }}>Trip ID</Typography>
       </Box>
 
-      {/* Ride Type */}
+     
       <Box
         display="flex"
         flexDirection="column"
@@ -49,7 +49,7 @@ const TripCard = () => {
         <Typography variant="h8" style={{ fontSize: '12px', color: 'gray' }}>Ride Type</Typography>
       </Box>
 
-      {/* Total Fare */}
+     
       {/* <Box
         display="flex"
         flexDirection="column"
@@ -61,7 +61,7 @@ const TripCard = () => {
         <Typography variant="h8" style={{ fontSize: '12px', color: 'gray' }}>Total Fare</Typography>
       </Box> */}
 
-      {/* Average Speed */}
+      
       <Box
         display="flex"
         flexDirection="column"
@@ -73,7 +73,6 @@ const TripCard = () => {
         <Typography variant="h8" style={{ fontSize: '12px', color: 'gray' }}>Average Speed</Typography>
       </Box>
 
-      {/* Max Speed */}
       <Box
         display="flex"
         flexDirection="column"
@@ -88,19 +87,16 @@ const TripCard = () => {
     
     <Box
       display="flex"
-    //   justifyContent="space-around"
+    
       alignItems="center"
-    //   p={2}
+   
       gap={0.7}
       border={0}
       borderRadius={2}
       borderColor="lightgray"
       style={{padding:'5px 20px' ,borderRadius: '20px', backgroundColor: '#F6FBFF' }}
     >
-      {/* Vehicle Section */}
-      
-
-      {/* Max Speed */}
+     
       {/* <Box
         display="flex"
         flexDirection="column"
@@ -210,7 +206,7 @@ const TripCard = () => {
         </Box>
       </Box> */}
 
-      {/* Trip ID */}
+   
       {/* <Box
         display="flex"
         flexDirection="column"
@@ -222,7 +218,7 @@ const TripCard = () => {
         <Typography style={{fontSize:'12px'}}>Assigned Location</Typography>
       </Box> */}
 
-      {/* Ride Type */}
+     
       {/* <Box
         display="flex"
         flexDirection="column"
