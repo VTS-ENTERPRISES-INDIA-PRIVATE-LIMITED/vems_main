@@ -1,0 +1,20 @@
+/* EscortDashboard.css */
+
+.dashboard-container {
+    padding: 20px;
+    background-color: #f5f5f5; /* Light gray background */
+    min-height: 100vh; /* Ensure it takes full height */
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333; /* Dark text color */
+  }
+  
+  .escort-card {
+    background-color: #ffffff; /* White card background */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-radius: 8px; /* Rounded corners */
+  }
+  

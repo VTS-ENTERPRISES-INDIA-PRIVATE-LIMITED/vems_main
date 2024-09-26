@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
-import { FaSignOutAlt, FaTachometerAlt, FaMapMarkerAlt, FaUserTie, FaCar, FaRegCalendarAlt, FaBuilding, FaUsers, FaUserFriends, FaHistory, FaMoneyCheckAlt, FaFileAlt, FaDatabase, FaCog } from 'react-icons/fa';
+import { FaSignOutAlt, FaTachometerAlt, FaMapMarkerAlt, FaUserTie, FaCar, FaUsers, FaUserFriends, FaHistory, FaMoneyCheckAlt, FaFileAlt } from 'react-icons/fa';
+import { GiSteeringWheel } from "react-icons/gi";
 import './Sidebar.css';
 import Dasboard from './Dasboard';
-import Employee from './Employee/Employee';
+// import Employee from './Employee/Employee';
+import Employee from '../Pages/Employee/Employee';
+import LiveTracking from '../Pages/LiveTracking/LiveTracking';
+import ViewVehicle from '../Pages/VechileManagement/ViewVehicle/ViewVehicle'
+import TripManagement from '../Pages/TripManagement/TripManagement'
+import { IoStarHalf } from 'react-icons/io5';
+import ViewEscort from '../Pages/Escort/ViewEscort';
+import Driverslist from '../Pages/DriverManagement/Driverslist';
+import User from './vendor/User';
 
-const LiveTracking = () => <div>Live Tracking Content</div>;
-const DriverManagement = () => <div>Driver Management Content</div>;
-const VehicleManagement = () => <div>Vehicle Management Content</div>;
-const RegularRides = () => <div>Regular Rides Content</div>;
-const OfficeRides = () => <div>Office Rides Content</div>;
 const Clients = () => <div>Clients Content</div>;
-const TripHistory = () => <div>Trip History Content</div>;
-const Payments = () => <div>Payments Content</div>;
 const Reports = () => <div>Reports Content</div>;
-const FareDatabase = () => <div>Fare Database Content</div>;
-const Settings = () => <div>Settings Content</div>;
 
 const Home = () => {
 	const [activeMenu, setActiveMenu] = useState('Dashboard');
@@ -42,9 +42,15 @@ const Home = () => {
 						</div>
 						<span>Live Tracking</span>
 					</div>
+					<div className={`menu-item ${activeMenu === 'Vender Management' ? 'active' : ''}`} onClick={() => setActiveMenu('Vender Management')}>
+						<div className="icon-container icon-vender-management">
+							<FaUserTie className="icon" />
+						</div>
+						<span>Vender Management</span>
+					</div>
 					<div className={`menu-item ${activeMenu === 'Driver Management' ? 'active' : ''}`} onClick={() => setActiveMenu('Driver Management')}>
 						<div className="icon-container icon-driver-management">
-							<FaUserTie className="icon" />
+							<GiSteeringWheel className="icon" />
 						</div>
 						<span>Driver Management</span>
 					</div>
@@ -53,18 +59,6 @@ const Home = () => {
 							<FaCar className="icon" />
 						</div>
 						<span>Vehicle Management</span>
-					</div>
-					<div className={`menu-item ${activeMenu === 'Regular Rides' ? 'active' : ''}`} onClick={() => setActiveMenu('Regular Rides')}>
-						<div className="icon-container icon-regular-rides">
-							<FaRegCalendarAlt className="icon" />
-						</div>
-						<span>Regular Rides</span>
-					</div>
-					<div className={`menu-item ${activeMenu === 'Office Rides' ? 'active' : ''}`} onClick={() => setActiveMenu('Office Rides')}>
-						<div className="icon-container icon-office-rides">
-							<FaBuilding className="icon" />
-						</div>
-						<span>Office Rides</span>
 					</div>
 					<div className={`menu-item ${activeMenu === 'Employees' ? 'active' : ''}`} onClick={() => setActiveMenu('Employees')}>
 						<div className="icon-container icon-employees">
@@ -78,17 +72,17 @@ const Home = () => {
 						</div>
 						<span>Clients</span>
 					</div>
-					<div className={`menu-item ${activeMenu === 'Trip History' ? 'active' : ''}`} onClick={() => setActiveMenu('Trip History')}>
+					<div className={`menu-item ${activeMenu === 'Trip Management' ? 'active' : ''}`} onClick={() => setActiveMenu('Trip Management')}>
 						<div className="icon-container icon-trip-history">
 							<FaHistory className="icon" />
 						</div>
-						<span>Trip History</span>
+						<span>Trip Management</span>
 					</div>
-					<div className={`menu-item ${activeMenu === 'Payments' ? 'active' : ''}`} onClick={() => setActiveMenu('Payments')}>
-						<div className="icon-container icon-payments">
-							<FaMoneyCheckAlt className="icon" />
+					<div className={`menu-item ${activeMenu === 'Escort' ? 'active' : ''}`} onClick={() => setActiveMenu('Escort')}>
+						<div className="icon-container icon-escort">
+							<IoStarHalf className="icon" />
 						</div>
-						<span>Payments</span>
+						<span>Escort</span>
 					</div>
 					<div className={`menu-item ${activeMenu === 'Reports' ? 'active' : ''}`} onClick={() => setActiveMenu('Reports')}>
 						<div className="icon-container icon-reports">
@@ -96,33 +90,18 @@ const Home = () => {
 						</div>
 						<span>Reports</span>
 					</div>
-					<div className={`menu-item ${activeMenu === 'Fare Database' ? 'active' : ''}`} onClick={() => setActiveMenu('Fare Database')}>
-						<div className="icon-container icon-fare-database">
-							<FaDatabase className="icon" />
-						</div>
-						<span>Fare Database</span>
-					</div>
-					<div className={`menu-item ${activeMenu === 'Settings' ? 'active' : ''}`} onClick={() => setActiveMenu('Settings')}>
-						<div className="icon-container icon-settings">
-							<FaCog className="icon" />
-						</div>
-						<span>Settings</span>
-					</div>
 				</div>
 			</div>
-				{activeMenu === 'Dashboard' && <Dasboard/>}
-				{activeMenu === 'Live Tracking' && <LiveTracking />}
-				{activeMenu === 'Driver Management' && <DriverManagement />}
-				{activeMenu === 'Vehicle Management' && <VehicleManagement />}
-				{activeMenu === 'Regular Rides' && <RegularRides />}
-				{activeMenu === 'Office Rides' && <OfficeRides />}
-				{activeMenu === 'Employees' && <Employee/>}
-				{activeMenu === 'Clients' && <Clients />}
-				{activeMenu === 'Trip History' && <TripHistory />}
-				{activeMenu === 'Payments' && <Payments />}
-				{activeMenu === 'Reports' && <Reports />}
-				{activeMenu === 'Fare Database' && <FareDatabase />}
-				{activeMenu === 'Settings' && <Settings />}
+			{activeMenu === 'Dashboard' && <Dasboard />}
+			{activeMenu === 'Live Tracking' && <LiveTracking />}
+			{activeMenu === 'Vender Management' && <User />}
+			{activeMenu === 'Driver Management' && <Driverslist />}
+			{activeMenu === 'Vehicle Management' && <ViewVehicle />}
+			{activeMenu === 'Employees' && <Employee />}
+			{activeMenu === 'Clients' && <Clients />}
+			{activeMenu === 'Trip Management' && <TripManagement />}
+			{activeMenu === 'Escort' && <ViewEscort />}
+			{activeMenu === 'Reports' && <Reports />}
 		</div>
 	);
 };

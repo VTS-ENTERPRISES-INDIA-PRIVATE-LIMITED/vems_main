@@ -1,0 +1,150 @@
+
+.two-column-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 40px; 
+  }
+  
+  .two-column-form .ant-form-item {
+    margin-bottom: 10px; 
+    margin-top: 5px;    
+  }
+  
+  @media (max-width: 768px) {
+    .two-column-form .ant-form-item {
+      flex: 1 1 100%;
+    }
+  }
+  
+  
+  .edit-button {
+    background-color: #04AA6D; 
+    border: none;
+    color: white !important;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    }
+    .edit-button:hover{
+      background-color: green;
+      transform: scale(1.05); 
+    }
+  .delete-button {
+    background-color: rgb(255, 0, 0) !important; 
+    border: none;
+    color: white !important;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left:10px;
+   
+  }
+  .delete-button:hover {
+    background-color: rgb(200, 0, 0) !important; 
+    transform: scale(1.05); 
+  }
+  .escort-modal {
+    background-color: #f5f7f9; /* Light background for modal */
+    padding: 20px;
+  }
+  
+  .escort-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .escort-details {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr; /* 3 Sections: Profile, Personal Details, and Bank Details */
+    gap: 20px;
+    padding: 20px;
+    background-color: #e3f2fd; /* Light blue background */
+    border-radius: 8px;
+  }
+  
+  .profile-section {
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile-section img.escort-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .profile-section h2 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .profile-section p {
+    color: #666;
+    font-size: 14px;
+  }
+  
+  .personal-details, .bank-details {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .personal-details h3, .bank-details h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: bold;
+  }
+  
+  .ant-form-item {
+    margin-bottom: 16px;
+  }
+  
+  .ant-form-item-label > label {
+    font-weight: 600;
+  }
+  
+  .ant-input {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  
+  @media (max-width: 768px) {
+    .escort-details {
+      grid-template-columns: 1fr; /* Stack sections on mobile */
+    }
+  }
+  .escort-form {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    gap: 16px; /* Space between fields */
+  }
+  
+  .form-grid {
+    display: contents; /* Make the div ignore its display and allow grid layout to be applied */
+  }
+  
+  @media (max-width: 768px) {
+    .escort-form {
+      grid-template-columns: repeat(2, 1fr); /* 2 columns on smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .escort-form {
+      grid-template-columns: 1fr; /* 1 column on extra small screens */
+    }
+  }
+  
+  

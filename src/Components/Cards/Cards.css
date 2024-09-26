@@ -1,0 +1,41 @@
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+
+
+.cards--cards {
+  width: 50%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  height:10px;
+}
+
+.card {
+  box-sizing: border-box;
+  margin-bottom: 5px;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.card.active-card {
+  background-color: #e6e6e6;
+  border: 2px solid #00bcd4; 
+}
+
+.cards-and-routemap{
+  display: flex;
+  gap: 2rem;
+}
+
+.leaflet-container,
+.leaflet-touch {
+  width: 38rem;
+}

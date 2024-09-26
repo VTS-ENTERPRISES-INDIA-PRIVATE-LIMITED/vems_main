@@ -4,7 +4,7 @@ import { FaClock, FaMapMarkerAlt } from 'react-icons/fa';
 import { BsFillRocketTakeoffFill } from "react-icons/bs";
 
 import './Dasboard.css';
-import Charts from './Charts';
+// import Charts from './Charts';
 import { useState } from 'react';
 
 function Dasboard() {
@@ -106,7 +106,7 @@ function Dasboard() {
                     </div>
                 ))}
             </div>
-            <Charts />
+            {/* <Charts /> */}
         </div>
 
 

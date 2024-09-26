@@ -1,0 +1,1090 @@
+.admin-prof-btn{
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    margin: 10px;
+}
+.tick-btn{
+    height: 20px;
+    width: 20px;
+    border-radius: 10px;
+    border: none;
+    margin-left: 1vw;
+    margin-top: 0.5vh;
+    background-color: white;
+    color: green;
+}
+.admin-prof{
+    display: flex;
+    padding-left: 50px;
+    margin-left: 17vw;
+}
+.admin-head{
+    display: flex;
+    margin: 10px;
+    box-shadow: 0px 0px 0px 0px rgb(251, 248, 248);
+    border-radius: 10px;
+    height: 8.5vh;
+    border-color: rgb(239, 233, 233);
+    border-width: 0.01px;
+    border-style: solid;
+}
+.admin-dr-nav{
+    display: flex;
+    gap: 10rem;
+}
+.dr-mng{
+    margin: 10px;
+    margin-top: 2vh;
+}
+.all-update-card{
+    background-color: #007857;
+    height: 30px;
+    display: flex;
+}
+.doc-up-date{
+    box-shadow: 0px 0px 0px 0px rgb(255, 255, 255);
+    height: 5vh;
+    width: 15vw;
+    border-radius: 20px;
+    padding-left: 10px;
+    padding-top: 5px;
+    color: #fcfdfd;
+    background-color: #007857;
+    }
+    .update-det{
+        display: flex;
+        margin-left: 70vw;
+    }
+    .l-arr-btn1{
+        height: 30px;
+        width: 30px;
+        border-radius: 20px;
+        margin: 10px;
+        margin-left: 2vw; 
+    }
+    /* .sel-act{
+        height: 4vh;
+        margin: 5px;
+        margin-top:30px;
+        border-color: green;
+        background-color: rgb(231, 244, 231);
+        color: green;
+        border-radius: 5px;
+        cursor: pointer;
+    } */
+    .edit-btn{
+        height: 30px;
+        width: 30px;
+        margin-top:1.5vh;
+        border-radius: 5px;
+        border-style: solid;
+        color: #ff7043;
+        background-color: #fff4f0;
+        border-color: #ff7f56;
+        cursor: pointer;
+    }
+    .tot-card-o{
+        width: 100%;
+       display: flex;
+       justify-content: space-between;
+    }
+    .delete-btn{
+        height: 30px;
+        width: 30px;
+        margin-top:1.5vh;
+        border-radius: 5px;
+        border-color: #e60c24;
+        background-color: #fff3f5;
+        border-color: red;
+        color: #e5031c;
+    }
+    .all-doc-update{
+        display: flex;
+        align-items: center;
+        width: 16vw;
+        background-color: #007857;
+        border-radius: 4px;
+        height: 28px;
+        /* align-items: center; */
+        margin-top: 1.5vh;
+        /* gap: 1rem; */
+        color: white;
+        padding:0 5px;
+        gap: 0.5rem;
+        /* margin-top: 1.5vh; */
+    }
+     
+    .tick-btnn{
+        height: 20px;
+        width: 20px; 
+        border-radius: 10px;
+       border: none;
+       padding-left: 5px;
+       
+      }
+    .edut-del-btns{
+        gap: 0.5rem;
+        display: flex;
+    }
+    .dr-prof-btn{
+        height: 70px;
+        width: 70px;
+        border-radius: 35px;
+        margin: 10px;
+    }
+    .dr-prof-det{
+        display: flex;
+        margin-left: 3vw;
+        }
+    .dr-details{
+        margin-left: 20px;
+        line-height: 0.5;
+    }
+    li{
+        list-style-type: none;
+    }
+    .driver-image-det{
+        display: flex;
+        align-items: center;
+        margin-top: 0vh;
+
+    }
+    .lt-head{
+         color: #44b4c3;
+         margin-left: 1vw;
+    }
+    .driver-image-lt{
+        height: 12vh;
+    }
+    .star{
+        color: rgb(237, 174, 13);
+    }
+    .last-update-h{
+        font-size: small;
+        color: rgb(9, 160, 220);
+    }
+    .driver-id{
+        margin: 0;
+    }
+    .driver-name-head{
+        margin: 0;
+    }
+
+    .det-card{
+        box-shadow: 2px 2px 2px 2px rgb(239, 238, 238);
+        height: 15vh;
+        width: 10vw;
+        border-radius: 10px;
+        background-color: rgb(228, 240, 250);
+        margin: 10px;
+        cursor: pointer;
+        transition: transform 0.5s;
+        border: none;
+        color: rgb(46, 181, 234);
+    }
+    .det-card:hover{
+        transform: scale(1.1);
+    }
+    .det-cards{
+        display: flex;  
+        margin-left: 4vw;
+    }
+    .card-det{
+        margin-left: 2vw;
+    }
+    .call-msg-btns{
+      display: flex;
+      gap: 0.5rem;
+      margin-left: 0.5vw;
+    }
+    .fleet-call{
+        display: flex;
+        align-items: center;
+        gap: 5rem;
+    }
+    .dr-fl-ri{
+        display: flex;
+        gap: 1rem;
+    }
+    .dr-only{
+        border-style: solid;
+        border-color: #7f6dae;
+        background-color: #f2ecff;
+        color: #6a56a0;
+        /* height: 4vh;
+        width: 10vw;
+        text-align: center;
+        border-radius: 4px;
+        border-width: 2px;
+        padding-top: 5px; */
+    }
+    .fleet-card{
+        /* margin:0; */
+        border-style: solid;
+        /* height: 4vh; */
+        width: fit-content;
+        /* text-align: center; */
+        align-self: center;
+        /* border-radius: 10px; */
+        border-radius: 4px;
+        padding: 5px;
+        border-width: 2px;
+        
+      
+    }
+    .dr-fl-ri h4{
+        /* margin:0; */
+        box-sizing: border-box;
+    }
+    .dr-Fleet{
+        border-color: #6aab70;
+        background-color: #e4fee2;
+        color: #5aa260;
+    }
+    .dr-of-rides{
+        border-color:  #9b9f71;
+        background-color:#f9fbe7 ;
+        color: #898e5b;
+
+    }
+    .dr-traveles{
+        /* border-style: solid; */
+        border-color: #9f719a;
+        background-color: #fbe7f6;
+        color: #92608d;
+        /* height: 4vh;
+        width: 8vw;
+        text-align: center;
+        border-radius: 10px;
+        border-radius: 4px;
+        border-width: 2px;
+        padding-top: 5px; */
+    }
+    .dr-org{
+        /* border-style: solid; */
+        border-color: #a86c0b;
+        background-color: #fff2de;
+        color: #b27b23;
+        /* height: 4vh;
+        width: 6vw;
+        text-align: center;
+        border-radius: 10px;
+        border-radius: 4px;
+        border-width: 2px;
+        padding-top: 5px; */
+    }
+    .dr-based-pay{
+        /* border-style: solid; */
+        border-color: #3232b5;
+        background-color: #e5e5f5;
+        color: #1c1cae;
+        /* height: 4vh;
+        width: 10vw;
+        text-align: center;
+        border-radius: 10px;
+        border-radius: 4px;
+        border-width: 2px;
+        padding-top: 5px; */
+
+    }
+
+    .tot-card{
+        box-shadow: 0px 0px 0px 0px rgb(245, 244, 244);
+       border-color: rgb(239, 233, 233);
+       border-width: 0.01px;
+       border-style: solid;
+       height: 43vh;
+       border-radius: 10px;
+       margin: 10px;
+       margin-bottom: 2vh;
+    }
+    .cms-btn{
+        height: 35px;
+        width: 35px;
+        border-radius: 20px;
+        margin: 5px;
+    }
+    .cms{
+        margin-left: 3vw;
+        display: flex;
+        gap: 18rem;
+    }
+    .dr-detail-cards{
+        display: flex;
+    }
+    .dr-details-card-head{
+        color:#828585;
+        font-size: large;
+    }
+    .dr-details-card{
+        box-shadow: 2px 2px 2px 2px white;
+        background-color: #e0f7fa;
+        width: fit-content;
+        padding: 5px;
+        height: 12vh;
+        line-height: 0;
+        margin: 10px;
+        border-radius: 10px;
+        text-align: center;
+        align-items: center;
+        color: #289aa7;
+    }
+    .caller-btn{
+        height: 30px;
+        width: 30px;
+        border-radius: 20px;
+        border-style: solid;
+        background-color: white;
+        color: rgb(0,147,255) ;
+        border-color: rgb(0,147,255);
+        padding-top: 5px;
+    }
+    .telegram-btn{
+        height: 30px;
+        width: 30px;
+        border-radius: 20px;
+        border-style: solid;
+        background-color: white;
+        color: rgb(0,147,255) ;
+        border-color: rgb(0,147,255);
+        padding-top: 5px;
+    }
+    .notification-btn{
+        height: 30px;
+        width: 30px;
+        border-radius: 20px;
+        border-style: solid;
+        background-color: white;
+        color: rgb(0,147,255) ;
+        border-color: rgb(0,147,255);
+        padding-top: 5px;
+    }
+    .message-btn{
+        height: 30px;
+        width: 30px;
+        border-radius: 20px;
+        border-style: solid;
+        color: rgb(0,147,255) ;
+        border-color: rgb(0,147,255);
+        background-color: white;
+        padding-top: 5px;
+    }
+    .card-dr1{
+        box-shadow: 2px 2px 2px 2px rgb(250, 249, 249);
+        border-radius: 5px;
+        width: 10vw;
+        height: 5vh;
+        text-align: center;
+        background-color: rgb(247, 242, 243);
+        margin: 10px;
+        border-style: solid;
+        border-color: rgb(241, 166, 179);
+        color: rgb(238, 166, 178);
+    }
+    .card-dr2{
+        box-shadow: 2px 2px 2px 2px rgb(236, 230, 230);
+        border-radius: 5px;
+        width: 10vw;
+        height: 5vh;
+        text-align: center;
+        background-color: rgb(200, 241, 170);
+        margin: 10px;
+    }
+    .card-dr3{
+        box-shadow: 2px 2px 2px 2px rgb(236, 230, 230);
+        border-radius: 5px;
+        width: 10vw;
+        height: 5vh;
+        text-align: center;
+        background-color: rgb(161, 164, 236);
+        margin: 10px;
+    }
+    .card-dr4{
+        box-shadow: 2px 2px 2px 2px rgb(236, 230, 230);
+        border-radius: 5px;
+        width: 10vw;
+        height: 5vh;
+        text-align: center;
+        background-color: rgb(161, 164, 236);
+        margin: 10px;
+    }
+    .card-dr5{
+        box-shadow: 2px 2px 2px 2px rgb(236, 230, 230);
+        border-radius: 5px;
+        width: 10vw;
+        height: 5vh;
+        text-align: center;
+        background-color: rgb(161, 164, 236);
+        margin: 10px;
+    }
+    .card-dr6{
+        box-shadow: 2px 2px 2px 2px rgb(236, 230, 230);
+        border-radius: 5px;
+        width: 10vw;
+        height: 5vh;
+        text-align: center;
+        background-color: rgb(161, 164, 236);
+        margin: 10px;
+    }
+    .dr-image-rat{
+        display: flex;
+    }
+    .rating-dr{
+        box-shadow: 2px 0px 2px 0px white;
+        background-color: rgb(224, 189, 189);
+        border-radius: 5px;
+        /* margin-top: 0vh; */
+        margin-left: 0.5vw;
+        height: 2vh;
+        width: 2.5vw;
+    }
+    .cms-det{
+        display: flex;
+    }
+    .driver-form-details{
+        box-shadow: 0px 0px 0px 0px black;
+        border-style: solid;
+        border-color: black;
+        border-width: 1px;
+        height: 95vh;
+        margin: 10px;
+        width: 30vw;
+        border-radius: 20px;
+        margin-left: 35vw;
+    }
+    .l-name{
+        padding-left: 10px;
+    }
+    .l-age{
+        padding-left: 10px;
+    }
+    .l-email{
+        padding-left: 10px;
+    }
+    .l-mob{
+        padding-left: 10px;
+    }
+    .l-gen{
+        padding-left: 10px;
+    }
+    .l-dob{
+        padding-left: 10px;
+    }
+    .l-address{
+        padding-left: 10px;
+    }
+    .l-lic{
+        padding-left: 10px;
+    }
+    .l-pan{
+        padding-left: 10px;
+    }
+    .l-exp{
+        padding-left: 10px;
+    }
+    .l-img{
+        padding-left: 10px;
+    }
+    .dr-name{
+        height: 4vh;
+        width: 15vw;
+        margin: 10px;
+        border-radius: 10px;
+        margin-left: 5vw;
+    }
+    .dr-email{
+        height: 4vh;
+        width: 15vw;
+        margin: 10px;
+        border-radius: 10px;
+        margin-left: 5vw;
+    }
+    .dr-mob{
+        height: 4vh;
+        width: 15vw;
+        margin: 10px;
+        border-radius: 10px;
+    }
+    .dr-gen{
+        height: 4vh;
+        width: 15vw;
+        margin: 10px;
+        border-radius: 10px;
+        margin-left: 5vw;
+    }
+    .dr-dob{
+        height: 4vh;
+        width: 15vw;
+        margin: 10px;
+        border-radius: 10px;
+        margin-left: 6vw;
+    }
+    .dr-age{
+        height: 4vh;
+        width: 15vw;
+        margin: 10px;
+        border-radius: 10px;
+        margin-left: 6vw;
+    }
+    .dr-address{
+        height: 4vh;
+        width: 15vw;
+        margin: 10px;
+        border-radius: 10px;
+        margin-left: 4vw;
+    }
+    .dr-lic{
+        height: 4vh;
+        width: 15vw;
+        margin: 10px;
+        border-radius: 10px;
+        margin-left: 5vw;
+    }
+    .dr-aadhar{
+        height: 4vh;
+        width: 15vw;
+        margin: 10px;
+        border-radius: 10px;
+        margin-left: 3vw;
+    }
+    .l-aadhar{
+        margin: 10px;
+    }
+    .dr-pan{
+        height: 4vh;
+        width: 15vw;
+        margin: 10px;
+        border-radius: 10px;
+        margin-left: 2vw;
+    }
+    .dr-exp{
+        height: 4vh;
+        width: 15vw;
+        margin: 10px;
+        margin-left: 3vw;
+        border-radius: 10px;
+    }
+    .dr-submit{
+        height: 4vh;
+        width: 15vw;
+        margin: 10px;
+        border-radius: 10px;
+        margin-left: 7vw;
+        margin-top: 4vh;
+        background-color: rgb(95, 184, 232);
+        cursor: pointer;
+    }
+    .dr-details-card-head{
+        color: #7b7c7c;
+    }
+    .dr-pd{
+        height: 4vh;
+        border: none;
+        border-radius: 10px;
+        margin: 10px;
+        cursor: pointer;
+        background-color: #e9ecef;
+    }
+    .dr-pd.active{
+        color: white;
+        background-color: rgb(0,147,255);
+    }
+
+    .dr-th.active{
+        background-color: rgb(0,147,255);
+        color: white;
+    }
+    .dr-cf.active{
+        color: white;
+        background-color: rgb(0,147,255);
+    }
+    .dr-vd.active{color: white;
+        background-color: rgb(0,147,255);
+    }
+    .dr-lt.active{
+        color: white;
+        background-color: rgb(0,147,255);
+    }
+    .dr-lt{
+        height: 4vh;
+        border: none;
+        border-radius: 10px;
+        margin: 10px;
+        cursor: pointer;
+        background-color: #e9ecef;
+    }
+    .dr-lt:hover{
+        background-color:#21abbc;
+        color: #fcfefe;
+    }
+    .dr-th{
+        height: 4vh;
+        border: none;
+        background-color: #e9ecef;
+        border-radius: 10px;
+        margin: 10px;
+        cursor: pointer;
+
+    }
+    .dr-th:hover{
+        background-color:#21abbc;
+        color: #fcfefe;
+    }
+    .dr-vd{
+        height: 4vh;
+        border: none;
+        border-radius: 10px;
+        margin: 10px;
+        cursor: pointer;
+        background-color: #e9ecef;
+    }
+    .dr-vd:hover{
+        background-color:#21abbc;
+        color: #fcfefe;
+    }
+    .dr-cf{
+        height: 4vh;
+        border: none;
+        border-radius: 10px;
+        margin: 10px;
+        cursor: pointer;
+    }
+    .dr-cf:hover{
+        background-color:#21abbc;
+        color: #fcfefe;
+    }
+    .dr-pd:hover{
+        background-color:#21abbc;
+        color: #fcfefe;
+    }
+    .dr-btns{
+        margin-left: 1vw;
+        box-shadow: 2px 2px 2px 2px white;
+        background-color: #e9ecef;
+        color: rgb(10, 174, 239);
+        border-radius: 5px;
+        width: 60vw;
+    }
+    .information{
+        box-shadow: 0px 0px 0px 0px rgb(250, 249, 249);
+        border-radius: 10px;
+        margin: 10px;
+        margin-top: 2vh;
+        height: 32.5vh;
+        line-height: 0.01;    
+        border-color: rgb(239, 233, 233);
+        border-width: 0.01px;
+        border-style: solid;
+    display: flex;
+    flex-wrap: wrap;
+        
+    }
+    .trip-start{
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        color: #808080;
+    }
+    .start-det{
+        line-height: 0.1;
+    }
+    .trip-history-head{
+        color: #44b4c3;
+        margin-left: 1vw;
+    }
+    .vehicles-driven-head{
+        color: #44b4c3;
+        margin-left: 1vw;
+    }
+    .customer-feedback-head{
+        color: #44b4c3;
+        margin-left: 1vw;
+    }
+    .trip-start-icon{
+        height: 40px;
+        width: 40px;
+        border-radius: 25px;
+        background-color: rgb(241, 236, 236);
+        border: none;
+        margin-left: 1vw;
+    }
+    .trip-history-card{
+        box-shadow: 0px 0px 0px 0px rgb(250, 249, 249);
+        border-radius: 10px;
+        margin: 10px;
+        height: 32.5vh;
+        border-color: rgb(239, 233, 233);
+        border-width: 0.01px;
+        border-style: solid;
+    }
+    .vehicles-driven-card{
+        box-shadow: 0px 0px 0px 0px rgb(250, 249, 249);
+        border-radius: 10px;
+        margin: 10px;
+        height: 32.5vh;
+        border-color: rgb(239, 233, 233);
+        border-width: 0.01px;
+        border-style: solid;
+    }
+    .customer-feedback-card{
+        box-shadow: 0px 0px 0px 0px rgb(250, 249, 249);
+        border-radius: 10px;
+        margin: 10px;
+        height: 32.5vh;
+        border-color: rgb(239, 233, 233);
+        border-width: 0.01px;
+        border-style: solid;
+    }
+    .inf-pers{
+        margin: 10px;
+    }
+    .cur-car-img{
+        height: 30vh;
+        width: 15vw;
+        margin-left: 4vw;
+    }
+    .curr-ass-veh{
+        height: 37vh;
+        border-radius: 10px;
+        box-shadow: 0px 0px 0px 0px rgb(250, 249, 248);
+        margin: 10px;
+        border-color: rgb(239, 233, 233);
+        border-width: 0.01px;
+        border-style: solid;
+    }
+    .view-veh-detail{
+        font-size: small;
+        color: rgb(5, 175, 243);
+    }
+    .curr-ass-veh h4{
+        color: #25acbd;
+        margin-left: 1vw;
+    }
+    .cur-det{
+        display: flex;
+        align-items: center;
+    }
+    .model-num{
+        margin-left: 2vw;
+        display: flex;
+        gap: 2rem;
+    }
+    .curr-dets-model{
+        display: flex;
+        flex-direction: column;
+        line-height: 0.1;
+    }
+    .vehicle-brande-img{
+        height: 12vh;
+    }
+    .veh-model{
+    }
+    .view-veh-detail-cras{
+        font-size: small;
+        color: rgb(11, 167, 228);
+    }
+    .right-det{
+    }
+    .lt-image-det{
+        display: flex;
+        align-items: center;
+    }
+    .curr-dets{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    .curr-dets p{
+        color: #808080;
+    }
+    .personal-inf-head{
+        color:#4cbbc9;
+    }  
+    .model{
+        margin: 20px;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    .curr-assg-val-btns{
+        height: 40px;
+        width: 40px;
+        border-radius: 25px;
+        border: none;
+    }
+    .regno{
+        margin: 20px;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    .color{
+        margin: 20px;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    .seatcp{
+        margin: 20px;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    *{
+        font-family: "Roboto", sans-serif;
+    }
+    .fueltype{
+        margin: 20px;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    .mil{
+        margin: 20px;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    .man-year{
+        margin: 20px;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    .inf-card-left{
+        height: 30px;
+        width: 30px;
+        border-radius: 20px;
+        margin-left: 1vw;
+        margin-top: 1vh;
+        margin-bottom: 1vh;
+        cursor: pointer;
+    }
+    
+    .tick{
+        border-style: solid;
+        border-radius: 20px;
+        margin-top: 1vh;
+        margin-left: 1vw;
+        margin-right: 5vw;
+    }
+    .driver-management{
+        margin-left: 240px;
+    }
+    .doc-up{
+        margin-top: 1vh;
+        margin-right: 5vw;
+    }
+    .tick-inf-doc-upd{
+        height: 5vh;
+        box-shadow: 2px 2px 2px 2px rgb(238, 237, 237);
+        width: 20vw;
+        border-radius: 20px;
+        margin-left: 45vw;
+        margin-top: 1vh;
+        display: flex;
+        gap: 1rem;
+        color: white;
+        background-color: rgb(80, 124, 80);
+        text-align: center;
+    }
+    .act-inact{
+        border-style: solid;
+        border-color: #37b55d;
+        background-color: #deffe8;
+        color: #049f32;
+        height: 3vh;
+        width: 5vw;
+        border-width: 2px;
+        border-radius: 6px;
+        /* margin-left: 66vw; */
+        margin-top: 1.5vh;
+        text-align: center;
+        padding-top: 5px;
+    }
+    .mob-sym-btn{
+        font-size: small;
+        box-shadow: 2px 0px 2px 0px rgb(237, 232, 232);
+        height: 30px;
+        width: 30px;
+        border-radius:20px ;
+        border: none;
+    }
+    .mob-infs, .mob-infs{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1.5rem;
+    }
+    .mob-infss{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+    .phone-num-h{
+        line-height: 0.2;
+        color: #777777;
+    }
+    .phone-num{
+        line-height: 0.2;
+        font-size: small;
+        
+    }
+    *{
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+
+
+
+
+    /* For devices with a width less than 1200px (large tablets, small desktops) */
+@media only screen and (max-width: 1200px) {
+    .driver-image-det {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .driver-image {
+      width: 120px;
+      height: 120px;
+    }
+  
+    .driver-details-tot {
+      text-align: center;
+    }
+  
+    .fleet-call {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .dr-fl-ri {
+      justify-content: center;
+    }
+  
+    .call-msg-btns {
+      justify-content: center;
+      width: 100%;
+    }
+  
+    .dr-detail-cards {
+      justify-content: center;
+    }
+  }
+  
+  /* For devices with a width less than 768px (tablets, small laptops) */
+  @media only screen and (max-width: 768px) {
+    .admin-head, 
+    .tot-card-o,
+    .call-msg-btns, 
+    .fleet-call {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .admin-prof {
+      margin-top: 10px;
+    }
+  
+    .edut-del-btns {
+      margin-top: 10px;
+    }
+  
+    .driver-image {
+      width: 100px;
+      height: 100px;
+    }
+  
+    .dr-btns {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .dr-btns button {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  
+    .dr-detail-cards {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .curr-dets {
+      flex-direction: column;
+    }
+  
+    .curr-dets .model,
+    .curr-dets .regno,
+    .curr-dets .seatcp,
+    .curr-dets .fueltype,
+    .curr-dets .mil,
+    .curr-dets .man-year {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+  
+  /* For devices with a width less than 480px (mobile devices) */
+  @media only screen and (max-width: 480px) {
+    .admin-dr-nav,
+    .driver-image-det,
+    .fleet-call {
+      text-align: center;
+    }
+  
+    .admin-prof {
+      display: none; /* Hide the admin profile on very small screens */
+    }
+  
+    .dr-detail-cards {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .driver-image {
+      width: 80px;
+      height: 80px;
+    }
+  
+    .dr-btns button {
+      font-size: 14px;
+      padding: 10px;
+    }
+  
+    .trip-start {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .curr-det {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .call-msg-btns {
+      flex-direction: row;
+      gap: 5px;
+    }
+  
+    .curr-dets .model,
+    .curr-dets .regno,
+    .curr-dets .seatcp,
+    .curr-dets .fueltype,
+    .curr-dets .mil,
+    .curr-dets .man-year {
+      margin-bottom: 5px;
+    }
+  
+    .curr-assg-val-btns {
+      width: 25px;
+      height: 25px;
+    }
+  
+    .model p, .regno p, .seatcp p, .fueltype p, .mil p, .man-year p {
+      font-size: 12px;
+    }
+  }
+  

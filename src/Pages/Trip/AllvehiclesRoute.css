@@ -1,0 +1,20 @@
+.route-management-container {
+    display: flex;
+  }
+  
+  .cards-container {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+  }
+  
+ 
+ .map{
+  height:1000px !important;
+  width:50vw !important  ;
+  margin-left:20px !important;
+  margin-right:-10px !important;
+ }
+  
+  
+ 

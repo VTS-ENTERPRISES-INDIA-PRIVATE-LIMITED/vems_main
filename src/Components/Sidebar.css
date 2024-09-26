@@ -1,7 +1,7 @@
 
 
 .sidebar {
-    width: 15vw;
+    width: 200px;
     height: 100vh;
     background-color: #f8f8f8;
     padding: 0px 10px;
@@ -99,6 +99,11 @@
     border: #00bcd4;
 }
 
+.icon-vender-management {
+    background-color: #683ab7e0;
+    border: #673ab7;
+}
+
 .icon-driver-management {
     background-color: #8bc34ad4;
     border: #8bc34a;
@@ -134,7 +139,7 @@
     border: #e91e63;
 }
 
-.icon-payments {
+.icon-escort {
     background-color: #9b27b0d8;
     border: #9c27b0;
 }

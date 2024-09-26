@@ -1,0 +1,50 @@
+
+.two-column-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 40px; 
+}
+
+.two-column-form .ant-form-item {
+  margin-bottom: 10px; 
+  margin-top: 5px;    
+}
+
+@media (max-width: 768px) {
+  .two-column-form .ant-form-item {
+    flex: 1 1 100%; 
+  }
+}
+
+
+.edit-button {
+  background-color: #04AA6D; 
+  border: none;
+  color: white !important;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  }
+  .edit-button:hover{
+    background-color: green;
+    transform: scale(1.05); 
+  }
+.delete-button {
+  background-color: rgb(255, 0, 0) !important; 
+  border: none;
+  color: white !important;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-left:10px;
+ 
+}
+.delete-button:hover {
+  background-color: rgb(200, 0, 0) !important; 
+  transform: scale(1.05); 
+}
+

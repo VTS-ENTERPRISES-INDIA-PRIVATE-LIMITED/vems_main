@@ -1,0 +1,9 @@
+.leaflet-popup-content {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.leaflet-div-icon {
+  background: transparent;
+  border: none;
+}

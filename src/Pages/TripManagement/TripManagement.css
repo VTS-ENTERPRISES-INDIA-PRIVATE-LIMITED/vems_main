@@ -1,0 +1,27 @@
+.trip-management--main {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  position: relative;
+  flex-grow: 1;
+}
+
+.trip-content-container {
+  margin-top: 10px; 
+  padding: 10px;
+  background-color: #dbfff52b; 
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  min-height: 400px; 
+  margin-right: -10px;
+  margin-left:-20px;
+}
+
+.trip-management--main .search-row {
+  position: sticky; 
+  top: 0;
+  z-index: 10; 
+  background-color: white;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
