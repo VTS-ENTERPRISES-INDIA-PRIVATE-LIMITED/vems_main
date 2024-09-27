@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './login.css'; 
+import './login.css';
 
 const CLOUDINARY_UPLOAD_PRESET = 'Viharikha'; // Replace with your preset
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dku9u5u1x/image/upload';
@@ -11,10 +11,10 @@ const Login = () => {
   const [ContactNumber, setContactNumber] = useState('');
   const [Email, setEmail] = useState('');
   const [Address, setAddress] = useState('');
-  
+
   const [AadharCardUpload, setAadharCardUpload] = useState(null);
   const [AgreementUpload, setAgreementUpload] = useState(null);
- 
+
   const [AccountHandlerName, setAccountHandlerName] = useState('');
   const [AccountNumber, setAccountNumber] = useState('');
   const [BankName, setBankName] = useState('');
@@ -74,7 +74,7 @@ const Login = () => {
         AgreementAmount,
       };
 
-      const response = await axios.post('http://localhost:8081/register1', formData, {
+      const response = await axios.post(`${process.envREACT_APP_BACKEND_URL}/register1`, formData, {
         headers: {
           'Content-Type': 'application/json',
         },

@@ -18,6 +18,11 @@ function Dasboard() {
         '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM',
         '12:00 PM', '12:30 PM', '1:00 PM', '1:30 PM'
     ];
+    
+    const getShift = (index) => {
+        if (index < 5) return 'Shift-1';
+        return 'Shift-2';
+    };
 
     return (
         <div className="dasboard-container">
@@ -28,8 +33,11 @@ function Dasboard() {
                         key={index}
                         onClick={() => handleClick(index)}
                     >
-                        <div className={`slot-type ${index % 2 === 0 ? 'pickup' : 'drop'}`}>
-                            {index % 2 === 0 ? 'Pickup' : 'Drop'}
+                        <div style={{display: 'flex'}}>
+                            <div className={`slot-type ${index % 2 === 0 ? 'pickup' : 'drop'}`}>
+                                {index % 2 === 0 ? 'Pickup' : 'Drop'}
+                            </div>
+                            <div className="shift-info">{getShift(index)}</div>
                         </div>
                         <div className="slot-date">Today, 01 Jan 2023</div>
                         <div className="slot-time">{time}</div>

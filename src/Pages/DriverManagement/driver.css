@@ -778,13 +778,9 @@
     .vehicle-brande-img{
         height: 12vh;
     }
-    .veh-model{
-    }
     .view-veh-detail-cras{
         font-size: small;
         color: rgb(11, 167, 228);
-    }
-    .right-det{
     }
     .lt-image-det{
         display: flex;
@@ -830,9 +826,6 @@
         display: flex;
         align-items: center;
         gap: 1rem;
-    }
-    *{
-        font-family: "Roboto", sans-serif;
     }
     .fueltype{
         margin: 20px;
@@ -931,12 +924,6 @@
         font-size: small;
         
     }
-    *{
-        font-family: 'Times New Roman', Times, serif;
-    }
-
-
-
 
 
     /* For devices with a width less than 1200px (large tablets, small desktops) */

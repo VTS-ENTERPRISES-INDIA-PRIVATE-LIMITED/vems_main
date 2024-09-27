@@ -2,23 +2,25 @@ import { Table, Button, Input, Modal, Form } from 'antd';
 import { SearchOutlined, EyeOutlined } from '@ant-design/icons';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import './ViewVehicle.css'; 
+import './ViewVehicle.css';
 import AddVehicle from '../AddVehicle/AddVehicle';
 import { useNavigate } from 'react-router-dom';
 
 const ViewVehicle = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const [vehicles, setVehicles] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [editingVehicle, setEditingVehicle] = useState(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [isAddVehicleModalVisible, setIsAddVehicleModalVisible] = useState(false); 
+  const [isAddVehicleModalVisible, setIsAddVehicleModalVisible] = useState(false);
 
   useEffect(() => {
-    axios.get("http://localhost:8081/vehicles")
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/vehicles`)
       .then((result) => {
         setVehicles(result.data);
-      }) 
+        console.log(result.data);
+
+      })
       .catch((error) => {
         console.log(error);
       });
@@ -34,7 +36,7 @@ const ViewVehicle = () => {
   };
 
   const handleSave = () => {
-    axios.put(`http://localhost:8081/vehicles/${editingVehicle.VehicleId}`, editingVehicle)
+    axios.put(`${process.envREACT_APP_BACKEND_URL}/vehicles/${editingVehicle.VehicleId}`, editingVehicle)
       .then((response) => {
         setVehicles(vehicles.map(v => v.VehicleId === editingVehicle.VehicleId ? editingVehicle : v));
         setIsModalVisible(false);
@@ -52,7 +54,7 @@ const ViewVehicle = () => {
       okType: 'danger',
       cancelText: 'No',
       onOk: () => {
-        axios.delete(`http://localhost:8081/vehicles/${vehicle.VehicleId}`)
+        axios.delete(`${process.envREACT_APP_BACKEND_URL}/vehicles/${vehicle.VehicleId}`)
           .then((response) => {
             setVehicles(vehicles.filter(v => v.VehicleId !== vehicle.VehicleId));
           })
@@ -78,7 +80,7 @@ const ViewVehicle = () => {
     )
     .map((vehicle, index) => ({
       ...vehicle,
-      sno: index + 1 
+      sno: index + 1
     }));
 
   const columns = [
@@ -122,7 +124,7 @@ const ViewVehicle = () => {
   ];
 
   return (
-    <div style={{display: 'flex', flexGrow: 1, flexDirection: 'column', padding: '30px'}}>
+    <div style={{ display: 'flex', flexGrow: 1, flexDirection: 'column', padding: '30px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 16 }}>
         <Button type="primary" onClick={handleAddVehicle}>
           Add Vehicle +
@@ -139,74 +141,74 @@ const ViewVehicle = () => {
         columns={columns}
         rowKey="sno"
         pagination={{ pageSize: 7 }}
-        
+
       />
-      
+
       <Modal
-  title="Edit Vehicle"
-  visible={isModalVisible}
-  onOk={handleSave}
-  onCancel={() => setIsModalVisible(false)}
-  width={800}
-  style={{ marginRight: '200px' }}
->
-  <Form layout="vertical" className="two-column-form">
-    <Form.Item label="Vehicle Name">
-      <Input
-        value={editingVehicle?.VehicleName}
-        onChange={e => setEditingVehicle({ ...editingVehicle, VehicleName: e.target.value })}
-      />
-    </Form.Item>
-    <Form.Item label="Vehicle No">
-      <Input
-        value={editingVehicle?.VehicleNumber}
-        onChange={e => setEditingVehicle({ ...editingVehicle, VehicleNumber: e.target.value })}
-      />
-    </Form.Item>
-    <Form.Item label="Vendor Name">
-      <Input
-        value={editingVehicle?.VendorName}
-        onChange={e => setEditingVehicle({ ...editingVehicle, VendorName: e.target.value })}
-      />
-    </Form.Item>
-    <Form.Item label="Vehicle Type">
-      <Input
-        value={editingVehicle?.VehicleType}
-        onChange={e => setEditingVehicle({ ...editingVehicle, VehicleType: e.target.value })}
-      />
-    </Form.Item>
-    <Form.Item label="Year of Manufacturing">
-      <Input
-        value={editingVehicle?.YearOfManufacturing}
-        onChange={e => setEditingVehicle({ ...editingVehicle, YearOfManufacturing: e.target.value })}
-      />
-    </Form.Item>
-    <Form.Item label="Mileage">
-      <Input
-        value={editingVehicle?.Mileage}
-        onChange={e => setEditingVehicle({ ...editingVehicle, Mileage: e.target.value })}
-      />
-    </Form.Item>
-    <Form.Item label="Insurance Number">
-      <Input
-        value={editingVehicle?.InsuranceNumber}
-        onChange={e => setEditingVehicle({ ...editingVehicle, InsuranceNumber: e.target.value })}
-      />
-    </Form.Item>
-    <Form.Item label="Fuel Type">
-      <Input
-        value={editingVehicle?.FuelType}
-        onChange={e => setEditingVehicle({ ...editingVehicle, FuelType: e.target.value })}
-      />
-    </Form.Item>
-    <Form.Item label="Seat Capacity">
-      <Input
-        value={editingVehicle?.SeatCapacity}
-        onChange={e => setEditingVehicle({ ...editingVehicle, SeatCapacity: e.target.value })}
-      />
-    </Form.Item>
-  </Form>
-</Modal>
+        title="Edit Vehicle"
+        visible={isModalVisible}
+        onOk={handleSave}
+        onCancel={() => setIsModalVisible(false)}
+        width={800}
+        style={{ marginRight: '200px' }}
+      >
+        <Form layout="vertical" className="two-column-form">
+          <Form.Item label="Vehicle Name">
+            <Input
+              value={editingVehicle?.VehicleName}
+              onChange={e => setEditingVehicle({ ...editingVehicle, VehicleName: e.target.value })}
+            />
+          </Form.Item>
+          <Form.Item label="Vehicle No">
+            <Input
+              value={editingVehicle?.VehicleNumber}
+              onChange={e => setEditingVehicle({ ...editingVehicle, VehicleNumber: e.target.value })}
+            />
+          </Form.Item>
+          <Form.Item label="Vendor Name">
+            <Input
+              value={editingVehicle?.VendorName}
+              onChange={e => setEditingVehicle({ ...editingVehicle, VendorName: e.target.value })}
+            />
+          </Form.Item>
+          <Form.Item label="Vehicle Type">
+            <Input
+              value={editingVehicle?.VehicleType}
+              onChange={e => setEditingVehicle({ ...editingVehicle, VehicleType: e.target.value })}
+            />
+          </Form.Item>
+          <Form.Item label="Year of Manufacturing">
+            <Input
+              value={editingVehicle?.YearOfManufacturing}
+              onChange={e => setEditingVehicle({ ...editingVehicle, YearOfManufacturing: e.target.value })}
+            />
+          </Form.Item>
+          <Form.Item label="Mileage">
+            <Input
+              value={editingVehicle?.Mileage}
+              onChange={e => setEditingVehicle({ ...editingVehicle, Mileage: e.target.value })}
+            />
+          </Form.Item>
+          <Form.Item label="Insurance Number">
+            <Input
+              value={editingVehicle?.InsuranceNumber}
+              onChange={e => setEditingVehicle({ ...editingVehicle, InsuranceNumber: e.target.value })}
+            />
+          </Form.Item>
+          <Form.Item label="Fuel Type">
+            <Input
+              value={editingVehicle?.FuelType}
+              onChange={e => setEditingVehicle({ ...editingVehicle, FuelType: e.target.value })}
+            />
+          </Form.Item>
+          <Form.Item label="Seat Capacity">
+            <Input
+              value={editingVehicle?.SeatCapacity}
+              onChange={e => setEditingVehicle({ ...editingVehicle, SeatCapacity: e.target.value })}
+            />
+          </Form.Item>
+        </Form>
+      </Modal>
 
       <Modal
         visible={isAddVehicleModalVisible}

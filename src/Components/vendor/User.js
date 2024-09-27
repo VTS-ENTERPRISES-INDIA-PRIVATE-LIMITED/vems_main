@@ -26,9 +26,10 @@ const User = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:8081/user1');  // Update endpoint if needed
+                const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/user1`);  // Update endpoint if needed
                 if (response && response.data) {
                     setData(response.data.data);  // Set the data in state
+                    console.log(response.data.data);
                 } else {
                     // alert('Unexpected response format');
                 }
@@ -57,8 +58,8 @@ const User = () => {
                 AgreementStartDate: vendor.AgreementStartDate,
                 AgreementEndDate: vendor.AgreementEndDate,
                 AgreementAmount: vendor.AgreementAmount,
-                AadharCardUpload: null,
-                AgreementUpload: null
+                AadharCardUpload: vendor.AadharCardUpload,
+                AgreementUpload: vendor.AgreementUpload
             });
         }
     };
@@ -67,7 +68,7 @@ const User = () => {
         try {
             const confirmation = window.confirm(`Are you sure you want to delete vendor: ${VendorName}?`);
             if (confirmation) {
-                const response = await axios.delete(`http://localhost:8081/vendor/${VendorName}`);
+                const response = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/vendor/${VendorName}`);
                 if (response.status === 200) {
                     // alert('Vendor deleted successfully');
                     setData(data.filter(item => item.VendorName !== VendorName)); // Update the state
@@ -107,18 +108,17 @@ const User = () => {
 
     const handleEditSubmit = async (e) => {
         e.preventDefault();
+        console.log(editForm);        
         try {
-            const formData = new FormData();
-            for (const key in editForm) {
-                formData.append(key, editForm[key]);
-            }
-            const response = await axios.put(`http://localhost:8081/vendor/${editingVendor}`, formData, {
+            const response = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/vendor/${editingVendor}`, editForm, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
+            
+            console.log(response);
+            
             if (response.status === 200) {
-                // alert('Vendor updated successfully');
                 setEditingVendor(null);
                 setEditForm({
                     ContactNumber: '',
@@ -135,10 +135,9 @@ const User = () => {
                     AadharCardUpload: null,
                     AgreementUpload: null
                 });
-                // Refetch data to update the list
                 const fetchData = async () => {
                     try {
-                        const response = await axios.get('http://localhost:8081/user1');
+                        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/user1`);
                         if (response && response.data) {
                             setData(response.data.data);
                         } else {
@@ -146,12 +145,13 @@ const User = () => {
                         }
                     } catch (error) {
                         console.error('Error fetching data:', error);
-                        // alert('Failed to fetch data');
                     }
                 };
                 fetchData();
+                console.log('Updated');
+                
             } else {
-                // alert('Failed to update vendor');
+                alert('Failed to update vendor');
             }
         } catch (error) {
             console.error('Error updating vendor:', error);

@@ -3,7 +3,7 @@ import { FaSignOutAlt, FaTachometerAlt, FaMapMarkerAlt, FaUserTie, FaCar, FaUser
 import { GiSteeringWheel } from "react-icons/gi";
 import { LiaHomeSolid } from "react-icons/lia";
 import './Sidebar.css';
-// import Dasboard from './Dasboard';
+import Dasboard from './Dasboard';
 // import Employee from './Employee/Employee';
 import Employee from '../Pages/Employee/Employee';
 import LiveTracking from '../Pages/LiveTracking/LiveTracking';
@@ -16,11 +16,11 @@ import User from './vendor/User';
 
 const Clients = () => <div>Clients Content</div>;
 const Reports = () => <div>Reports Content</div>;
-const Dasboard = () => <div>Dasboard Content</div>;
+// const Dasboard = () => <div>Dasboard Content</div>;
 
 const Home = () => {
 	const [activeMenu, setActiveMenu] = useState('Dashboard');
-
+	
 	return (
 		<div className="dashboardcomponents">
 			<div className="sidebar">
