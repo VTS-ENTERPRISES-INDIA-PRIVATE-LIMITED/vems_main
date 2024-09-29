@@ -287,7 +287,7 @@ function Driverslist() {
         height="50vh"
         onCancel={() => setEditModal(false)}
       >
-        <Newdriver key={12345} />
+        <Newdriver />
       </Modal>
     </div>
   );

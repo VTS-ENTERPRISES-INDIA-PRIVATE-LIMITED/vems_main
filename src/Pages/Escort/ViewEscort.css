@@ -148,3 +148,34 @@
   }
   
   
+  .escort-form {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  .form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+  }
+  .form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  .form-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .form-group:last-child {
+    margin-right: 0;
+  }
+  textarea.form-input {
+    resize: vertical;
+  }

@@ -17,7 +17,7 @@ function Newdriver() {
     DriverPAN: '',
     DriverImage: '',
     DriverExperience: '',
-    VendorId: '', // Store the selected VendorId
+    VendorId: '',
   });
 
   const [profileImages, setProfileImages] = useState({});
@@ -269,7 +269,7 @@ function Newdriver() {
             onChange={handleInputChange}
             className="dr-ven"
           >
-            <option value="" disabled>
+            <option value="">
               Select Vendor
             </option>
             {vendors.map((vendor) => (

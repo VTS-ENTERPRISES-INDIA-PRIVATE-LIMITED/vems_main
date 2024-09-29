@@ -95,7 +95,7 @@ const router = createBrowserRouter([
     element:<UserReg/>,
   },
   {
-    path:"/vendordetails/:VendorName",
+    path:"/vendordetails/:VendorId",
     element:<Vendordetails/>,
   }
   ,
