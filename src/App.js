@@ -21,6 +21,7 @@ import VendorLogin from "./Components/vendor/Login.js"
 import Employee from "./Pages/Employee/Employee.jsx"
 import './App.css'
 import Home from './Components/Home.jsx';
+import Driverprad from './Pages/DriverManagement/Driverprad.jsx';
 
 const router = createBrowserRouter([
   {
@@ -47,8 +48,11 @@ const router = createBrowserRouter([
         path:"history",
         element: <TripHistory />,
       },
-     
     ],
+  },
+  {
+    path: "/viewDriver",
+    element: <Driverprad/>
   },
   {
     path: "/vehicledashboard", 
@@ -58,10 +62,6 @@ const router = createBrowserRouter([
     path: "/escortdashboard", 
     element: <EscortDashboard />,
   },
-  // {
-  //   path: "/newdashboard", 
-  //   element: <NewDashboard />,
-  // },
   {
     path: "/trips",
     element: <TripManagement />,
@@ -107,10 +107,6 @@ const router = createBrowserRouter([
     path:"/Employee",
     element:<Employee/>,
   },
- 
-  
-  
- 
  
 ]);
 

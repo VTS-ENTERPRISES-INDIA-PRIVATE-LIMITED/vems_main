@@ -2,23 +2,46 @@
 import { useState, useEffect } from "react";
 import "./newdriver.css";
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
 
 function Newdriver() {
+  const [vendors, setVendors] = useState([]);
   const [addDriver, setAddDriver] = useState({
-    DriverName: "",
-    VendorName: "",
-    Contact: "",
-    Email: "",
-    Gender: "",
-    DOB: "",
-    Address: "",
-    Aadhar: "",
-    Pan: "",
-    LicenceNumber: "",
-    Experience: "",
-    ProfilePic: ""
+    DriverName: '',
+    DriverPhone: '',
+    DriverEmail: '',
+    DriverGender: '',
+    DriverDOB: '',
+    DriverAddress: '',
+    DriverAadhar: '',
+    DriverLicense: '',
+    DriverPAN: '',
+    DriverImage: '',
+    DriverExperience: '',
+    VendorId: '', // Store the selected VendorId
   });
+
+  const [profileImages, setProfileImages] = useState({});
+
+  useEffect(() => {
+    const savedImages = localStorage.getItem('profileImages');
+    if (savedImages) {
+      setProfileImages(JSON.parse(savedImages));
+    }
+    const fetchVendors = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/vendor/getIdnName`);
+        setVendors(response.data);
+      } catch (error) {
+        console.error('Error fetching vendor data:', error);
+      }
+    };
+
+    fetchVendors();
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('profileImages', JSON.stringify(profileImages));
+  }, [profileImages]);
 
   // Function to update state
   const handleInputChange = (e) => {
@@ -29,61 +52,48 @@ function Newdriver() {
     }));
   };
 
-  const [profileImages, setProfileImages] = useState({});
-
-  useEffect(() => {
-    const savedImages = localStorage.getItem('profileImages');
-    if (savedImages) {
-      setProfileImages(JSON.parse(savedImages));
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('profileImages', JSON.stringify(profileImages));
-  }, [profileImages]);
-
   const validate = () => {
     let errorMessages = "";
 
     const {
       DriverName,
-      Email,
-      Contact,
-      Gender,
-      DOB,
-      Address,
-      Aadhar,
-      Pan,
-      LicenceNumber
+      DriverEmail,
+      DriverPhone,
+      DriverGender,
+      DriverDOB,
+      DriverAddress,
+      DriverAadhar,
+      DriverPAN,
+      DriverLicense
     } = addDriver;
 
     if (!DriverName) errorMessages += "Driver Name is required.\n";
-    if (!Email) {
+    if (!DriverEmail) {
       errorMessages += "Email is required.\n";
-    } else if (!/\S+@\S+\.\S+/.test(Email)) {
+    } else if (!/\S+@\S+\.\S+/.test(DriverEmail)) {
       errorMessages += "Email is invalid.\n";
     }
-    if (!Contact) {
+    if (!DriverPhone) {
       errorMessages += "Contact number is required.\n";
-    } else if (!/^[6-9]\d{9}$/.test(Contact)) {
+    } else if (!/^[6-9]\d{9}$/.test(DriverPhone)) {
       errorMessages += "Contact number is invalid.\n";
     }
-    if (!Gender) errorMessages += "Gender is required.\n";
-    if (!DOB) errorMessages += "Date of Birth is required.\n";
-    if (!Address) errorMessages += "Address is required.\n";
-    if (!Aadhar) {
+    if (!DriverGender) errorMessages += "Gender is required.\n";
+    if (!DriverDOB) errorMessages += "Date of Birth is required.\n";
+    if (!DriverAddress) errorMessages += "Address is required.\n";
+    if (!DriverAadhar) {
       errorMessages += "Aadhar number is required.\n";
-    } else if (!/^\d{12}$/.test(Aadhar)) {
+    } else if (!/^\d{12}$/.test(DriverAadhar)) {
       errorMessages += "Aadhar number is invalid.\n";
     }
-    if (!Pan) {
+    if (!DriverPAN) {
       errorMessages += "PAN card number is required.\n";
-    } else if (!/[A-Z]{5}[0-9]{4}[A-Z]{1}/.test(Pan)) {
+    } else if (!/[A-Z]{5}[0-9]{4}[A-Z]{1}/.test(DriverPAN)) {
       errorMessages += "PAN card number is invalid.\n";
     }
-    if (!LicenceNumber) {
+    if (!DriverLicense) {
       errorMessages += "Licence number is required.\n";
-    } else if (!/^[0-9]{10}$/.test(LicenceNumber)) {
+    } else if (!/^[0-9]{10}$/.test(DriverLicense)) {
       errorMessages += "Licence number is invalid.\n";
     }
 
@@ -97,40 +107,36 @@ function Newdriver() {
 
   const handleProfileImageChange = async (event) => {
     const file = event.target.files[0];
-      try {
-        const formData = new FormData();
-        formData.append('file', file);
-        formData.append('upload_preset', 'q6fwknmo');
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', 'q6fwknmo');
 
-        const response = await axios.post(
-          'https://api.cloudinary.com/v1_1/djbz2ydtp/image/upload',
-          formData
-        );
+      const response = await axios.post(
+        'https://api.cloudinary.com/v1_1/djbz2ydtp/image/upload',
+        formData
+      );
 
-        const ProfilePicurl = response.data.secure_url;
-        console.log(ProfilePicurl)
-        setAddDriver((prevState) => ({
-          ...prevState,
-          ProfilePic: ProfilePicurl,
-        }));
-      } catch (error) {
-        console.error('Error uploading image:', error);
-      }
+      const ProfilePicurl = response.data.secure_url;
+      console.log(ProfilePicurl)
+      setAddDriver((prevState) => ({
+        ...prevState,
+        DriverImage: ProfilePicurl,
+      }));
+    } catch (error) {
+      console.error('Error uploading image:', error);
+    }
   };
 
-  const navigate = useNavigate();
   const handleSubmit = () => {
-    if (validate()) {
-      // navigate("/viewdrivers", {
-      //   state: addDriver,
-      // });
+    if (validate) {
 
       console.log(addDriver);
 
-      axios.post(`${process.env.REACT_APP_BACKEND_URL}/addDriver`, addDriver)
+      axios.post(`${process.env.REACT_APP_BACKEND_URL}/driver/addDriver`, addDriver)
         .then((result) => {
           console.log(result.data);
-          
+
         })
         .catch((error) => {
           console.error(error);
@@ -142,7 +148,7 @@ function Newdriver() {
   return (
     <div className="driver-form-details-m">
       {/* <h2 className="add-driver-head">Add Driver</h2> */}
-      <div className="form-detaisl">
+      <div className="form-details">
         {/* Form fields */}
         <div className="name-dr">
           <label className="l-namem">Driver Name</label>
@@ -154,30 +160,33 @@ function Newdriver() {
             placeholder="Driver Name"
           />
         </div>
+
         <div className="email-dr">
           <label className="l-emailm">E-mail</label>
           <input
-            name="Email"
+            name="DriverEmail"
             onChange={handleInputChange}
             className="dr-emailm"
             type="text"
             placeholder="Email"
           />
         </div>
+
         <div className="mob-dr">
           <label className="l-mobm">Contact Number</label>
           <input
-            name="Contact"
+            name="DriverPhone"
             onChange={handleInputChange}
             className="dr-mobm"
             type="number"
             placeholder="Contact Number"
           />
         </div>
+
         <div className="gen-dr">
           <label className="l-genm">Gender</label>
           <select
-            name="Gender"
+            name="DriverGender"
             onChange={handleInputChange}
             className="dr-genm"
           >
@@ -186,77 +195,91 @@ function Newdriver() {
             <option value="Female">Female</option>
           </select>
         </div>
+
         <div className="dob-dr">
           <label className="l-dobm">DOB</label>
           <input
-            name="DOB"
+            name="DriverDOB"
             onChange={handleInputChange}
             className="dr-dobm"
             type="date"
             placeholder="DOB"
           />
         </div>
+
         <div className="address-dr">
           <label className="l-addressm">Address</label>
           <input
-            name="Address"
+            name="DriverAddress"
             onChange={handleInputChange}
             className="dr-addressm"
             type="text"
             placeholder="Address"
           />
         </div>
-        <div className="lic-dr">
-          <label className="l-licm">Licence Number</label>
-          <input
-            name="LicenceNumber"
-            onChange={handleInputChange}
-            className="dr-licm"
-            type="text"
-            placeholder="Licence Number"
-          />
-        </div>
-        <div className="pan-dr">
-          <label className="l-panm">PAN Num</label>
-          <input
-            name="Pan"
-            onChange={handleInputChange}
-            className="dr-panm"
-            type="text"
-            placeholder="Pan Number"
-          />
-        </div>
+
         <div className="aadhar-dr">
           <label className="l-aadharm">Aadhar No</label>
           <input
-            name="Aadhar"
+            name="DriverAadhar"
             type="text"
             onChange={handleInputChange}
             className="dr-aadharm"
             placeholder="Aadhar Number"
           />
         </div>
+
+        <div className="lic-dr">
+          <label className="l-licm">Licence Number</label>
+          <input
+            name="DriverLicense"
+            onChange={handleInputChange}
+            className="dr-licm"
+            type="text"
+            placeholder="Licence Number"
+          />
+        </div>
+
+        <div className="pan-dr">
+          <label className="l-panm">PAN Number</label>
+          <input
+            name="DriverPAN"
+            onChange={handleInputChange}
+            className="dr-panm"
+            type="text"
+            placeholder="PAN Number"
+          />
+        </div>
+
         <div className="exp-dr">
           <label className="l-expm">Experience</label>
           <input
-            name="Experience"
+            name="DriverExperience"
             type="text"
             onChange={handleInputChange}
             className="dr-expm"
             placeholder="Experience"
           />
         </div>
+
         <div className="vendor-name">
           <label className="l-ven">Vendor Name</label>
-          <input
-            type="text"
-            name="VendorName"
+          <select
+            name="VendorId"
             onChange={handleInputChange}
             className="dr-ven"
-            placeholder="Vendor Name"
-          />
-
+          >
+            <option value="" disabled>
+              Select Vendor
+            </option>
+            {vendors.map((vendor) => (
+              <option key={vendor.VendorId} value={vendor.VendorId}>
+                {vendor.VendorName}
+              </option>
+            ))}
+          </select>
         </div>
+
         <div className="dr-imgm">
           <label className="l-img">Profile Image:</label>
           <input

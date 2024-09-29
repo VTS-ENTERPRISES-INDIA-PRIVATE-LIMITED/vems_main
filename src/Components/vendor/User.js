@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './user.css'; // Import the CSS file
+import './user.css';
 
 const User = () => {
     const [data, setData] = useState([]);
@@ -21,15 +21,16 @@ const User = () => {
         AadharCardUpload: null,
         AgreementUpload: null
     });
-    const navigate = useNavigate(); // Initialize navigate
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/user1`);  // Update endpoint if needed
+            try {                
+                const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/vendor/getAllVendors`);
                 if (response && response.data) {
-                    setData(response.data.data);  // Set the data in state
+                    setData(response.data.data);
                     console.log(response.data.data);
+                    
                 } else {
                     // alert('Unexpected response format');
                 }
@@ -38,9 +39,8 @@ const User = () => {
                 // alert('Failed to fetch data');
             }
         };
-
         fetchData();
-    }, []); // Empty dependency array ensures this runs only once on mount
+    }, []);
 
     const handleEdit = (VendorName) => {
         const vendor = data.find(v => v.VendorName === VendorName);
@@ -68,7 +68,7 @@ const User = () => {
         try {
             const confirmation = window.confirm(`Are you sure you want to delete vendor: ${VendorName}?`);
             if (confirmation) {
-                const response = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/vendor/${VendorName}`);
+                const response = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/vendor/deleteVendorByName/${VendorName}`);
                 if (response.status === 200) {
                     // alert('Vendor deleted successfully');
                     setData(data.filter(item => item.VendorName !== VendorName)); // Update the state
@@ -110,14 +110,14 @@ const User = () => {
         e.preventDefault();
         console.log(editForm);        
         try {
-            const response = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/vendor/${editingVendor}`, editForm, {
+            
+            const response = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/vendor/updateVendorByName/${encodeURIComponent(editingVendor)}`, editForm, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
             
             console.log(response);
-            
             if (response.status === 200) {
                 setEditingVendor(null);
                 setEditForm({
@@ -155,7 +155,6 @@ const User = () => {
             }
         } catch (error) {
             console.error('Error updating vendor:', error);
-            // alert('Failed to update vendor');
         }
     };
 

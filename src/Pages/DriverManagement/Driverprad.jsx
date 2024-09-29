@@ -28,7 +28,24 @@ import axios from "axios";
 import { Color } from "antd/es/color-picker";
 
 function Driverprad() {
-  const d = Date();
+  const formatDate = (date) => {
+    const options = {
+      weekday: 'short', // 'Sun'
+      year: 'numeric',   // '2024'
+      month: 'short',    // 'Sep'
+      day: 'numeric',    // '29'
+      hour: 'numeric',   // '6' in 12-hour format
+      minute: 'numeric', // '14'
+      second: 'numeric', // '48'
+      hour12: true       // 12-hour format
+    };
+  
+    return date.toLocaleString('en-US', options).replace(',', '');
+  };
+  
+  const d = new Date();
+  const formattedDate = formatDate(d);
+
   const [viewPersonalDetails, setViewPersonalDetails] = useState(true);
   const [triphistory, setTriphistory] = useState(false);
   const [customerfeedback, setCustomerfeedback] = useState(false);
@@ -85,7 +102,7 @@ function Driverprad() {
   useEffect(() => {
     console.log(driverId);
     axios
-      .get(`http://localhost:8081/drivers${driverId}`)
+      .get(`${process.env.REACT_APP_BACKEND_URL}/driver/getDriverById/${driverId}`)
       .then((res) => {
         setDriverData(res.data);
         console.log(driverData);
@@ -96,40 +113,40 @@ function Driverprad() {
   });
 
   const drdetails = [
-    { title: "Experience", val: driverData.exp || 0 },
+    { title: "Experience", val: driverData.DriverExperience || 0 },
     { title: "Total Distance", val: driverData.total_distance || 0 },
     { title: "Total Hours", val: "xxx" },
     { title: "Total Trips", val: driverData.successful_trips || 0 },
     { title: "Total Revenue", val: "xxx" },
     { title: "Driver Revenue", val: "xxx" },
     { title: "Vehicles Driven", val: "xxx" },
-    { title: "Joined Date", val: driverData.joining_date || 0 },
+    { title: "Joined Date", val: driverData.DriverAddedDate || 0 },
   ];
   const navigate = useNavigate();
   const handlebackdrpro = () => {
-    navigate("/viewdrivers");
+    navigate(-1);
   };
 
   const fun = [
-    { title: "Phone Number", value: driverData.contact, icon: <CiMobile1 /> },
-    { title: "Email", value: driverData.email, icon: <MdOutlineMail /> },
-    { title: "Gender", value: driverData.gender, icon: <CiUser /> },
+    { title: "Phone Number", value: driverData.DriverPhone, icon: <CiMobile1 /> },
+    { title: "Email", value: driverData.DriverEmail, icon: <MdOutlineMail /> },
+    { title: "Gender", value: driverData.DriverGender, icon: <CiUser /> },
     // { title: "Age", value: driverData.age, icon: <CiUser /> },
-    { title: "Date Of Birth", value: driverData.dob, icon: <CiCalendarDate /> },
-    { title: "Address", value: driverData.address, icon: <FaLocationDot /> },
+    { title: "Date Of Birth", value: driverData.DriverDOB, icon: <CiCalendarDate /> },
+    { title: "Address", value: driverData.DriverAddress, icon: <FaLocationDot /> },
     {
       title: "Aadhar Number",
-      value: driverData.aadhar,
+      value: driverData.DriverAadhar,
       icon: <FaAddressCard />,
     },
     {
       title: "Pan Card Number",
-      value: driverData.pan,
+      value: driverData.DriverPAN,
       icon: <FaAddressCard />,
     },
     {
       title: "Lic Number",
-      value: driverData.licenceNumber,
+      value: driverData.DriverLicense,
       icon: <FaAddressCard />,
     },
   ];
@@ -150,16 +167,16 @@ function Driverprad() {
   // const location = useLocation();
   return (
     <div className="driver-management">
-      <div className="admin-head">
+      {/* <div className="admin-head"> */}
         <div className="admin-dr-nav">
           <p className="dr-mng">Driver Mangement/Id: {driverId}</p>
-          <p>{d}</p>
+          <p>{formattedDate}</p>
         </div>
-        <div className="admin-prof">
+        {/* <div className="admin-prof">
           <h3>AdminName</h3>
           <button className="admin-prof-btn"></button>
         </div>
-      </div>
+      </div> */}
       <div className="tot-card">
         <div className="tot-card-o">
           <div>
@@ -187,7 +204,7 @@ function Driverprad() {
         </div>
         <div className="driver-image-det">
           {/* <div className="dr-image-rat"> */}
-          <img className="driver-image" src={driverData.profilePic} alt="l" />
+          <img className="driver-image" src={driverData.DriverImage} alt="l" />
           {/* </div>  */}
           <div className="driver-details-tot">
             <h4 className="driver-name-head">{driverData.driverName}</h4>

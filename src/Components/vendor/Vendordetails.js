@@ -11,7 +11,7 @@ const Vendordetails = () => {
     useEffect(() => {
         const fetchVendor = async () => {
             try {
-                const response = await axios.get(`http://localhost:8081/user1/${VendorName}`);
+                const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/vendor/getVendorByName/${VendorName}`);
                 if (response && response.data) {
                     setVendor(response.data);
                 } else {

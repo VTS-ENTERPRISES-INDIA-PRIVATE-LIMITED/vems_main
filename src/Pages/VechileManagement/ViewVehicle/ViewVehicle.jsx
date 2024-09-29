@@ -15,7 +15,7 @@ const ViewVehicle = () => {
   const [isAddVehicleModalVisible, setIsAddVehicleModalVisible] = useState(false);
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_BACKEND_URL}/vehicles`)
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/vehicle/getAllVehicles`)
       .then((result) => {
         setVehicles(result.data);
         console.log(result.data);
@@ -36,10 +36,11 @@ const ViewVehicle = () => {
   };
 
   const handleSave = () => {
-    axios.put(`${process.envREACT_APP_BACKEND_URL}/vehicles/${editingVehicle.VehicleId}`, editingVehicle)
+    axios.put(`${process.env.REACT_APP_BACKEND_URL}/vehicle/updateVehicleById/${editingVehicle.VehicleId}`, editingVehicle)
       .then((response) => {
         setVehicles(vehicles.map(v => v.VehicleId === editingVehicle.VehicleId ? editingVehicle : v));
         setIsModalVisible(false);
+        console.log(response.data);        
       })
       .catch((error) => {
         console.log(error);
@@ -54,7 +55,7 @@ const ViewVehicle = () => {
       okType: 'danger',
       cancelText: 'No',
       onOk: () => {
-        axios.delete(`${process.envREACT_APP_BACKEND_URL}/vehicles/${vehicle.VehicleId}`)
+        axios.delete(`${process.env.REACT_APP_BACKEND_URL}/vehicle/deleteVehicleById/${vehicle.VehicleId}`)
           .then((response) => {
             setVehicles(vehicles.filter(v => v.VehicleId !== vehicle.VehicleId));
           })
@@ -179,32 +180,32 @@ const ViewVehicle = () => {
           </Form.Item>
           <Form.Item label="Year of Manufacturing">
             <Input
-              value={editingVehicle?.YearOfManufacturing}
-              onChange={e => setEditingVehicle({ ...editingVehicle, YearOfManufacturing: e.target.value })}
+              value={editingVehicle?.VehicleManufacturedYear}
+              onChange={e => setEditingVehicle({ ...editingVehicle, VehicleManufacturedYear: e.target.value })}
             />
           </Form.Item>
           <Form.Item label="Mileage">
             <Input
-              value={editingVehicle?.Mileage}
-              onChange={e => setEditingVehicle({ ...editingVehicle, Mileage: e.target.value })}
+              value={editingVehicle?.VehicleMileageRange}
+              onChange={e => setEditingVehicle({ ...editingVehicle, VehicleMileageRange: e.target.value })}
             />
           </Form.Item>
           <Form.Item label="Insurance Number">
             <Input
-              value={editingVehicle?.InsuranceNumber}
-              onChange={e => setEditingVehicle({ ...editingVehicle, InsuranceNumber: e.target.value })}
+              value={editingVehicle?.VehicleInsuranceNumber}
+              onChange={e => setEditingVehicle({ ...editingVehicle, VehicleInsuranceNumber: e.target.value })}
             />
           </Form.Item>
           <Form.Item label="Fuel Type">
             <Input
-              value={editingVehicle?.FuelType}
-              onChange={e => setEditingVehicle({ ...editingVehicle, FuelType: e.target.value })}
+              value={editingVehicle?.VehicleFuelType}
+              onChange={e => setEditingVehicle({ ...editingVehicle, VehicleFuelType: e.target.value })}
             />
           </Form.Item>
           <Form.Item label="Seat Capacity">
             <Input
-              value={editingVehicle?.SeatCapacity}
-              onChange={e => setEditingVehicle({ ...editingVehicle, SeatCapacity: e.target.value })}
+              value={editingVehicle?.VehicleSeatCapacity}
+              onChange={e => setEditingVehicle({ ...editingVehicle, VehicleSeatCapacity: e.target.value })}
             />
           </Form.Item>
         </Form>

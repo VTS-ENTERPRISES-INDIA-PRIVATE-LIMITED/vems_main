@@ -15,24 +15,33 @@ function Driverslist() {
   const [edittModal, setEdittModal] = useState(false);
   const [editingDriver, setEditingDriver] = useState(null); // State for the driver being edited
   const [searchQuery, setSearchQuery] = useState(""); // State for search query
+  const [vendors, setVendors] = useState([]);
 
   const fetchDrivers = () => {
-    axios.get(`${process.env.REACT_APP_BACKEND_URL}/drivers`)
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/driver/getAllDrivers`)
       .then((result) => {
         setDrivers(result.data);
+        console.log(result.data)
       })
       .catch((err) => {
         console.log(err);
-      });   
+      });
+  };
+
+  const fetchVendors = async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/vendor/getIdnName`);
+      setVendors(response.data);
+    } catch (error) {
+      console.error('Error fetching vendor data:', error);
+    }
   };
 
   useEffect(() => {
     fetchDrivers();
+    fetchVendors();
   }, []);
 
-  // const handleModalCancel = () => {
-  //   setEditModal(false);
-  // }
 
   const handleAddDriver = () => {
     setEditModal(true);
@@ -40,7 +49,7 @@ function Driverslist() {
 
   const handleDelete = (DriverId) => {
     if (window.confirm("Are you sure you want to delete this driver?")) {
-      axios.delete(`${process.env.REACT_APP_BACKEND_URL}/deleteDriver/${DriverId}`)
+      axios.delete(`${process.env.REACT_APP_BACKEND_URL}/driver/deleteDriverById/${DriverId}`)
         .then(() => {
           alert("Deleted successfully");
           fetchDrivers();
@@ -52,60 +61,21 @@ function Driverslist() {
   };
 
   const handleEdit = (driver) => {
-    setEditingDriver({...driver, DOB: driver.DOB ? new Date(driver.DOB).toISOString().split('T')[0] : ""});
+    setEditingDriver({ ...driver, DriverDOB: driver.DriverDOB ? new Date(driver.DriverDOB).toISOString().split('T')[0] : "" });
     console.log(driver);
-    
+
     setEdittModal(true);
   };
 
-  // const handleSave = () => {
-  //   axios.put(`${process.env.REACT_APP_BACKEND_URL}/drivers/${editingDriver.driverId}`, editingDriver)
-  //     .then(() => {
-  //       setDrivers(drivers.map(d => d.driverId === editingDriver.driverId ? editingDriver : d));
-  //       setEditModal(false);
-  //       setEditingDriver(null); // Clear editing state
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
-
-  // const handleSave = () => {
-  //   console.log("Saving driver details:", editingDriver); // Log the payload for debugging
-
-  //   axios.put(`${process.env.REACT_APP_BACKEND_URL}/drivers/${editingDriver.driverId}`, editingDriver)
-  //     .then((response) => {
-  //       if (response.status === 200) {
-  //         // Update the driver list with the edited driver details
-  //         setDrivers(drivers.map(d => d.driverId === editingDriver.driverId ? editingDriver : d));
-
-  //         // Close the modal and clear editing state
-  //         setEditModal(false);
-  //         setEditingDriver(null);
-
-  //         alert("Driver details updated successfully.");
-  //       } else {
-  //         console.log("Unexpected response status:", response.status);
-  //         alert("Failed to update driver details. Please try again.");
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error updating driver details:", error.response || error.message);
-  //       alert("Failed to update driver details.");
-  //     });
-  // };
   const handleSave = () => {
-    setEditingDriver((prev)=> ({...prev, DOB:editingDriver.DOB.split('T')[0]}))
-    console.log("Saving driver details:", editingDriver);
+    // setEditingDriver((prev) => ({ ...prev, DriverDOB: editingDriver.DriverDOB.split('T')[0] }))
+    console.log(editingDriver);
     
-    
-    console.log(`${process.env.REACT_APP_BACKEND_URL}/drivers/${editingDriver.DriverId}`);
-    axios.put(`${process.env.REACT_APP_BACKEND_URL}/drivers/${editingDriver.DriverId}`, editingDriver)
+    axios.put(`${process.env.REACT_APP_BACKEND_URL}/driver/updateDriverById/${editingDriver.DriverId}`, editingDriver)
       .then((response) => {
-        
+
         if (response.status === 200) {
           setDrivers(drivers.map(d => d.DriverId === editingDriver.DriverId ? editingDriver : d));
-
           setEdittModal(false);
           setEditingDriver(null);
           alert("Driver details updated successfully.");
@@ -113,7 +83,7 @@ function Driverslist() {
           console.log("Unexpected response status:", response.status);
           alert("Failed to update driver details. Please try again.");
         }
-      }) 
+      })
       .catch((error) => {
         console.error("Error updating driver details:", error);
         alert("Failed to update driver details.");
@@ -129,7 +99,7 @@ function Driverslist() {
     <div className="view-drivers-page">
       <div className="man-sear-add">
         <h2 className="Mage-driver">Manage Driver</h2>
-        <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <button className="add-driver" onClick={handleAddDriver}>
             <b>Add Driver +</b>
           </button>
@@ -161,10 +131,10 @@ function Driverslist() {
               <tr key={index}>
                 <td>{item.DriverId}</td>
                 <td>{item.DriverName}</td>
-                <td>{item.Contact}</td>
-                <td>{item.Gender}</td>
-                <td>{item.Experience} Years</td>
-                <td>{item.VendorName}</td>
+                <td>{item.DriverPhone}</td>
+                <td>{item.DriverGender}</td>
+                <td>{item.DriverExperience} Years</td>
+                <td>{vendors.find(v => v.VendorId === item.VendorId)?.VendorName}</td>
                 <td>
                   <button className="edit-button" onClick={() => handleEdit(item)}>
                     Edit
@@ -177,8 +147,7 @@ function Driverslist() {
                   style={{ cursor: "pointer" }}
                   onClick={() => {
                     localStorage.setItem("driverId", item.DriverId);
-                    // navigate("/driverprofile");
-                    <Driverprad/>
+                    navigate("/viewDriver");
                   }}
                 >
                   <IoEyeOutline style={{ color: "#00007F" }} />
@@ -236,70 +205,77 @@ function Driverslist() {
           </Form.Item>
           <Form.Item label="Contact" className="form-item">
             <Input
-              value={editingDriver?.Contact}
-              onChange={e => setEditingDriver({ ...editingDriver, Contact: e.target.value })}
+              value={editingDriver?.DriverPhone}
+              onChange={e => setEditingDriver({ ...editingDriver, DriverPhone: e.target.value })}
             />
           </Form.Item>
           <Form.Item label="Email" className="form-item">
             <Input
-              value={editingDriver?.Email}
-              onChange={e => setEditingDriver({ ...editingDriver, Email: e.target.value })}
+              value={editingDriver?.DriverEmail}
+              onChange={e => setEditingDriver({ ...editingDriver, DriverEmail: e.target.value })}
             />
           </Form.Item>
           <Form.Item label="Gender" className="form-item">
             <Input
-              value={editingDriver?.Gender}
-              onChange={e => setEditingDriver({ ...editingDriver, Gender: e.target.value })}
+              value={editingDriver?.DriverGender}
+              onChange={e => setEditingDriver({ ...editingDriver, DriverGender: e.target.value })}
             />
           </Form.Item>
           <Form.Item label="Date of Birth" className="form-item">
             <Input
               type="date"
-              value={editingDriver?.DOB.split('T')[0]}
-              onChange={e => setEditingDriver({ ...editingDriver, DOB: e.target.value })}
+              value={editingDriver?.DriverDOB.split('T')[0]}
+              onChange={e => setEditingDriver({ ...editingDriver, DriverDOB: e.target.value })}
             />
           </Form.Item>
           <Form.Item label="Address" className="form-item">
             <Input
-              value={editingDriver?.Address}
-              onChange={e => setEditingDriver({ ...editingDriver, Address: e.target.value })}
+              value={editingDriver?.DriverAddress}
+              onChange={e => setEditingDriver({ ...editingDriver, DriverAddress: e.target.value })}
             />
           </Form.Item>
           <Form.Item label="Aadhar Number" className="form-item">
             <Input
-              value={editingDriver?.Aadhar}
-              onChange={e => setEditingDriver({ ...editingDriver, Aadhar: e.target.value })}
+              value={editingDriver?.DriverAadhar}
+              onChange={e => setEditingDriver({ ...editingDriver, DriverAadhar: e.target.value })}
             />
           </Form.Item>
           <Form.Item label="PAN Number" className="form-item">
             <Input
-              value={editingDriver?.Pan}
-              onChange={e => setEditingDriver({ ...editingDriver, Pan: e.target.value })}
+              value={editingDriver?.DriverPAN}
+              onChange={e => setEditingDriver({ ...editingDriver, DriverPAN: e.target.value })}
             />
           </Form.Item>
           <Form.Item label="Licence Number" className="form-item">
             <Input
-              value={editingDriver?.LicenceNumber}
-              onChange={e => setEditingDriver({ ...editingDriver, LicenceNumber: e.target.value })}
+              value={editingDriver?.DriverLicense}
+              onChange={e => setEditingDriver({ ...editingDriver, DriverLicense: e.target.value })}
             />
           </Form.Item>
           <Form.Item label="Experience" className="form-item">
             <Input
-              value={editingDriver?.Experience}
-              onChange={e => setEditingDriver({ ...editingDriver, Experience: e.target.value })}
+              value={editingDriver?.DriverExperience}
+              onChange={e => setEditingDriver({ ...editingDriver, DriverExperience: e.target.value })}
             />
           </Form.Item>
-          {/* <Form.Item label="Profile Picture">
-            <Input
-              type="file"
-              onChange={e => setEditingDriver({ ...editingDriver, profilePic: e.target.files[0] })}
-            />
-          </Form.Item> */}
           <Form.Item label="Vendor Name" className="form-item">
-            <Input
-              value={editingDriver?.VendorName}
-              onChange={e => setEditingDriver({ ...editingDriver, VendorName: e.target.value })}
-            />
+            <select
+              value={editingDriver?.VendorId || ''}
+              onChange={e => {
+                const selectedVendorId = e.target.value;
+                setEditingDriver({
+                  ...editingDriver,
+                  VendorId: selectedVendorId
+                });
+              }}
+            >
+              <option value="" disabled>Select Vendor</option>
+              {vendors.map(vendor => (
+                <option key={vendor.VendorId} value={vendor.VendorId}>
+                  {vendor.VendorName}
+                </option>
+              ))}
+            </select>
           </Form.Item>
         </Form>
       </Modal>

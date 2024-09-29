@@ -31,6 +31,9 @@
 }
 .admin-dr-nav{
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
     gap: 10rem;
 }
 .dr-mng{
@@ -862,9 +865,9 @@
         margin-left: 1vw;
         margin-right: 5vw;
     }
-    .driver-management{
+    /* .driver-management{
         margin-left: 240px;
-    }
+    } */
     .doc-up{
         margin-top: 1vh;
         margin-right: 5vw;

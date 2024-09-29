@@ -18,14 +18,13 @@ function ExcelUpload() {
     const [employeeImage, setEmployeeImage] = useState(null);
 
     const [newEmployee, setNewEmployee] = useState({
-        EmployeeImage: '', // New field for image URL
-        EmployeeId: '',
+        EmployeeImage: '',
         EmployeeName: '',
         EmployeeGender: '',
         EmployeeAddress: '',
         EmployeeCity: '',
-        EmployeeLatitude: '',
-        EmployeeLongitude: '',
+        Latitude: '',
+        Longitude: '',
         EmployeeEmail: '',
         EmployeeContact: '',
         EmployeeEmergencyContact: ''
@@ -45,13 +44,12 @@ function ExcelUpload() {
         setSearchTerm(e.target.value);
     };
 
-
     const handleSaveToDatabase = async () => {
         const formData = new FormData();
         formData.append('file', file);
 
         try {
-            await axios.post(`${process.env.REACT_APP_BACKEND_URL}/upload`, formData, {
+            await axios.post(`${process.env.REACT_APP_BACKEND_URL}/employee/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -68,7 +66,6 @@ function ExcelUpload() {
         }
     };
 
-    // Handle form input change for new employee, including address and city
     const handleInputChange = async (e) => {
         const { name, value } = e.target;
         setNewEmployee((prev) => ({
@@ -93,12 +90,12 @@ function ExcelUpload() {
 
                     if (results.length > 0) {
                         const { lat, lon } = results[0].position;
-                        const newLocation = { lat, lng: lon };
+                        const newLocation = { lat: lat, lng: lon };
                         setLocation(newLocation);
                         setNewEmployee((prev) => ({
                             ...prev,
-                            EmployeeLatitude: newLocation.lat,
-                            EmployeeLongitude: newLocation.lng
+                            Latitude: newLocation.lat,
+                            Longitude: newLocation.lng
                         }));
                         setError("");
                     } else {
@@ -110,13 +107,14 @@ function ExcelUpload() {
                 }
             }
         }
+        console.log(newEmployee);
+        
     };
 
     const handleImageUpload = (e) => {
         const selectedImage = e.target.files[0];
         setEmployeeImage(selectedImage);
     };
-
 
     const uploadToCloudinary = async (file) => {
         const formData = new FormData();
@@ -136,26 +134,24 @@ function ExcelUpload() {
         }
     };
 
-    // Handle form submission to add a new employee
     const handleAddEmployee = async (e) => {
         e.preventDefault();
         newEmployee.EmployeeImage = employeeImage ? await uploadToCloudinary(employeeImage) : null;
 
         const formData = new FormData();
         formData.append('EmployeeImage', newEmployee.EmployeeImage);
-        formData.append('EmployeeId', newEmployee.EmployeeId);
         formData.append('EmployeeName', newEmployee.EmployeeName);
         formData.append('EmployeeGender', newEmployee.EmployeeGender);
         formData.append('EmployeeAddress', newEmployee.EmployeeAddress);
         formData.append('EmployeeCity', newEmployee.EmployeeCity);
-        formData.append('EmployeeLatitude', newEmployee.EmployeeLatitude);
-        formData.append('EmployeeLongitude', newEmployee.EmployeeLongitude);
+        formData.append('Latitude', newEmployee.Latitude);
+        formData.append('Longitude', newEmployee.Longitude);
         formData.append('EmployeeEmail', newEmployee.EmployeeEmail);
         formData.append('EmployeeContact', newEmployee.EmployeeContact);
         formData.append('EmployeeEmergencyContact', newEmployee.EmployeeEmergencyContact);
-        // console.log(newEmployee)
+        console.log(newEmployee)
         try {
-            await axios.post(`${process.env.REACT_APP_BACKEND_URL}/add-employee`, formData, {
+            await axios.post(`${process.env.REACT_APP_BACKEND_URL}/employee/addEmp`, formData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -164,13 +160,12 @@ function ExcelUpload() {
             setIsAddingEmployee(false);
             setNewEmployee({
                 EmployeeImage: '',
-                EmployeeId: '',
                 EmployeeName: '',
                 EmployeeGender: '',
                 EmployeeAddress: '',
                 EmployeeCity: '',
-                EmployeeLatitude: '',
-                EmployeeLongitude: '',
+                Latitude: '',
+                Longitude: '',
                 EmployeeEmail: '',
                 EmployeeContact: '',
                 EmployeeEmergencyContact: ''
@@ -183,12 +178,10 @@ function ExcelUpload() {
         }
     };
 
-
     const handleEditEmployee = (employee) => {
         setEditingEmployeeID(employee.EmployeeId);
         setEditedEmployee(employee);
     };
-
 
     const handleEditInputChange = async (e) => {
         const { name, value } = e.target;
@@ -202,8 +195,6 @@ function ExcelUpload() {
             const city = name === 'EmployeeCity' ? value : editedEmployee.EmployeeCity;
             console.log(address);
             console.log(city);
-
-
 
             if (address && city) {
                 try {
@@ -223,8 +214,8 @@ function ExcelUpload() {
                         const newLocation = { lat, lng: lon };
                         setEditedEmployee((prev) => ({
                             ...prev,
-                            EmployeeLatitude: newLocation.lat,
-                            EmployeeLongitude: newLocation.lng
+                            Latitude: newLocation.lat,
+                            Longitude: newLocation.lng
                         }));
 
 
@@ -240,14 +231,13 @@ function ExcelUpload() {
         }
     };
 
-
     const handleSaveEditedEmployee = async () => {
         const formData = new FormData();
         Object.keys(editedEmployee).forEach(key => formData.append(key, editedEmployee[key]));
         console.log("editedEmployee", editedEmployee)
 
         try {
-            await axios.post(`${process.env.REACT_APP_BACKEND_URL}/updateemployee/${EditingEmployeeID}`, formData, {
+            await axios.put(`${process.env.REACT_APP_BACKEND_URL}/employee/updateEmpById/${EditingEmployeeID}`, formData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -265,7 +255,7 @@ function ExcelUpload() {
 
     const handleDeleteEmployee = async (EmployeeId) => {
         try {
-            await axios.post(`${process.env.REACT_APP_BACKEND_URL}/deleteemployee/${EmployeeId}`);
+            await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/employee/deleteEmpById/${EmployeeId}`);
             alert('Employee deleted successfully');
             fetchEmployeeData();
         } catch (error) {
@@ -276,7 +266,7 @@ function ExcelUpload() {
 
     const fetchEmployeeData = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/showemployee`);
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/employee/getAllEmp`);
             setData(response.data);
         } catch (error) {
             console.error('Error fetching employee data:', error);
@@ -309,8 +299,8 @@ function ExcelUpload() {
                 "Gender": employee ? employee.EmployeeGender : '',
                 "Address": employee ? employee.EmployeeAddress : '',
                 "City": employee ? employee.EmployeeCity : '',
-                "Latitude": employee ? employee.EmployeeLatitude : '',
-                "Longitude": employee ? employee.EmployeeLongitude : '',
+                "Latitude": employee ? employee.Latitude : '',
+                "Longitude": employee ? employee.Longitude : '',
             };
         });
 
@@ -342,7 +332,6 @@ function ExcelUpload() {
         fetchTripsData();
     }, []);
 
-    // Filter employee data based on search term
     const filteredData = data.filter(employee =>
         employee.EmployeeName.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -402,13 +391,12 @@ function ExcelUpload() {
                                     setIsAddingEmployee(false);
                                     setNewEmployee({
                                         EmployeeImage: '',
-                                        EmployeeId: '',
                                         EmployeeName: '',
                                         EmployeeGender: '',
                                         EmployeeAddress: '',
                                         EmployeeCity: '',
-                                        EmployeeLatitude: '',
-                                        EmployeeLongitude: '',
+                                        Latitude: '',
+                                        Longitude: '',
                                         EmployeeEmail: '',
                                         EmployeeContact: '',
                                         EmployeeEmergencyContact: ''
@@ -417,14 +405,6 @@ function ExcelUpload() {
                                 }}>X</button>
                             </div>
                             <form onSubmit={handleAddEmployee}>
-                                <input
-                                    type="text"
-                                    name="EmployeeId"
-                                    placeholder="Employee ID"
-                                    value={newEmployee.EmployeeId}
-                                    onChange={handleInputChange}
-                                    required
-                                />
                                 <input
                                     type="text"
                                     name="EmployeeName"
@@ -461,16 +441,16 @@ function ExcelUpload() {
                                 />
                                 <input
                                     type="text"
-                                    name="EmployeeLatitude"
+                                    name="Latitude"
                                     placeholder="Latitude"
-                                    value={newEmployee.EmployeeLatitude}
+                                    value={newEmployee.Latitude}
                                     readOnly
                                 />
                                 <input
                                     type="text"
-                                    name="EmployeeLongitude"
+                                    name="Longitude"
                                     placeholder="Longitude"
-                                    value={newEmployee.EmployeeLongitude}
+                                    value={newEmployee.Longitude}
                                     readOnly
                                 />
                                 <input
@@ -539,8 +519,6 @@ function ExcelUpload() {
                                         <th>Gender</th>
                                         <th>Address</th>
                                         <th>City</th>
-                                        <th>Latitude</th>
-                                        <th>Longitude</th>
                                         <th>Email</th>
                                         <th>Contact No.</th>
                                         <th>Emergency No.</th>
@@ -559,8 +537,6 @@ function ExcelUpload() {
                                                     <td><input type="text" name="EmployeeGender" value={editedEmployee.EmployeeGender} onChange={handleEditInputChange} /></td>
                                                     <td><input type="text" name="EmployeeAddress" value={editedEmployee.EmployeeAddress} onChange={handleEditInputChange} /></td>
                                                     <td><input type="text" name="EmployeeCity" value={editedEmployee.EmployeeCity} onChange={handleEditInputChange} /></td>
-                                                    <td><input type="text" name="EmployeeLatitude" value={editedEmployee.EmployeeLatitude || ''} onChange={handleEditInputChange} /></td>
-                                                    <td><input type="text" name="EmployeeLongitude" value={editedEmployee.EmployeeLongitude || ''} onChange={handleEditInputChange} /></td>
                                                     <td>{employee.EmployeeEmail}</td>
                                                     <td><input type="text" name="EmployeeContact" value={editedEmployee.EmployeeContact} onChange={handleEditInputChange} /></td>
                                                     <td><input type="text" name="EmployeeEmergencyContact" value={editedEmployee.EmployeeEmergencyContact} onChange={handleEditInputChange} /></td>
@@ -578,8 +554,6 @@ function ExcelUpload() {
                                                     <td>{employee.EmployeeGender}</td>
                                                     <td>{employee.EmployeeAddress}</td>
                                                     <td>{employee.EmployeeCity}</td>
-                                                    <td>{employee.EmployeeLatitude}</td>
-                                                    <td>{employee.EmployeeLongitude}</td>
                                                     <td>{employee.EmployeeEmail}</td>
                                                     <td>{employee.EmployeeContact}</td>
                                                     <td>{employee.EmployeeEmergencyContact}</td>
