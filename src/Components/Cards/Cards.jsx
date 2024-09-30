@@ -120,6 +120,7 @@ const Cards = () => {
 
   const handleSelectVehicle = (vehicle) => {
     setSelectedVehicle(vehicle);
+    console.log(vehicle);
   };
 
   const handleSearchChange = (event) => {

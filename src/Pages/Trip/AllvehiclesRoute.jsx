@@ -43,53 +43,20 @@ const MapBounds = ({ bounds }) => {
 };
 
 const offsetCoordinates = (lat, lng, index, total) => {
-  const offset = 0.0001;
-  const angle = (index / total) * Math.PI * 2;
+  const offset = 0.0001; 
+  const angle = (index / total) * Math.PI * 2; 
   const offsetLat = lat + offset * Math.cos(angle);
   const offsetLng = lng + offset * Math.sin(angle);
   return { lat: offsetLat, lng: offsetLng };
 };
 
 const Allvehicles = ({ customClass, selectedVehicle }) => {
-  console.log('Selected vehicle in Allvehicles:', selectedVehicle);
-
   const [route, setRoute] = useState([]);
+  const [employeesData, setEmployeesData] = useState([]); // Initialize employeesData state
   const [error, setError] = useState(null);
   const [showAllCabs, setShowAllCabs] = useState(true);
-  const [employeesData, setEmployeesData] = useState([]);
   const mapRef = useRef(null);
   const polylineRef = useRef(null);
-
-  useEffect(() => {
-    const fetchEmployeeData = async () => {
-      if (!selectedVehicle) {
-        console.warn('No selected vehicle provided');
-        return; 
-      }
-      
-      try {
-        const response = await axios.get('http://localhost:8081/rides/${vehicle_id}');
-        console.log('Employee data response:', response.data); 
-
-        
-        if (selectedVehicle?.vehicle_id) {
-          const data = response.data.filter(
-            (vehicle) => vehicle.vehicle_id === selectedVehicle.vehicle_id
-          );
-          console.log('Filtered employee data:', data); 
-          setEmployeesData(data);
-        } else {
-          console.error('Invalid selectedVehicle:', selectedVehicle);
-        }
-      } catch (error) {
-        console.error('Error fetching employees data:', error);
-        setError('Error fetching employee data');
-      }
-    };
-  
-    fetchEmployeeData();
-  }, [selectedVehicle]);
-  
 
   const staticData = [
     { lat: 12.9833, lng: 80.2518, name: 'Cab 1', type: 'cab', id: 1 },
@@ -102,8 +69,39 @@ const Allvehicles = ({ customClass, selectedVehicle }) => {
   const cabs = staticData.filter((data) => data.type === 'cab');
   const startingPoint = staticData.find((data) => data.type === 'startingPoint');
 
+ 
+    const fetchEmployees = async () => {
+      if (selectedVehicle) {
+        try {
+          const response = await axios.get(`http://localhost:8081/rides/${selectedVehicle.vehicle_id}`);
+          console.log('Employee Data:', response.data);
+          if (response.data && Array.isArray(response.data.employees)) {
+            // Use map to format each employee's data
+            const formattedData = response.data.employees.map(emp => ({
+              lat: emp.Latitude,
+              lng: emp.Longitude,
+              name: emp.EmployeeId,
+              type: 'employee',
+              gender: emp.EmployeeGender,
+              priorityOrder: emp.PriorityOrder,
+            }));
+      
+            console.log(formattedData); // Display the formatted data
+          } else {
+            console.error('No employee data found or data is not in expected format');
+          }
+        } catch (error) {
+          console.error('Error fetching employee data:', error);
+        }
+      };
+    
+
+      useEffect(() => {
+        fetchEmployees();
+      }, [vehicleId]);
+
   const groupedEmployees = employeesData.reduce((acc, emp) => {
-    const key = `${emp.Latitude},${emp.Longitude}`;
+    const key = `${emp.lat},${emp.lng}`;
     if (!acc[key]) acc[key] = [];
     acc[key].push(emp);
     return acc;
@@ -111,32 +109,25 @@ const Allvehicles = ({ customClass, selectedVehicle }) => {
 
   const adjustedEmployees = Object.values(groupedEmployees).flatMap((group) =>
     group.map((emp, index) => {
-      const { lat, lng } = offsetCoordinates(emp.Latitude, emp.Longitude, index, group.length);
+      const { lat, lng } = offsetCoordinates(emp.lat, emp.lng, index, group.length);
       return { ...emp, lat, lng };
     })
   );
 
-  const sortedEmployees = adjustedEmployees.sort((a, b) => a.PriorityOrder - b.PriorityOrder);
+  const sortedEmployees = adjustedEmployees.sort((a, b) => a.priorityOrder - b.priorityOrder);
 
   const allMarkers = selectedVehicle
     ? [startingPoint, ...sortedEmployees].filter(Boolean)
     : showAllCabs
     ? [...cabs, startingPoint].filter(Boolean)
     : [startingPoint].filter(Boolean);
-
+   
   const bounds = L.latLngBounds(allMarkers.map((marker) => [marker.lat, marker.lng]));
 
   useEffect(() => {
-    console.log('Selected vehicle:', selectedVehicle);
-    console.log('Selected vehicle employees:', employeesData);
-
-    if (!selectedVehicle) {
-      console.log('No selected vehicle available');
-      return;
-    }
+    if (!selectedVehicle) return;
 
     const fetchRoute = async () => {
-      console.log('Fetching route...');
       try {
         const routeCoordinates = [];
         let currentLocation = startingPoint;
@@ -145,21 +136,17 @@ const Allvehicles = ({ customClass, selectedVehicle }) => {
           const start = currentLocation;
           const end = employee;
 
-          console.log('Fetching route from', start, 'to', end);
-
           const response = await axios.get(
             'https://api.openrouteservice.org/v2/directions/driving-car',
             {
               params: {
-                api_key: '5b3ce3597851110001cf6248fc4917b9ae9d4da4938a16ecba608beb',
+                api_key: '5b3ce3597851110001cf6248fc4917b9ae9d4da4938a16ecba608beb',  // Make sure to replace with your API key
                 start: `${start.lng},${start.lat}`,
                 end: `${end.lng},${end.lat}`,
                 format: 'geojson',
               },
             }
           );
-
-          console.log('Route response:', response.data);
 
           if (response.data && response.data.features && response.data.features.length > 0) {
             const segmentCoordinates = response.data.features[0].geometry.coordinates.map(
@@ -204,7 +191,7 @@ const Allvehicles = ({ customClass, selectedVehicle }) => {
           bounds={bounds}
           boundsOptions={{ padding: [50, 50] }}
           className={customClass}
-          style={{ height: '1000px', width: '54vw', marginLeft: '-200px', marginRight: '-10px', marginTop: '-20px' }}
+          style={{height:'1000px',width:'54vw',marginLeft: '-200px', marginRight: '-10px', marginTop: '-20px' }}
           center={[12.9716, 80.2445]}
           zoom={13}
           ref={mapRef}
@@ -215,10 +202,12 @@ const Allvehicles = ({ customClass, selectedVehicle }) => {
           />
           <MapBounds bounds={bounds} />
           {allMarkers.map((marker, index) => (
-            <Marker key={index} position={[marker.lat, marker.lng]} icon={getIcon(marker.type, marker.EmployeeGender)}>
+            <Marker key={index} position={[marker.lat, marker.lng]} icon={getIcon(marker.type, marker.gender)}>
               <Popup>
-                <div><strong>Employee ID:</strong> {marker.EmployeeName}</div>
-                <div><strong>Priority:</strong> {marker.PriorityOrder}</div>
+                <div>
+                  <strong>Employee ID:</strong> {marker.name}
+                  <div><strong>Priority:</strong> {marker.priorityOrder}</div>
+                </div>
               </Popup>
             </Marker>
           ))}
@@ -230,5 +219,6 @@ const Allvehicles = ({ customClass, selectedVehicle }) => {
     </div>
   );
 };
+}
 
 export default Allvehicles;
