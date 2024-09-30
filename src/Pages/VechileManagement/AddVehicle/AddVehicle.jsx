@@ -15,7 +15,7 @@ const VehicleForm = () => {
     VehicleNumber: '',
     VendorName: '',
     
-    InsuranceNumber:'',
+        InsuranceNumber:'',
     Mileage:'',
     YearOfManufacturing:'',
     
