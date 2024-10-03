@@ -17,11 +17,8 @@
     "browserify-zlib": "^0.2.0",
     "cloudinary": "^2.4.0",
     "cloudinary-react": "^1.8.1",
-<<<<<<< Updated upstream
     "crypto-js": "^4.2.0",
-=======
     "dash": "file:",
->>>>>>> Stashed changes
     "emailjs-com": "^3.2.0",
     "https-browserify": "^1.0.0",
     "jspdf": "^2.5.2",
