@@ -19,7 +19,6 @@ import { FaAddressCard } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { FaRegIdCard, FaUser, FaGasPump, FaTachometerAlt } from 'react-icons/fa';
-// import Sidebar from "../Components/Sidebar/Sidebar";
 import { useLocation } from 'react-router-dom';
 
 
@@ -129,21 +128,6 @@ function NewDashboard() {
     },
 
   ]
-  // const vehicleData = {
-  //     imageUrl: "https://res.cloudinary.com/dyxhiuuxa/image/upload/v1724421684/wrweuthrgturh6b7dqf1.png",
-  //     brandLogoUrl: "https://res.cloudinary.com/dyxhiuuxa/image/upload/v1724700248/Maruti-Suzuki-Logo-2011_oxddax.png",
-  //     vehicleNumber: "TN 01 AA 1234",
-  //     model: "Swift VXI",
-  //     assignedClient: "Client Name",
-  //     assignedLocation: "NPT-HCL",
-  //     brand: "Maruti Suzuki",
-
-  //     registrationNumber: "TN 01 AA 1234",
-  //     seatCapacity: "5",
-  //     fuelType: "Petrol",
-  //     mileage: "18 km/l",
-  //     manufactureYear: "2020"
-  // };
 
   return (
     <div>
@@ -198,14 +182,6 @@ function NewDashboard() {
 
         <div className="cur-det1">
           <img className="cur-car-img1" src={vehicle.VehicleImage} alt="Vehicle" />
-
-
-          {/* <h3 className="veh-num-cras">TN 01 AA 1234</h3>
-                <h5 className="veh-model">Swift VXI</h5> */}
-
-
-
-
           <div className="curr-dets1">
             <div className="brand1">
               <p style={{ fontWeight: 'bold' }}><FaRegIdCard /> Vehicle Number</p>
@@ -215,29 +191,17 @@ function NewDashboard() {
               <p style={{ fontWeight: 'bold' }}><FaRegIdCard /> Vehicle Type</p>
               <p>{vehicle.VehicleType}</p>
             </div>
-            {/* <div className="model">
-    <p style={{ fontWeight: 'bold' ,}}><FaCar /> Engine Number</p>
-    <p>{vehicle.engineNumber}</p>
-  </div>
-  <div className="color">
-    <p style={{ fontWeight: 'bold' }}><FaCode /> Chassis Number</p>
-    <p>{vehicle.chassisNumber}</p>
-  </div> */}
-            {/* <div className="regno">
-    <p style={{ fontWeight: 'bold' }}><FaRegIdCard /> Registration Num</p>
-    <p>{vehicle.</p>
-  </div> */}
             <div className="seatcp1">
               <p style={{ fontWeight: 'bold' }}><FaUser /> Seat Capacity</p>
-              <p>{vehicle.SeatCapacity}</p>
+              <p>{vehicle.VehicleSeatCapacity}</p>
             </div>
             <div className="fueltype1">
               <p style={{ fontWeight: 'bold' }}><FaGasPump /> Fuel Type</p>
-              <p>{vehicle.FuelType}</p>
+              <p>{vehicle.VehicleFuelType}</p>
             </div>
             <div className="mil1">
               <p style={{ fontWeight: 'bold' }}><FaTachometerAlt /> Insurance Number</p>
-              <p>{vehicle.InsuranceNumber}</p>
+              <p>{vehicle.VehicleInsuranceNumber}</p>
             </div>
             <div className="mil1">
               <p style={{ fontWeight: 'bold' }}><FaTachometerAlt /> Vendor Name</p>
@@ -245,11 +209,11 @@ function NewDashboard() {
             </div>
             <div className="mil1">
               <p style={{ fontWeight: 'bold' }}><FaTachometerAlt /> Year Of Manufacturing</p>
-              <p>{vehicle.YearOfManufacturing}</p>
+              <p>{vehicle.VehicleManufacturedYear}</p>
             </div>
             <div className="mil1">
               <p style={{ fontWeight: 'bold' }}><FaTachometerAlt /> mileage</p>
-              <p>{vehicle.Mileage}</p>
+              <p>{vehicle.VehicleMileageRange}</p>
             </div>
           </div>
         </div>

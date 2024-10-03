@@ -123,7 +123,7 @@ const ViewVehicle = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredVehicles.slice(0, 7).map((vehicle, index) => (
+          {filteredVehicles.map((vehicle, index) => (
             <tr key={vehicle.sno}>
               <td>{index + 1}</td>
               <td>{vehicle.VehicleName}</td>
@@ -183,8 +183,8 @@ const ViewVehicle = () => {
           </Form.Item>
           <Form.Item label="Vendor Name">
             <Input
-              value={editingVehicle?.VendorName}
-              onChange={e => setEditingVehicle({ ...editingVehicle, VendorName: e.target.value })}
+              value={editingVehicle?.VendorId}
+              onChange={e => setEditingVehicle({ ...editingVehicle, VendorId: e.target.value })}
             />
           </Form.Item>
           <Form.Item label="Vehicle Type">
