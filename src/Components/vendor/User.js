@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './user.css'; // Import the CSS file
+import './user.css';
 
 const User = () => {
     const [data, setData] = useState([]);
     const [editingVendor, setEditingVendor] = useState(null);
     const [editForm, setEditForm] = useState({
+        VendorName: '',
         ContactNumber: '',
         Email: '',
         Address: '',
@@ -18,17 +19,20 @@ const User = () => {
         AgreementStartDate: '',
         AgreementEndDate: '',
         AgreementAmount: '',
+        AmountPaid: '',
         AadharCardUpload: null,
         AgreementUpload: null
     });
-    const navigate = useNavigate(); // Initialize navigate
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:8081/user1');  // Update endpoint if needed
+                const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/vendor/getAllVendors`);
                 if (response && response.data) {
-                    setData(response.data.data);  // Set the data in state
+                    setData(response.data.data);
+                    console.log(response.data.data);
+
                 } else {
                     // alert('Unexpected response format');
                 }
@@ -37,37 +41,34 @@ const User = () => {
                 // alert('Failed to fetch data');
             }
         };
-
         fetchData();
-    }, []); // Empty dependency array ensures this runs only once on mount
+    }, []);
 
-    const handleEdit = (VendorName) => {
-        const vendor = data.find(v => v.VendorName === VendorName);
-        if (vendor) {
-            setEditingVendor(VendorName);
-            setEditForm({
-                ContactNumber: vendor.ContactNumber,
-                Email: vendor.Email,
-                Address: vendor.Address,
-                AccountHandlerName: vendor.AccountHandlerName,
-                AccountNumber: vendor.AccountNumber,
-                BankName: vendor.BankName,
-                BranchName: vendor.BranchName,
-                IFSCCode: vendor.IFSCCode,
-                AgreementStartDate: vendor.AgreementStartDate,
-                AgreementEndDate: vendor.AgreementEndDate,
-                AgreementAmount: vendor.AgreementAmount,
-                AadharCardUpload: null,
-                AgreementUpload: null
-            });
+    const fetchVendor = async (VendorId) => {
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/vendor/getVendorById/${VendorId}`);
+            if (response && response.data) {
+                setEditForm(response.data);
+            } else {
+                console.error('Unexpected response format:', response);
+                alert('Unexpected response format');
+            }
+        } catch (error) {
+            console.error('Error fetching vendor details:', error.response || error.message);
+            alert('Failed to fetch vendor details. Please check the console for more information.');
         }
     };
 
-    const handleDelete = async (VendorName) => {
+    const handleEdit = (VendorId) => {
+        fetchVendor(VendorId);
+        setEditingVendor(VendorId)
+    };
+
+    const handleDelete = async (VendorId, VendorName) => {
         try {
             const confirmation = window.confirm(`Are you sure you want to delete vendor: ${VendorName}?`);
             if (confirmation) {
-                const response = await axios.delete(`http://localhost:8081/vendor/${VendorName}`);
+                const response = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/vendor/deleteVendorByName/${VendorId}`);
                 if (response.status === 200) {
                     // alert('Vendor deleted successfully');
                     setData(data.filter(item => item.VendorName !== VendorName)); // Update the state
@@ -81,8 +82,8 @@ const User = () => {
         }
     };
 
-    const handleView = (VendorName) => {
-        navigate(`/vendordetails/${VendorName}`);
+    const handleView = (VendorId) => {
+        navigate(`/vendordetails/${VendorId}`);
     };
 
     const handleAddVendor = () => {
@@ -96,31 +97,62 @@ const User = () => {
             [name]: value
         }));
     };
+    const uploadToCloudinary = async (file) => {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('upload_preset', 'Viharikha');
 
-    const handleFileChange = (e) => {
+        try {
+            const response = await axios.post('https://api.cloudinary.com/v1_1/dku9u5u1x/image/upload', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            return response.data.secure_url;
+        } catch (error) {
+            console.error('Image upload failed:', error);
+            throw error;
+        }
+    };
+    const handleFileChange = async (e) => {
         const { name, files } = e.target;
-        setEditForm(prevForm => ({
-            ...prevForm,
-            [name]: files[0] || null
-        }));
+        const imgUrl = await uploadToCloudinary(files[0])
+        setEditForm({
+            ...editForm,
+            [name]: imgUrl
+        });
     };
 
     const handleEditSubmit = async (e) => {
         e.preventDefault();
+        const formData = {
+            VendorName: editForm.VendorName,
+            ContactNumber: editForm.ContactNumber,
+            Email: editForm.Email,
+            Address: editForm.Address,
+            AccountHandlerName: editForm.AccountHandlerName,
+            AccountNumber: editForm.AccountNumber,
+            BankName: editForm.BankName,
+            BranchName: editForm.BranchName,
+            IFSCCode: editForm.IFSCCode,
+            AgreementStartDate: editForm.AgreementStartDate,
+            AgreementEndDate: editForm.AgreementEndDate,
+            AgreementAmount: editForm.AgreementAmount,
+            AmountPaid: editForm.AmountPaid,
+            AadharCardUpload: editForm.AadharCardUpload,
+            AgreementUpload: editForm.AgreementUpload
+        }
+
         try {
-            const formData = new FormData();
-            for (const key in editForm) {
-                formData.append(key, editForm[key]);
-            }
-            const response = await axios.put(`http://localhost:8081/vendor/${editingVendor}`, formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
+            const response = await axios.put(
+                `${process.env.REACT_APP_BACKEND_URL}/vendor/updateVendorById/${editingVendor}`,
+                formData
+            );
+
             if (response.status === 200) {
-                // alert('Vendor updated successfully');
                 setEditingVendor(null);
                 setEditForm({
+                    VendorName: '',
                     ContactNumber: '',
                     Email: '',
                     Address: '',
@@ -132,13 +164,14 @@ const User = () => {
                     AgreementStartDate: '',
                     AgreementEndDate: '',
                     AgreementAmount: '',
+                    AmountPaid: '',
                     AadharCardUpload: null,
                     AgreementUpload: null
                 });
-                // Refetch data to update the list
+
                 const fetchData = async () => {
                     try {
-                        const response = await axios.get('http://localhost:8081/user1');
+                        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/user1`);
                         if (response && response.data) {
                             setData(response.data.data);
                         } else {
@@ -146,16 +179,15 @@ const User = () => {
                         }
                     } catch (error) {
                         console.error('Error fetching data:', error);
-                        // alert('Failed to fetch data');
                     }
                 };
                 fetchData();
+                console.log('Vendor updated successfully');
             } else {
-                // alert('Failed to update vendor');
+                alert('Failed to update vendor');
             }
         } catch (error) {
             console.error('Error updating vendor:', error);
-            // alert('Failed to update vendor');
         }
     };
 
@@ -170,12 +202,16 @@ const User = () => {
                     <h3>Edit Vendor</h3>
                     <form onSubmit={handleEditSubmit}>
                         <label>
+                            Vendor Name:
+                            <input type="text" name="VendorName" value={editForm.VendorName} onChange={handleChange} required />
+                        </label>
+                        <label>
                             Contact Number:
                             <input type="text" name="ContactNumber" value={editForm.ContactNumber} onChange={handleChange} required />
                         </label>
                         <label>
                             Email:
-                            <input type="Email" name="Email" value={editForm.Email} onChange={handleChange} required />
+                            <input type="email" name="Email" value={editForm.Email} onChange={handleChange} required />
                         </label>
                         <label>
                             Address:
@@ -214,6 +250,10 @@ const User = () => {
                             <input type="number" name="AgreementAmount" value={editForm.AgreementAmount} onChange={handleChange} />
                         </label>
                         <label>
+                            Amount Paid:
+                            <input type="number" name="AmountPaid" value={editForm.AmountPaid} onChange={handleChange} />
+                        </label>
+                        <label>
                             Aadhar Card Upload:
                             <input type="file" name="AadharCardUpload" onChange={handleFileChange} />
                         </label>
@@ -243,11 +283,11 @@ const User = () => {
                                         <td>{item.VendorName}</td>
                                         <td>{item.Email}</td>
                                         <td>
-                                            <button className="action-button" onClick={() => handleEdit(item.VendorName)}>Edit</button>
-                                            <button className="action-button" onClick={() => handleDelete(item.VendorName)}>Delete</button>
+                                            <button className="action-button" onClick={() => handleEdit(item.VendorId)}>Edit</button>
+                                            <button className="action-button" onClick={() => handleDelete(item.VendorId, item.VendorName)}>Delete</button>
                                         </td>
                                         <td>
-                                            <button className="action-button" onClick={() => handleView(item.VendorName)}>View</button>
+                                            <button className="action-button" onClick={() => handleView(item.VendorId)}>View</button>
                                         </td>
                                     </tr>
                                 ))}

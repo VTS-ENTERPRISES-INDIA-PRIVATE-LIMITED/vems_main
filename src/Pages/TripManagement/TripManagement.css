@@ -3,6 +3,7 @@
   flex-direction: column;
   padding: 20px;
   position: relative;
+  flex-grow: 1;
 }
 
 .trip-content-container {
@@ -23,7 +24,4 @@
   background-color: white;
   padding: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-.Searchrow{
-  margin-top:-30px;
 }

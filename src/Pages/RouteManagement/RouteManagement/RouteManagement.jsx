@@ -4,8 +4,6 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import axios from 'axios';
 
-
-
 delete L.Icon.Default.prototype._getIconUrl;
 const startingPointIcon = new L.Icon({
   iconUrl: 'https://res.cloudinary.com/djbz2ydtp/image/upload/v1725006668/SRP-Startford_127669_20180717_001_riahxp.jpg',
@@ -25,15 +23,14 @@ const otherPointIcon = new L.Icon({
   shadowSize: [32, 32]
 });
 
-
-const vehicleIcon = new L.Icon({
-  iconUrl: 'https://res.cloudinary.com/djbz2ydtp/image/upload/v1724994766/024fc5c5b9125a2d29d31750e90c1700_o84pry.png', // Replace with the URL of your vehicle icon
-  iconSize: [40, 40],
-  iconAnchor: [20, 40],
-  popupAnchor: [0, -40],
-  shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
-  shadowSize: [40, 40]
-});
+// const vehicleIcon = new L.Icon({
+//   iconUrl: 'https://res.cloudinary.com/djbz2ydtp/image/upload/v1724994766/024fc5c5b9125a2d29d31750e90c1700_o84pry.png', // Replace with the URL of your vehicle icon
+//   iconSize: [40, 40],
+//   iconAnchor: [20, 40],
+//   popupAnchor: [0, -40],
+//   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
+//   shadowSize: [40, 40]
+// });
 
 const RouteManagement = ({ customClass }) => {
   const [route, setRoute] = useState([]);

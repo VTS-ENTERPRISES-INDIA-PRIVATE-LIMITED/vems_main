@@ -6,12 +6,12 @@ import { FaUser, FaFileAlt, FaPhone, FaDownload, FaUniversity, FaEnvelope, FaMap
 
 const Vendordetails = () => {
     const [vendor, setVendor] = useState(null);
-    const { VendorName } = useParams();
+    const { VendorId } = useParams();
 
     useEffect(() => {
         const fetchVendor = async () => {
             try {
-                const response = await axios.get(`http://localhost:8081/user1/${VendorName}`);
+                const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/vendor/getVendorById/${VendorId}`);
                 if (response && response.data) {
                     setVendor(response.data);
                 } else {
@@ -25,7 +25,7 @@ const Vendordetails = () => {
         };
 
         fetchVendor();
-    }, [VendorName]);
+    }, [VendorId]);
 
     if (!vendor) {
         return <div>Loading...</div>;
@@ -60,13 +60,13 @@ const Vendordetails = () => {
                 <div className="stat-item"><p className="stat-value">{vendor.totalRevenue}</p><p className="stat-label">Total Revenue</p></div>
                 <div className="stat-item"><p className="stat-value">{vendor.totalVehicles}</p><p className="stat-label">Total Vehicles</p></div>
                 <div className="stat-item"><p className="stat-value">{vendor.totalDrivers}</p><p className="stat-label">Total Drivers</p></div>
-                <div className="stat-item"><p className="stat-value">{new Date(vendor.joinedDate).toLocaleDateString()}</p><p className="stat-label">Joined Date</p></div>
+                <div className="stat-item"><p className="stat-value">{new Date(vendor.AgreementStartDate).toLocaleDateString()}</p><p className="stat-label">Joined Date</p></div>
             </div>
 
             <div className="personal-info">
                 <h3>Personal Information</h3>
                 <div className="info-block">
-                    <p><FaUser /> <strong>Contact Name:</strong> {vendor.ContactName}</p>
+                    <p><FaUser /> <strong>Contact Name:</strong> {vendor.VendorName}</p>
                     <p><FaPhone /> <strong>Phone Number:</strong> {vendor.ContactNumber}</p>
                     <p><FaEnvelope /> <strong>Email Address:</strong> {vendor.Email}</p>
                     <p><FaMapMarkerAlt /> <strong>Address:</strong> {vendor.Address}</p>

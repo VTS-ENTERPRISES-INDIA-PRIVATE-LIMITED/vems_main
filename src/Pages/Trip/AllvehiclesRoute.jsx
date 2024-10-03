@@ -1,10 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from 'react-leaflet';
 import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
-import 'leaflet-routing-machine';
-
 import './AllvehiclesRoute.css';
 import axios from 'axios';
 
@@ -38,22 +35,27 @@ const startingPointIcon = new L.Icon({
 
 const MapBounds = ({ bounds }) => {
   const map = useMap();
-  map.fitBounds(bounds);
+  useEffect(() => {
+    if (bounds && bounds.isValid()) {
+      map.fitBounds(bounds);
+    } else {
+      console.warn('Invalid bounds:', bounds);
+    }
+  }, [bounds, map]);
   return null;
 };
 
 const offsetCoordinates = (lat, lng, index, total) => {
-  const offset = 0.0001; 
+  const offset = 0.0003; // Increased offset
   const angle = (index / total) * Math.PI * 2; 
-  const offsetLat = lat + offset * Math.cos(angle);
-  const offsetLng = lng + offset * Math.sin(angle);
+  const offsetLat = lat + offset * Math.sin(angle); 
+  const offsetLng = lng + offset * Math.cos(angle); 
   return { lat: offsetLat, lng: offsetLng };
 };
 
 const Allvehicles = ({ customClass, selectedVehicle }) => {
   const [route, setRoute] = useState([]);
-  const [employeesData, setEmployeesData] = useState([]); // Initialize employeesData state
-  const [error, setError] = useState(null);
+  const [employeesData, setEmployeesData] = useState([]);
   const [showAllCabs, setShowAllCabs] = useState(true);
   const mapRef = useRef(null);
   const polylineRef = useRef(null);
@@ -69,38 +71,45 @@ const Allvehicles = ({ customClass, selectedVehicle }) => {
   const cabs = staticData.filter((data) => data.type === 'cab');
   const startingPoint = staticData.find((data) => data.type === 'startingPoint');
 
- 
-    const fetchEmployees = async () => {
-      if (selectedVehicle) {
-        try {
-          const response = await axios.get(`http://localhost:8081/rides/${selectedVehicle.vehicle_id}`);
-          console.log('Employee Data:', response.data);
-          if (response.data && Array.isArray(response.data.employees)) {
-            // Use map to format each employee's data
-            const formattedData = response.data.employees.map(emp => ({
-              lat: emp.Latitude,
-              lng: emp.Longitude,
-              name: emp.EmployeeId,
-              type: 'employee',
-              gender: emp.EmployeeGender,
-              priorityOrder: emp.PriorityOrder,
-            }));
-      
-            console.log(formattedData); // Display the formatted data
-          } else {
-            console.error('No employee data found or data is not in expected format');
-          }
-        } catch (error) {
-          console.error('Error fetching employee data:', error);
-        }
-      };
-    
+  const fetchEmployeesData = async () => {
+    if (!selectedVehicle) {
+      console.log('No selected vehicle');
+      return;
+    }
 
-      useEffect(() => {
-        fetchEmployees();
-      }, [vehicleId]);
+    try {
+      console.log('Fetching data for vehicle:', selectedVehicle.VehicleId);
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/trip/rides/${selectedVehicle.VehicleId}`);
+      console.log('Employee data:', response.data);
+      setEmployeesData(response.data || []);
+    } catch (err) {
+      console.error('Error fetching employee data:', err);
+    }
+  };
 
-  const groupedEmployees = employeesData.reduce((acc, emp) => {
+  useEffect(() => {
+    fetchEmployeesData();
+  }, [selectedVehicle]);
+
+  const employeeMarkersData = employeesData.map((emp, index) => {
+    // Use emp.Latitude and emp.Longitude directly instead of looking them up
+    const { Latitude, Longitude, EmployeeId, EmployeeGender, PriorityOrder } = emp;
+  
+    // Ensure you are working with the correct latitude and longitude values
+    return {
+      lat: Latitude,
+      lng: Longitude,
+      name: EmployeeId,
+      type: 'employee',
+      gender: EmployeeGender,
+      priorityOrder: PriorityOrder,
+    };
+  }).filter(marker => marker !== null);
+  
+  // Log to check if the correct coordinates are being set
+  console.log('Employee Markers Data:', employeeMarkersData);
+  
+  const groupedEmployees = employeeMarkersData.reduce((acc, emp) => {
     const key = `${emp.lat},${emp.lng}`;
     if (!acc[key]) acc[key] = [];
     acc[key].push(emp);
@@ -113,21 +122,28 @@ const Allvehicles = ({ customClass, selectedVehicle }) => {
       return { ...emp, lat, lng };
     })
   );
-
   const sortedEmployees = adjustedEmployees.sort((a, b) => a.priorityOrder - b.priorityOrder);
-
+  
   const allMarkers = selectedVehicle
     ? [startingPoint, ...sortedEmployees].filter(Boolean)
     : showAllCabs
     ? [...cabs, startingPoint].filter(Boolean)
     : [startingPoint].filter(Boolean);
-   
-  const bounds = L.latLngBounds(allMarkers.map((marker) => [marker.lat, marker.lng]));
+
+  const validMarkers = allMarkers.filter(marker => marker && marker.lat && marker.lng);
+  const bounds = validMarkers.length > 0 ? L.latLngBounds(validMarkers.map(marker => [marker.lat, marker.lng])) : null;
 
   useEffect(() => {
-    if (!selectedVehicle) return;
+    console.log('Selected vehicle:', selectedVehicle);
+    console.log('Selected vehicle employees:', employeesData);
+
+    if (!selectedVehicle) {
+      console.log('No selected vehicle available');
+      return;
+    }
 
     const fetchRoute = async () => {
+      console.log('Fetching route...');
       try {
         const routeCoordinates = [];
         let currentLocation = startingPoint;
@@ -136,17 +152,21 @@ const Allvehicles = ({ customClass, selectedVehicle }) => {
           const start = currentLocation;
           const end = employee;
 
+          console.log('Fetching route from', start, 'to', end);
+
           const response = await axios.get(
             'https://api.openrouteservice.org/v2/directions/driving-car',
             {
               params: {
-                api_key: '5b3ce3597851110001cf6248fc4917b9ae9d4da4938a16ecba608beb',  // Make sure to replace with your API key
+                api_key: '5b3ce3597851110001cf6248fc4917b9ae9d4da4938a16ecba608beb', 
                 start: `${start.lng},${start.lat}`,
                 end: `${end.lng},${end.lat}`,
                 format: 'geojson',
               },
             }
           );
+
+          console.log('Route response:', response.data);
 
           if (response.data && response.data.features && response.data.features.length > 0) {
             const segmentCoordinates = response.data.features[0].geometry.coordinates.map(
@@ -155,7 +175,7 @@ const Allvehicles = ({ customClass, selectedVehicle }) => {
             routeCoordinates.push(...segmentCoordinates);
             currentLocation = employee;
           } else {
-            setError('No route data available or invalid response structure');
+            console.log('No route data available or invalid response structure');
             return;
           }
         }
@@ -163,7 +183,6 @@ const Allvehicles = ({ customClass, selectedVehicle }) => {
         setRoute(routeCoordinates);
       } catch (error) {
         console.error('Error fetching route:', error);
-        setError('Error fetching route');
       }
     };
 
@@ -172,7 +191,7 @@ const Allvehicles = ({ customClass, selectedVehicle }) => {
 
   const getIcon = (type, gender) => {
     if (type === 'employee') {
-      return gender === 'Female' ? femaleIcon : maleIcon;
+      return gender === 'female' ? femaleIcon : maleIcon;
     }
     switch (type) {
       case 'cab':
@@ -195,6 +214,7 @@ const Allvehicles = ({ customClass, selectedVehicle }) => {
           center={[12.9716, 80.2445]}
           zoom={13}
           ref={mapRef}
+          
         >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -203,12 +223,8 @@ const Allvehicles = ({ customClass, selectedVehicle }) => {
           <MapBounds bounds={bounds} />
           {allMarkers.map((marker, index) => (
             <Marker key={index} position={[marker.lat, marker.lng]} icon={getIcon(marker.type, marker.gender)}>
-              <Popup>
-                <div>
-                  <strong>Employee ID:</strong> {marker.name}
-                  <div><strong>Priority:</strong> {marker.priorityOrder}</div>
-                </div>
-              </Popup>
+              <Popup><div><strong>Employee ID:</strong> {marker.name}</div>
+              <div><strong>Priority:</strong> {marker.priorityOrder}</div></Popup>
             </Marker>
           ))}
           {route.length > 0 && (
@@ -219,6 +235,5 @@ const Allvehicles = ({ customClass, selectedVehicle }) => {
     </div>
   );
 };
-}
 
 export default Allvehicles;

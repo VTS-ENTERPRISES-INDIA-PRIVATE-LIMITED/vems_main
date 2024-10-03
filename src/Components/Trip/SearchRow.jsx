@@ -1,11 +1,9 @@
-import { DownloadOutlined } from '@ant-design/icons';
-import { Box, Button, InputAdornment, TextField } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import { DatePicker } from 'antd';
 import React, { useState } from 'react';
-import SearchIcon from '@mui/icons-material/Search';
 
 const SearchRow = ({ onFilterChange }) => {
-  const [activeButton, setActiveButton] = useState('Today');
+  const [activeButton, setActiveButton] = useState('All');
 
   const handleButtonClick = (button) => {
     setActiveButton(button);

@@ -3,7 +3,7 @@ import { jsPDF } from 'jspdf';
 import 'jspdf-autotable';
 import './TripHistory.css';
 import { DownloadOutlined } from '@ant-design/icons';
-import { Box, Button, InputAdornment, TextField } from '@mui/material';
+import { Button, InputAdornment, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
 const formatDate = (dateString) => {

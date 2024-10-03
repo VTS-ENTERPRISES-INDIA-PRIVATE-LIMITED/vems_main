@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Button, Typography, Switch } from '@mui/material';
-import { DownloadOutlined, CheckCircleOutlined } from '@ant-design/icons';
+import { Box, Typography } from '@mui/material';
 
 const TodayComponent = () => {
   const [currentDate, setCurrentDate] = useState(new Date());

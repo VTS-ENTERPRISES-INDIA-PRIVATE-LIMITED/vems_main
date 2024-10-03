@@ -11,9 +11,7 @@ body, html {
     font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
-    width: 1200px; /* Maximum width for the container */
-    margin: 0 auto; /* Center the container horizontally */
-    width: 100%; /* Full width of the viewport */
+    flex-grow: 1;
     box-sizing: border-box; /* Ensure padding is included in width calculation */
 }
 

@@ -28,7 +28,7 @@
   font-size: 16px;
   }
   .edit-button:hover{
-    background-color: green !important;
+    background-color: green;
     transform: scale(1.05); 
   }
 .delete-button {
