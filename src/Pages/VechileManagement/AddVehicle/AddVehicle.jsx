@@ -1,29 +1,42 @@
 import axios from 'axios';
 import './AddVehicle.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaUser, FaTruck, FaGasPump, FaCogs, FaUsers, FaTachometerAlt, FaCalendarAlt, FaImage } from 'react-icons/fa';
 
 const CLOUDINARY_UPLOAD_PRESET = 'q6fwknmo';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/djbz2ydtp/image/upload';
 
 
-
-const VehicleForm = () => {
+const VehicleForm = ({ onClose }) => {
   const [vehicleDetails, setVehicleDetails] = useState({
     VehicleName: '',
     VehicleType: '',
     VehicleNumber: '',
-    VendorName: '',
-    InsuranceNumber: '',
-    Mileage: '',
-    YearOfManufacturing: '',
-    FuelType: '',
-    SeatCapacity: '',
+    VendorId: '',
+    VehicleInsuranceNumber: '',
+    VehicleMileageRange: '',
+    VehicleManufacturedYear: '',
+    VehicleFuelType: '',
+    VehicleSeatCapacity: '',
     VehicleImage: '',
   });
 
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+  const [vendors, setVendors] = useState([]);
+
+  useEffect(() => {
+    const fetchVendors = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/vendor/getIdnName`);
+        setVendors(response.data);
+      } catch (error) {
+        console.error('Error fetching vendor data:', error);
+      }
+    };
+
+    fetchVendors();
+  }, []);
 
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
@@ -107,21 +120,13 @@ const VehicleForm = () => {
 
     if (validateForm()) {
       setLoading(true);
-
-      // Prepare the form data to include the image file and other details
-      const formData = new FormData();
-      for (const key in vehicleDetails) {
-        formData.append(key, vehicleDetails[key]);
-      }
-
       try {
-        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vehicle/addVehicle`, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        });
+        console.log(vehicleDetails);
+        
+        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vehicle/addVehicle`, vehicleDetails);
         window.alert("Form submitted successfully");
         console.log('Vehicle details saved successfully');
+        onClose();
       } catch (error) {
         window.alert("Error saving the vehicle data");
         console.error('Error saving vehicle details:', error);
@@ -233,15 +238,22 @@ const VehicleForm = () => {
 
         <div className="form-field1">
           <label className="required1"><FaUser className="icon11" />Vendor Name:</label>
-          <input
-            type="text"
-            name="VendorName"
-            value={vehicleDetails.VendorName}
+          <select
+            name="VendorId"
             onChange={handleChange}
-          />
-          {errors.VendorName && <span className="error-message">{errors.VendorName}</span>}
+            value={vehicleDetails.VendorId}
+            className="dr-ven"
+          >
+            <option value="">
+              Select Vendor
+            </option>
+            {vendors.map((vendor) => (
+              <option key={vendor.VendorId} value={vendor.VendorId}>
+                {vendor.VendorName}
+              </option>
+            ))}
+          </select>
         </div>
-
         <div className="form-field1">
           <label className="required1"><FaCalendarAlt className="icon11" />Manufactured Year:</label>
           <input

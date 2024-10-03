@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Login.css';
 import { useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
 import CryptoJS from 'crypto-js';
 
 const Login = ({ setIsAuthenticated }) => {
@@ -18,46 +19,37 @@ const Login = ({ setIsAuthenticated }) => {
     }
     return null;
   };
-  
+
   const handleLogin = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/admin/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          AdminEmail: email,
-          AdminPassword: password,
-        }),
-      });
+  try {
+    const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/admin/login`, {
+      AdminEmail: email,
+      AdminPassword: password,
+    });
 
-      if (response.ok) {
-        const data = await response.json();
+    const data = response.data;
 
-        if (data.IsApproved === null || data.IsApproved === 0) {
-          // Navigate to not-allowed page if not approved
-          navigate('/not-allowed');
-        } else {
-          // Store the details securely in localStorage with encryption
-          const encryptedData = CryptoJS.AES.encrypt(JSON.stringify(data), 'secret_key').toString();
-          localStorage.setItem('adminData', encryptedData);
+    if (data.IsApproved === null || data.IsApproved === 0) {
+      navigate('/not-allowed');
+    } else {
+      const encryptedData = CryptoJS.AES.encrypt(JSON.stringify(data), 'secret_key').toString();
+      localStorage.setItem('adminData', encryptedData);
 
-          setIsAuthenticated(true);
-          localStorage.setItem('isAuthenticated', 'true');
-          navigate('/home');
-        }
-      } else {
-        const message = await response.text();
-        setError(message);
-      }
-    } catch (err) {
-      console.error('Login error:', err);
+      setIsAuthenticated(true);
+      localStorage.setItem('isAuthenticated', 'true');
+      navigate('/home');
+    }
+  } catch (err) {
+    if (err.response && err.response.data) {
+      setError(err.response.data);
+    } else {
       setError('An error occurred during login. Please try again later.');
     }
-  };
+    console.error('Login error:', err);
+  }
+};
 
   return (
     <div className="login-container">
