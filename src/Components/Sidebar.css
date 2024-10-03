@@ -37,9 +37,11 @@
 
 
 .logout-container {
-    width: 90%;
-    text-align: right;
-    padding: 0 20px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 10px;
 }
 
 .logout-icon {

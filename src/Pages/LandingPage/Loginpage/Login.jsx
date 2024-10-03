@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Login.css';
 import { useNavigate, Link } from 'react-router-dom';
+import CryptoJS from 'crypto-js';
 
 const Login = ({ setIsAuthenticated }) => {
   const [email, setEmail] = useState('');
@@ -8,6 +9,16 @@ const Login = ({ setIsAuthenticated }) => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  const getDecryptedAdminData = () => {
+    const encryptedData = localStorage.getItem('adminData');
+    if (encryptedData) {
+      const bytes = CryptoJS.AES.decrypt(encryptedData, 'secret_key');
+      const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+      return decryptedData;
+    }
+    return null;
+  };
+  
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -24,9 +35,20 @@ const Login = ({ setIsAuthenticated }) => {
       });
 
       if (response.ok) {
-        setIsAuthenticated(true);
-        localStorage.setItem('isAuthenticated', 'true');
-        navigate('/home');
+        const data = await response.json();
+
+        if (data.IsApproved === null || data.IsApproved === 0) {
+          // Navigate to not-allowed page if not approved
+          navigate('/not-allowed');
+        } else {
+          // Store the details securely in localStorage with encryption
+          const encryptedData = CryptoJS.AES.encrypt(JSON.stringify(data), 'secret_key').toString();
+          localStorage.setItem('adminData', encryptedData);
+
+          setIsAuthenticated(true);
+          localStorage.setItem('isAuthenticated', 'true');
+          navigate('/home');
+        }
       } else {
         const message = await response.text();
         setError(message);

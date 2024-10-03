@@ -12,13 +12,39 @@ import ViewEscort from '../Pages/Escort/ViewEscort';
 import Driverslist from '../Pages/DriverManagement/Driverslist';
 import User from './vendor/User';
 import './Sidebar.css';
+import { useNavigate } from 'react-router-dom';
 
 const Clients = () => <div>Clients Content</div>;
 const Reports = () => <div>Reports Content</div>;
 
 const MainPage = () => {
 	const [activeMenu, setActiveMenu] = useState('Dashboard');
+	const navigate = useNavigate();
 	
+	const handleLogout = async () => {
+		try {
+			const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/admin/logout`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			});
+
+			if (response.ok) {
+				// Clear local storage
+				localStorage.removeItem('adminData');
+				localStorage.removeItem('isAuthenticated');
+
+				// Redirect to login page
+				navigate('/login');
+			} else {
+				console.error('Logout failed');
+			}
+		} catch (err) {
+			console.error('Logout error:', err);
+		}
+	};
+
 	return (
 		<div className="dashboardcomponents">
 			<div className="sidebar">
@@ -27,7 +53,7 @@ const MainPage = () => {
 					<h2 className="logo-text">VTS</h2>
 				</div>
 				<div className="logout-container">
-					<FaSignOutAlt className="logout-icon" />
+					Logout <FaSignOutAlt className="logout-icon" onClick={handleLogout}/>
 				</div>
 				<div className="menu-container">
 					<div className={`menu-item ${activeMenu === 'Dashboard' ? 'active' : ''}`} onClick={() => setActiveMenu('Dashboard')}>
