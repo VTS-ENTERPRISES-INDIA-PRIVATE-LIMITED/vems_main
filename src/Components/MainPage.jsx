@@ -13,6 +13,7 @@ import ViewEscort from '../Pages/Escort/ViewEscort';
 import Driverslist from '../Pages/DriverManagement/Driverslist';
 import User from './vendor/User';
 import './Sidebar.css';
+import axios from 'axios';
 
 const Clients = () => <div>Clients Content</div>;
 const Reports = () => <div>Reports Content</div>;
@@ -30,7 +31,6 @@ const MainPage = () => {
 			});
 
 			if (response.status === 200) {
-				setIsAuthenticated(false);
 				navigate('/login');
 			} else {
 				console.error('Logout failed');
