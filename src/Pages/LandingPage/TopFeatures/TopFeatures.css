@@ -1,0 +1,153 @@
+/* Container styling */
+.top-features-container {
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+.highlight {
+  color: #1ba94c; /* Green color for "Top" */
+}
+
+/* Features grid styling */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Automatically adjusts columns */
+  gap: 20px;
+}
+
+.feature-card {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  transition: box-shadow 0.5s;
+}
+
+.feature-card:hover {  
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.icon {
+  font-size: 2.5rem;
+  color: #4caf50;
+  margin-bottom: 20px;
+}
+
+.feature-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.feature-card p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.feature-number {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1rem;
+  color: #ddd;
+  font-weight: bold;
+}
+
+/* Responsive Design */
+
+/* Tablet (Medium-sized screens) */
+@media (max-width: 1024px) {
+  .top-features-container {
+    padding: 30px;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+
+  .features-grid {
+    gap: 15px;
+  }
+
+  .feature-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .feature-card p {
+    font-size: 0.95rem;
+  }
+}
+
+/* Mobile Devices (Small-sized screens) */
+@media (max-width: 768px) {
+  .top-features-container {
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr; /* Single column on small screens */
+  }
+
+  .feature-card {
+    padding: 15px;
+  }
+
+  .icon {
+    font-size: 2rem;
+  }
+
+  .feature-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .feature-card p {
+    font-size: 0.9rem;
+  }
+}
+
+/* Extra Small Mobile Devices (max-width: 480px) */
+@media (max-width: 480px) {
+  .top-features-container {
+    padding: 10px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .feature-card {
+    padding: 10px;
+  }
+
+  .icon {
+    font-size: 1.8rem;
+  }
+
+  .feature-card h3 {
+    font-size: 1rem;
+  }
+
+  .feature-card p {
+    font-size: 0.85rem;
+  }
+
+  .feature-number {
+    font-size: 0.9rem;
+  }
+}

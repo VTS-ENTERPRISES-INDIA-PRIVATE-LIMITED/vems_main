@@ -1,13 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from 'react-leaflet';
 import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
-import 'leaflet-routing-machine';
-
 import './AllvehiclesRoute.css';
 import axios from 'axios';
-import vehicleData from '../../Components/vehicleData.json';
 
 const cabIcon = new L.Icon({
   iconUrl: 'https://res.cloudinary.com/djbz2ydtp/image/upload/v1724994766/024fc5c5b9125a2d29d31750e90c1700_o84pry.png',
@@ -39,37 +35,30 @@ const startingPointIcon = new L.Icon({
 
 const MapBounds = ({ bounds }) => {
   const map = useMap();
-  map.fitBounds(bounds);
+  useEffect(() => {
+    if (bounds && bounds.isValid()) {
+      map.fitBounds(bounds);
+    } else {
+      console.warn('Invalid bounds:', bounds);
+    }
+  }, [bounds, map]);
   return null;
 };
 
 const offsetCoordinates = (lat, lng, index, total) => {
-  const offset = 0.0001; 
+  const offset = 0.0003; // Increased offset
   const angle = (index / total) * Math.PI * 2; 
-  const offsetLat = lat + offset * Math.cos(angle);
-  const offsetLng = lng + offset * Math.sin(angle);
+  const offsetLat = lat + offset * Math.sin(angle); 
+  const offsetLng = lng + offset * Math.cos(angle); 
   return { lat: offsetLat, lng: offsetLng };
 };
 
 const Allvehicles = ({ customClass, selectedVehicle }) => {
-  console.log('Selected vehicle in Allvehicles:', selectedVehicle);
-
   const [route, setRoute] = useState([]);
-  // const [error, setError] = useState(null);
+  const [employeesData, setEmployeesData] = useState([]);
   const [showAllCabs, setShowAllCabs] = useState(true);
   const mapRef = useRef(null);
   const polylineRef = useRef(null);
-
-  // useEffect(() => {
-  //   if (polylineRef.current && mapRef.current) {
-  //     polylineRef.current.arrowheads({
-  //       size: '15px',
-  //       frequency: 'endonly',
-  //       fill: true,
-  //       color: '#FF0000',
-  //     });
-  //   }
-  // }, [route]);
 
   const staticData = [
     { lat: 12.9833, lng: 80.2518, name: 'Cab 1', type: 'cab', id: 1 },
@@ -82,22 +71,45 @@ const Allvehicles = ({ customClass, selectedVehicle }) => {
   const cabs = staticData.filter((data) => data.type === 'cab');
   const startingPoint = staticData.find((data) => data.type === 'startingPoint');
 
+  const fetchEmployeesData = async () => {
+    if (!selectedVehicle) {
+      console.log('No selected vehicle');
+      return;
+    }
+
+    try {
+      console.log('Fetching data for vehicle:', selectedVehicle.VehicleId);
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/trip/rides/${selectedVehicle.VehicleId}`);
+      console.log('Employee data:', response.data);
+      setEmployeesData(response.data || []);
+    } catch (err) {
+      console.error('Error fetching employee data:', err);
+    }
+  };
+
+  useEffect(() => {
+    fetchEmployeesData();
+  }, [selectedVehicle]);
+
+  const employeeMarkersData = employeesData.map((emp, index) => {
+    // Use emp.Latitude and emp.Longitude directly instead of looking them up
+    const { Latitude, Longitude, EmployeeId, EmployeeGender, PriorityOrder } = emp;
   
-  const employeesData = vehicleData
-    .filter((vehicle) => vehicle.cab_id === selectedVehicle?.cab_id)
-    .map((emp) => ({
-      lat: emp.latitude,
-      lng: emp.longitude,
-      name: emp.emp_id,
+    // Ensure you are working with the correct latitude and longitude values
+    return {
+      lat: Latitude,
+      lng: Longitude,
+      name: EmployeeId,
       type: 'employee',
-      gender: emp.gender,
-      priorityOrder: emp.priority,
-    }));
-
-  console.log('Processed employees data:', employeesData);
-
-
-  const groupedEmployees = employeesData.reduce((acc, emp) => {
+      gender: EmployeeGender,
+      priorityOrder: PriorityOrder,
+    };
+  }).filter(marker => marker !== null);
+  
+  // Log to check if the correct coordinates are being set
+  console.log('Employee Markers Data:', employeeMarkersData);
+  
+  const groupedEmployees = employeeMarkersData.reduce((acc, emp) => {
     const key = `${emp.lat},${emp.lng}`;
     if (!acc[key]) acc[key] = [];
     acc[key].push(emp);
@@ -110,16 +122,16 @@ const Allvehicles = ({ customClass, selectedVehicle }) => {
       return { ...emp, lat, lng };
     })
   );
-
   const sortedEmployees = adjustedEmployees.sort((a, b) => a.priorityOrder - b.priorityOrder);
-
+  
   const allMarkers = selectedVehicle
     ? [startingPoint, ...sortedEmployees].filter(Boolean)
     : showAllCabs
     ? [...cabs, startingPoint].filter(Boolean)
     : [startingPoint].filter(Boolean);
 
-  const bounds = L.latLngBounds(allMarkers.map((marker) => [marker.lat, marker.lng]));
+  const validMarkers = allMarkers.filter(marker => marker && marker.lat && marker.lng);
+  const bounds = validMarkers.length > 0 ? L.latLngBounds(validMarkers.map(marker => [marker.lat, marker.lng])) : null;
 
   useEffect(() => {
     console.log('Selected vehicle:', selectedVehicle);
@@ -163,7 +175,7 @@ const Allvehicles = ({ customClass, selectedVehicle }) => {
             routeCoordinates.push(...segmentCoordinates);
             currentLocation = employee;
           } else {
-            // setError('No route data available or invalid response structure');
+            console.log('No route data available or invalid response structure');
             return;
           }
         }
@@ -171,16 +183,15 @@ const Allvehicles = ({ customClass, selectedVehicle }) => {
         setRoute(routeCoordinates);
       } catch (error) {
         console.error('Error fetching route:', error);
-        // setError('Error fetching route');
       }
     };
 
     fetchRoute();
-  }, [selectedVehicle, sortedEmployees, startingPoint,employeesData]);
+  }, [selectedVehicle, sortedEmployees, startingPoint]);
 
   const getIcon = (type, gender) => {
     if (type === 'employee') {
-      return gender === 'Female' ? femaleIcon : maleIcon;
+      return gender === 'female' ? femaleIcon : maleIcon;
     }
     switch (type) {
       case 'cab':

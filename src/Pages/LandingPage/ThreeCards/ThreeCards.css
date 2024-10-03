@@ -1,0 +1,110 @@
+/* Three Cards Container */
+.three-cards-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 20px;
+  padding: 40px;
+  max-width: 100%;
+  margin-top: -300px;
+}
+
+/* Card Styles */
+.card {
+  flex: 1;
+  background-color: #111;
+  color: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.icon {
+  font-size: 2.5rem;
+  color: #4caf50;
+  margin-bottom: 20px;
+}
+
+.card h3 {
+  font-size: 1.75rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.card p {
+  font-size: 1rem;
+  color: #ddd;
+  line-height: 1.6;
+}
+
+/* Tablet (Medium-sized screens) */
+@media (max-width: 1024px) {
+  .three-cards-container {
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px;
+  }
+
+  .card {
+    margin-bottom: 20px;
+  }
+
+  .card h3 {
+    font-size: 1.5rem;
+  }
+
+  .card p {
+    font-size: 0.95rem;
+  }
+}
+
+/* Mobile Devices (Small-sized screens) */
+@media (max-width: 768px) {
+  .three-cards-container {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .card {
+    padding: 15px;
+  }
+
+  .icon {
+    font-size: 2rem;
+  }
+
+  .card h3 {
+    font-size: 1.25rem;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+  }
+}
+
+/* Small Mobile Devices (Extra small-sized screens) */
+@media (max-width: 480px) {
+  .three-cards-container {
+    padding: 10px;
+    margin-top: -150px;
+  }
+
+  .card {
+    padding: 10px;
+  }
+
+  .icon {
+    font-size: 1.8rem;
+  }
+
+  .card h3 {
+    font-size: 1.1rem;
+  }
+
+  .card p {
+    font-size: 0.85rem;
+  }
+}

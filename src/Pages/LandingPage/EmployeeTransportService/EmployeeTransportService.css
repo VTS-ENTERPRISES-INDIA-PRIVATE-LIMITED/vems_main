@@ -1,0 +1,200 @@
+.employee-transport-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  max-width: 100%;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.ets-content {
+  padding-right: 20px;
+  text-align: left;
+  width: 428px;
+}
+
+.logo {
+  width: 80px;
+  margin-bottom: 20px;
+}
+
+.ets-content h1 {
+  margin-top: -50px;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  width: 130%;
+}
+
+.highlight {
+  color: #1ba94c;
+  width: 478px;
+}
+
+.subtitle {
+  color: #e31b23;
+  font-weight: 600;
+  margin-bottom: 20px;
+  width: 478px;
+}
+
+.description {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  width: 478px;
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.demo-button,
+.contact-button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.demo-button {
+  background-color: #1ba94c;
+  color: #fff;
+}
+
+.contact-button {
+  background-color: #333;
+  color: #fff;
+}
+
+.images img {
+  display: flex;
+  height: 500px;
+  width: 500px;
+}
+
+.employee-image {
+  width: 200px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+
+@media (max-width: 1024px) {
+  .employee-transport-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ets-content {
+    width: 100%;
+    padding: 0 10px;
+    text-align: center;
+  }
+
+  .ets-content h1 {
+    font-size: 2rem; 
+    width: 100%; 
+  }
+
+  .highlight,
+  .subtitle,
+  .description {
+    width: 100%; 
+  }
+
+  .buttons {
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .images img {
+    width: 100%;
+    height: auto;
+    max-width: 300px; 
+  }
+}
+
+@media (max-width: 768px) {
+  .employee-transport-container {
+    padding: 10px;
+  }
+
+  .ets-content {
+    width: 100%;
+    text-align: center;
+  }
+
+  .ets-content h1 {
+    font-size: 1.8rem;
+    margin-top: -10px; 
+  }
+
+  .highlight,
+  .subtitle,
+  .description {
+    width: 100%;
+  }
+
+  .description {
+    font-size: 0.9rem;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .demo-button,
+  .contact-button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .images img {
+    width: 100%;
+    height: auto;
+    max-width: 250px;
+  }
+
+  .employee-image {
+    width: 150px; 
+  }
+}
+
+@media (max-width: 480px) {
+  .employee-transport-container {
+    padding: 5px;
+  }
+
+  .ets-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .buttons {
+    flex-direction: column;
+  }
+
+  .demo-button,
+  .contact-button {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+  }
+
+  .images img {
+    max-width: 200px;
+  }
+
+  .employee-image {
+    width: 100px;
+  }
+}

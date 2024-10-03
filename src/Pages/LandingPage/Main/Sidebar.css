@@ -1,0 +1,92 @@
+/* Dashboard.css */
+
+/* General Dashboard Styles */
+.dashboard-wrapper {
+  padding: 10px;
+  text-align: center;
+  color: rgba(52, 46, 45, 0.871);
+}
+
+.dashboardd-container {
+  width: 90%;
+  margin: auto;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-template-columns: repeat(5, 1fr); /* For large screens, 5 cards in a row */
+  gap: 20px;
+}
+
+.card1 {
+  text-align: center;
+  border-radius: 8px;
+  margin: auto;
+  width: 180px;
+  height: 170px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+
+.card1:hover {
+  transform: scale(1.05);
+}
+
+.icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+/* Tablet (Medium-sized screens) */
+@media (max-width: 1024px) {
+  .dashboardd-container {
+    grid-template-columns: repeat(3, 1fr); /* 3 cards in a row for tablets */
+  }
+
+  .card1 {
+    width: 160px;
+    height: 150px;
+  }
+
+  .icon {
+    font-size: 35px; /* Slightly smaller icons for tablets */
+  }
+}
+
+/* Mobile Devices (Small-sized screens) */
+@media (max-width: 768px) {
+  .dashboardd-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards in a row for mobile */
+    gap: 15px;
+  }
+
+  .card1 {
+    width: 140px;
+    height: 130px;
+  }
+
+  .icon {
+    font-size: 30px; /* Smaller icons for mobile */
+  }
+}
+
+/* Small Mobile Devices (Extra small-sized screens) */
+@media (max-width: 480px) {
+  .dashboardd-container {
+    grid-template-columns: 1fr; /* 1 card in a row for extra small screens */
+  }
+
+  .card1 {
+    width: 100%; /* Full width card */
+    height: 120px;
+  }
+
+  .icon {
+    font-size: 25px; /* Even smaller icons for extra small screens */
+  }
+}

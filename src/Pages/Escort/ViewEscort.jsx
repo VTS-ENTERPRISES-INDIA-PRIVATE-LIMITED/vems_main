@@ -27,18 +27,18 @@ const ViewEscort = () => {
     BranchName: '',
     ShiftStartTime: '',
     ShiftEndTime: ''
-});
+  });
 
   const handleSubmit = async () => {
     console.log("Form Submitted with Data: ", formData);
     try {
-      
+
       const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/escort/addEscort`, formData);
-  
+
       if (response.status === 200) {
         message.success('Escort added successfully');
         setAddEscortModal(false);
-    }
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
       message.error("Failed to add escort. Please try again.");
@@ -87,6 +87,16 @@ const ViewEscort = () => {
     });
   };
 
+  const handleEditInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditingEscort({ ...editingEscort, [name]: value });
+  };
+
+  const handleFileChange = (e) => {
+    const { name, files } = e.target;
+    setEditingEscort({ ...editingEscort, [name]: files[0] });
+  };
+
   const handleSearch = (value) => {
     setSearchText(value ? value.toLowerCase() : '');
     console.log('Search value:', value); // Log the search input value
@@ -97,7 +107,7 @@ const ViewEscort = () => {
     setIsModalVisible(true);
   };
 
-  const handleSave = () => {
+  const handleSave = () => {    
     axios.put(`${process.env.REACT_APP_BACKEND_URL}/escort/updateEscortById/${editingEscort.EscortId}`, editingEscort)
       .then((response) => {
         setEscorts(escorts.map(e => e.EscortId === editingEscort.EscortId ? editingEscort : e));
@@ -187,7 +197,6 @@ const ViewEscort = () => {
     }
   ];
 
-
   return (
     <div style={{ display: 'flex', flexGrow: 1, flexDirection: 'column', padding: '30px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 16 }}>
@@ -218,73 +227,146 @@ const ViewEscort = () => {
         visible={isModalVisible}
         onOk={handleSave}
         onCancel={() => setIsModalVisible(false)}
-        width={800}
-        style={{ marginRight: '150px' }}
       >
-        <Form layout="vertical" className="escort-form">
-          <div className="form-grid">
-            <Form.Item label="Escort Name">
-              <Input
-                value={editingEscort?.EscortName}
-                onChange={e => setEditingEscort({ ...editingEscort, EscortName: e.target.value })}
+        <form className="edit-escort-form">
+          <div className="edit-escort-row">
+            <div className="edit-escort-col">
+              <label>Escort Name</label>
+              <input
+                type="text"
+                name="EscortName"
+                value={editingEscort?.EscortName || ''}
+                onChange={handleEditInputChange}
               />
-            </Form.Item>
-            <Form.Item label="Contact Number">
-              <Input
-                value={editingEscort?.ContactNumber}
-                onChange={e => setEditingEscort({ ...editingEscort, ContactNumber: e.target.value })}
+            </div>
+            <div className="edit-escort-col">
+              <label>Contact Number</label>
+              <input
+                type="number"
+                name="ContactNumber"
+                value={editingEscort?.ContactNumber || ''}
+                onChange={handleEditInputChange}
               />
-            </Form.Item>
-            <Form.Item label="Age">
-              <Input
-                value={editingEscort?.Age}
-                onChange={e => setEditingEscort({ ...editingEscort, Age: e.target.value })}
-              />
-            </Form.Item>
-            <Form.Item label="Address">
-              <Input
-                value={editingEscort?.Address}
-                onChange={e => setEditingEscort({ ...editingEscort, Address: e.target.value })}
-              />
-            </Form.Item>
-            <Form.Item label="Account Handler Name">
-              <Input
-                value={editingEscort?.AccountHandlerName}
-                onChange={e => setEditingEscort({ ...editingEscort, AccountHandlerName: e.target.value })}
-              />
-            </Form.Item>
-            <Form.Item label="Account Number">
-              <Input
-                value={editingEscort?.AccountNumber}
-                onChange={e => setEditingEscort({ ...editingEscort, AccountNumber: e.target.value })}
-              />
-            </Form.Item>
-            <Form.Item label="Bank Name">
-              <Input
-                value={editingEscort?.BankName}
-                onChange={e => setEditingEscort({ ...editingEscort, BankName: e.target.value })}
-              />
-            </Form.Item>
-            <Form.Item label="Branch Name">
-              <Input
-                value={editingEscort?.BranchName}
-                onChange={e => setEditingEscort({ ...editingEscort, BranchName: e.target.value })}
-              />
-            </Form.Item>
-            <Form.Item label="IFSC Code">
-              <Input
-                value={editingEscort?.IFSCCode}
-                onChange={e => setEditingEscort({ ...editingEscort, IFSCCode: e.target.value })}
-              />
-            </Form.Item>
-            <Form.Item label="Shift">
-              <Input
-                value={editingEscort?.Shift}
-                onChange={e => setEditingEscort({ ...editingEscort, Shift: e.target.value })}
-              />
-            </Form.Item>
+            </div>
           </div>
-        </Form>
+          <div className="edit-escort-row">
+            <div className="edit-escort-col">
+              <label>Age</label>
+              <input
+                type="number"
+                name="Age"
+                value={editingEscort?.Age || ''}
+                onChange={handleEditInputChange}
+              />
+            </div>
+            <div className="edit-escort-col">
+              <label>Address</label>
+              <input
+                type="text"
+                name="Address"
+                value={editingEscort?.Address || ''}
+                onChange={handleEditInputChange}
+              />
+            </div>
+          </div>
+          <div className="edit-escort-row">
+            <div className="edit-escort-col">
+              <label>Account Handler Name</label>
+              <input
+                type="text"
+                name="AccountHandlerName"
+                value={editingEscort?.AccountHandlerName || ''}
+                onChange={handleEditInputChange}
+              />
+            </div>
+            <div className="edit-escort-col">
+              <label>Account Number</label>
+              <input
+                type="text"
+                name="AccountNumber"
+                value={editingEscort?.AccountNumber || ''}
+                onChange={handleEditInputChange}
+              />
+            </div>
+          </div>
+          <div className="edit-escort-row">
+            <div className="edit-escort-col">
+              <label>Bank Name</label>
+              <input
+                type="text"
+                name="BankName"
+                value={editingEscort?.BankName || ''}
+                onChange={handleEditInputChange}
+              />
+            </div>
+            <div className="edit-escort-col">
+              <label>Branch Name</label>
+              <input
+                type="text"
+                name="BranchName"
+                value={editingEscort?.BranchName || ''}
+                onChange={handleEditInputChange}
+              />
+            </div>
+          </div>
+          <div className="edit-escort-row">
+            <div className="edit-escort-col">
+              <label>IFSC Code</label>
+              <input
+                type="text"
+                name="IFSCCode"
+                value={editingEscort?.IFSCCode || ''}
+                onChange={handleEditInputChange}
+              />
+            </div>
+            <div className="edit-escort-col">
+              <label>Escort Profile Picture</label>
+              <input
+                type="file"
+                name="EscortProfilePicUpload"
+                onChange={handleFileChange}
+              />
+            </div>
+          </div>
+          <div className="edit-escort-row">
+            <div className="edit-escort-col">
+              <label>Shift Start Time</label>
+              <input
+                type="time"
+                name="ShiftStartTime"
+                value={editingEscort?.ShiftStartTime || ''}
+                onChange={handleEditInputChange}
+              />
+            </div>
+            <div className="edit-escort-col">
+              <label>Shift End Time</label>
+              <input
+                type="time"
+                name="ShiftEndTime"
+                value={editingEscort?.ShiftEndTime || ''}
+                onChange={handleEditInputChange}
+              />
+            </div>
+          </div>
+          <div className="edit-escort-row">
+            <div className="edit-escort-col">
+              <label>Aadhar Card Upload</label>
+              <input
+                type="file"
+                name="AadharCardUpload"
+                onChange={handleFileChange}
+              />
+            </div>
+            <div className="edit-escort-col">
+              <label>Certification Upload</label>
+              <input
+                type="file"
+                name="CertificationUpload"
+                onChange={handleFileChange}
+              />
+            </div>
+          </div>
+        </form>
       </Modal>
 
       <Modal

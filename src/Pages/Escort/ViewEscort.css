@@ -179,3 +179,34 @@
   textarea.form-input {
     resize: vertical;
   }
+
+  .edit-escort-form {
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .edit-escort-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    gap: 10px;
+  }
+  .edit-escort-col {
+    display: flex;
+    flex-direction: column;
+  }
+  .edit-escort-col label {
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  
+  .edit-escort-col input {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+  }

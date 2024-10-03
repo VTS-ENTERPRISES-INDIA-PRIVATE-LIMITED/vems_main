@@ -24,7 +24,7 @@
     border-bottom: 1px solid #ddd;
 }
 
-.logo {
+.logoImg {
     height: 50px;
     margin-right: 10px;
 }
@@ -83,7 +83,7 @@
     margin-right: 15px;
 }
 
-.menu-item .icon {
+.menu-item .iconSvg {
     font-size: 16px;
     color: #fff;
 }
@@ -99,7 +99,7 @@
     border: #00bcd4;
 }
 
-.icon-vender-management {
+.icon-vendor-management {
     background-color: #683ab7e0;
     border: #673ab7;
 }

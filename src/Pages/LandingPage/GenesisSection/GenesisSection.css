@@ -1,0 +1,247 @@
+.genesis-section {
+    padding: 50px;
+    background-color: white;
+    text-align: center;
+}
+
+.genesis-header h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 10px;
+}
+
+.genesis-header .highlight {
+    color: #00A859; 
+}
+
+.genesis-header p {
+    margin: auto;
+    width: 60%;
+    font-size: 18px;
+    color: #3f3d3d;
+    margin-bottom: 40px;
+}
+.genesis-carousel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.genesis-carousel .carousel-item {
+    display: flex;
+    margin: 0px 150px;
+    align-items: center;
+    justify-content: center;
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.carousel-image img {
+    border-radius: 10px;
+    max-width: 100%;
+    height: auto;
+}
+
+.carousel-content {
+    margin-left: 20px;
+    text-align: left;
+}
+
+.carousel-content h2 {
+    font-size: 24px;
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+.carousel-content h3 {
+    font-size: 20px;
+    color: #00A859; 
+    margin-bottom: 15px;
+}
+
+.carousel-content p {
+    font-size: 16px;
+    color: #444444;
+}
+.why-vm-routes {
+    padding: 40px 0;
+    text-align: center;
+    background-color: #fff;
+  }
+  
+  .why-title {
+    font-size: 2.5em;
+    color: #28a745; 
+    margin-bottom: 40px;
+  }
+  
+  .why-cards {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  
+  .why-card {
+    flex: 1;
+    max-width: 300px;
+    text-align: center;
+  }
+  
+  .icon-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .icon-wrapper img {
+    width: 50px;
+    height: 55px;
+  }
+  
+  .why-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  .why-card p {
+    font-size: 1em;
+    color: #666;
+  }
+  
+  /* General Responsive Styles */
+@media (max-width: 1200px) {
+  .genesis-header h1 {
+    font-size: 32px; /* Slightly reduce header size */
+  }
+
+  .genesis-header p {
+    width: 80%; /* Increase width on smaller screens */
+    font-size: 16px; /* Smaller font size for readability */
+  }
+
+  .carousel-content h2 {
+    font-size: 22px; /* Reduce heading size */
+  }
+
+  .carousel-content h3 {
+    font-size: 18px; /* Reduce subheading size */
+  }
+
+  .carousel-content p {
+    font-size: 14px; /* Reduce paragraph font size */
+  }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+  .genesis-section {
+    padding: 30px;
+  }
+
+  .genesis-header h1 {
+    font-size: 28px; /* Smaller header for tablets */
+  }
+
+  .genesis-header p {
+    width: 90%; /* Make text wider */
+    font-size: 16px;
+  }
+
+  .genesis-carousel .carousel-item {
+    margin: 0px 50px; /* Reduce margin between items */
+    flex-direction: column; /* Stack items vertically */
+    padding: 15px; /* Adjust padding */
+  }
+
+  .carousel-content {
+    margin-left: 0; /* Remove left margin */
+    text-align: center; /* Center content on tablets */
+  }
+
+  .carousel-content h2 {
+    font-size: 20px; /* Smaller header */
+  }
+
+  .carousel-content h3 {
+    font-size: 18px; /* Adjust subheading */
+  }
+
+  .why-cards {
+    flex-direction: column; /* Stack cards vertically */
+    align-items: center;
+  }
+
+  .why-card {
+    max-width: 100%; /* Full width cards on tablets */
+    margin-bottom: 30px; /* Space between cards */
+  }
+}
+
+/* Mobile Devices (Portrait) */
+@media (max-width: 480px) {
+  .genesis-section {
+    padding: 20px;
+  }
+
+  .genesis-header h1 {
+    font-size: 24px; /* Smaller header for mobile */
+  }
+
+  .genesis-header p {
+    width: 100%; /* Full width text */
+    font-size: 14px; /* Smaller font for mobile */
+  }
+
+  .genesis-carousel .carousel-item {
+    flex-direction: column;
+    margin: 0; /* Remove margin between items */
+    padding: 10px; /* Adjust padding */
+  }
+
+  .carousel-content {
+    margin-left: 0;
+    text-align: center; /* Center content on mobile */
+  }
+
+  .carousel-content h2 {
+    font-size: 18px; /* Smaller header */
+  }
+
+  .carousel-content h3 {
+    font-size: 16px; /* Adjust subheading */
+  }
+
+  .carousel-content p {
+    font-size: 14px; /* Smaller paragraph */
+  }
+
+  .why-title {
+    font-size: 2em; /* Adjust title size */
+  }
+
+  .why-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .why-card {
+    max-width: 100%;
+    margin-bottom: 20px; /* Reduce margin between cards */
+  }
+
+  .icon-wrapper img {
+    width: 40px;
+    height: 45px; /* Adjust icon size */
+  }
+
+  .why-card h3 {
+    font-size: 1.3em; /* Reduce card header size */
+  }
+
+  .why-card p {
+    font-size: 0.9em; /* Smaller font for mobile */
+  }
+}

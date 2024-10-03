@@ -13,17 +13,31 @@ const ViewVehicle = () => {
   const [editingVehicle, setEditingVehicle] = useState(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isAddVehicleModalVisible, setIsAddVehicleModalVisible] = useState(false);
+  const [vendors, setVendors] = useState([]);
 
-  useEffect(() => {
+  const fetchVendors = async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/vendor/getIdnName`);
+      setVendors(response.data);
+    } catch (error) {
+      console.error('Error fetching vendor data:', error);
+    }
+  };
+
+  const fetchVehicleData = async () => {
     axios.get(`${process.env.REACT_APP_BACKEND_URL}/vehicle/getAllVehicles`)
       .then((result) => {
         setVehicles(result.data);
         console.log(result.data);
-
       })
       .catch((error) => {
         console.log(error);
       });
+  }
+
+  useEffect(() => {
+    fetchVehicleData();
+    fetchVendors();
   }, []);
 
   const handleSearch = (value) => {
@@ -40,7 +54,7 @@ const ViewVehicle = () => {
       .then((response) => {
         setVehicles(vehicles.map(v => v.VehicleId === editingVehicle.VehicleId ? editingVehicle : v));
         setIsModalVisible(false);
-        console.log(response.data);        
+        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -77,52 +91,12 @@ const ViewVehicle = () => {
     .filter(vehicle =>
       (vehicle.VehicleName || '').toLowerCase().includes(searchText) ||
       (vehicle.VehicleNumber || '').toLowerCase().includes(searchText) ||
-      (vehicle.VendorName || '').toLowerCase().includes(searchText)
+      (vendors.find(v => v.VendorId === vehicle.VendorId)?.VendorName || '').toLowerCase().includes(searchText)
     )
     .map((vehicle, index) => ({
       ...vehicle,
       sno: index + 1
     }));
-
-  const columns = [
-    {
-      title: 'S.No',
-      dataIndex: 'sno',
-      key: 'sno',
-    },
-    {
-      title: 'Vehicle Name',
-      dataIndex: 'VehicleName',
-      key: 'VehicleName',
-    },
-    {
-      title: 'Reg. No',
-      dataIndex: 'VehicleNumber',
-      key: 'VehicleNumber',
-    },
-    {
-      title: 'Vendor Name',
-      dataIndex: 'VendorName',
-      key: 'VendorName',
-    },
-    {
-      title: 'Actions',
-      key: 'actions',
-      render: (text, record) => (
-        <span>
-          <Button type="link" className="edit-button" onClick={() => handleEdit(record)}>Edit</Button>
-          <Button type="link" danger className="delete-button" onClick={() => handleDelete(record)}>Delete</Button>
-        </span>
-      ),
-    },
-    {
-      title: 'View More',
-      key: 'viewMore',
-      render: (text, record) => (
-        <Button type="link" icon={<EyeOutlined />} onClick={() => navigate(`/VehicleDashboard`, { state: { vehicle: record } })} />
-      ),
-    },
-  ];
 
   return (
     <div style={{ display: 'flex', flexGrow: 1, flexDirection: 'column', padding: '30px' }}>
@@ -137,13 +111,54 @@ const ViewVehicle = () => {
           style={{ width: 200 }}
         />
       </div>
-      <Table
-        dataSource={filteredVehicles}
-        columns={columns}
-        rowKey="sno"
-        pagination={{ pageSize: 7 }}
-
-      />
+      <table className="custom-table">
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th>Vehicle Name</th>
+            <th>Reg. No</th>
+            <th>Vendor Name</th>
+            <th>Actions</th>
+            <th>View More</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredVehicles.slice(0, 7).map((vehicle, index) => (
+            <tr key={vehicle.sno}>
+              <td>{index + 1}</td>
+              <td>{vehicle.VehicleName}</td>
+              <td>{vehicle.VehicleNumber}</td>
+              <td>{vendors.find(v => v.VendorId === vehicle.VendorId)?.VendorName}</td>
+              <td>
+                <button
+                  className="edit-button"
+                  onClick={() => handleEdit(vehicle)}
+                >
+                  Edit
+                </button>
+                <button
+                  className="delete-button"
+                  onClick={() => handleDelete(vehicle)}
+                >
+                  Delete
+                </button>
+              </td>
+              <td>
+                <button
+                  className="view-more-button"
+                  onClick={() =>
+                    navigate(`/VehicleDashboard`, {
+                      state: { vehicle },
+                    })
+                  }
+                >
+                  View More
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
       <Modal
         title="Edit Vehicle"

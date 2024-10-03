@@ -5,9 +5,8 @@ import SearchRow from "../../Components/Trip/SearchRow";
 import AllVehiclesHistory from "../AllVehiclesHistory/AllVehiclesHistory"
 
 function TripManagement() {
-  const [selectedFilter, setSelectedFilter] = useState("Today"); 
+  const [selectedFilter, setSelectedFilter] = useState("Today");
 
- 
   const handleFilterChange = (view) => {
     setSelectedFilter(view);
   };
@@ -15,12 +14,13 @@ function TripManagement() {
   return (
     <main className="trip-management--main">
       <div className="Searchrow">
-      <SearchRow onFilterChange={handleFilterChange}/> </div>
-      <div className="trip-content-container"> 
+        <SearchRow onFilterChange={handleFilterChange}/>
+      </div>
+      <div className="trip-content-container">
         {selectedFilter === "Today" ? (
-          <Cards /> 
+          <Cards />
         ) : (
-          <AllVehiclesHistory view={selectedFilter} /> 
+          <AllVehiclesHistory view={selectedFilter} />
         )}
       </div>
     </main>

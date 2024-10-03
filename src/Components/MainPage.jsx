@@ -16,14 +16,14 @@ import './Sidebar.css';
 const Clients = () => <div>Clients Content</div>;
 const Reports = () => <div>Reports Content</div>;
 
-const Home = () => {
+const MainPage = () => {
 	const [activeMenu, setActiveMenu] = useState('Dashboard');
 	
 	return (
 		<div className="dashboardcomponents">
 			<div className="sidebar">
 				<div className="logo-container">
-					<img src="https://res.cloudinary.com/dlo7urgnj/image/upload/v1724663475/logo_xd5tyb.jpg" alt="Logo" className="logo" />
+					<img src="https://res.cloudinary.com/dlo7urgnj/image/upload/v1724663475/logo_xd5tyb.jpg" alt="Logo" className="logoImg" />
 					<h2 className="logo-text">VTS</h2>
 				</div>
 				<div className="logout-container">
@@ -32,61 +32,61 @@ const Home = () => {
 				<div className="menu-container">
 					<div className={`menu-item ${activeMenu === 'Dashboard' ? 'active' : ''}`} onClick={() => setActiveMenu('Dashboard')}>
 						<div className="icon-container icon-dashboard">
-							<FaTachometerAlt className="icon" />
+							<FaTachometerAlt className="iconSvg" />
 						</div>
 						<span>Dashboard</span>
 					</div>
 					<div className={`menu-item ${activeMenu === 'Live Tracking' ? 'active' : ''}`} onClick={() => setActiveMenu('Live Tracking')}>
 						<div className="icon-container icon-live-tracking">
-							<FaMapMarkerAlt className="icon" />
+							<FaMapMarkerAlt className="iconSvg" />
 						</div>
 						<span>Live Tracking</span>
 					</div>
 					<div className={`menu-item ${activeMenu === 'Vendor Management' ? 'active' : ''}`} onClick={() => setActiveMenu('Vendor Management')}>
 						<div className="icon-container icon-vendor-management">
-							<FaUserTie className="icon" />
+							<FaUserTie className="iconSvg" />
 						</div>
 						<span>Vendor Management</span>
 					</div>
 					<div className={`menu-item ${activeMenu === 'Driver Management' ? 'active' : ''}`} onClick={() => setActiveMenu('Driver Management')}>
 						<div className="icon-container icon-driver-management">
-							<GiSteeringWheel className="icon" />
+							<GiSteeringWheel className="iconSvg" />
 						</div>
 						<span>Driver Management</span>
 					</div>
 					<div className={`menu-item ${activeMenu === 'Vehicle Management' ? 'active' : ''}`} onClick={() => setActiveMenu('Vehicle Management')}>
 						<div className="icon-container icon-vehicle-management">
-							<FaCar className="icon" />
+							<FaCar className="iconSvg" />
 						</div>
 						<span>Vehicle Management</span>
 					</div>
 					<div className={`menu-item ${activeMenu === 'Employees' ? 'active' : ''}`} onClick={() => setActiveMenu('Employees')}>
 						<div className="icon-container icon-employees">
-							<FaUsers className="icon" />
+							<FaUsers className="iconSvg" />
 						</div>
 						<span>Employees</span>
 					</div>
 					<div className={`menu-item ${activeMenu === 'Clients' ? 'active' : ''}`} onClick={() => setActiveMenu('Clients')}>
 						<div className="icon-container icon-clients">
-							<FaUserFriends className="icon" />
+							<FaUserFriends className="iconSvg" />
 						</div>
 						<span>Clients</span>
 					</div>
 					<div className={`menu-item ${activeMenu === 'Trip Management' ? 'active' : ''}`} onClick={() => setActiveMenu('Trip Management')}>
 						<div className="icon-container icon-trip-history">
-							<FaHistory className="icon" />
+							<FaHistory className="iconSvg" />
 						</div>
 						<span>Trip Management</span>
 					</div>
 					<div className={`menu-item ${activeMenu === 'Escort' ? 'active' : ''}`} onClick={() => setActiveMenu('Escort')}>
 						<div className="icon-container icon-escort">
-							<IoStarHalf className="icon" />
+							<IoStarHalf className="iconSvg" />
 						</div>
 						<span>Escort</span>
 					</div>
 					<div className={`menu-item ${activeMenu === 'Reports' ? 'active' : ''}`} onClick={() => setActiveMenu('Reports')}>
 						<div className="icon-container icon-reports">
-							<FaFileAlt className="icon" />
+							<FaFileAlt className="iconSvg" />
 						</div>
 						<span>Reports</span>
 					</div>
@@ -123,4 +123,4 @@ const Home = () => {
 	);
 };
 
-export default Home;
+export default MainPage;

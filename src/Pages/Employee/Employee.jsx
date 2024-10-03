@@ -275,7 +275,7 @@ function ExcelUpload() {
 
     const fetchTripsData = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/emp/showtrips`);
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/trip/showtrips`);
             setTripsData(response.data);
         } catch (error) {
             console.error('Error fetching trips data:', error);
@@ -592,12 +592,12 @@ function ExcelUpload() {
                                 </thead>
                                 <tbody>
                                     {tripsData.map((trip) => (
-                                        <tr key={trip.Id}>
-                                            <td>{trip.Id}</td>
+                                        <tr key={trip.TripId}>
+                                            <td>{trip.TripId}</td>
                                             <td>{trip.EmployeeId}</td>
-                                            <td>{formatDateTime(trip.Date)}</td>
-                                            <td>{trip.InTime}</td>
-                                            <td>{trip.OutTime}</td>
+                                            <td>{formatDateTime(trip.TripDate)}</td>
+                                            <td>{trip.LoginTime}</td>
+                                            <td>{trip.LogoutTime}</td>
                                         </tr>
                                     ))}
                                 </tbody>
