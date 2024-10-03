@@ -1,13 +1,14 @@
 import axios from 'axios';
 import './AddVehicle.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FaUser, FaTruck, FaGasPump, FaCogs, FaUsers, FaTachometerAlt, FaCalendarAlt, FaImage } from 'react-icons/fa';
 
 const CLOUDINARY_UPLOAD_PRESET = 'q6fwknmo';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/djbz2ydtp/image/upload';
 
 
-const VehicleForm = ({ onClose }) => {
+
+const VehicleForm = () => {
   const [vehicleDetails, setVehicleDetails] = useState({
     VehicleName: '',
     VehicleType: '',
@@ -23,20 +24,6 @@ const VehicleForm = ({ onClose }) => {
 
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-  const [vendors, setVendors] = useState([]);
-
-  useEffect(() => {
-    const fetchVendors = async () => {
-      try {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/vendor/getIdnName`);
-        setVendors(response.data);
-      } catch (error) {
-        console.error('Error fetching vendor data:', error);
-      }
-    };
-
-    fetchVendors();
-  }, []);
 
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
@@ -83,60 +70,93 @@ const VehicleForm = ({ onClose }) => {
       ...prevErrors,
       [name]: '',
     }));
+    console.log('Current vehicle details:', vehicleDetails);
   };
 
   const validateForm = () => {
     let formIsValid = true;
     let errors = {};
 
-
     Object.keys(vehicleDetails).forEach((key) => {
-      if (!vehicleDetails[key] && key !== 'VehicleImage') {
-        formIsValid = false;
-        errors[key] = `${key} is required`;
-      }
+        if (!vehicleDetails[key] && key !== 'VehicleImage') {
+            formIsValid = false;
+            errors[key] = `${key} is required`;
+        }
     });
+
+    if (!vehicleDetails.VendorId) {
+        formIsValid = false;
+        errors.VendorId = 'Vendor ID is required';
+    }
+    if (!vehicleDetails.VehicleNumber) {
+      formIsValid = false;
+      errors.VehicleNumber = 'Vehicle Number is required';
+  }
+  
+    
     if (!vehicleDetails.VehicleImage.trim()) {
-      formIsValid = false;
-      errors.VehicleImage = 'Vehicle image is required';
+        formIsValid = false;
+        errors.VehicleImage = 'Vehicle image is required';
     }
 
-    if (vehicleDetails.Mileage && isNaN(vehicleDetails.Mileage)) {
-      formIsValid = false;
-      errors.Mileage = 'Mileage must be a number';
+    if (vehicleDetails.VehicleMileageRange && isNaN(vehicleDetails.VehicleMileageRange)) {
+        formIsValid = false;
+        errors.VehicleMileageRange = 'Mileage must be a number';
     }
 
-    if (vehicleDetails.YearOfManufacturing && (isNaN(vehicleDetails.YearOfManufacturing) || vehicleDetails.YearOfManufacturing.length !== 4)) {
-      formIsValid = false;
-      errors.YearOfManufacturing = 'Year of Manufacture must be a 4-digit number';
+    if (vehicleDetails.VehicleManufacturedYear) {
+        // Check if it's a number and has exactly 4 digits
+        const year = parseInt(vehicleDetails.VehicleManufacturedYear, 10);
+        if (isNaN(year) || vehicleDetails.VehicleManufacturedYear.length !== 4) {
+            formIsValid = false;
+            errors.VehicleManufacturedYear = 'Year of Manufacture must be a 4-digit number';
+        } else if (year < 1900 || year > new Date().getFullYear()) {
+            formIsValid = false;
+            errors.VehicleManufacturedYear = 'Year must be between 1900 and the current year';
+        }
     }
 
     setErrors(errors);
+    console.log('Validation errors:', errors); // Log validation errors clearly
     return formIsValid;
-  };
+};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    console.log('Current vehicle details:', vehicleDetails); // Log the current state of vehicle details before validation
+
     if (validateForm()) {
-      setLoading(true);
-      try {
-        console.log(vehicleDetails);
+        setLoading(true);
+
+        // Prepare the form data to include the image file and other details
+        const formData = new FormData();
+        for (const key in vehicleDetails) {
+            formData.append(key, vehicleDetails[key]);
+        }
+
+        console.log('Submitting vehicle details:', vehicleDetails); // Log the vehicle details being submitted
         
-        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vehicle/addVehicle`, vehicleDetails);
-        window.alert("Form submitted successfully");
-        console.log('Vehicle details saved successfully');
-        onClose();
-      } catch (error) {
-        window.alert("Error saving the vehicle data");
-        console.error('Error saving vehicle details:', error);
-      } finally {
-        setLoading(false);
-      }
+        try {
+            await axios.post(`${process.env.REACT_APP_BACKEND_URL}/vehicle/addVehicle`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            
+            window.alert("Form submitted successfully");
+            console.log('Vehicle details saved successfully');
+        } catch (error) {
+            window.alert("Error saving the vehicle data");
+            console.error('Error saving vehicle details:', error);
+        } finally {
+            setLoading(false);
+        }
     } else {
-      console.log('Form has errors');
+        console.log('Form has errors');
+        console.log('Validation errors:', errors); // Log validation errors if the form is not valid
     }
-  };
+};
 
   return (
     <form className="vehicle-form" onSubmit={handleSubmit}>
@@ -237,23 +257,17 @@ const VehicleForm = ({ onClose }) => {
         </div>
 
         <div className="form-field1">
-          <label className="required1"><FaUser className="icon11" />Vendor Name:</label>
-          <select
-            name="VendorId"
-            onChange={handleChange}
-            value={vehicleDetails.VendorId}
-            className="dr-ven"
-          >
-            <option value="">
-              Select Vendor
-            </option>
-            {vendors.map((vendor) => (
-              <option key={vendor.VendorId} value={vendor.VendorId}>
-                {vendor.VendorName}
-              </option>
-            ))}
-          </select>
-        </div>
+  <label className="required1"><FaUser className="icon11" />Vendor ID:</label>
+  <input
+    type="text"
+    name="VendorId" // Changed from VendorName to VendorId
+    value={vehicleDetails.VendorId} // Changed from vehicleDetails.VendorName to vehicleDetails.VendorId
+    onChange={handleChange}
+  />
+  {errors.VendorId && <span className="error-message">{errors.VendorId}</span>} {/* Changed error handling */}
+</div>
+
+
         <div className="form-field1">
           <label className="required1"><FaCalendarAlt className="icon11" />Manufactured Year:</label>
           <input
