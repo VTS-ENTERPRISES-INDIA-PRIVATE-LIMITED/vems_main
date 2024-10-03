@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import { FaSignOutAlt, FaTachometerAlt, FaMapMarkerAlt, FaUserTie, FaCar, FaUsers, FaUserFriends, FaHistory, FaFileAlt } from 'react-icons/fa';
 import { GiSteeringWheel } from "react-icons/gi";
 import { LiaHomeSolid } from "react-icons/lia";
+import { IoStarHalf } from 'react-icons/io5';
+import { useNavigate } from 'react-router-dom';
 import Dasboard from './Dasboard';
 import Employee from '../Pages/Employee/Employee';
 import LiveTracking from '../Pages/LiveTracking/LiveTracking';
 import ViewVehicle from '../Pages/VechileManagement/ViewVehicle/ViewVehicle'
 import TripManagement from '../Pages/TripManagement/TripManagement'
-import { IoStarHalf } from 'react-icons/io5';
 import ViewEscort from '../Pages/Escort/ViewEscort';
 import Driverslist from '../Pages/DriverManagement/Driverslist';
 import User from './vendor/User';
 import './Sidebar.css';
-import { useNavigate } from 'react-router-dom';
 
 const Clients = () => <div>Clients Content</div>;
 const Reports = () => <div>Reports Content</div>;
@@ -20,22 +20,17 @@ const Reports = () => <div>Reports Content</div>;
 const MainPage = () => {
 	const [activeMenu, setActiveMenu] = useState('Dashboard');
 	const navigate = useNavigate();
-	
+
 	const handleLogout = async () => {
 		try {
-			const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/admin/logout`, {
-				method: 'POST',
+			const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/admin/logout`, {}, {
 				headers: {
 					'Content-Type': 'application/json',
 				},
 			});
 
-			if (response.ok) {
-				// Clear local storage
-				localStorage.removeItem('adminData');
-				localStorage.removeItem('isAuthenticated');
-
-				// Redirect to login page
+			if (response.status === 200) {
+				setIsAuthenticated(false);
 				navigate('/login');
 			} else {
 				console.error('Logout failed');
@@ -53,7 +48,7 @@ const MainPage = () => {
 					<h2 className="logo-text">VTS</h2>
 				</div>
 				<div className="logout-container">
-					Logout <FaSignOutAlt className="logout-icon" onClick={handleLogout}/>
+					Logout <FaSignOutAlt className="logout-icon" onClick={handleLogout} />
 				</div>
 				<div className="menu-container">
 					<div className={`menu-item ${activeMenu === 'Dashboard' ? 'active' : ''}`} onClick={() => setActiveMenu('Dashboard')}>
