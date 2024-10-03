@@ -54,6 +54,7 @@ const Register = () => {
     const requestBody = { AdminName: name, AdminMail: email, AdminPhoneNum: phoneNumber }
     console.log(requestBody);
     
+    
 
     try {
       const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/admin/register`, requestBody);
