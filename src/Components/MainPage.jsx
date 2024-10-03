@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaSignOutAlt, FaTachometerAlt, FaMapMarkerAlt, FaUserTie, FaCar, FaUsers, FaUserFriends, FaHistory, FaFileAlt } from 'react-icons/fa';
 import { GiSteeringWheel } from "react-icons/gi";
 import { LiaHomeSolid } from "react-icons/lia";
@@ -14,13 +14,49 @@ import Driverslist from '../Pages/DriverManagement/Driverslist';
 import User from './vendor/User';
 import './Sidebar.css';
 import axios from 'axios';
+import CryptoJS from 'crypto-js';
 
 const Clients = () => <div>Clients Content</div>;
 const Reports = () => <div>Reports Content</div>;
 
 const MainPage = () => {
 	const [activeMenu, setActiveMenu] = useState('Dashboard');
+	const [admin, setAdmin] = useState({})
+	const [loginTime, setLoginTime] = useState()
 	const navigate = useNavigate();
+
+	function formatDateTime() {
+		const date = new Date();
+
+		const options = { year: 'numeric', month: 'short', day: '2-digit' };
+		const formattedDate = date.toLocaleDateString('en-US', options).replace(',', '');
+
+		let hours = date.getHours();
+		const minutes = date.getMinutes();
+		const ampm = hours >= 12 ? 'PM' : 'AM';
+
+		hours = hours % 12;
+		hours = hours ? hours : 12;
+		const formattedTime = `${hours}:${minutes < 10 ? '0' + minutes : minutes} ${ampm}`;
+
+		setLoginTime(`${formattedDate} | ${formattedTime}`);
+	}
+
+	const getDecryptedAdminData = () => {
+		const encryptedData = localStorage.getItem('adminData');
+		if (encryptedData) {
+			const bytes = CryptoJS.AES.decrypt(encryptedData, 'secret_key');
+			const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+			console.log(decryptedData);
+			setAdmin(decryptedData.admin);
+		} else {
+			setAdmin({});
+		}
+	};
+
+	useEffect(() => {
+		getDecryptedAdminData(); formatDateTime();
+	}, [])
 
 	const handleLogout = async () => {
 		try {
@@ -31,6 +67,7 @@ const MainPage = () => {
 			});
 
 			if (response.status === 200) {
+				localStorage.setItem('isAuthenticated', 'false');
 				navigate('/login');
 			} else {
 				console.error('Logout failed');
@@ -116,15 +153,15 @@ const MainPage = () => {
 			<div className='sideContent'>
 				<header className="dashboard-header">
 					<div className="header-info">
-						<span className="header-date">Dec 01 2022 | 10:00 AM</span>
+						<span className="header-date">{loginTime}</span>
 					</div>
 					<div className="user-info">
 						<div className="user-text">
-							<span className="user-name">koundinya</span>
-							<span className="user-role">Admin</span>
+							<span className="user-name">{admin?.AdminName}</span>
+							<span className="user-role">{admin?.AdminId}</span>
 						</div>
 						<div className="avatar-container">
-							<img src="https://res.cloudinary.com/dlo7urgnj/image/upload/v1718121215/samples/man-portrait.jpg" alt="User Avatar" className="user-avatar" />
+							<img src="https://res.cloudinary.com/dalzs7bc2/image/upload/v1727350625/Photo_User_djqzvw.jpg" alt="User Avatar" className="user-avatar" />
 						</div>
 					</div>
 				</header>

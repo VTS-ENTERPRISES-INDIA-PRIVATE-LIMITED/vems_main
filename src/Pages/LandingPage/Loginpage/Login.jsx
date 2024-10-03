@@ -10,46 +10,36 @@ const Login = ({ setIsAuthenticated }) => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const getDecryptedAdminData = () => {
-    const encryptedData = localStorage.getItem('adminData');
-    if (encryptedData) {
-      const bytes = CryptoJS.AES.decrypt(encryptedData, 'secret_key');
-      const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-      return decryptedData;
-    }
-    return null;
-  };
-
   const handleLogin = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/admin/login`, {
-      AdminEmail: email,
-      AdminPassword: password,
-    });
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/admin/login`, {
+        AdminEmail: email,
+        AdminPassword: password,
+      });
 
-    const data = response.data;
+      const data = response.data;
 
-    if (data.IsApproved === null || data.IsApproved === 0) {
-      navigate('/not-allowed');
-    } else {
-      const encryptedData = CryptoJS.AES.encrypt(JSON.stringify(data), 'secret_key').toString();
-      localStorage.setItem('adminData', encryptedData);
+      if (data.IsApproved === null || data.IsApproved === 0) {
+        navigate('/not-allowed');
+      } else {
+        const encryptedData = CryptoJS.AES.encrypt(JSON.stringify(data), 'secret_key').toString();
+        localStorage.setItem('adminData', encryptedData);
 
-      setIsAuthenticated(true);
-      localStorage.setItem('isAuthenticated', 'true');
-      navigate('/home');
+        setIsAuthenticated(true);
+        localStorage.setItem('isAuthenticated', 'true');
+        navigate('/home');
+      }
+    } catch (err) {
+      if (err.response && err.response.data) {
+        setError(err.response.data);
+      } else {
+        setError('An error occurred during login. Please try again later.');
+      }
+      console.error('Login error:', err);
     }
-  } catch (err) {
-    if (err.response && err.response.data) {
-      setError(err.response.data);
-    } else {
-      setError('An error occurred during login. Please try again later.');
-    }
-    console.error('Login error:', err);
-  }
-};
+  };
 
   return (
     <div className="login-container">
