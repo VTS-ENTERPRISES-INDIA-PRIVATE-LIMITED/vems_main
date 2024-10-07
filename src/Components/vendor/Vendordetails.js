@@ -62,7 +62,6 @@ const Vendordetails = () => {
                 <div className="stat-item"><p className="stat-value">{vendor.totalDrivers}</p><p className="stat-label">Total Drivers</p></div>
                 <div className="stat-item"><p className="stat-value">{new Date(vendor.AgreementStartDate).toLocaleDateString()}</p><p className="stat-label">Joined Date</p></div>
             </div>
-
             <div className="personal-info">
                 <h3>Personal Information</h3>
                 <div className="info-block">
@@ -72,7 +71,6 @@ const Vendordetails = () => {
                     <p><FaMapMarkerAlt /> <strong>Address:</strong> {vendor.Address}</p>
                 </div>
             </div>
-
             <div className="below-cards">
                 <div className="verification-documents">
                     <h3>Verification Documents Uploads</h3>

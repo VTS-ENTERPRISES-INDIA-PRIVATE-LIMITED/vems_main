@@ -17,8 +17,6 @@
 }
 
 .vendor-registration-container {
-    width: calc(100vw - 20vw); 
-    margin-left: 20vw; 
     padding: 20px;
     background-color: #f9f9f9;
     padding-top: 50px;
@@ -120,8 +118,6 @@
 
 
 .vendor-registration-container {
-    width: calc(100vw - 20vw);
-    margin-left: 20vw;
     padding: 20px;
     background-color: #f9f9f9;
     font-family: Arial, sans-serif;
@@ -359,8 +355,7 @@
     
     
     .vendor-registration-container {
-        width: calc(100vw - 20vw);
-        margin-left: 20vw;
+        width: 100vw;
         padding: 20px;
         background-color: #f9f9f9;
         font-family: Arial, sans-serif;

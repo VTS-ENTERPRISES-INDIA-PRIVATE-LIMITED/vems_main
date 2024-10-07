@@ -36,41 +36,39 @@ function App() {
   }, []);
 
   return (
-    <div className="app-root">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route 
-            path="/login" 
-            element={<Login setIsAuthenticated={setIsAuthenticated} />} 
-          />
-          <Route path="/register" element={<Register />} />
-          <Route path="/home" element={
-            <ProtectedRoute isAuthenticated={isAuthenticated}>
-              <MainPage />
-            </ProtectedRoute>
-          } />
-          <Route path="/not-access" element={<NotAccess />} />
-          <Route path="/dashboard" element={<Sidebar />}>
-            <Route path="addvehicle" element={<AddVehicle />} />
-            <Route path="viewvehicle" element={<ViewVehicle />} />
-            <Route path="livetracking" element={<LiveTracking />} />
-            <Route path="history" element={<TripHistory />} />
-          </Route>
-          <Route path="/viewDriver" element={<Driverprad />} />
-          <Route path="/vehicledashboard" element={<VehicleDashboard />} />
-          <Route path="/escortdashboard" element={<EscortDashboard />} />
-          <Route path="/trips" element={<TripManagement />} />
-          <Route path="/routemanagement" element={<RouteManagement />} />
-          <Route path="todayhistory" element={<TripHistoryToday />} />
-          <Route path="escort" element={<ViewEscort />} />
-          <Route path="/UserReg" element={<UserReg />} />
-          <Route path="/vendordetails/:VendorId" element={<Vendordetails />} />
-          <Route path="/vendorLogin" element={<VendorLogin />} />
-          <Route path="/Employee" element={<Employee />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/login"
+          element={<Login setIsAuthenticated={setIsAuthenticated} />}
+        />
+        <Route path="/register" element={<Register />} />
+        <Route path="/home" element={
+          <ProtectedRoute isAuthenticated={isAuthenticated}>
+            <MainPage />
+          </ProtectedRoute>
+        } />
+        <Route path="/not-access" element={<NotAccess />} />
+        <Route path="/dashboard" element={<Sidebar />}>
+          <Route path="addvehicle" element={<AddVehicle />} />
+          <Route path="viewvehicle" element={<ViewVehicle />} />
+          <Route path="livetracking" element={<LiveTracking />} />
+          <Route path="history" element={<TripHistory />} />
+        </Route>
+        <Route path="/viewDriver" element={<Driverprad />} />
+        <Route path="/vehicledashboard" element={<VehicleDashboard />} />
+        <Route path="/escortdashboard" element={<EscortDashboard />} />
+        <Route path="/trips" element={<TripManagement />} />
+        <Route path="/routemanagement" element={<RouteManagement />} />
+        <Route path="todayhistory" element={<TripHistoryToday />} />
+        <Route path="escort" element={<ViewEscort />} />
+        <Route path="/UserReg" element={<UserReg />} />
+        <Route path="/vendordetails/:VendorId" element={<Vendordetails />} />
+        <Route path="/vendorLogin" element={<VendorLogin />} />
+        <Route path="/Employee" element={<Employee />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
